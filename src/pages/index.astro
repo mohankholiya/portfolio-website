@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import CaseStudies from "../components/CaseStudies.astro";
+import Competencies from "../components/Competencies.astro";
+import Credentials from "../components/Credentials.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout>
+  <Nav />
+
+  <main id="main-content">
+    <Hero />
+    <About />
+    <CaseStudies />
+    <Competencies />
+    <Credentials />
+    <Contact />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<!-- Global scroll-reveal observer (runs after all components have mounted) -->
+<script>
+  const allReveals = document.querySelectorAll<HTMLElement>('.reveal');
+  const obs = new IntersectionObserver(
+    entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('is-visible');
+          obs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  allReveals.forEach(el => obs.observe(el));
+</script>

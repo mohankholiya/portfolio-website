@@ -1,0 +1,78 @@
+---
+import { competencies } from "../content/site";
+
+const icons = ["◈", "◎", "◆", "◉", "◇", "●"];
+---
+
+<section
+  id="competencies"
+  aria-labelledby="competencies-heading"
+  class="section"
+  style="background:var(--color-canvas-soft);"
+>
+  <div class="container">
+
+    <!-- Header -->
+    <div style="max-width:560px; margin-bottom:48px;">
+      <p class="t-caption-mono reveal" style="
+        color:var(--color-mute);
+        text-transform:uppercase;
+        letter-spacing:0.08em;
+        margin:0 0 16px;
+      ">Core Competencies</p>
+
+      <h2 id="competencies-heading" class="t-display-lg reveal" style="
+        color:var(--color-ink); margin:0 0 16px;
+        animation-delay:0.07s;
+      ">
+        Six functional areas. One integrated approach.
+      </h2>
+
+      <p class="t-body-md reveal" style="color:var(--color-body-text); margin:0; animation-delay:0.12s;">
+        Across 16 years the work has covered the full procurement spectrum — from upstream strategy
+        to delivery and digital capability uplift.
+      </p>
+    </div>
+
+    <!-- Competency grid -->
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+      gap:12px;
+    ">
+      {competencies.map((c, i) => (
+        <div
+          class="comp-card reveal shadow-l2"
+          style={`
+            background:var(--color-canvas);
+            border-radius:var(--radius-md);
+            padding:24px;
+            animation-delay:${(i % 3) * 0.06 + Math.floor(i / 3) * 0.1}s;
+          `}
+        >
+          <!-- Icon -->
+          <div style="
+            width:36px; height:36px;
+            background:var(--color-canvas-soft-2);
+            border-radius:var(--radius-sm);
+            display:flex; align-items:center; justify-content:center;
+            font-size:16px; color:var(--color-ink);
+            margin-bottom:16px;
+            flex-shrink:0;
+          " aria-hidden="true">{icons[i]}</div>
+
+          <!-- Title -->
+          <h3 class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 8px;">
+            {c.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="t-body-sm" style="color:var(--color-body-text); margin:0; line-height:1.6;">
+            {c.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

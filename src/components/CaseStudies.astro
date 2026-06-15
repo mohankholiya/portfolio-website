@@ -1,0 +1,128 @@
+---
+import { caseStudies } from "../content/site";
+import CaseStudyCard from "./CaseStudyCard.astro";
+
+const sectors = [
+  { key: "all",       label: "All" },
+  { key: "energy",    label: "Energy & O&G" },
+  { key: "utilities", label: "Utilities" },
+  { key: "telecom",   label: "Telecom" },
+];
+---
+
+<section
+  id="case-studies"
+  aria-labelledby="case-studies-heading"
+  class="section"
+  style="background:var(--color-canvas);"
+>
+  <div class="container">
+
+    <!-- Header -->
+    <div style="max-width:600px; margin-bottom:48px;">
+      <p class="t-caption-mono reveal" style="
+        color:var(--color-mute);
+        text-transform:uppercase;
+        letter-spacing:0.08em;
+        margin:0 0 16px;
+      ">Selected Case Studies</p>
+
+      <h2 id="case-studies-heading" class="t-display-lg reveal" style="
+        color:var(--color-ink); margin:0 0 16px;
+        animation-delay:0.07s;
+      ">
+        Outcomes at scale across complex supply chains.
+      </h2>
+
+      <p class="t-body-md reveal" style="color:var(--color-body-text); margin:0; animation-delay:0.12s;">
+        All client names are anonymised. Metrics reflect programme outcomes confirmed at project close.
+      </p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div
+      id="filter-row"
+      role="group"
+      aria-label="Filter case studies by sector"
+      style="
+        display:flex; flex-wrap:wrap; gap:4px;
+        margin-bottom:32px;
+        padding:4px;
+        background:var(--color-canvas-soft-2);
+        border-radius:var(--radius-pill-sm);
+        box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06);
+        width:fit-content;
+      "
+    >
+      {sectors.map(s => (
+        <button
+          class={`filter-tab t-body-sm ${s.key === 'all' ? 'active' : ''}`}
+          data-filter={s.key}
+          aria-pressed={s.key === 'all' ? 'true' : 'false'}
+        >
+          {s.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Card grid -->
+    <div
+      id="case-grid"
+      style="
+        display:grid;
+        grid-template-columns:repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+        gap:16px;
+      "
+    >
+      {caseStudies.map((cs, i) => (
+        <div
+          class="card-wrapper"
+          data-sector={cs.sector}
+          style={`animation-delay:${i * 0.07}s`}
+        >
+          <CaseStudyCard {...cs} />
+        </div>
+      ))}
+    </div>
+
+    <!-- No results fallback (hidden by default) -->
+    <p
+      id="no-results"
+      class="t-body-md"
+      style="display:none; color:var(--color-mute); text-align:center; padding:48px 0;"
+    >
+      No case studies in this sector yet.
+    </p>
+
+  </div>
+</section>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const wrappers   = document.querySelectorAll<HTMLElement>('.card-wrapper[data-sector]');
+  const noResults  = document.getElementById('no-results');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      // Update button states
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      // Show/hide cards
+      let visible = 0;
+      wrappers.forEach(w => {
+        const match = filter === 'all' || w.dataset.sector === filter;
+        w.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+</script>
