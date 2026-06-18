@@ -352,7 +352,9 @@
     position: fixed;
     inset: 0;
     z-index: 600;
-    background: #0B0F19;
+    background: rgba(11,15,25,0.97);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     padding: 88px 32px 48px;
     opacity: 0;
     visibility: hidden;
@@ -374,7 +376,7 @@
     transition: opacity .3s cubic-bezier(.22,1,.36,1), transform .3s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s;
   }
   .mob-links { flex: 1; display: flex; flex-direction: column }
-  .mob-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 8vw, 3rem); font-weight: 300; color: #FFFFFF; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .25s; line-height: 1; display: flex; justify-content: space-between; align-items: center; cursor: pointer }
+  .mob-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 8vw, 3rem); font-weight: 500; color: #FFFFFF; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .25s; line-height: 1; display: flex; justify-content: space-between; align-items: center; cursor: pointer }
   .mob-link:first-child { border-top: 1px solid rgba(255,255,255,.08) }
   .mob-link:hover, .mob-link:focus-visible { color: #C9A88A; padding-left: 8px }
   .mob-link-n { font-family: 'IBM Plex Mono', monospace; font-size: .46rem; letter-spacing: .22em; color: rgba(201,168,138,.5) }
@@ -394,7 +396,16 @@
   @media (max-width: 960px) {
     body { cursor: auto }
     .cur, .cur-dot { display: none }
-    .nav { padding: 0 24px }
+
+    /* ── Mobile nav always dark (overrides light theme + scroll-solid state) ── */
+    .nav { padding: 0 24px; background: #0B0F19 !important; border-bottom-color: transparent !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important }
+    .nav.solid { background: rgba(11,15,25,0.97) !important; border-bottom-color: rgba(255,255,255,.08) !important; -webkit-backdrop-filter: blur(20px) !important; backdrop-filter: blur(20px) !important }
+    .nav-logo { color: #EDE8E1 !important }
+    .nav-logo em { color: #C9A88A !important }
+    .nav-burger { border-color: rgba(255,255,255,.18) !important }
+    .nav-burger span { background: #FFFFFF !important }
+    .theme-toggle { border-color: rgba(255,255,255,.18) !important; color: #EDE8E1 !important }
+
     .nav-links { display: none }
     .nav-avail { display: none }
     .nav-burger { display: flex }
