@@ -15,6 +15,7 @@
   <meta name="twitter:description" content="Senior procurement and supply chain leader. 16+ years across energy, oil &amp; gas, utilities and telecom.">
   <meta name="twitter:image" content="/og-image.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mohan Kholiya","jobTitle":"Procurement & Supply Chain Leader","description":"Senior procurement and supply chain leader with 16+ years across energy, oil & gas, utilities and telecom.","email":"mailto:mohan.kholiya@gmail.com","sameAs":["https://linkedin.com/in/mohankholiya"],"knowsAbout":["Procurement","Supply Chain Management","Category Strategy","Oil & Gas","Energy","Utilities","Telecommunications"]}</script>
+  <script>(function(){var s=localStorage.getItem('mk-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -72,7 +73,16 @@
      NAV
   ═══════════════════════════════════════ */
   .nav { position: fixed; inset: 0 0 auto; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 0 60px; height: 68px; background: transparent; border-bottom: 1px solid transparent; transition: background .45s, border-color .45s }
-  .nav.solid { background: rgba(250,248,245,.95); border-bottom-color: var(--bdr); backdrop-filter: blur(24px) }
+  .nav.solid { background: rgba(250,248,245,.96); border-bottom-color: var(--bdr); backdrop-filter: blur(24px) }
+  html[data-theme="dark"] .nav.solid { background: rgba(17,16,15,.96); border-bottom-color: var(--bdr) }
+  html[data-theme="dark"] .nav:not(.solid) { background: rgba(17,16,15,.5); backdrop-filter: blur(8px) }
+  /* When mobile menu is open, nav matches the dark overlay */
+  body.menu-open .nav { background: #0E0C0A !important; border-bottom-color: rgba(255,255,255,.06) !important; backdrop-filter: none !important }
+  body.menu-open .nav-logo { color: #EDE8E1 }
+  body.menu-open .nav-logo em { color: #C9A88A }
+  body.menu-open .theme-toggle { border-color: rgba(255,255,255,.15); color: #EDE8E1 }
+  body.menu-open .nav-burger { border-color: rgba(255,255,255,.15) }
+  body.menu-open .nav-burger span { background: #EDE8E1 }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 500; letter-spacing: .02em; color: var(--t1); text-decoration: none }
   .nav-logo em { font-style: normal; color: var(--acc) }
   .nav-links { display: flex; gap: 44px; list-style: none; align-items: center }
@@ -316,6 +326,41 @@
   }
 
   /* ═══════════════════════════════════════
+     NAV ACTIONS + THEME TOGGLE + BURGER
+  ═══════════════════════════════════════ */
+  .nav-actions { display: flex; align-items: center; gap: 10px }
+
+  .theme-toggle { width: 38px; height: 38px; border: 1px solid var(--bdr2); background: transparent; cursor: none; display: flex; align-items: center; justify-content: center; color: var(--t1); transition: border-color .28s, color .28s, background .28s; position: relative; flex-shrink: 0; padding: 0 }
+  .theme-toggle:hover { border-color: var(--acc); background: var(--a04) }
+  .theme-toggle svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+  .icon-sun, .icon-moon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transition: opacity .25s, transform .25s }
+  .icon-moon { opacity: 1; transform: rotate(0deg) }
+  .icon-sun  { opacity: 0; transform: rotate(30deg) }
+  html[data-theme="dark"] .icon-moon { opacity: 0; transform: rotate(-30deg) }
+  html[data-theme="dark"] .icon-sun  { opacity: 1; transform: rotate(0deg) }
+
+  .nav-burger { display: none; width: 38px; height: 38px; border: 1px solid var(--bdr2); background: transparent; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; padding: 0 }
+  .nav-burger span { display: block; width: 18px; height: 1.5px; background: var(--t1); transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .25s }
+  .nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg) }
+  .nav-burger.open span:nth-child(2) { opacity: 0 }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg) }
+
+  /* ═══════════════════════════════════════
+     MOBILE MENU — always dark overlay
+  ═══════════════════════════════════════ */
+  .mob-menu { position: fixed; inset: 0; z-index: 490; background: #0E0C0A; padding: 88px 32px 48px; opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity .3s ease, transform .3s ease; display: flex; flex-direction: column; overflow-y: auto }
+  .mob-menu.open { opacity: 1; pointer-events: auto; transform: none }
+  .mob-links { flex: 1; display: flex; flex-direction: column }
+  .mob-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 8vw, 3rem); font-weight: 300; color: #EDE8E1; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .25s; line-height: 1; display: flex; justify-content: space-between; align-items: center; cursor: pointer }
+  .mob-link:first-child { border-top: 1px solid rgba(255,255,255,.08) }
+  .mob-link:hover, .mob-link:focus-visible { color: #C9A88A; padding-left: 8px }
+  .mob-link-n { font-family: 'IBM Plex Mono', monospace; font-size: .46rem; letter-spacing: .22em; color: rgba(201,168,138,.45) }
+  .mob-footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px }
+  .mob-avail { display: flex; align-items: center; gap: 9px; font-family: 'IBM Plex Mono', monospace; font-size: .52rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(237,232,225,.6) }
+  .mob-dot { width: 6px; height: 6px; background: #4C9E4C; border-radius: 50%; animation: blink 2.4s ease-in-out infinite }
+  .mob-copy { font-family: 'IBM Plex Mono', monospace; font-size: .46rem; letter-spacing: .1em; color: rgba(237,232,225,.3) }
+
+  /* ═══════════════════════════════════════
      RESPONSIVE
   ═══════════════════════════════════════ */
   @media (max-width: 960px) {
@@ -324,8 +369,12 @@
     .nav { padding: 0 24px }
     .nav-links { display: none }
     .nav-avail { display: none }
+    .nav-burger { display: flex }
+    .theme-toggle { cursor: pointer }
+    .btn-g, .btn-o, .btn-g-dk, .btn-o-dk, .c-link, .f-top { cursor: pointer }
     .wrap, .contact-wrap { padding: 0 24px }
     section { padding: 96px 0 }
+    #contact { padding: 96px 0 }
     .hero-body { grid-template-columns: 1fr; padding: 120px 24px 56px }
     .h-panel { display: none }
     .hero-dial { display: none }
@@ -335,8 +384,12 @@
     .hs-ring { width: 110px; height: 110px; flex-shrink: 0 }
     .hs-name, .hs-role { text-align: left }
     .about-stats { grid-template-columns: repeat(3, 1fr) }
-    .cs-entry { grid-template-columns: 1fr; gap: 16px }
-    .cs-entry:hover { padding-left: 16px }
+    .cs-entry { grid-template-columns: 1fr; gap: 16px; cursor: pointer }
+    .cs-entry:hover { padding-left: 0 }
+    .cs-entry:hover::before { transform: scaleY(0) }
+    .cs-entry.expanded { padding-left: 16px }
+    .cs-entry.expanded::before { transform: scaleY(1) }
+    .cs-entry.expanded .cs-expand { max-height: 360px; opacity: 1; margin-top: 16px }
     .cs-tags { flex-direction: row; flex-wrap: wrap; align-items: flex-start }
     .cs-tag { text-align: left }
     .bento { grid-template-columns: 1fr 1fr }
@@ -353,72 +406,69 @@
     .sh { margin-bottom: 52px }
   }
   @media (max-width: 540px) {
-    .h-ctas { flex-direction: column; align-items: flex-start }
+    .h-name { font-size: clamp(3.4rem, 16vw, 5.2rem) }
+    .h-ctas { flex-direction: column; align-items: stretch }
     .btn-g, .btn-o, .btn-g-dk, .btn-o-dk { width: 100%; justify-content: center }
     .bento { grid-template-columns: 1fr }
     .b-feat { grid-column: span 1 }
     .about-stats { grid-template-columns: 1fr 1fr }
     .a-st:last-child { border-right: none; border-top: 1px solid var(--bdr) }
+    .hs-card { flex-direction: column; align-items: center }
+    .hs-name, .hs-role { text-align: center }
+    .hs-ring { width: 140px; height: 140px }
+    .sh-ghost { display: none }
+    .c-val { font-size: .78rem; word-break: break-all }
+    .c-right { gap: 8px }
+  }
+  @media (max-width: 375px) {
+    .nav { padding: 0 16px }
+    .wrap, .contact-wrap { padding: 0 16px }
+    .hero-body { padding: 100px 16px 48px }
+    .h-scroll { left: 16px }
+    .mob-menu { padding: 80px 20px 40px }
+    .f-inner { padding: 28px 16px }
   }
 
   /* ═══════════════════════════════════════
-     DARK MODE
+     DARK MODE — manual or system
   ═══════════════════════════════════════ */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:     #111110;
-      --srf:    #191714;
-      --srf2:   #201D1A;
-      --white:  #0C0B0A;
-      --bdr:    #2C2822;
-      --bdr2:   #3A342C;
-      --t1:     #EDE9E4;
-      --t2:     #8A8380;
-      --t3:     #504B47;
-      --acc:    #B08B6E;
-      --acc-lt: #C9A88A;
-      --a04:    rgba(176,139,110,.06);
-      --a10:    rgba(176,139,110,.12);
-      --a20:    rgba(176,139,110,.22);
-      --a40:    rgba(176,139,110,.42);
-      --hover:  #1E1A15;
-      /* Dark section becomes even deeper */
-      --dk:     #080807;
-      --dk-srf: #0E0D0C;
-      --dk-bdr: #1A1815;
-      --dk-t1:  #EDE8E1;
-      --dk-t2:  #6E6760;
-      --dk-t3:  #302D2A;
-      --dk-acc: rgba(176,139,110,.85);
-    }
-
-    /* Nav frosted glass */
-    .nav.solid { background: rgba(17,16,15,.94) }
-
-    /* Section ghost text */
-    .sh-ghost     { -webkit-text-stroke: 1px rgba(176,139,110,.09) }
-    .sh-dk .sh-ghost { -webkit-text-stroke: 1px rgba(176,139,110,.07) }
-    .sh-dk .sh-n  { color: rgba(176,139,110,.25) }
-
-    /* Photo ring glow */
-    .hs-ring { box-shadow: 0 0 0 8px rgba(176,139,110,.08), 0 24px 64px rgba(0,0,0,.55) }
-
-    /* Tags — hardcoded dark equivalents */
-    .cs-tag { border-color: #2E2924; color: #C8BDB4; background: #1C1814 }
-    .s-tag  { border-color: #2E2924; color: #C8BDB4; background: #1C1814 }
-    .s-tag:hover { border-color: rgba(176,139,110,.28); color: var(--acc); background: var(--a04) }
-
-    /* Bento grid gap line */
-    .bento { background: var(--bdr) }
-
-    /* Outline button on light bg */
-    .btn-o { border-color: var(--bdr); color: var(--t2) }
-    .btn-o:hover, .btn-o:focus-visible { border-color: var(--a20); color: var(--t1) }
-
-    /* Credential dot */
-    .cred-dot { background: var(--bg) }
-    .cred-item:hover .cred-dot { background: var(--acc) }
+  html[data-theme="dark"] {
+    --bg:     #111110;
+    --srf:    #191714;
+    --srf2:   #201D1A;
+    --white:  #0C0B0A;
+    --bdr:    #2C2822;
+    --bdr2:   #3A342C;
+    --t1:     #EDE9E4;
+    --t2:     #8A8380;
+    --t3:     #504B47;
+    --acc:    #B08B6E;
+    --acc-lt: #C9A88A;
+    --a04:    rgba(176,139,110,.06);
+    --a10:    rgba(176,139,110,.12);
+    --a20:    rgba(176,139,110,.22);
+    --a40:    rgba(176,139,110,.42);
+    --hover:  #1E1A15;
+    --dk:     #080807;
+    --dk-srf: #0E0D0C;
+    --dk-bdr: #1A1815;
+    --dk-t1:  #EDE8E1;
+    --dk-t2:  #6E6760;
+    --dk-t3:  #302D2A;
+    --dk-acc: rgba(176,139,110,.85);
   }
+  html[data-theme="dark"] .sh-ghost  { -webkit-text-stroke: 1px rgba(176,139,110,.09) }
+  html[data-theme="dark"] .sh-dk .sh-ghost { -webkit-text-stroke: 1px rgba(176,139,110,.07) }
+  html[data-theme="dark"] .sh-dk .sh-n  { color: rgba(176,139,110,.25) }
+  html[data-theme="dark"] .hs-ring { box-shadow: 0 0 0 8px rgba(176,139,110,.08), 0 24px 64px rgba(0,0,0,.55) }
+  html[data-theme="dark"] .cs-tag { border-color: #2E2924; color: #C8BDB4; background: #1C1814 }
+  html[data-theme="dark"] .s-tag  { border-color: #2E2924; color: #C8BDB4; background: #1C1814 }
+  html[data-theme="dark"] .s-tag:hover { border-color: rgba(176,139,110,.28); color: var(--acc); background: var(--a04) }
+  html[data-theme="dark"] .bento { background: var(--bdr) }
+  html[data-theme="dark"] .btn-o { border-color: var(--bdr); color: var(--t2) }
+  html[data-theme="dark"] .btn-o:hover, html[data-theme="dark"] .btn-o:focus-visible { border-color: var(--a20); color: var(--t1) }
+  html[data-theme="dark"] .cred-dot { background: var(--bg) }
+  html[data-theme="dark"] .cred-item:hover .cred-dot { background: var(--acc) }
   </style>
 </head>
 <body>
@@ -439,11 +489,38 @@
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="nav-avail" aria-label="Availability status">
-      <span class="nav-dot" aria-hidden="true"></span>Available
+    <div class="nav-actions">
+      <div class="nav-avail" aria-label="Availability status">
+        <span class="nav-dot" aria-hidden="true"></span>Available
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <span class="icon-moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+        <span class="icon-sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+      </button>
+      <button class="nav-burger" id="nav-burger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 </header>
+
+<nav class="mob-menu" id="mob-menu" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="mob-links">
+    <a href="#about"        class="mob-link"><span>About</span>        <span class="mob-link-n">01</span></a>
+    <a href="#case-studies" class="mob-link"><span>Case Studies</span> <span class="mob-link-n">02</span></a>
+    <a href="#competencies" class="mob-link"><span>Competencies</span> <span class="mob-link-n">03</span></a>
+    <a href="#credentials"  class="mob-link"><span>Credentials</span>  <span class="mob-link-n">04</span></a>
+    <a href="#contact"      class="mob-link"><span>Contact</span>      <span class="mob-link-n">05</span></a>
+  </div>
+  <div class="mob-footer">
+    <div class="mob-avail"><span class="mob-dot" aria-hidden="true"></span>Available now</div>
+    <span class="mob-copy">&copy; 2025 Mohan Kholiya</span>
+  </div>
+</nav>
 
 <main id="main">
 
@@ -836,7 +913,7 @@
   </section>
 
   <!-- ══════════════════════════════ CONTACT ══ -->
-  <section id="contact" aria-labelledby="contact-h" style="padding:132px 0;position:relative;overflow:hidden">
+  <section id="contact" aria-labelledby="contact-h" style="position:relative;overflow:hidden">
 
     <span class="contact-deco" aria-hidden="true">MK</span>
 
@@ -971,6 +1048,52 @@ document.getElementById('email-link').addEventListener('click', e => {
   tip.classList.add('on');
   setTimeout(() => tip.classList.remove('on'), 2200);
 });
+
+// ── Theme toggle ────────────────────────────────────────────────
+const themeBtn = document.getElementById('theme-toggle');
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('mk-theme', theme);
+  themeBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+}
+themeBtn.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+});
+// Sync aria-label on load without overwriting localStorage
+(function(){ const t = document.documentElement.getAttribute('data-theme') || 'light'; themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); })();
+
+// ── Mobile menu ─────────────────────────────────────────────────
+const burger = document.getElementById('nav-burger');
+const mobMenu = document.getElementById('mob-menu');
+function openMenu() {
+  burger.classList.add('open');
+  mobMenu.classList.add('open');
+  document.body.classList.add('menu-open');
+  burger.setAttribute('aria-expanded', 'true');
+  burger.setAttribute('aria-label', 'Close navigation menu');
+  mobMenu.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  burger.classList.remove('open');
+  mobMenu.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Open navigation menu');
+  mobMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+burger.addEventListener('click', () => burger.classList.contains('open') ? closeMenu() : openMenu());
+mobMenu.querySelectorAll('.mob-link').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+// ── Case study tap-to-expand (touch devices) ────────────────────
+if (window.matchMedia('(hover: none)').matches || window.innerWidth <= 960) {
+  document.querySelectorAll('.cs-entry').forEach(entry => {
+    entry.addEventListener('click', () => entry.classList.toggle('expanded'));
+  });
+}
 </script>
 </body>
 </html>
