@@ -76,8 +76,8 @@
   .nav.solid { background: rgba(250,248,245,.96); border-bottom-color: var(--bdr); backdrop-filter: blur(24px) }
   html[data-theme="dark"] .nav.solid { background: rgba(17,16,15,.96); border-bottom-color: var(--bdr) }
   html[data-theme="dark"] .nav:not(.solid) { background: rgba(17,16,15,.5); backdrop-filter: blur(8px) }
-  /* When mobile menu is open, nav matches the dark overlay */
-  body.menu-open .nav { background: #0E0C0A !important; border-bottom-color: rgba(255,255,255,.06) !important; backdrop-filter: none !important }
+  /* When mobile menu is open, nav sits above the overlay (z-index 700 > mob-menu 600) */
+  body.menu-open .nav { z-index: 700 !important; background: #0B0F19 !important; border-bottom-color: rgba(255,255,255,.08) !important; backdrop-filter: none !important }
   body.menu-open .nav-logo { color: #EDE8E1 }
   body.menu-open .nav-logo em { color: #C9A88A }
   body.menu-open .theme-toggle { border-color: rgba(255,255,255,.15); color: #EDE8E1 }
@@ -348,17 +348,45 @@
   /* ═══════════════════════════════════════
      MOBILE MENU — always dark overlay
   ═══════════════════════════════════════ */
-  .mob-menu { position: fixed; inset: 0; z-index: 490; background: #0E0C0A; padding: 88px 32px 48px; opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity .3s ease, transform .3s ease; display: flex; flex-direction: column; overflow-y: auto }
-  .mob-menu.open { opacity: 1; pointer-events: auto; transform: none }
+  .mob-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    background: #0B0F19;
+    padding: 88px 32px 48px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px);
+    /* visibility delay on close lets fade-out finish before hiding */
+    transition: opacity .3s cubic-bezier(.22,1,.36,1), transform .3s cubic-bezier(.22,1,.36,1), visibility 0s linear .3s;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mob-menu.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    /* remove visibility delay on open — show immediately */
+    transition: opacity .3s cubic-bezier(.22,1,.36,1), transform .3s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s;
+  }
   .mob-links { flex: 1; display: flex; flex-direction: column }
-  .mob-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 8vw, 3rem); font-weight: 300; color: #EDE8E1; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .25s; line-height: 1; display: flex; justify-content: space-between; align-items: center; cursor: pointer }
+  .mob-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 8vw, 3rem); font-weight: 300; color: #FFFFFF; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .25s; line-height: 1; display: flex; justify-content: space-between; align-items: center; cursor: pointer }
   .mob-link:first-child { border-top: 1px solid rgba(255,255,255,.08) }
   .mob-link:hover, .mob-link:focus-visible { color: #C9A88A; padding-left: 8px }
-  .mob-link-n { font-family: 'IBM Plex Mono', monospace; font-size: .46rem; letter-spacing: .22em; color: rgba(201,168,138,.45) }
-  .mob-footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px }
-  .mob-avail { display: flex; align-items: center; gap: 9px; font-family: 'IBM Plex Mono', monospace; font-size: .52rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(237,232,225,.6) }
+  .mob-link-n { font-family: 'IBM Plex Mono', monospace; font-size: .46rem; letter-spacing: .22em; color: rgba(201,168,138,.5) }
+  .mob-ctas { margin-top: 36px; display: flex; flex-direction: column; gap: 12px }
+  .mob-cta-primary { display: flex; align-items: center; justify-content: center; padding: 15px 28px; background: #C9A88A; color: #0B0F19; font-family: 'IBM Plex Mono', monospace; font-size: .62rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s }
+  .mob-cta-primary:hover, .mob-cta-primary:focus-visible { background: #B89470 }
+  .mob-cta-secondary { display: flex; align-items: center; justify-content: center; padding: 14px 28px; background: transparent; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: .62rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,.22); cursor: pointer; transition: border-color .2s, color .2s }
+  .mob-cta-secondary:hover, .mob-cta-secondary:focus-visible { border-color: rgba(201,168,138,.55); color: #C9A88A }
+  .mob-footer { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px }
+  .mob-avail { display: flex; align-items: center; gap: 9px; font-family: 'IBM Plex Mono', monospace; font-size: .52rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55) }
   .mob-dot { width: 6px; height: 6px; background: #4C9E4C; border-radius: 50%; animation: blink 2.4s ease-in-out infinite }
-  .mob-copy { font-family: 'IBM Plex Mono', monospace; font-size: .46rem; letter-spacing: .1em; color: rgba(237,232,225,.3) }
+  .mob-copy { font-family: 'IBM Plex Mono', monospace; font-size: .46rem; letter-spacing: .1em; color: rgba(255,255,255,.28) }
 
   /* ═══════════════════════════════════════
      RESPONSIVE
@@ -515,6 +543,10 @@
     <a href="#competencies" class="mob-link"><span>Competencies</span> <span class="mob-link-n">03</span></a>
     <a href="#credentials"  class="mob-link"><span>Credentials</span>  <span class="mob-link-n">04</span></a>
     <a href="#contact"      class="mob-link"><span>Contact</span>      <span class="mob-link-n">05</span></a>
+  </div>
+  <div class="mob-ctas">
+    <a href="mailto:mohan.kholiya@gmail.com" class="mob-cta-primary">Email Mohan &rarr;</a>
+    <a href="brand%20assets/Mohan_Kholiya_Resume.pdf" class="mob-cta-secondary" download="Mohan_Kholiya_Resume.pdf">Download R&eacute;sum&eacute; &darr;</a>
   </div>
   <div class="mob-footer">
     <div class="mob-avail"><span class="mob-dot" aria-hidden="true"></span>Available now</div>
@@ -1067,15 +1099,22 @@ themeBtn.addEventListener('click', () => {
 const burger = document.getElementById('nav-burger');
 const mobMenu = document.getElementById('mob-menu');
 function openMenu() {
+  const scrollY = window.scrollY;
+  mobMenu._savedScrollY = scrollY;
   burger.classList.add('open');
   mobMenu.classList.add('open');
   document.body.classList.add('menu-open');
   burger.setAttribute('aria-expanded', 'true');
   burger.setAttribute('aria-label', 'Close navigation menu');
   mobMenu.setAttribute('aria-hidden', 'false');
+  /* iOS Safari: position:fixed on body locks scroll without jumping */
   document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + scrollY + 'px';
+  document.body.style.width = '100%';
 }
 function closeMenu() {
+  const savedScrollY = mobMenu._savedScrollY || 0;
   burger.classList.remove('open');
   mobMenu.classList.remove('open');
   document.body.classList.remove('menu-open');
@@ -1083,9 +1122,13 @@ function closeMenu() {
   burger.setAttribute('aria-label', 'Open navigation menu');
   mobMenu.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, savedScrollY);
 }
 burger.addEventListener('click', () => burger.classList.contains('open') ? closeMenu() : openMenu());
-mobMenu.querySelectorAll('.mob-link').forEach(link => link.addEventListener('click', closeMenu));
+mobMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
 // ── Case study tap-to-expand (touch devices) ────────────────────
