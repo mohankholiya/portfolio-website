@@ -1,0 +1,170 @@
+---
+title: "Independent Cost Competitiveness Review for a Near-Term Gas Development"
+slug: "ntgm-cost-competitiveness-review"
+date: 2025-08-01
+summary: "Benchmarked a West African shallow-water gas project against 27 global peers to establish where it stands, why, and which cost gaps it must close before FEED."
+category: "Capital Cost Benchmarking"
+industry: "Oil & Gas — Upstream (Offshore)"
+role: "Independent Competitiveness Review (pre-FEED)"
+duration: "4 Months"
+thumbnail: "/images/case-studies/ntgm-thumb.png"
+draft: false
+---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+.cs-spec{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#D7DEE4;border:1px solid #D7DEE4;border-radius:10px;overflow:hidden;margin:20px 0 10px;}
+.cs-spec>div{background:#fff;padding:16px;}
+.cs-spec .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8295A3;margin:0 0 5px;}
+.cs-spec .v{font-family:"Archivo",sans-serif;font-weight:600;font-size:14px;color:#10314c;line-height:1.3;}
+@media(max-width:640px){.cs-spec{grid-template-columns:1fr 1fr;}}
+.cs-chart{background:#fff;border:1px solid #D7DEE4;border-radius:10px;padding:22px 20px 16px;margin:22px 0;}
+.cs-chart .ct{font-family:"Archivo",sans-serif;font-weight:700;font-size:15px;color:#0C2438;margin:0 0 2px;}
+.cs-chart .cd{font-size:13px;color:#5E6E7B;margin:0 0 12px;}
+.cs-chart svg{width:100%;height:auto;display:block;}
+.cs-sowhat{font-size:14px;color:#3A4751;margin:12px 2px 0;padding-top:12px;border-top:1px solid #D7DEE4;}
+.cs-sowhat b{color:#8A4E18;}
+.cs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#D7DEE4;border:1px solid #D7DEE4;border-radius:10px;overflow:hidden;margin:20px 0;}
+.cs-cards>div{background:#fff;padding:20px 18px;}
+.cs-cards .m{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#C2772F;margin:0 0 8px;}
+.cs-cards h4{font-family:"Archivo",sans-serif;font-size:15px;color:#10314c;margin:0 0 7px;}
+.cs-cards p{font-size:13.5px;color:#3A4751;margin:0;}
+@media(max-width:680px){.cs-cards{grid-template-columns:1fr;}}
+.cs-closing{background:#0C2438;color:#EAF0F5;border-radius:12px;padding:28px 26px;margin:20px 0;}
+.cs-closing p{margin:0;font-family:"Archivo",sans-serif;font-weight:500;font-size:19px;line-height:1.36;color:#fff;}
+.cs-note{font-size:12px;color:#5E6E7B;margin-top:18px;}
+</style>
+
+<div class="cs-spec">
+  <div><p class="k">Functional Topic</p><p class="v">Capital Cost Benchmarking &amp; Project Competitiveness</p></div>
+  <div><p class="k">Industry</p><p class="v">Oil &amp; Gas — Upstream (Offshore)</p></div>
+  <div><p class="k">Support Needed</p><p class="v">Independent Competitiveness Review (pre-FEED)</p></div>
+  <div><p class="k">Duration</p><p class="v">4 Months</p></div>
+</div>
+
+## The Challenge
+
+A global oil & gas supermajor was preparing a pre-FEED decision on a near-term gas monetization project — three shallow-water fields in West Africa. Its internal competitiveness review had flagged that the project's system-level (Level III) costs were not first quartile, but leadership had no like-for-like evidence of where the project actually sat, what was driving the gap, or whether that gap could realistically be closed.
+
+The company struggled to:
+
+- Build a credible peer set in a region with very few directly comparable shallow-water gas projects.
+- Isolate which cost systems — facilities, pipeline, or drilling & completions — were responsible for the competitiveness gap.
+- Translate benchmark findings into a focused "to-goal" agenda rather than a blanket mandate to cut costs everywhere.
+
+## My Role
+
+The supermajor engaged an independent consulting team to run the benchmarking workstream and feed a joint Gap-to-Goal workshop. I led the work: building a defensible peer set, normalizing costs top-down and bottom-up, quantifying the variance, and turning a fragmented cost picture into a board-ready competitiveness verdict — independent, not a defence of the project.
+
+## The Approach
+
+1. **Build a defensible peer set** — screened global shallow-water developments by region, product, water depth, and first-production window; with ideal peers scarce, widened the criteria deliberately, growing the sample to 27 projects.
+2. **Top-down benchmarking (Level III)** — normalized each peer's system-level costs and schedule and placed the project against peer quartiles.
+3. **Bottom-up benchmarking (Level V)** — decomposed the largest systems into components and cost drivers, adjusting for time, location, and specification.
+4. **Diagnose the gap to goal** — quantified the variance, separating structural gaps (tie-back distance, seabed) from addressable ones (rig contracting).
+5. **Deliver executive recommendations** — synthesized into an answer-first storyline and a focused pre-FEED agenda.
+
+## The Analysis
+
+<figure class="cs-chart">
+  <p class="ct">Peer-group benchmark by cost system</p>
+  <p class="cd">Project position vs. 27 peers across quartiles · Illustrative</p>
+  <svg viewBox="0 0 760 430" role="img" aria-label="Quartile benchmark chart: competitive on facilities, fourth quartile on pipeline and drilling and completions">
+    <rect x="210" y="92" width="128" height="253" fill="#ffffff"/>
+    <rect x="338" y="92" width="128" height="253" fill="#EAEFF3"/>
+    <rect x="466" y="92" width="128" height="253" fill="#ffffff"/>
+    <rect x="594" y="92" width="128" height="253" fill="#EAEFF3"/>
+    <line x1="338" y1="92" x2="338" y2="345" stroke="#C2CDD6" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="466" y1="92" x2="466" y2="345" stroke="#C2CDD6" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="594" y1="92" x2="594" y2="345" stroke="#C2CDD6" stroke-width="1" stroke-dasharray="3 3"/>
+    <g font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" fill="#8295A3">
+      <text x="274" y="84">1st</text><text x="402" y="84">2nd</text><text x="530" y="84">3rd</text><text x="658" y="84">4th</text>
+    </g>
+    <g font-family="Archivo, sans-serif">
+      <text x="196" y="126" text-anchor="end" font-size="14" font-weight="600" fill="#10314c">Production Facilities</text>
+      <text x="196" y="142" text-anchor="end" font-size="11" font-family="IBM Plex Mono, monospace" fill="#7E8E9E">$m / tonne</text>
+    </g>
+    <line x1="210" y1="130" x2="722" y2="130" stroke="#D7DEE4" stroke-width="1.5"/>
+    <g fill="#8A99A8" opacity="0.92">
+      <circle cx="250" cy="124" r="5"/><circle cx="276" cy="135" r="5"/><circle cx="300" cy="127" r="5"/><circle cx="324" cy="133" r="5"/><circle cx="350" cy="125" r="5"/><circle cx="372" cy="134" r="5"/><circle cx="430" cy="128" r="5"/><circle cx="472" cy="133" r="5"/><circle cx="522" cy="126" r="5"/><circle cx="600" cy="132" r="5"/><circle cx="662" cy="128" r="5"/>
+    </g>
+    <line x1="432" y1="118" x2="432" y2="142" stroke="#33536e" stroke-width="2"/>
+    <rect x="398" y="122" width="15" height="15" rx="3" fill="#C2772F" stroke="#8A4E18" stroke-width="1.5"/>
+    <text x="405" y="110" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#8A4E18">NTGM</text>
+    <g font-family="Archivo, sans-serif">
+      <text x="196" y="214" text-anchor="end" font-size="14" font-weight="600" fill="#10314c">Pipeline</text>
+      <text x="196" y="230" text-anchor="end" font-size="11" font-family="IBM Plex Mono, monospace" fill="#7E8E9E">$m / in-km</text>
+    </g>
+    <line x1="210" y1="218" x2="722" y2="218" stroke="#D7DEE4" stroke-width="1.5"/>
+    <g fill="#8A99A8" opacity="0.92">
+      <circle cx="242" cy="214" r="5"/><circle cx="272" cy="222" r="5"/><circle cx="302" cy="215" r="5"/><circle cx="332" cy="221" r="5"/><circle cx="362" cy="214" r="5"/><circle cx="402" cy="222" r="5"/><circle cx="442" cy="216" r="5"/><circle cx="472" cy="221" r="5"/><circle cx="520" cy="215" r="5"/><circle cx="562" cy="222" r="5"/><circle cx="612" cy="216" r="5"/>
+    </g>
+    <line x1="470" y1="206" x2="470" y2="230" stroke="#33536e" stroke-width="2"/>
+    <rect x="671" y="210" width="15" height="15" rx="3" fill="#C2772F" stroke="#8A4E18" stroke-width="1.5"/>
+    <text x="678" y="198" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#8A4E18">NTGM</text>
+    <g font-family="Archivo, sans-serif">
+      <text x="196" y="302" text-anchor="end" font-size="14" font-weight="600" fill="#10314c">Drilling &amp; Completions</text>
+      <text x="196" y="318" text-anchor="end" font-size="11" font-family="IBM Plex Mono, monospace" fill="#7E8E9E">$k / ft</text>
+    </g>
+    <line x1="210" y1="306" x2="722" y2="306" stroke="#D7DEE4" stroke-width="1.5"/>
+    <g fill="#8A99A8" opacity="0.92">
+      <circle cx="246" cy="302" r="5"/><circle cx="268" cy="310" r="5"/><circle cx="292" cy="303" r="5"/><circle cx="322" cy="309" r="5"/><circle cx="346" cy="302" r="5"/><circle cx="366" cy="310" r="5"/><circle cx="400" cy="304" r="5"/><circle cx="442" cy="309" r="5"/><circle cx="486" cy="303" r="5"/><circle cx="540" cy="310" r="5"/><circle cx="600" cy="304" r="5"/>
+    </g>
+    <line x1="456" y1="294" x2="456" y2="318" stroke="#33536e" stroke-width="2"/>
+    <rect x="641" y="298" width="15" height="15" rx="3" fill="#C2772F" stroke="#8A4E18" stroke-width="1.5"/>
+    <text x="648" y="286" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#8A4E18">NTGM</text>
+    <g font-family="Spline Sans, sans-serif" font-size="12.5" fill="#3A4751">
+      <circle cx="216" cy="382" r="5" fill="#8A99A8"/><text x="228" y="386">Peer project</text>
+      <line x1="330" y1="375" x2="330" y2="389" stroke="#33536e" stroke-width="2"/><text x="340" y="386">Peer average</text>
+      <rect x="450" y="376" width="13" height="13" rx="3" fill="#C2772F" stroke="#8A4E18" stroke-width="1.5"/><text x="470" y="386">NTGM (this project)</text>
+    </g>
+  </svg>
+  <p class="cs-sowhat"><b>So what:</b> the cost story isn't uniform — facilities are competitive (2nd quartile); pipeline and drilling sit in the 4th quartile, so a blanket "cut everything" goal would waste effort on the parts that are already strong.</p>
+</figure>
+
+<figure class="cs-chart">
+  <p class="ct">Peer landscape — cost vs. schedule</p>
+  <p class="cd">Bubble size ≈ resource (mmboe) · Illustrative</p>
+  <svg viewBox="0 0 760 470" role="img" aria-label="Bubble chart of peer projects by total cost and time to first production, NTGM highlighted at higher cost">
+    <g stroke="#ECF0F3" stroke-width="1">
+      <line x1="92" y1="60" x2="92" y2="380"/><line x1="92" y1="60" x2="700" y2="60"/><line x1="92" y1="140" x2="700" y2="140"/><line x1="92" y1="220" x2="700" y2="220"/><line x1="92" y1="300" x2="700" y2="300"/>
+    </g>
+    <line x1="92" y1="380" x2="700" y2="380" stroke="#33536e" stroke-width="1.5"/>
+    <line x1="92" y1="60" x2="92" y2="380" stroke="#33536e" stroke-width="1.5"/>
+    <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#7E8E9E" text-anchor="middle">
+      <text x="92" y="398">0</text><text x="193" y="398">5</text><text x="295" y="398">10</text><text x="396" y="398">15</text><text x="497" y="398">20</text><text x="599" y="398">25</text><text x="700" y="398">30</text>
+    </g>
+    <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#7E8E9E" text-anchor="end">
+      <text x="84" y="384">0</text><text x="84" y="304">2</text><text x="84" y="224">4</text><text x="84" y="144">6</text><text x="84" y="64">8</text>
+    </g>
+    <line x1="92" y1="268" x2="700" y2="268" stroke="#C2772F" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.7"/>
+    <text x="698" y="262" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#8A4E18">Peer avg 2.8 yrs</text>
+    <g fill="#7E8E9E" fill-opacity="0.5" stroke="#5b6b7a" stroke-width="1">
+      <circle cx="193" cy="332" r="13"/><circle cx="254" cy="280" r="20"/><circle cx="295" cy="260" r="16"/><circle cx="335" cy="308" r="26"/><circle cx="376" cy="200" r="15"/><circle cx="416" cy="292" r="19"/><circle cx="274" cy="140" r="11"/><circle cx="477" cy="268" r="22"/><circle cx="558" cy="160" r="17"/><circle cx="599" cy="300" r="13"/>
+    </g>
+    <text x="274" y="120" font-family="IBM Plex Mono, monospace" font-size="10" fill="#7E8E9E" text-anchor="middle">Slow-funded peer</text>
+    <circle cx="538" cy="260" r="22" fill="#C2772F" fill-opacity="0.82" stroke="#8A4E18" stroke-width="1.5"/>
+    <text x="538" y="227" font-family="Archivo, sans-serif" font-weight="700" font-size="12" fill="#8A4E18" text-anchor="middle">NTGM</text>
+    <circle cx="640" cy="92" r="16" fill="none" stroke="#9aa8b4" stroke-width="1.2"/>
+    <text x="640" y="118" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7E8E9E" text-anchor="middle">≈ 50 mmboe</text>
+    <text x="396" y="420" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#10314c">Total UDC cost ($/boe)</text>
+    <text x="30" y="220" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#10314c" transform="rotate(-90 30 220)">FID → first production (yrs)</text>
+  </svg>
+  <p class="cs-sowhat"><b>So what:</b> the project carries higher unit cost than most peers without a faster schedule to offset it — putting the burden of the investment case on closing the cost gap.</p>
+</figure>
+
+<div class="cs-cards">
+  <div><p class="m">27</p><h4>A defensible peer benchmark</h4><p>Built a 27-project comparable set where few existed, giving the first credible like-for-like cost view.</p></div>
+  <div><p class="m">Q2 → Q4</p><h4>A clear, category-level verdict</h4><p>Competitive on production facilities (2nd quartile) but 4th quartile on pipeline and drilling & completions.</p></div>
+  <div><p class="m">~$0.8m</p><h4>The gap, quantified</h4><p>Quantified the rig-rate variance per well while schedule held near median — isolating rate, not drilling speed.</p></div>
+</div>
+
+## Results
+
+A 27-project peer benchmark where few ideal comparators existed; a clear Q2→Q4 verdict by cost system; the dominant lever isolated (rig rate, ~41% of D&C); and the rig-rate gap quantified at ~$0.8m per well. Most importantly, the work reframed the pre-FEED decision from "cut costs everywhere" to a focused, evidence-backed to-goal agenda.
+
+<div class="cs-closing">
+  <p>Even a benchmarking study needs a governing answer. Anchoring the decision on what the project should cost — system by system — turned a scattered cost picture into a single, defensible verdict and a focused agenda for FEED.</p>
+</div>
+
+<p class="cs-note"><strong>Illustrative &amp; anonymized.</strong> Client identity withheld; figures and visuals are directional, reconstructed to demonstrate structure and method.</p>
