@@ -13,7 +13,8 @@ interface Props {
 const { id, sector, sectorLabel, headline, metric, metricLabel, description, tags } = Astro.props;
 ---
 
-<article
+<a
+  href={`/case-studies/${id}/`}
   id={id}
   data-sector={sector}
   class="case-card shadow-l3 reveal"
@@ -25,9 +26,13 @@ const { id, sector, sectorLabel, headline, metric, metricLabel, description, tag
     flex-direction:column;
     gap:16px;
     transition:transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration:none;
+    color:inherit;
   "
   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='inset 0 0 0 1px rgba(255,255,255,0.14), 0px 8px 32px -4px rgba(0,0,0,0.7)';"
   onmouseout="this.style.transform=''; this.style.boxShadow='';"
+  target="_blank"
+  rel="noopener noreferrer"
 >
   <!-- Sector tag -->
   <div>
@@ -66,4 +71,4 @@ const { id, sector, sectorLabel, headline, metric, metricLabel, description, tag
       <span class="badge t-caption-mono" style="font-size:11px;">{tag}</span>
     ))}
   </div>
-</article>
+</a>
