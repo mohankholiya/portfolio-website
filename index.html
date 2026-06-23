@@ -233,6 +233,10 @@
   .cs-fn { font-family: 'IBM Plex Mono', monospace; font-size: .52rem; letter-spacing: .08em; color: var(--t3); font-style: italic; display: block; margin-top: 11px }
   .cs-tags { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; padding-top: 2px }
   .cs-tag { font-family: 'IBM Plex Mono', monospace; font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border: 1px solid #D6CDC2; color: #3A342E; background: #F1ECE5; text-align: right }
+  .cs-link { color: var(--t1); text-decoration: none; transition: color .2s; position: relative }
+  .cs-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--acc); transition: width .3s }
+  .cs-link:hover, .cs-entry:hover .cs-link { color: var(--acc) }
+  .cs-link:hover::after, .cs-entry:hover .cs-link::after { width: 100% }
 
   /* ═══════════════════════════════════════
      COMPETENCIES — BENTO GRID
@@ -747,68 +751,134 @@
             <span class="cs-badge">Oil &amp; Gas</span>
           </div>
           <div>
-            <h3 class="cs-h">$[X]M in category savings across well services &amp; drilling</h3>
+            <h3 class="cs-h"><a href="case%20study/ntgm-case-study.html" class="cs-link">Independent Cost Competitiveness Review for a Near-Term Gas Development</a></h3>
             <div class="cs-expand">
-              A leading global E&amp;P company needed to reduce well-services spend amid
-              commodity price pressure without impacting operational continuity. Led a full
-              category redesign across drilling, completions, and oilfield services —
-              consolidating the supply base, introducing competitive tendering frameworks,
-              and renegotiating multi-year contracts with improved SLAs and reduced
-              single-supplier exposure.
-              <span class="cs-fn">Client name withheld — sector descriptor only.</span>
+              Benchmarked a West African shallow-water gas project against 27 global peers
+              to establish where it stands, why, and which cost gaps it must close before FEED.
+              Delivered a clear Q2→Q4 verdict by cost system, isolated the dominant lever
+              (rig rate), and reframed the pre-FEED decision from blanket cost-cutting to
+              a focused, evidence-backed agenda.
+              <span class="cs-fn">Client identity withheld; figures and visuals are directional.</span>
             </div>
           </div>
           <div class="cs-tags">
-            <span class="cs-tag">Category Strategy</span>
-            <span class="cs-tag">Strategic Sourcing</span>
-            <span class="cs-tag">Supplier Consolidation</span>
-            <span class="cs-tag">Contract Negotiation</span>
+            <span class="cs-tag">Capital Cost Benchmarking</span>
+            <span class="cs-tag">Project Competitiveness</span>
+            <span class="cs-tag">Peer Analysis</span>
           </div>
         </article>
 
         <article class="cs-entry r d1">
           <div>
             <span class="cs-idx">CS &mdash; 002</span>
-            <span class="cs-badge">Utilities</span>
+            <span class="cs-badge">Energy &amp; Utilities</span>
           </div>
           <div>
-            <h3 class="cs-h">Supply chain resilience programme — critical spares &amp; MRO</h3>
+            <h3 class="cs-h"><a href="case%20study/supply-chain-benchmarking-case-study.html" class="cs-link">Supply Chain Workforce Benchmarking &amp; Operating Model Assessment</a></h3>
             <div class="cs-expand">
-              A major North American utility faced increasing concentration risk in critical
-              spare parts and maintenance services. Designed and delivered a resilience
-              programme — dual-sourcing critical component families, onboarding qualified
-              alternatives, and building a strategic inventory framework that measurably
-              reduced lead times and single-source exposure.
-              <span class="cs-fn">Client name withheld — sector descriptor only.</span>
+              Benchmarked a U.S. energy utility's supply chain organisation against peers
+              on spend supported per FTE — confirming a lean structure and the targeted
+              reinforcement needed to scale. Provided leadership visibility on structural
+              capacity, role allocation, and the roadmap required to sustain governance
+              as spend grows.
+              <span class="cs-fn">Client identity withheld; directional benchmarking structure.</span>
             </div>
           </div>
           <div class="cs-tags">
-            <span class="cs-tag">Risk &amp; Resilience</span>
-            <span class="cs-tag">MRO Procurement</span>
-            <span class="cs-tag">Supplier Development</span>
+            <span class="cs-tag">Operating Model</span>
+            <span class="cs-tag">Workforce Benchmarking</span>
+            <span class="cs-tag">Org Design</span>
           </div>
         </article>
 
         <article class="cs-entry r d2">
           <div>
             <span class="cs-idx">CS &mdash; 003</span>
-            <span class="cs-badge">Telecom</span>
+            <span class="cs-badge">Energy &amp; Utilities</span>
           </div>
           <div>
-            <h3 class="cs-h">Built procurement function from zero — $[X]M year-one savings</h3>
+            <h3 class="cs-h"><a href="case%20study/unit-rate-governance-case-study.html" class="cs-link">Unit-Rate Governance &amp; Contracting Strategy for a $233M Contractor Programme</a></h3>
             <div class="cs-expand">
-              Joined a leading upstream telecom operator during rapid network expansion
-              with no mature procurement structure in place. Built the category management
-              function from scratch — hired and structured the team, designed category
-              strategies across network infrastructure, IT, and facilities, and delivered
-              the majority of addressable spend under formal contract within months.
-              <span class="cs-fn">Client name withheld — sector descriptor only.</span>
+              Diagnosed a $4.9M–$6M above-market billing exposure across a $233M programme
+              and showed it was entirely addressable through rate-book enforcement. Built
+              a five-pillar contracting framework and phased roadmap for the 2026 renewal,
+              converting an indicative opportunity into a permanently governed programme.
+              <span class="cs-fn">Client and contractor identities withheld; directional analysis.</span>
             </div>
           </div>
           <div class="cs-tags">
-            <span class="cs-tag">Procurement Transformation</span>
+            <span class="cs-tag">Procurement Governance</span>
+            <span class="cs-tag">Contract Strategy</span>
+            <span class="cs-tag">Rate Benchmarking</span>
+          </div>
+        </article>
+
+        <article class="cs-entry r d3">
+          <div>
+            <span class="cs-idx">CS &mdash; 004</span>
+            <span class="cs-badge">Energy &amp; Utilities</span>
+          </div>
+          <div>
+            <h3 class="cs-h"><a href="case%20study/category-intelligence-case-study.html" class="cs-link">Category Intelligence for Two Opposite Markets: Lighting and E-STATCOM</a></h3>
+            <div class="cs-expand">
+              Built a cost-driver-backed intelligence base across two very different categories
+              — Lighting (commoditizing) and E-STATCOM (engineered) — so the client could
+              source each one the way its market actually behaves. Delivered a differentiated
+              sourcing posture: competitive leverage for Lighting, strategic partnership
+              for E-STATCOM.
+              <span class="cs-fn">Client identity withheld; directional market framework.</span>
+            </div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Category Intelligence</span>
+            <span class="cs-tag">Cost-Driver Analysis</span>
+            <span class="cs-tag">Supply Market Strategy</span>
+          </div>
+        </article>
+
+        <article class="cs-entry r d4">
+          <div>
+            <span class="cs-idx">CS &mdash; 005</span>
+            <span class="cs-badge">Telecommunications</span>
+          </div>
+          <div>
+            <h3 class="cs-h"><a href="case%20study/bt-contract-renewal-case-study.html" class="cs-link">Service Delivery Contract Renewal &amp; Total Cost Optimisation — Northern Ireland</a></h3>
+            <div class="cs-expand">
+              Renewed a regional service-delivery contract at BT Group using should-cost
+              modelling and total-cost analysis to negotiate ~£2M of optimisation, with
+              the incumbent retained and service continuity protected. Built a defensible
+              should-cost baseline and full TCO visibility across rates, travel, mobilisation,
+              SLAs, and rework.
+              <span class="cs-fn">BT Group named as engagement context; supplier withheld.</span>
+            </div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Strategic Sourcing</span>
+            <span class="cs-tag">Should-Cost Modelling</span>
+            <span class="cs-tag">Total Cost Optimisation</span>
+          </div>
+        </article>
+
+        <article class="cs-entry r d5">
+          <div>
+            <span class="cs-idx">CS &mdash; 006</span>
+            <span class="cs-badge">Oil &amp; Gas</span>
+          </div>
+          <div>
+            <h3 class="cs-h"><a href="case%20study/accenture-capex-sourcing-case-study.html" class="cs-link">End-to-End Capex Sourcing &amp; Category Management for an Indian E&amp;P Operator</a></h3>
+            <div class="cs-expand">
+              Led end-to-end capex sourcing and category strategy across EPC, surface
+              facilities, and drilling & completions for an Indian E&P operator — turning
+              fragmented, project-by-project buying into a coordinated programme. Built
+              category strategies, aggregated demand across projects, ran sourcing end to
+              end, and embedded governance and capability in-house.
+              <span class="cs-fn">Accenture named as engagement context; E&P client withheld.</span>
+            </div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Capex Sourcing</span>
             <span class="cs-tag">Category Management</span>
-            <span class="cs-tag">Contract Negotiation</span>
+            <span class="cs-tag">Supplier Strategy</span>
           </div>
         </article>
 
