@@ -124,8 +124,12 @@ export const credentials = [
     category: "Education",
     entries: [
       {
-        title: "MBA",
-        body: "Graduate management programme with focus on strategy and operations.",
+        title: "MBA — Energy Management",
+        body: "University of Petroleum & Energy Studies (UPES), Dehradun.",
+      },
+      {
+        title: "Bachelor of Science — Mathematics",
+        body: "",
       },
     ],
   },

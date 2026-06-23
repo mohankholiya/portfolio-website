@@ -3,7 +3,8 @@ import { siteConfig } from "../content/site";
 ---
 
 <nav id="site-nav" aria-label="Main navigation">
-  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 24px;">
+  <!-- position:relative + z-index:100 keeps this bar above the mobile overlay (z-index:99) -->
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 24px; position:relative; z-index:100;">
 
     <!-- Logo -->
     <a href="/" aria-label="Mohan Kholiya — home" style="display:flex; align-items:center; gap:8px; text-decoration:none; flex-shrink:0;">
@@ -81,7 +82,7 @@ import { siteConfig } from "../content/site";
       </a>
     </div>
 
-    <!-- Hamburger (mobile) -->
+    <!-- Hamburger / close (mobile only) -->
     <button
       id="nav-hamburger"
       class="hamburger"
@@ -101,20 +102,19 @@ import { siteConfig } from "../content/site";
     </button>
   </div>
 
-  <!-- Mobile overlay menu -->
+  <!-- Mobile overlay — solid dark background, full viewport, sits below the nav bar (z-index:99 < container z-index:100) -->
   <div
     id="mobile-menu"
     aria-label="Mobile navigation"
     style="
       display:none;
-      position:fixed; inset:0; top:64px;
-      background:rgba(255,255,255,0.97);
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
+      position:fixed; top:0; left:0; right:0; height:100dvh;
+      background:var(--color-canvas-soft);
       z-index:99;
-      padding:24px;
+      padding:80px 24px 32px;
       flex-direction:column;
       gap:4px;
+      overflow-y:auto;
     "
   >
     {[
@@ -162,25 +162,40 @@ import { siteConfig } from "../content/site";
     nav?.classList.toggle('scrolled', window.scrollY > 8);
   }, { passive: true });
 
-  // Hamburger toggle
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
+  // Mobile menu
+  const hamburger = document.getElementById('nav-hamburger') as HTMLButtonElement | null;
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+  const menuIcon = document.getElementById('menu-icon') as SVGPathElement | null;
+
+  const HAMBURGER_D = 'M2 5h16M2 10h16M2 15h16';
+  const CLOSE_D     = 'M4 4l12 12M4 16L16 4';
+
   let menuOpen = false;
 
+  function openMenu() {
+    menuOpen = true;
+    hamburger?.setAttribute('aria-expanded', 'true');
+    hamburger?.setAttribute('aria-label', 'Close navigation menu');
+    menuIcon?.setAttribute('d', CLOSE_D);
+    if (mobileMenu) mobileMenu.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    hamburger?.setAttribute('aria-expanded', 'false');
+    hamburger?.setAttribute('aria-label', 'Open navigation menu');
+    menuIcon?.setAttribute('d', HAMBURGER_D);
+    if (mobileMenu) mobileMenu.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
   hamburger?.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    hamburger.setAttribute('aria-expanded', String(menuOpen));
-    if (mobileMenu) {
-      mobileMenu.style.display = menuOpen ? 'flex' : 'none';
-    }
+    menuOpen ? closeMenu() : openMenu();
   });
 
-  // Close on link click
+  // Close when a nav link is tapped
   mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuOpen = false;
-      hamburger?.setAttribute('aria-expanded', 'false');
-      if (mobileMenu) mobileMenu.style.display = 'none';
-    });
+    link.addEventListener('click', closeMenu);
   });
 </script>
