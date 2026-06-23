@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "Mohan Kholiya — Procurement & Supply Chain Leader",
   description:
     "Senior procurement and supply chain executive with 16+ years across energy, oil & gas, utilities, and telecom. Category strategy that delivers measurable cost-out and resilience.",
-  url: "https://mohankholiya.com",
+  url: "https://mohankholiya.co.in",
   email: "mohan.kholiya@gmail.com",
   linkedin: "https://www.linkedin.com/in/mohankholiya/",
   resumeUrl: "/resume.pdf",
