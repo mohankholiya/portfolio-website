@@ -32,15 +32,76 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     <li><strong>Embed governance</strong> — left category playbooks, supplier-management routines, and in-house capability.</li>
   </ol>
 
-  <h2>Sourcing Strategy by Category</h2>
+  <h2>The Analysis</h2>
+
+  <figure class="cs-chart">
+    <p class="ct">Capex spend by category — where the leverage sits</p>
+    <p class="cd">Share of managed capital programme · Illustrative</p>
+    <svg viewBox="0 0 760 280" role="img" aria-label="Stacked bar chart showing capex spend distribution by category">
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#7E8E9E" text-anchor="middle">
+        <text x="160" y="48">0%</text><text x="290" y="48">25%</text>
+        <text x="420" y="48">50%</text><text x="550" y="48">75%</text>
+        <text x="680" y="48">100%</text>
+      </g>
+      <g stroke="#ECF0F3" stroke-width="1">
+        <line x1="130" y1="62" x2="700" y2="62"/>
+        <line x1="130" y1="130" x2="700" y2="130"/>
+        <line x1="130" y1="198" x2="700" y2="198"/>
+      </g>
+      <line x1="130" y1="266" x2="700" y2="266" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="130" y1="62" x2="130" y2="266" stroke="#33536e" stroke-width="1.5"/>
+      <rect x="160" y="82" width="530" height="40" fill="#33536e" rx="2"/>
+      <text x="145" y="106" text-anchor="end" font-family="Archivo, sans-serif" font-weight="600" font-size="14" fill="#10314c">EPC packages</text>
+      <text x="680" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#fff" font-weight="600">48%</text>
+      <rect x="160" y="150" width="331" height="40" fill="#5b6b7a" rx="2"/>
+      <text x="145" y="174" text-anchor="end" font-family="Archivo, sans-serif" font-weight="600" font-size="14" fill="#10314c">Surface facilities</text>
+      <text x="475" y="174" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#fff" font-weight="600">30%</text>
+      <rect x="160" y="218" width="243" height="40" fill="#8A99A8" rx="2"/>
+      <text x="145" y="242" text-anchor="end" font-family="Archivo, sans-serif" font-weight="600" font-size="14" fill="#10314c">Drilling &amp; completions</text>
+      <text x="370" y="242" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#fff" font-weight="600">22%</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> EPC dominates the programme, so it earns the most structured competitive process — while smaller categories are better served by frame agreements than full re-tenders each time.</p>
+  </figure>
+
+  <figure class="cs-chart">
+    <p class="ct">Sourcing funnel — from qualified field to award</p>
+    <p class="cd">Indicative supplier count at each stage, per major package · Illustrative</p>
+    <svg viewBox="0 0 760 280" role="img" aria-label="Funnel chart showing supplier attrition through sourcing stages">
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#7E8E9E" text-anchor="middle">
+        <text x="190" y="52">~40</text><text x="290" y="52">18</text>
+        <text x="390" y="52">6</text><text x="490" y="52">3</text>
+        <text x="590" y="52">1–2</text>
+      </g>
+      <line x1="130" y1="266" x2="700" y2="266" stroke="#33536e" stroke-width="1.5"/>
+      <rect x="145" y="72" width="90" height="180" fill="#33536e" rx="2"/>
+      <text x="190" y="170" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#fff">Qualified</text>
+      <polygon points="245,72 335,72 335,252 245,252" fill="#5b6b7a"/>
+      <text x="290" y="170" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#fff">Invited (RFx)</text>
+      <polygon points="345,72 435,72 435,252 345,252" fill="#8A99A8"/>
+      <text x="390" y="170" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#fff">Shortlisted</text>
+      <polygon points="445,72 535,72 535,252 445,252" fill="#C2772F"/>
+      <text x="490" y="170" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#fff">Negotiated</text>
+      <rect x="545" y="72" width="90" height="180" fill="#0C2438" rx="2"/>
+      <text x="590" y="170" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#fff">Awarded</text>
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#7E8E9E" text-anchor="middle">
+        <text x="190" y="280">Qualified</text>
+        <text x="290" y="280">Invited</text>
+        <text x="390" y="280">Shortlisted</text>
+        <text x="490" y="280">Negotiated</text>
+        <text x="590" y="280">Awarded</text>
+      </g>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> a wide qualified field narrowed by structured stage-gates is what creates competitive tension in a concentrated market — leverage comes from the process, not just the number of suppliers.</p>
+  </figure>
+
   <div class="cs-cards">
-    <div><p class="m">EPC 48%</p><h4>Structured competition</h4><p>The largest category earned the most disciplined competitive process — a wide qualified field narrowed through formal stage-gates to award.</p></div>
-    <div><p class="m">Surface 30%</p><h4>Package & frame agreements</h4><p>Recurring requirements were consolidated into frame agreements, avoiding repeated full tenders and building continuity with capable suppliers.</p></div>
-    <div><p class="m">D&C 22%</p><h4>Rate & availability management</h4><p>In a constrained rig and services market, the focus shifted to securing rates and availability rather than maximising the bidder count.</p></div>
+    <div><p class="m">EPC packages</p><h4>Structured competition</h4><p>The largest category earned the most disciplined competitive process — a wide qualified field narrowed through formal stage-gates to award.</p></div>
+    <div><p class="m">Surface facilities</p><h4>Package & frame agreements</h4><p>Recurring requirements were consolidated into frame agreements, avoiding repeated full tenders and building continuity with capable suppliers.</p></div>
+    <div><p class="m">Drilling & completions</p><h4>Rate & availability management</h4><p>In a constrained rig and services market, the focus shifted to securing rates and availability rather than maximising the bidder count.</p></div>
   </div>
 
   <h2>Results</h2>
-  <ul class="result-list">
+  <ul>
     <li><strong>Category strategies established</strong> across EPC, surface facilities, and drilling & completions — replacing project-by-project buying.</li>
     <li><strong>Demand aggregated</strong> across projects to build leverage with a concentrated supplier base.</li>
     <li><strong>End-to-end sourcing run</strong> from qualification through to award on the major capital packages.</li>

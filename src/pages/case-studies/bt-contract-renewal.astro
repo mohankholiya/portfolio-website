@@ -2,8 +2,8 @@
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 ---
 
-<CaseStudyLayout title="Service Delivery Contract Renewal & Total Cost Optimisation — BT Group">
-  <h1>Service Delivery Contract Renewal & Total Cost Optimisation — BT Group</h1>
+<CaseStudyLayout title="Service Delivery Contract Renewal & Total Cost Optimisation — Northern Ireland">
+  <h1>Service Delivery Contract Renewal & Total Cost Optimisation — Northern Ireland</h1>
 
   <div class="cs-spec">
     <div><p class="k">Functional Topic</p><p class="v">Strategic Sourcing, Should-Cost Modelling & Total Cost Optimisation</p></div>
@@ -32,15 +32,95 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     <li><strong>Negotiate to close</strong> — locked ~£2M of optimisation into the renewed contract.</li>
   </ol>
 
-  <h2>Key Findings</h2>
+  <h2>The Analysis</h2>
+
+  <figure class="cs-chart">
+    <p class="ct">Should-cost build-up vs. incumbent's quoted renewal</p>
+    <p class="cd">Indexed annual cost · Illustrative</p>
+    <svg viewBox="0 0 760 320" role="img" aria-label="Stacked bar chart showing quoted renewal breakdown with negotiable gap">
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#7E8E9E">
+        <text x="120" y="58" text-anchor="end">120</text><text x="120" y="108" text-anchor="end">90</text>
+        <text x="120" y="158" text-anchor="end">60</text><text x="120" y="208" text-anchor="end">30</text>
+        <text x="120" y="258" text-anchor="end">0</text>
+      </g>
+      <g stroke="#ECF0F3" stroke-width="1">
+        <line x1="130" y1="52" x2="700" y2="52"/>
+        <line x1="130" y1="102" x2="700" y2="102"/>
+        <line x1="130" y1="152" x2="700" y2="152"/>
+        <line x1="130" y1="202" x2="700" y2="202"/>
+      </g>
+      <line x1="130" y1="252" x2="700" y2="252" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="130" y1="52" x2="130" y2="252" stroke="#33536e" stroke-width="1.5"/>
+      <g font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#10314c">
+        <text x="190" y="85" fill="#8A4E18">Quoted renewal</text>
+        <text x="500" y="85" fill="#33536e">Should-cost</text>
+      </g>
+      <rect x="190" y="92" width="120" height="30" fill="#33536e" rx="2"/>
+      <rect x="190" y="122" width="120" height="25" fill="#5b6b7a" rx="2"/>
+      <rect x="190" y="147" width="120" height="28" fill="#8A99A8" rx="2"/>
+      <rect x="190" y="175" width="120" height="77" fill="#C2772F" rx="2"/>
+      <text x="250" y="110" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Labour</text>
+      <text x="250" y="138" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Materials</text>
+      <text x="250" y="163" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Overhead</text>
+      <text x="250" y="218" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Margin</text>
+      <rect x="500" y="92" width="120" height="30" fill="#33536e" rx="2"/>
+      <rect x="500" y="122" width="120" height="25" fill="#5b6b7a" rx="2"/>
+      <rect x="500" y="147" width="120" height="28" fill="#8A99A8" rx="2"/>
+      <rect x="500" y="175" width="120" height="50" fill="#C2772F" rx="2"/>
+      <text x="560" y="110" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Labour</text>
+      <text x="560" y="138" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Materials</text>
+      <text x="560" y="163" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Overhead</text>
+      <text x="560" y="205" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#fff">Margin</text>
+      <line x1="318" y1="175" x2="492" y2="175" stroke="#8A4E18" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <line x1="318" y1="252" x2="492" y2="227" stroke="#8A4E18" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="405" y="200" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="12" fill="#8A4E18">negotiable gap ≈ £2M</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> the gap wasn't in the labour rates — it was in overhead and margin above a defensible build-up. That's what made the gap negotiable rather than a market price.</p>
+  </figure>
+
+  <figure class="cs-chart">
+    <p class="ct">Total cost optimisation — from quoted renewal to signed contract</p>
+    <p class="cd">£M, annual contract value · Illustrative</p>
+    <svg viewBox="0 0 760 320" role="img" aria-label="Waterfall chart showing cost optimisation breakdown">
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#7E8E9E" text-anchor="middle">
+        <text x="190" y="58">£0</text><text x="300" y="58">£4</text>
+        <text x="410" y="58">£8</text><text x="520" y="58">£12</text>
+      </g>
+      <g stroke="#ECF0F3" stroke-width="1">
+        <line x1="130" y1="72" x2="560" y2="72"/>
+      </g>
+      <line x1="130" y1="272" x2="560" y2="272" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="130" y1="72" x2="130" y2="272" stroke="#33536e" stroke-width="1.5"/>
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#8A4E18" text-anchor="middle">
+        <text x="190" y="292">Quoted</text><text x="190" y="306">renewal</text>
+        <text x="285" y="292">Rate /</text><text x="285" y="306">should-cost</text>
+        <text x="365" y="292">Travel &amp;</text><text x="365" y="306">mobilisation</text>
+        <text x="445" y="292">SLA &amp;</text><text x="445" y="306">rework</text>
+        <text x="520" y="292">Optimised</text>
+      </g>
+      <rect x="145" y="132" width="90" height="120" fill="#33536e" rx="2"/>
+      <text x="190" y="198" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="700" font-size="14" fill="#fff">£11.0M</text>
+      <rect x="250" y="162" width="70" height="40" fill="#C2772F" rx="2"/>
+      <text x="285" y="186" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#fff">−£0.9M</text>
+      <rect x="330" y="202" width="70" height="40" fill="#C2772F" rx="2"/>
+      <text x="365" y="226" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#fff">−£0.6M</text>
+      <rect x="410" y="242" width="70" height="40" fill="#C2772F" rx="2"/>
+      <text x="445" y="266" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#fff">−£0.5M</text>
+      <rect x="490" y="242" width="60" height="40" fill="#33536e" rx="2"/>
+      <text x="520" y="266" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="700" font-size="13" fill="#fff">£9.0M</text>
+      <text x="360" y="120" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="13" fill="#8A4E18">≈ £2.0M total optimisation</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> the optimisation came from several levers, not one — the rate gap plus the costs the day-rate hid (travel, mobilisation, SLA, rework) added up to ~£2M.</p>
+  </figure>
+
   <div class="cs-cards">
-    <div><p class="m">Gap location</p><h4>Overhead and margin, not rates</h4><p>Should-cost showed the quoted renewal carried overhead and margin above a defensible build-up — the negotiable gap, not the labour rates.</p></div>
-    <div><p class="m">Hidden costs</p><h4>Total cost > day-rate</h4><p>Mobilisation, travel, and rework added materially to true cost — pricing only the day-rate understated the optimisation available.</p></div>
+    <div><p class="m">Overhead and margin, not rates</p><h4>Where the gap was</h4><p>Should-cost showed the quoted renewal carried overhead and margin above a defensible build-up — the negotiable gap, not the labour rates.</p></div>
+    <div><p class="m">Total cost &gt; day-rate</p><h4>The hidden costs added up</h4><p>Mobilisation, travel, and rework added materially to true cost — pricing only the day-rate understated the optimisation available.</p></div>
     <div><p class="m">Continuity</p><h4>Savings without disruption</h4><p>A phased, evidence-led negotiation secured savings with the incumbent retained and no disruption to field service.</p></div>
   </div>
 
   <h2>Results</h2>
-  <ul class="result-list">
+  <ul>
     <li><strong>~£2M total-cost optimisation</strong> locked into the renewed contract across multiple cost levers.</li>
     <li><strong>A defensible should-cost baseline</strong> the team can reuse to anchor future renewals.</li>
     <li><strong>Full total-cost visibility</strong> across rates, travel, mobilisation, SLAs, and rework.</li>
@@ -51,5 +131,5 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     <p>Renewals default to rolling forward last cycle's price. A should-cost baseline changes the conversation — anchoring negotiation on what the service should cost, not what it cost last time — and that is what turned a routine renewal into ~£2M of optimisation without touching service quality.</p>
   </div>
 
-  <p class="cs-note"><strong>Illustrative & partly anonymized.</strong> BT Group is named as the engagement context; the supplier is withheld. The ~£2M reflects the engagement outcome; cost build-ups are directional and illustrate the method rather than report exact contract figures.</p>
+  <p class="cs-note"><strong>Illustrative & partly anonymized.</strong> BT Group is named as the engagement context; the supplier is withheld. The ~£2M reflects the engagement outcome; cost build-ups and the waterfall are directional and illustrate the method rather than report exact contract figures.</p>
 </CaseStudyLayout>

@@ -32,11 +32,127 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     <li><strong>Contracting reform</strong> — converted the diagnosis into a five-pillar framework and a phased roadmap.</li>
   </ol>
 
-  <h2>Key Findings</h2>
+  <h2>The Analysis</h2>
+
+  <h4>Spend concentration — 45 of 482 rate-book items drive ~80% of spend</h4>
+  <p style="font-size:13px;color:#5E6E7B;margin-bottom:12px;">Pareto of the $233M portfolio · Illustrative</p>
+
+  <figure class="cs-chart">
+    <svg viewBox="0 0 760 200" role="img" aria-label="Pareto chart showing 80% of spend concentrated in top 45 items">
+      <defs>
+        <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#C2772F;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#8A4E18;stop-opacity:1"/>
+        </linearGradient>
+      </defs>
+      <line x1="80" y1="160" x2="720" y2="160" stroke="#D7DEE4" stroke-width="1.5"/>
+      <line x1="80" y1="40" x2="80" y2="160" stroke="#D7DEE4" stroke-width="1.5"/>
+      <text x="70" y="160" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">0%</text>
+      <text x="70" y="100" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">50%</text>
+      <text x="70" y="45" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">100%</text>
+      <text x="80" y="175" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">0</text>
+      <text x="300" y="175" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">45</text>
+      <text x="720" y="175" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">482</text>
+      <rect x="85" y="45" width="10" height="115" fill="url(#barGrad)" rx="2"/>
+      <rect x="100" y="55" width="10" height="105" fill="url(#barGrad)" rx="2" opacity="0.9"/>
+      <rect x="115" y="62" width="10" height="98" fill="url(#barGrad)" rx="2" opacity="0.85"/>
+      <rect x="130" y="68" width="10" height="92" fill="url(#barGrad)" rx="2" opacity="0.8"/>
+      <rect x="145" y="73" width="10" height="87" fill="url(#barGrad)" rx="2" opacity="0.75"/>
+      <rect x="160" y="77" width="10" height="83" fill="url(#barGrad)" rx="2" opacity="0.7"/>
+      <rect x="175" y="80" width="10" height="80" fill="url(#barGrad)" rx="2" opacity="0.65"/>
+      <rect x="190" y="83" width="10" height="77" fill="url(#barGrad)" rx="2" opacity="0.6"/>
+      <rect x="205" y="85" width="10" height="75" fill="url(#barGrad)" rx="2" opacity="0.55"/>
+      <rect x="220" y="87" width="10" height="73" fill="url(#barGrad)" rx="2" opacity="0.5"/>
+      <rect x="235" y="100" width="200" height="60" fill="#EAEFF3" rx="2"/>
+      <rect x="440" y="120" width="120" height="40" fill="#EAEFF3" rx="2"/>
+      <rect x="565" y="135" width="80" height="25" fill="#EAEFF3" rx="2"/>
+      <rect x="650" y="145" width="65" height="15" fill="#EAEFF3" rx="2"/>
+      <line x1="80" y1="55" x2="720" y2="55" stroke="#8A4E18" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+      <text x="715" y="50" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8A4E18">80% cumulative spend</text>
+      <line x1="300" y1="40" x2="300" y2="160" stroke="#C2772F" stroke-width="2"/>
+      <text x="300" y="30" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#C2772F" font-weight="600">Top 45 items</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> the governance problem is highly concentrated — 45 items, not 482 — which makes it operationally addressable rather than overwhelming.</p>
+  </figure>
+
+  <h4>Commercial risk matrix — price spread vs. contractor utilisation</h4>
+  <p style="font-size:13px;color:#5E6E7B;margin-bottom:12px;">Bubble size = share of spend; an item is critical only when both axes are high · Illustrative</p>
+
+  <figure class="cs-chart">
+    <svg viewBox="0 0 760 320" role="img" aria-label="Risk matrix chart showing contractor utilisation vs price spread">
+      <rect x="100" y="60" width="580" height="200" fill="#F6F8FA"/>
+      <line x1="100" y1="160" x2="680" y2="160" stroke="#E8E8E8" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="390" y1="60" x2="390" y2="260" stroke="#E8E8E8" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="100" y1="260" x2="680" y2="260" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="100" y1="60" x2="100" y2="260" stroke="#33536e" stroke-width="1.5"/>
+      <text x="390" y="285" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#7E8E9E">Utilisation of highest-priced contractor (%)</text>
+      <text x="50" y="160" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#7E8E9E" transform="rotate(-90 50 160)">Price spread across contractors (%)</text>
+      <text x="100" y="275" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#7E8E9E">0%</text>
+      <text x="390" y="275" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#7E8E9E">50%</text>
+      <text x="680" y="275" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#7E8E9E">100%</text>
+      <text x="90" y="260" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="9" fill="#7E8E9E">0%</text>
+      <text x="90" y="160" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="9" fill="#7E8E9E">50%</text>
+      <text x="90" y="65" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="9" fill="#7E8E9E">100%</text>
+      <text x="245" y="85" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A99A8">MONITOR</text>
+      <text x="245" y="97" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8A99A8">high spread / low use</text>
+      <text x="535" y="85" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A4E18" font-weight="600">CRITICAL</text>
+      <text x="535" y="97" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8A4E18">high spread / high use</text>
+      <text x="245" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A99A8">LOW PRIORITY</text>
+      <text x="535" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A99A8">MEDIUM</text>
+      <circle cx="150" cy="230" r="8" fill="#8A99A8" opacity="0.4"/>
+      <circle cx="180" cy="210" r="12" fill="#8A99A8" opacity="0.4"/>
+      <circle cx="220" cy="100" r="15" fill="#8A99A8" opacity="0.4"/>
+      <circle cx="550" cy="130" r="28" fill="#C2772F" opacity="0.7" stroke="#8A4E18" stroke-width="1.5"/>
+      <circle cx="580" cy="150" r="20" fill="#C2772F" opacity="0.6" stroke="#8A4E18" stroke-width="1"/>
+      <circle cx="520" cy="180" r="25" fill="#C2772F" opacity="0.65" stroke="#8A4E18" stroke-width="1"/>
+      <circle cx="600" cy="220" r="10" fill="#8A99A8" opacity="0.4"/>
+      <circle cx="650" cy="235" r="6" fill="#8A99A8" opacity="0.4"/>
+      <circle cx="620" cy="45" r="8" fill="#C2772F" opacity="0.7"/>
+      <text x="635" y="48" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5E6E7B">largest-spend item</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> high spread alone isn't the risk — exposure concentrates where spread and utilisation are both high, so the fix is targeted, not portfolio-wide.</p>
+  </figure>
+
+  <h4>Above-market variance by contractor — concentrated, but structural</h4>
+  <p style="font-size:13px;color:#5E6E7B;margin-bottom:12px;">Unit-billing variance vs. weighted-average rate · contractors anonymized · Illustrative</p>
+
+  <figure class="cs-chart">
+    <svg viewBox="0 0 760 280" role="img" aria-label="Bar chart showing above-market billing variance by contractor">
+      <line x1="120" y1="220" x2="700" y2="220" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="120" y1="50" x2="120" y2="220" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="120" y1="170" x2="700" y2="170" stroke="#ECF0F3" stroke-width="1"/>
+      <line x1="120" y1="120" x2="700" y2="120" stroke="#ECF0F3" stroke-width="1"/>
+      <line x1="120" y1="70" x2="700" y2="70" stroke="#ECF0F3" stroke-width="1"/>
+      <text x="110" y="220" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">$0</text>
+      <text x="110" y="170" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">$0.5M</text>
+      <text x="110" y="120" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">$1.0M</text>
+      <text x="110" y="70" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">$1.5M</text>
+      <rect x="160" y="95" width="60" height="125" fill="#C2772F" rx="3"/>
+      <rect x="250" y="95" width="60" height="125" fill="#C2772F" rx="3"/>
+      <rect x="340" y="105" width="60" height="115" fill="#C2772F" rx="3" opacity="0.9"/>
+      <rect x="430" y="155" width="60" height="65" fill="#C2772F" rx="3" opacity="0.7"/>
+      <rect x="520" y="170" width="60" height="50" fill="#C2772F" rx="3" opacity="0.6"/>
+      <rect x="610" y="185" width="60" height="35" fill="#C2772F" rx="3" opacity="0.5"/>
+      <text x="190" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">Contractor A</text>
+      <text x="280" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">Contractor B</text>
+      <text x="370" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">Contractor C</text>
+      <text x="460" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">Contractor D</text>
+      <text x="550" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">Contractor E</text>
+      <text x="640" y="240" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">Contractor F</text>
+      <text x="190" y="88" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A4E18" font-weight="600">$1.3M</text>
+      <text x="280" y="88" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A4E18" font-weight="600">$1.3M</text>
+      <text x="370" y="98" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A4E18" font-weight="600">$1.2M</text>
+      <text x="460" y="148" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A4E18" font-weight="600">$0.5M</text>
+      <text x="550" y="163" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A4E18" font-weight="600">$0.4M</text>
+      <text x="640" y="178" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8A4E18" font-weight="600">$0.2M</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> the two largest contractors carry ~55% of the exposure — but the driver is the absence of rate enforcement, not contractor choice, so the same billing would recur with any replacement.</p>
+  </figure>
+
   <div class="cs-cards">
-    <div><p class="m">45 items</p><h4>Concentrated, therefore solvable</h4><p>45 of 482 rate-book items drove ~80% of the $233M — the governance issue is highly concentrated and operationally addressable.</p></div>
-    <div><p class="m">Structural</p><h4>Root cause: structural, not supplier-specific</h4><p>The two largest contractors carried ~55% of variance, but the cause was the absence of rate enforcement — replacements would reproduce it.</p></div>
-    <div><p class="m">$22.4M</p><h4>Ungoverned spend pocket</h4><p>Cost-plus spend sat outside any usage framework, letting unit rates act as effective floors and absorbing all crew-time overruns.</p></div>
+    <div><p class="m">Concentrated</p><h4>Concentrated, therefore solvable</h4><p>45 of 482 rate-book items drove ~80% of the $233M — the governance issue is highly concentrated and operationally addressable.</p></div>
+    <div><p class="m">Root cause</p><h4>Structural, not supplier-specific</h4><p>The two largest contractors carried ~55% of variance, but the cause was the absence of rate enforcement — replacements would reproduce it.</p></div>
+    <div><p class="m">Ungoverned spend</p><h4>A large unbenchmarked pocket</h4><p>$22.4M of cost-plus spend sat outside any usage framework, letting unit rates act as effective floors and absorbing all crew-time overruns.</p></div>
   </div>
 
   <h2>Results</h2>
@@ -51,5 +167,5 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     <p>Rate renegotiation alone will not hold — without structural contract reform, contractors revert to misusing ambiguous rate descriptions in the next cycle. The five-pillar framework converts an indicative opportunity into a permanently governed programme, making rate improvements auditable and durable through the 2026 renewal and beyond.</p>
   </div>
 
-  <p class="cs-note"><strong>Illustrative & anonymized.</strong> Client and contractor identities withheld; analysis is directional and demonstrates the method rather than reports exact figures.</p>
+  <p class="cs-note"><strong>Illustrative & anonymized.</strong> Client and contractor identities withheld; all three charts are directional, built to demonstrate the analytical method rather than report exact figures.</p>
 </CaseStudyLayout>

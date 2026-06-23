@@ -32,11 +32,125 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     <li><strong>Set posture & brief</strong> — translated into a differentiated sourcing strategy and briefed stakeholders.</li>
   </ol>
 
-  <h2>Market Structure</h2>
+  <h2>The Analysis</h2>
+
+  <h4>Category positioning — supply risk vs. business impact</h4>
+  <p style="font-size:13px;color:#5E6E7B;margin-bottom:12px;">Lighting sits in Leverage; E-STATCOM in Strategic · Illustrative</p>
+
+  <figure class="cs-chart">
+    <svg viewBox="0 0 760 340" role="img" aria-label="Kraljic portfolio matrix showing Lighting in Leverage quadrant and E-STATCOM in Strategic quadrant">
+      <rect x="100" y="80" width="540" height="180" fill="#F6F8FA"/>
+      <line x1="100" y1="170" x2="640" y2="170" stroke="#D7DEE4" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <line x1="370" y1="80" x2="370" y2="260" stroke="#D7DEE4" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <line x1="100" y1="260" x2="640" y2="260" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="100" y1="80" x2="100" y2="260" stroke="#33536e" stroke-width="1.5"/>
+      <text x="370" y="285" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#7E8E9E">Supply risk / market complexity →</text>
+      <text x="50" y="170" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#7E8E9E" transform="rotate(-90 50 170)">Business impact / spend →</text>
+      <text x="235" y="125" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8A99A8" font-weight="600">ROUTINE</text>
+      <text x="505" y="125" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8A4E18" font-weight="600">STRATEGIC</text>
+      <text x="235" y="220" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8A99A8" font-weight="600">BOTTLENECK</text>
+      <text x="505" y="220" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8A4E18" font-weight="600">LEVERAGE</text>
+      <circle cx="500" cy="220" r="8" fill="#C2772F" stroke="#8A4E18" stroke-width="1.5"/>
+      <text x="500" y="205" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8A4E18" font-weight="600">Lighting</text>
+      <circle cx="500" cy="130" r="8" fill="#C2772F" stroke="#8A4E18" stroke-width="1.5"/>
+      <text x="500" y="115" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8A4E18" font-weight="600">E-STATCOM</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> Lighting's low supply risk means leverage — compete it hard. E-STATCOM's high risk and impact mean partnership and early commitment, not aggressive tendering.</p>
+  </figure>
+
+  <h4>Cost-driver breakdown — what moves price in each category</h4>
+  <p style="font-size:13px;color:#5E6E7B;margin-bottom:12px;">Share of category unit cost · Illustrative</p>
+
+  <figure class="cs-chart">
+    <svg viewBox="0 0 760 380" role="img" aria-label="Stacked bar chart comparing cost-driver breakdowns between Lighting and E-STATCOM">
+      <line x1="120" y1="320" x2="700" y2="320" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="120" y1="80" x2="120" y2="320" stroke="#33536e" stroke-width="1.5"/>
+      <text x="110" y="320" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">0%</text>
+      <text x="110" y="240" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">25%</text>
+      <text x="110" y="160" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">50%</text>
+      <text x="110" y="80" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">100%</text>
+      <line x1="120" y1="240" x2="700" y2="240" stroke="#ECF0F3" stroke-width="1"/>
+      <line x1="120" y1="160" x2="700" y2="160" stroke="#ECF0F3" stroke-width="1"/>
+      <text x="220" y="340" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#10314c" font-weight="600">LIGHTING</text>
+      <rect x="180" y="265" width="80" height="55" fill="#C2772F" rx="2"/>
+      <text x="220" y="297" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#fff">32%</text>
+      <rect x="180" y="215" width="80" height="48" fill="#B8976B" rx="2"/>
+      <text x="220" y="243" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#fff">20%</text>
+      <rect x="180" y="175" width="80" height="38" fill="#9AA88D" rx="2"/>
+      <text x="220" y="198" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#fff">18%</text>
+      <rect x="180" y="145" width="80" height="28" fill="#8A99A8" rx="2"/>
+      <text x="220" y="163" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#fff">16%</text>
+      <rect x="180" y="115" width="80" height="28" fill="#7E8E9E" rx="2"/>
+      <text x="220" y="133" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#fff">14%</text>
+      <text x="580" y="340" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#10314c" font-weight="600">E-STATCOM</text>
+      <rect x="540" y="245" width="80" height="75" fill="#C2772F" rx="2"/>
+      <text x="580" y="287" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#fff">30%</text>
+      <rect x="540" y="185" width="80" height="58" fill="#B8976B" rx="2"/>
+      <text x="580" y="220" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#fff">24%</text>
+      <rect x="540" y="145" width="80" height="38" fill="#9AA88D" rx="2"/>
+      <text x="580" y="168" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#fff">18%</text>
+      <rect x="540" y="115" width="80" height="28" fill="#8A99A8" rx="2"/>
+      <text x="580" y="133" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#fff">12%</text>
+      <rect x="540" y="85" width="80" height="28" fill="#7E8E9E" rx="2"/>
+      <text x="580" y="103" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#fff">16%</text>
+      <g transform="translate(130, 355)">
+        <rect x="0" y="0" width="10" height="10" fill="#C2772F" rx="2"/>
+        <text x="16" y="9" font-family="IBM Plex Mono,monospace" font-size="8" fill="#5E6E7B">LED chips / Power semiconductors</text>
+        <rect x="180" y="0" width="10" height="10" fill="#B8976B" rx="2"/>
+        <text x="196" y="9" font-family="IBM Plex Mono,monospace" font-size="8" fill="#5E6E7B">Housing / Transformer</text>
+        <rect x="340" y="0" width="10" height="10" fill="#9AA88D" rx="2"/>
+        <text x="356" y="9" font-family="IBM Plex Mono,monospace" font-size="8" fill="#5E6E7B">Driver / Control</text>
+        <rect x="480" y="0" width="10" height="10" fill="#8A99A8" rx="2"/>
+        <text x="496" y="9" font-family="IBM Plex Mono,monospace" font-size="8" fill="#5E6E7B">Assembly</text>
+      </g>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> Lighting cost rides on LED modules and aluminum — both deflationary. E-STATCOM rides on power semiconductors and transformers — both supply-constrained and rising.</p>
+  </figure>
+
+  <h4>Cost outlook — the two categories diverge</h4>
+  <p style="font-size:13px;color:#5E6E7B;margin-bottom:12px;">Indexed cost (base 100) · Illustrative directional outlook</p>
+
+  <figure class="cs-chart">
+    <svg viewBox="0 0 760 300" role="img" aria-label="Line chart showing diverging cost outlook for Lighting (deflationary) and E-STATCOM (inflationary)">
+      <line x1="120" y1="240" x2="700" y2="240" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="120" y1="60" x2="120" y2="240" stroke="#33536e" stroke-width="1.5"/>
+      <line x1="120" y1="200" x2="700" y2="200" stroke="#ECF0F3" stroke-width="1"/>
+      <line x1="120" y1="160" x2="700" y2="160" stroke="#ECF0F3" stroke-width="1"/>
+      <line x1="120" y1="120" x2="700" y2="120" stroke="#ECF0F3" stroke-width="1"/>
+      <line x1="120" y1="80" x2="700" y2="80" stroke="#ECF0F3" stroke-width="1"/>
+      <text x="110" y="240" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">80</text>
+      <text x="110" y="160" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">100</text>
+      <text x="110" y="80" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">140</text>
+      <text x="160" y="260" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">2023</text>
+      <text x="300" y="260" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">2024</text>
+      <text x="440" y="260" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">2025</text>
+      <text x="580" y="260" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">2026</text>
+      <text x="660" y="260" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">2027</text>
+      <line x1="120" y1="160" x2="700" y2="160" stroke="#D7DEE4" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="705" y="163" font-family="IBM Plex Mono,monospace" font-size="8" fill="#7E8E9E">base 100</text>
+      <polyline points="160,160 230,155 300,152 370,150 440,148 510,145 580,142 650,140" fill="none" stroke="#C2772F" stroke-width="2"/>
+      <circle cx="160" cy="160" r="4" fill="#C2772F"/>
+      <circle cx="300" cy="152" r="4" fill="#C2772F"/>
+      <circle cx="440" cy="148" r="4" fill="#C2772F"/>
+      <circle cx="580" cy="142" r="4" fill="#C2772F"/>
+      <circle cx="650" cy="140" r="4" fill="#C2772F"/>
+      <polyline points="160,160 230,165 300,175 370,185 440,195 510,200 580,205 650,210" fill="none" stroke="#33536e" stroke-width="2"/>
+      <circle cx="160" cy="160" r="4" fill="#33536e"/>
+      <circle cx="300" cy="175" r="4" fill="#33536e"/>
+      <circle cx="440" cy="195" r="4" fill="#33536e"/>
+      <circle cx="580" cy="205" r="4" fill="#33536e"/>
+      <circle cx="650" cy="210" r="4" fill="#33536e"/>
+      <text x="680" y="140" font-family="IBM Plex Mono,monospace" font-size="9" fill="#C2772F" font-weight="600">Lighting</text>
+      <text x="680" y="205" font-family="IBM Plex Mono,monospace" font-size="9" fill="#33536e" font-weight="600">E-STATCOM</text>
+      <text x="410" y="285" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#7E8E9E">Indexed category cost over time</text>
+    </svg>
+    <p class="cs-sowhat"><b>So what:</b> opposite price paths mean opposite contract lengths — short and competitive for Lighting (to ride deflation), longer and secured for E-STATCOM (to lock supply before further inflation).</p>
+  </figure>
+
   <div class="cs-cards">
-    <div><p class="m">Opposite</p><h4>Opposite dynamics</h4><p>Lighting is commoditizing and supplier-fragmented; E-STATCOM is engineered, supplier-concentrated, and demand-constrained — they cannot be sourced the same way.</p></div>
-    <div><p class="m">Diverging</p><h4>Diverging cost structures</h4><p>Lighting cost is driven by LED modules and aluminum (deflationary); E-STATCOM by power semiconductors and transformers (inflationary, constrained).</p></div>
-    <div><p class="m">Diverging</p><h4>Diverging price paths</h4><p>Lighting unit costs trend down; E-STATCOM trends up on renewable-integration demand and semiconductor lead times — timing and contract length matter differently.</p></div>
+    <div><p class="m">Market structure</p><h4>Opposite dynamics</h4><p>Lighting is commoditizing and supplier-fragmented; E-STATCOM is engineered, supplier-concentrated, and demand-constrained — they cannot be sourced the same way.</p></div>
+    <div><p class="m">Cost drivers</p><h4>Diverging cost structures</h4><p>Lighting cost is driven by LED modules and aluminum (deflationary); E-STATCOM by power semiconductors and transformers (inflationary, constrained).</p></div>
+    <div><p class="m">Price outlook</p><h4>Diverging price paths</h4><p>Lighting unit costs trend down; E-STATCOM trends up on renewable-integration demand and semiconductor lead times — timing and contract length matter differently.</p></div>
   </div>
 
   <h2>Results</h2>
