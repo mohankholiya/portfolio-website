@@ -26,7 +26,7 @@ export const caseStudies = [
     metric: "~$0.8m",
     metricLabel: "rig-rate gap quantified per well, Q2→Q4 verdict delivered",
     description:
-      "Benchmarked a West African shallow-water gas project against 27 global peers to establish where it stands and why — delivering a clear Q2→Q4 verdict by cost system and quantifying the rig-rate gap while schedule held near median.",
+      "Benchmarked an international shallow-water gas project for a global E&P operator against 27 global peers to establish where it stands and why — delivering a clear Q2→Q4 verdict by cost system and quantifying the rig-rate gap while schedule held near median.",
     tags: ["Capital Cost Benchmarking", "Pre-FEED Review"],
   },
   {
@@ -124,12 +124,12 @@ export const credentials = [
     category: "Education",
     entries: [
       {
-        title: "MBA — Energy Management",
-        body: "University of Petroleum & Energy Studies (UPES), Dehradun.",
+        title: "MBA — Power Management",
+        body: "University of Petroleum & Energy Studies (UPES), Dehradun, 2009.",
       },
       {
-        title: "Bachelor of Science — Mathematics",
-        body: "",
+        title: "B.Sc. — Physics, Chemistry & Mathematics",
+        body: "Kumaun University, Nainital, 2006.",
       },
     ],
   },
@@ -137,8 +137,8 @@ export const credentials = [
     category: "Certifications",
     entries: [
       {
-        title: "MITx MicroMasters — Supply Chain Management",
-        body: "MIT SCx professional credential: supply chain design, analytics, and strategy.",
+        title: "MITx SCx — Supply Chain Analytics & Fundamentals",
+        body: "MIT SC0x (Analytics, 2026) and SC1x (Fundamentals, 2025) — completed courses in the MITx Supply Chain Management program.",
       },
     ],
   },
@@ -151,7 +151,7 @@ export const credentials = [
       },
       {
         title: "In-house category ownership",
-        body: "Category Director and CPO-track roles at major operators in energy, utilities, and telecom.",
+        body: "Category Manager and senior procurement roles at major energy, utilities, and telecom businesses.",
       },
     ],
   },
