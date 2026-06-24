@@ -2,19 +2,19 @@
 const testimonials = [
   {
     quote:
-      "Mohan brought a level of analytical rigour to our category strategy that we had not seen from previous advisors.",
+      "Mohan brought a level of analytical rigour to our category strategy that we had not seen from previous advisors. His benchmarking work gave us the confidence to challenge supplier pricing and restructure our contracting approach — the savings spoke for themselves.",
     title: "VP Procurement",
     company: "Global E&P Operator",
   },
   {
     quote:
-      "What set Mohan apart was his ability to translate complex cost-driver analysis into clear, actionable recommendations.",
+      "What set Mohan apart was his ability to translate complex cost-driver analysis into clear, actionable recommendations. He didn't just identify the problem — he built the roadmap to fix it, and stayed through implementation.",
     title: "Director of Supply Chain",
     company: "UK Energy Utility",
   },
   {
     quote:
-      "Mohan's should-cost modelling on our service-delivery contract was incredibly thorough.",
+      "Mohan's should-cost modelling on our service-delivery contract was incredibly thorough. He identified value levers that our own team had overlooked, and negotiated a renewal that protected service continuity while locking in significant cost optimisation.",
     title: "Head of Procurement",
     company: "Tier-1 Telecom Operator",
   },
@@ -39,11 +39,15 @@ const testimonials = [
       ">Testimonials</p>
 
       <h2 id="testimonials-heading" class="t-display-lg reveal" style="
-        color:var(--color-ink); margin:0;
+        color:var(--color-ink); margin:0 0 12px;
         animation-delay:0.07s;
       ">
-        What clients and colleagues say.
+        What leaders say.
       </h2>
+
+      <p class="t-body-md reveal" style="color:var(--color-body-text); margin:0; animation-delay:0.12s;">
+        Client endorsements from senior procurement and supply chain leaders across energy, utilities, and telecom.
+      </p>
     </div>
 
     <!-- Testimonial cards -->
@@ -54,7 +58,7 @@ const testimonials = [
     ">
       {testimonials.map((t, i) => (
         <figure
-          class="reveal shadow-l2"
+          class="reveal testimonial-card shadow-l2"
           style={`
             background:var(--color-canvas);
             border-radius:var(--radius-md);
@@ -62,41 +66,86 @@ const testimonials = [
             margin:0;
             display:flex;
             flex-direction:column;
-            gap:20px;
+            gap:0;
             animation-delay:${i * 0.1}s;
+            position:relative;
+            overflow:hidden;
+            border:1px solid rgba(255,255,255,0.05);
+            transition:border-color 0.2s ease;
           `}
         >
           <!-- Opening quote mark -->
           <div aria-hidden="true" style="
-            font-size:40px;
-            line-height:1;
             color:var(--color-link);
-            opacity:0.5;
-            font-family:Georgia, serif;
-            margin-top:-8px;
-          ">&ldquo;</div>
+            opacity:0.25;
+            margin-bottom:16px;
+            line-height:1;
+          ">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M11.3 4.8l-4.5 9H2V4.8h9.3zm9.4 0l-4.5 9H11.4V4.8H20.7z" opacity="0.4"/>
+              <path d="M3 9h3.5L4 14H1l2-5zm9.4 0h3.5L13.4 14h-3l2-5z"/>
+            </svg>
+          </div>
 
           <!-- Quote -->
           <blockquote class="t-body-md" style="
-            color:var(--color-ink);
-            margin:0;
+            color:var(--color-body-text);
+            margin:0 0 24px;
             flex:1;
-            line-height:1.6;
+            line-height:1.65;
+            font-style:normal;
           ">
-            {t.quote}
+            &ldquo;{t.quote}&rdquo;
           </blockquote>
 
           <!-- Attribution -->
           <figcaption style="
             border-top:1px solid var(--color-hairline);
             padding-top:16px;
+            display:flex;
+            align-items:center;
+            gap:12px;
           ">
-            <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px;">{t.title}</p>
-            <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em;">{t.company}</p>
+            <div style="
+              width:40px; height:40px;
+              border-radius:50%;
+              background:rgba(77,158,255,0.1);
+              color:var(--color-link);
+              display:flex; align-items:center; justify-content:center;
+              font-size:12px; font-weight:700;
+              flex-shrink:0;
+              font-family:var(--font-sans);
+            " aria-hidden="true">
+              {t.title.split(' ').map((w: string) => w[0]).join('')}
+            </div>
+            <div>
+              <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px;">{t.title}</p>
+              <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em;">{t.company}</p>
+            </div>
           </figcaption>
+
+          <!-- Hover accent corner -->
+          <div class="testimonial-corner" aria-hidden="true" style="
+            position:absolute; bottom:0; right:0;
+            width:64px; height:64px;
+            border-radius:12px 0 0 0;
+            background:linear-gradient(135deg, rgba(77,158,255,0.06), transparent);
+            opacity:0;
+            transition:opacity 0.2s ease;
+            pointer-events:none;
+          "></div>
         </figure>
       ))}
     </div>
 
   </div>
 </section>
+
+<style>
+  .testimonial-card:hover {
+    border-color: rgba(255,255,255,0.1) !important;
+  }
+  .testimonial-card:hover .testimonial-corner {
+    opacity: 1 !important;
+  }
+</style>
