@@ -372,3 +372,82 @@ body::after {
   margin: 0 auto;
   width: 100%;
 }
+
+/* ── Gradient text ─────────────────────────── */
+.gradient-text {
+  background: linear-gradient(120deg, #c8e0ff 0%, #4d9eff 45%, #7928ca 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Scroll progress bar ───────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-link), var(--color-violet));
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ── Back to top ───────────────────────────── */
+#back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 40px;
+  height: 40px;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.15s ease;
+  pointer-events: none;
+  z-index: 500;
+  font-size: 18px;
+  line-height: 1;
+}
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#back-to-top:hover { background: var(--color-canvas-soft-2); }
+#back-to-top:focus-visible { outline: 2px solid var(--color-link); outline-offset: 2px; }
+
+/* ── Scroll indicator (hero) ───────────────── */
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(6px); opacity: 1; }
+}
+.scroll-indicator { animation: bounce-scroll 2s ease-in-out infinite; display: inline-flex; }
+
+/* ── Form inputs ───────────────────────────── */
+.form-input {
+  width: 100%;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  resize: vertical;
+}
+.form-input:focus {
+  border-color: var(--color-link);
+  box-shadow: 0 0 0 3px rgba(77,158,255,0.12);
+}
+.form-input::placeholder { color: var(--color-mute); }

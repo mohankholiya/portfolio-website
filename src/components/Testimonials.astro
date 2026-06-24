@@ -1,0 +1,102 @@
+---
+const testimonials = [
+  {
+    quote:
+      "Mohan brought a level of analytical rigour to our category strategy that we had not seen from previous advisors.",
+    title: "VP Procurement",
+    company: "Global E&P Operator",
+  },
+  {
+    quote:
+      "What set Mohan apart was his ability to translate complex cost-driver analysis into clear, actionable recommendations.",
+    title: "Director of Supply Chain",
+    company: "UK Energy Utility",
+  },
+  {
+    quote:
+      "Mohan's should-cost modelling on our service-delivery contract was incredibly thorough.",
+    title: "Head of Procurement",
+    company: "Tier-1 Telecom Operator",
+  },
+];
+---
+
+<section
+  id="testimonials"
+  aria-labelledby="testimonials-heading"
+  class="section"
+  style="background:var(--color-canvas-soft);"
+>
+  <div class="container">
+
+    <!-- Header -->
+    <div style="max-width:560px; margin-bottom:48px;">
+      <p class="t-caption-mono reveal" style="
+        color:var(--color-mute);
+        text-transform:uppercase;
+        letter-spacing:0.08em;
+        margin:0 0 16px;
+      ">Testimonials</p>
+
+      <h2 id="testimonials-heading" class="t-display-lg reveal" style="
+        color:var(--color-ink); margin:0;
+        animation-delay:0.07s;
+      ">
+        What clients and colleagues say.
+      </h2>
+    </div>
+
+    <!-- Testimonial cards -->
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+      gap:16px;
+    ">
+      {testimonials.map((t, i) => (
+        <figure
+          class="reveal shadow-l2"
+          style={`
+            background:var(--color-canvas);
+            border-radius:var(--radius-md);
+            padding:28px 28px 24px;
+            margin:0;
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+            animation-delay:${i * 0.1}s;
+          `}
+        >
+          <!-- Opening quote mark -->
+          <div aria-hidden="true" style="
+            font-size:40px;
+            line-height:1;
+            color:var(--color-link);
+            opacity:0.5;
+            font-family:Georgia, serif;
+            margin-top:-8px;
+          ">&ldquo;</div>
+
+          <!-- Quote -->
+          <blockquote class="t-body-md" style="
+            color:var(--color-ink);
+            margin:0;
+            flex:1;
+            line-height:1.6;
+          ">
+            {t.quote}
+          </blockquote>
+
+          <!-- Attribution -->
+          <figcaption style="
+            border-top:1px solid var(--color-hairline);
+            padding-top:16px;
+          ">
+            <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px;">{t.title}</p>
+            <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em;">{t.company}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+  </div>
+</section>

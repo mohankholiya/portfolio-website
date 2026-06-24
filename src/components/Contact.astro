@@ -15,7 +15,7 @@ import { siteConfig } from "../content/site";
     border-top: 1px solid rgba(255,255,255,0.07);
   "
 >
-  <div class="container" style="text-align:center; max-width:680px; margin:0 auto;">
+  <div class="container" style="max-width:680px; margin:0 auto;">
 
     <!-- Eyebrow -->
     <p class="t-caption-mono reveal" style="
@@ -23,6 +23,7 @@ import { siteConfig } from "../content/site";
       text-transform:uppercase;
       letter-spacing:0.08em;
       margin:0 0 24px;
+      text-align:center;
     ">Get in touch</p>
 
     <!-- Headline -->
@@ -30,6 +31,7 @@ import { siteConfig } from "../content/site";
       color:#ededed;
       margin:0 0 20px;
       animation-delay:0.07s;
+      text-align:center;
     ">
       Let's work together.
     </h2>
@@ -39,16 +41,102 @@ import { siteConfig } from "../content/site";
       color:rgba(255,255,255,0.5);
       margin:0 0 48px;
       animation-delay:0.14s;
+      text-align:center;
     ">
       Open to senior procurement and supply chain leadership roles and consulting engagements
       globally. Response within 24 hours.
     </p>
 
-    <!-- CTAs -->
+    <!-- Contact form -->
+    <!-- Web3Forms: get your free access key at web3forms.com (enter your email, takes ~60s) -->
+    <!-- Replace YOUR_ACCESS_KEY below with the key sent to mohan.kholiya@gmail.com -->
+    <form
+      id="contact-form"
+      class="reveal"
+      style="
+        display:flex; flex-direction:column; gap:16px;
+        margin-bottom:40px;
+        animation-delay:0.18s;
+      "
+      novalidate
+    >
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
+      <input type="hidden" name="subject" value="Portfolio enquiry — mohankholiya.co.in" />
+      <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true" />
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;" class="form-row">
+        <div>
+          <label for="cf-name" class="t-body-sm-strong" style="display:block; color:#ededed; margin-bottom:6px;">Name</label>
+          <input
+            type="text"
+            id="cf-name"
+            name="name"
+            required
+            class="form-input"
+            placeholder="Your name"
+            autocomplete="name"
+          />
+        </div>
+        <div>
+          <label for="cf-email" class="t-body-sm-strong" style="display:block; color:#ededed; margin-bottom:6px;">Email</label>
+          <input
+            type="email"
+            id="cf-email"
+            name="email"
+            required
+            class="form-input"
+            placeholder="your@email.com"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="cf-message" class="t-body-sm-strong" style="display:block; color:#ededed; margin-bottom:6px;">Message</label>
+        <textarea
+          id="cf-message"
+          name="message"
+          required
+          rows="4"
+          class="form-input"
+          placeholder="Tell me about the role or engagement..."
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        id="cf-submit"
+        class="btn-primary t-button-lg"
+        style="justify-content:center;"
+      >
+        Send Message
+      </button>
+
+      <p
+        id="form-status"
+        role="status"
+        aria-live="polite"
+        class="t-body-sm"
+        style="display:none; text-align:center; margin:0;"
+      ></p>
+    </form>
+
+    <!-- Divider with label -->
+    <div class="reveal" style="
+      display:flex; align-items:center; gap:12px;
+      margin-bottom:32px;
+      animation-delay:0.22s;
+    ">
+      <div style="flex:1; height:1px; background:rgba(255,255,255,0.07);"></div>
+      <span class="t-caption-mono" style="color:rgba(255,255,255,0.25);">or reach out directly</span>
+      <div style="flex:1; height:1px; background:rgba(255,255,255,0.07);"></div>
+    </div>
+
+    <!-- Direct CTAs -->
     <div class="reveal" style="
       display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
-      margin-bottom:48px;
-      animation-delay:0.21s;
+      margin-bottom:40px;
+      animation-delay:0.26s;
     ">
       <a
         href={`mailto:${siteConfig.email}`}
@@ -56,7 +144,7 @@ import { siteConfig } from "../content/site";
           display:inline-flex; align-items:center; gap:8px;
           background:#ededed; color:#0a0a0a;
           border-radius:var(--radius-pill);
-          padding:0 28px; height:52px;
+          padding:0 28px; height:48px;
           font-size:16px; font-weight:500; font-family:var(--font-sans);
           text-decoration:none;
           transition:opacity 0.15s ease, transform 0.15s ease;
@@ -81,7 +169,7 @@ import { siteConfig } from "../content/site";
           background:transparent; color:#ededed;
           border-radius:var(--radius-pill);
           border:1px solid rgba(255,255,255,0.15);
-          padding:0 28px; height:52px;
+          padding:0 28px; height:48px;
           font-size:16px; font-weight:500; font-family:var(--font-sans);
           text-decoration:none;
           transition:border-color 0.15s ease, background 0.15s ease;
@@ -97,13 +185,13 @@ import { siteConfig } from "../content/site";
     <div class="reveal" style="
       border-top:1px solid rgba(255,255,255,0.07);
       margin-bottom:32px;
-      animation-delay:0.28s;
+      animation-delay:0.30s;
     "></div>
 
     <!-- Pathway chips -->
     <div class="reveal" style="
       display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
-      animation-delay:0.35s;
+      animation-delay:0.34s;
     ">
       <span style="
         display:inline-flex; align-items:center; gap:6px;
@@ -133,3 +221,52 @@ import { siteConfig } from "../content/site";
 
   </div>
 </section>
+
+<style>
+  @media (max-width: 560px) {
+    .form-row {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status') as HTMLElement | null;
+  const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !status) return;
+
+    const data = Object.fromEntries(new FormData(form));
+
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        status.textContent = '✓ Message sent — I\'ll respond within 24 hours.';
+        status.style.color = 'var(--color-success)';
+        status.style.display = 'block';
+        form.reset();
+      } else {
+        throw new Error('failed');
+      }
+    } catch {
+      status.textContent = 'Something went wrong. Please email me directly at mohan.kholiya@gmail.com';
+      status.style.color = 'var(--color-error)';
+      status.style.display = 'block';
+    } finally {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.disabled = false;
+    }
+  });
+</script>
