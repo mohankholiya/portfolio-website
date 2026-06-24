@@ -3,10 +3,10 @@ import { caseStudies } from "../content/site";
 import CaseStudyCard from "./CaseStudyCard.astro";
 
 const sectors = [
-  { key: "all",       label: "All" },
-  { key: "energy",    label: "Energy & O&G" },
-  { key: "utilities", label: "Utilities" },
-  { key: "telecom",   label: "Telecom" },
+  { key: "all",       label: "All",          activeColor: '' },
+  { key: "energy",    label: "Energy & O&G", activeColor: '#fb923c' },
+  { key: "utilities", label: "Utilities",    activeColor: '#3ecf8e' },
+  { key: "telecom",   label: "Telecom",      activeColor: '#a78bfa' },
 ];
 ---
 
@@ -58,8 +58,20 @@ const sectors = [
         <button
           class={`filter-tab t-body-sm ${s.key === 'all' ? 'active' : ''}`}
           data-filter={s.key}
+          data-color={s.activeColor}
           aria-pressed={s.key === 'all' ? 'true' : 'false'}
         >
+          {s.activeColor && (
+            <span aria-hidden="true" style={`
+              display:inline-block;
+              width:7px; height:7px;
+              border-radius:50%;
+              background:${s.activeColor};
+              margin-right:6px;
+              flex-shrink:0;
+              opacity:0.8;
+            `}></span>
+          )}
           {s.label}
         </button>
       ))}
@@ -105,14 +117,21 @@ const sectors = [
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter ?? 'all';
+      const color  = (btn as HTMLButtonElement).dataset.color ?? '';
 
       // Update button states
       filterBtns.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-pressed', 'false');
+        (b as HTMLElement).style.color = '';
+        (b as HTMLElement).style.boxShadow = '';
       });
       btn.classList.add('active');
       btn.setAttribute('aria-pressed', 'true');
+      if (color) {
+        (btn as HTMLElement).style.color = color;
+        (btn as HTMLElement).style.boxShadow = `inset 0 0 0 1px ${color}40`;
+      }
 
       // Show/hide cards
       let visible = 0;
