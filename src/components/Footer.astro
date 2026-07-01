@@ -47,44 +47,26 @@ const year = new Date().getFullYear();
           { href: "#testimonials",  label: "Testimonials" },
           { href: "#contact",       label: "Contact" },
         ].map(link => (
-          <a
-            href={link.href}
-            class="t-body-sm"
-            style="
-              color:var(--color-body-text);
-              text-decoration:none;
-              padding:4px 10px;
-              border-radius:var(--radius-full);
-              transition:background 0.15s ease, color 0.15s ease;
-            "
-            onmouseover="this.style.background='var(--color-canvas-soft-2)'; this.style.color='var(--color-ink)';"
-            onmouseout="this.style.background=''; this.style.color='var(--color-body-text)';"
-          >
+          <a href={link.href} class="footer-link t-body-sm">
             {link.label}
           </a>
         ))}
       </nav>
 
       <!-- Right: external links -->
-      <div style="display:flex; align-items:center; gap:12px;">
+      <div style="display:flex; align-items:center; gap:16px;">
         <a
           href={siteConfig.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          class="t-body-sm"
-          style="color:var(--color-body-text); text-decoration:none; transition:color 0.15s ease;"
-          onmouseover="this.style.color='var(--color-ink)';"
-          onmouseout="this.style.color='var(--color-body-text)';"
+          class="footer-ext-link t-body-sm"
         >
           LinkedIn ↗
         </a>
         <a
           href={siteConfig.resumeUrl}
           download="Mohan_Kholiya_Resume_2026.pdf"
-          class="t-body-sm"
-          style="color:var(--color-body-text); text-decoration:none; transition:color 0.15s ease;"
-          onmouseover="this.style.color='var(--color-ink)';"
-          onmouseout="this.style.color='var(--color-body-text)';"
+          class="footer-ext-link t-body-sm"
         >
           Download résumé
         </a>

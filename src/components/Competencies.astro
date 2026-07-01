@@ -1,7 +1,20 @@
 ---
 import { competencies } from "../content/site";
 
-const icons = ["◈", "◎", "◆", "◉", "◇", "●"];
+const svgIcons = [
+  // 1. Strategic Sourcing & Category Management — concentric target rings
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  // 2. Supplier Development & Performance — network nodes
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v3.5M12 10.5l-5.1 6.6M12 10.5l5.1 6.6"/></svg>`,
+  // 3. Contract Strategy & Negotiation — document with lines
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>`,
+  // 4. Supply Chain Risk & Resilience — shield check
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>`,
+  // 5. Digital Procurement & Analytics — trending line
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/><polyline points="16,7 22,7 22,13"/></svg>`,
+  // 6. Spend Analytics & Cost Modelling — bar chart ascending
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+];
 
 const cardColors = [
   { gradient: "linear-gradient(135deg, rgba(77,158,255,0.18), rgba(77,158,255,0.04))", border: "rgba(77,158,255,0.2)", hoverBorder: "rgba(77,158,255,0.4)" },
@@ -70,10 +83,12 @@ const cardColors = [
             background:${cardColors[i].gradient};
             border-radius:var(--radius-sm);
             display:flex; align-items:center; justify-content:center;
-            font-size:18px; color:var(--color-ink);
+            color:var(--color-ink);
             margin-bottom:16px;
             flex-shrink:0;
-          `} aria-hidden="true">{icons[i]}</div>
+          `}>
+            <Fragment set:html={svgIcons[i]} />
+          </div>
 
           <!-- Title -->
           <h3 class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 8px;">

@@ -26,7 +26,7 @@ const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: '
   id={id}
   data-sector={sector}
   class="case-card shadow-l3"
-  style={`--glow:${color.text}; background:var(--color-canvas); border-radius:var(--radius-md); padding:24px; display:flex; flex-direction:column; gap:16px; text-decoration:none; color:inherit;`}
+  style={`--glow:${color.text}; background:linear-gradient(180deg, ${color.bg} 0%, var(--color-canvas) 72px); border-radius:var(--radius-md); padding:24px; display:flex; flex-direction:column; gap:16px; text-decoration:none; color:inherit; border-top:1px solid ${color.border};`}
   target="_blank"
   rel="noopener noreferrer"
 >

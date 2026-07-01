@@ -410,10 +410,31 @@ body::after {
 
 /* ── Gradient text ─────────────────────────── */
 .gradient-text {
-  background: linear-gradient(120deg, #c8e0ff 0%, #4d9eff 45%, #7928ca 100%);
+  background: linear-gradient(120deg, #dce9ff 0%, #4d9eff 40%, #9b6ef3 75%, #4d9eff 100%);
+  background-size: 250% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-pan 9s linear infinite;
+}
+@keyframes gradient-pan {
+  0%   { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text { animation: none; background-position: 0% center; }
+}
+
+/* ── Hero dot grid ─────────────────────────── */
+.hero-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 10%, transparent 80%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 10%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ── Scroll progress bar ───────────────────── */
@@ -486,3 +507,32 @@ body::after {
   box-shadow: 0 0 0 3px rgba(77,158,255,0.12);
 }
 .form-input::placeholder { color: var(--color-mute); }
+
+/* ── Footer links ──────────────────────────── */
+.footer-link {
+  color: var(--color-body-text);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  transition: background 0.15s ease, color 0.15s ease;
+  display: inline-block;
+}
+.footer-link:hover {
+  background: var(--color-canvas-soft-2);
+  color: var(--color-ink);
+}
+.footer-link:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+}
+
+.footer-ext-link {
+  color: var(--color-body-text);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.footer-ext-link:hover { color: var(--color-ink); }
+.footer-ext-link:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+}
