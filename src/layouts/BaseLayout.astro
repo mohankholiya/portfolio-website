@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { siteConfig, navLinks } from "../content/site";
+import { siteConfig } from "../content/site";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -59,7 +59,7 @@ const ogImage = `${siteConfig.url}/og-image.png`;
     <meta name="keywords" content="Mohan Kholiya, procurement, supply chain, category management, strategic sourcing, energy procurement, oil and gas procurement, telecom procurement, utilities procurement, cost reduction, supplier management, should-cost modelling, SRM" />
 
     <!-- JSON-LD Person schema -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
       "name": siteConfig.name,
