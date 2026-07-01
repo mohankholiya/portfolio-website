@@ -26,12 +26,9 @@ import { siteConfig } from "../content/site";
   <div class="container" style="position:relative;">
 
     <!-- Eyebrow -->
-    <p class="t-caption-mono reveal" style="
-      color:var(--color-mute);
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      margin:0 0 16px;
-    ">Get in Touch</p>
+    <div class="section-eyebrow reveal">
+      <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Get in Touch</p>
+    </div>
 
     <!-- Headline -->
     <h2 id="contact-heading" class="t-display-lg reveal" style="
@@ -144,7 +141,7 @@ import { siteConfig } from "../content/site";
         <!-- Email -->
         <a
           href={`mailto:${siteConfig.email}`}
-          class="contact-link-card"
+          class="contact-link-card card-shimmer"
           style="
             display:flex; align-items:center; gap:16px;
             background:var(--color-canvas);
@@ -176,7 +173,7 @@ import { siteConfig } from "../content/site";
           href={siteConfig.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          class="contact-link-card"
+          class="contact-link-card card-shimmer"
           style="
             display:flex; align-items:center; gap:16px;
             background:var(--color-canvas);
@@ -212,7 +209,7 @@ import { siteConfig } from "../content/site";
         <a
           href={siteConfig.resumeUrl}
           download="Mohan_Kholiya_Resume_2026.pdf"
-          class="contact-link-card"
+          class="contact-link-card card-shimmer"
           style="
             display:flex; align-items:center; gap:16px;
             background:var(--color-canvas);

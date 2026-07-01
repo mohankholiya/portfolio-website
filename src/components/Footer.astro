@@ -8,10 +8,15 @@ const year = new Date().getFullYear();
   aria-label="Site footer"
   style="
     background:var(--color-canvas);
-    border-top:1px solid var(--color-hairline);
+    position:relative;
     padding:40px 24px;
   "
 >
+  <!-- Gradient top border -->
+  <div aria-hidden="true" style="
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 20%, rgba(77,158,255,0.18) 50%, rgba(255,255,255,0.08) 80%, transparent 100%);
+  "></div>
   <div class="container">
     <div style="
       display:flex;

@@ -5,38 +5,49 @@ const testimonials = [
       "Mohan brought a level of analytical rigour to our category strategy that we had not seen from previous advisors. His benchmarking work gave us the confidence to challenge supplier pricing and restructure our contracting approach — the savings spoke for themselves.",
     title: "VP Procurement",
     company: "Global E&P Operator",
+    initials: "VP",
+    accentColor: "#fb923c",
+    accentBg: "rgba(249,115,22,0.08)",
   },
   {
     quote:
       "What set Mohan apart was his ability to translate complex cost-driver analysis into clear, actionable recommendations. He didn't just identify the problem — he built the roadmap to fix it, and stayed through implementation.",
     title: "Director of Supply Chain",
     company: "UK Energy Utility",
+    initials: "DS",
+    accentColor: "#3ecf8e",
+    accentBg: "rgba(62,207,142,0.08)",
   },
   {
     quote:
       "Mohan's should-cost modelling on our service-delivery contract was incredibly thorough. He identified value levers that our own team had overlooked, and negotiated a renewal that protected service continuity while locking in significant cost optimisation.",
     title: "Head of Procurement",
     company: "Tier-1 Telecom Operator",
+    initials: "HP",
+    accentColor: "#a78bfa",
+    accentBg: "rgba(167,139,250,0.08)",
   },
 ];
+
+const [featured, ...rest] = testimonials;
 ---
 
 <section
   id="testimonials"
   aria-labelledby="testimonials-heading"
   class="section"
-  style="background:var(--color-canvas-soft);"
+  style="background:var(--color-canvas-soft); position:relative; overflow:hidden;"
 >
-  <div class="container">
+  <!-- Ambient glow -->
+  <div aria-hidden="true" class="section-ambient-top"></div>
+
+  <div class="container" style="position:relative; z-index:1;">
 
     <!-- Header -->
     <div style="max-width:560px; margin-bottom:48px;">
-      <p class="t-caption-mono reveal" style="
-        color:var(--color-mute);
-        text-transform:uppercase;
-        letter-spacing:0.08em;
-        margin:0 0 16px;
-      ">Testimonials</p>
+      <div class="section-eyebrow reveal">
+        <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Testimonials</p>
+      </div>
 
       <h2 id="testimonials-heading" class="t-display-lg reveal" style="
         color:var(--color-ink); margin:0 0 12px;
@@ -50,102 +61,178 @@ const testimonials = [
       </p>
     </div>
 
-    <!-- Testimonial cards -->
-    <div style="
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-      gap:16px;
-    ">
-      {testimonials.map((t, i) => (
-        <figure
-          class="reveal testimonial-card shadow-l2"
-          style={`
-            background:var(--color-canvas);
-            border-radius:var(--radius-md);
-            padding:28px 28px 24px;
-            margin:0;
-            display:flex;
-            flex-direction:column;
-            gap:0;
-            animation-delay:${i * 0.1}s;
-            position:relative;
-            overflow:hidden;
-            border:1px solid rgba(255,255,255,0.05);
-            transition:border-color 0.2s ease;
-          `}
-        >
-          <!-- Opening quote mark -->
-          <div aria-hidden="true" style="
-            color:var(--color-link);
-            opacity:0.25;
-            margin-bottom:16px;
-            line-height:1;
-          ">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M11.3 4.8l-4.5 9H2V4.8h9.3zm9.4 0l-4.5 9H11.4V4.8H20.7z" opacity="0.4"/>
-              <path d="M3 9h3.5L4 14H1l2-5zm9.4 0h3.5L13.4 14h-3l2-5z"/>
-            </svg>
+    <!-- Bento layout: featured large | two stacked -->
+    <div class="bento-grid">
+
+      <!-- Featured testimonial (left, full height) -->
+      <figure
+        class="reveal testimonial-card testimonial-featured card-shimmer shadow-l3"
+        style={`
+          background: var(--color-canvas);
+          border-radius: var(--radius-lg);
+          padding: 36px;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(255,255,255,0.07);
+          border-top: 1px solid ${featured.accentColor}30;
+          transition: border-color 0.2s ease, transform 0.25s ease;
+          position: relative;
+          overflow: hidden;
+        `}
+      >
+        <!-- Top accent line -->
+        <div aria-hidden="true" style={`
+          position:absolute; top:0; left:36px; right:36px;
+          height:1px;
+          background:linear-gradient(90deg, transparent, ${featured.accentColor}50, transparent);
+        `}></div>
+
+        <!-- Decorative large quote mark -->
+        <div aria-hidden="true" style={`
+          font-family: var(--font-display);
+          font-size: 120px;
+          line-height: 0.8;
+          color: ${featured.accentColor};
+          opacity: 0.12;
+          margin-bottom: 8px;
+          font-weight: 700;
+          letter-spacing: -4px;
+          user-select: none;
+        `}>&ldquo;</div>
+
+        <!-- Quote -->
+        <blockquote class="t-body-lg" style="
+          color: var(--color-body-text);
+          margin: 0 0 32px;
+          flex: 1;
+          line-height: 1.65;
+          font-style: normal;
+        ">
+          {featured.quote}
+        </blockquote>
+
+        <!-- Attribution -->
+        <figcaption style="
+          border-top: 1px solid var(--color-hairline);
+          padding-top: 20px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        ">
+          <div style={`
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: ${featured.accentBg};
+            color: ${featured.accentColor};
+            border: 1px solid ${featured.accentColor}40;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700;
+            flex-shrink: 0;
+            font-family: var(--font-sans);
+          `} aria-hidden="true">
+            {featured.initials}
           </div>
+          <div>
+            <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 3px;">{featured.title}</p>
+            <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em;">{featured.company}</p>
+          </div>
+        </figcaption>
+      </figure>
 
-          <!-- Quote -->
-          <blockquote class="t-body-md" style="
-            color:var(--color-body-text);
-            margin:0 0 24px;
-            flex:1;
-            line-height:1.65;
-            font-style:normal;
-          ">
-            &ldquo;{t.quote}&rdquo;
-          </blockquote>
+      <!-- Two stacked testimonials (right column) -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        {rest.map((t, i) => (
+          <figure
+            class="reveal testimonial-card card-shimmer shadow-l2"
+            style={`
+              background: var(--color-canvas);
+              border-radius: var(--radius-md);
+              padding: 24px 28px;
+              margin: 0;
+              display: flex;
+              flex-direction: column;
+              gap: 0;
+              animation-delay: ${(i + 1) * 0.1}s;
+              border: 1px solid rgba(255,255,255,0.06);
+              border-top: 1px solid ${t.accentColor}30;
+              transition: border-color 0.2s ease, transform 0.25s ease;
+              position: relative;
+              overflow: hidden;
+              flex: 1;
+            `}
+          >
+            <!-- Top accent line -->
+            <div aria-hidden="true" style={`
+              position:absolute; top:0; left:28px; right:28px;
+              height:1px;
+              background:linear-gradient(90deg, transparent, ${t.accentColor}45, transparent);
+            `}></div>
 
-          <!-- Attribution -->
-          <figcaption style="
-            border-top:1px solid var(--color-hairline);
-            padding-top:16px;
-            display:flex;
-            align-items:center;
-            gap:12px;
-          ">
-            <div style="
-              width:40px; height:40px;
-              border-radius:50%;
-              background:rgba(77,158,255,0.1);
-              color:var(--color-link);
-              display:flex; align-items:center; justify-content:center;
-              font-size:12px; font-weight:700;
-              flex-shrink:0;
-              font-family:var(--font-sans);
-            " aria-hidden="true">
-              {t.title.split(' ').map((w: string) => w[0]).join('')}
+            <!-- Small quote mark -->
+            <div aria-hidden="true" style={`
+              color: ${t.accentColor};
+              opacity: 0.25;
+              margin-bottom: 12px;
+              line-height: 1;
+            `}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M11.3 4.8l-4.5 9H2V4.8h9.3zm9.4 0l-4.5 9H11.4V4.8H20.7z" opacity="0.4"/>
+                <path d="M3 9h3.5L4 14H1l2-5zm9.4 0h3.5L13.4 14h-3l2-5z"/>
+              </svg>
             </div>
-            <div>
-              <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px;">{t.title}</p>
-              <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em;">{t.company}</p>
-            </div>
-          </figcaption>
 
-          <!-- Hover accent corner -->
-          <div class="testimonial-corner" aria-hidden="true" style="
-            position:absolute; bottom:0; right:0;
-            width:64px; height:64px;
-            border-radius:12px 0 0 0;
-            background:linear-gradient(135deg, rgba(77,158,255,0.06), transparent);
-            opacity:0;
-            transition:opacity 0.2s ease;
-            pointer-events:none;
-          "></div>
-        </figure>
-      ))}
+            <!-- Quote -->
+            <blockquote class="t-body-md" style="
+              color: var(--color-body-text);
+              margin: 0 0 20px;
+              flex: 1;
+              line-height: 1.65;
+              font-style: normal;
+            ">
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+
+            <!-- Attribution -->
+            <figcaption style="
+              border-top: 1px solid var(--color-hairline);
+              padding-top: 14px;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            ">
+              <div style={`
+                width: 36px; height: 36px;
+                border-radius: 50%;
+                background: ${t.accentBg};
+                color: ${t.accentColor};
+                border: 1px solid ${t.accentColor}40;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 11px; font-weight: 700;
+                flex-shrink: 0;
+                font-family: var(--font-sans);
+              `} aria-hidden="true">
+                {t.initials}
+              </div>
+              <div>
+                <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px;">{t.title}</p>
+                <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em; font-size:10px;">{t.company}</p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
     </div>
-
   </div>
 </section>
 
 <style>
   .testimonial-card:hover {
-    border-color: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    transform: translateY(-3px);
   }
-  .testimonial-card:hover .testimonial-corner {
-    opacity: 1 !important;
+  .testimonial-featured:hover {
+    transform: translateY(-4px);
   }
 </style>

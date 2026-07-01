@@ -109,20 +109,14 @@ import { siteConfig, heroStats } from "../content/site";
       "
     ></div>
 
-    <!-- Stats row -->
+    <!-- Stats row — each stat in an elevated card -->
     <dl
-      class="hero-in"
-      style="
-        display:flex; flex-wrap:wrap; gap:40px 48px;
-        --d:0.46s;
-      "
+      class="hero-in hero-stats-row"
+      style="--d:0.46s;"
     >
       {heroStats.map(stat => (
-        <div>
-          <dt
-            class="t-caption-mono"
-            style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;"
-          >
+        <div class="stat-card shadow-l2">
+          <dt class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">
             {stat.label}
           </dt>
           <dd
@@ -136,8 +130,8 @@ import { siteConfig, heroStats } from "../content/site";
         </div>
       ))}
 
-      <!-- Sectors badge cluster -->
-      <div>
+      <!-- Sectors card -->
+      <div class="stat-card shadow-l2">
         <dt class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">
           Sectors
         </dt>
@@ -170,6 +164,25 @@ import { siteConfig, heroStats } from "../content/site";
     </a>
   </div>
 </section>
+
+<style>
+  .hero-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .stat-card {
+    background: var(--color-canvas);
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    min-width: 120px;
+    transition: border-color 0.2s ease;
+  }
+  .stat-card:hover {
+    border-color: rgba(255,255,255,0.18);
+  }
+</style>
 
 <script>
   // ── Cursor spotlight ──────────────────────────────────────────────

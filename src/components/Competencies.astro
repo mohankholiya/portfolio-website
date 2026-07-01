@@ -30,18 +30,16 @@ const cardColors = [
   id="competencies"
   aria-labelledby="competencies-heading"
   class="section"
-  style="background:var(--color-canvas-soft);"
+  style="background:var(--color-canvas-soft); position:relative; overflow:hidden;"
 >
-  <div class="container">
+  <div aria-hidden="true" class="section-ambient-top"></div>
+  <div class="container" style="position:relative; z-index:1;">
 
     <!-- Header -->
     <div style="max-width:560px; margin-bottom:48px;">
-      <p class="t-caption-mono reveal" style="
-        color:var(--color-mute);
-        text-transform:uppercase;
-        letter-spacing:0.08em;
-        margin:0 0 16px;
-      ">Core Competencies</p>
+      <div class="section-eyebrow reveal">
+        <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Core Competencies</p>
+      </div>
 
       <h2 id="competencies-heading" class="t-display-lg reveal" style="
         color:var(--color-ink); margin:0 0 16px;
@@ -78,7 +76,7 @@ const cardColors = [
           data-hover-border={cardColors[i].hoverBorder}
         >
           <!-- Icon -->
-          <div style={`
+          <div class="comp-icon" style={`
             width:48px; height:48px;
             background:${cardColors[i].gradient};
             border-radius:var(--radius-sm);
@@ -122,6 +120,12 @@ const cardColors = [
   }
   .comp-card:hover .comp-accent-line {
     opacity: 1 !important;
+  }
+  .comp-card:hover .comp-icon {
+    transform: scale(1.08);
+  }
+  .comp-icon {
+    transition: transform 0.25s ease;
   }
 </style>
 

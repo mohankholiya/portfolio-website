@@ -25,7 +25,7 @@ const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: '
   href={`/case-studies/${id}/`}
   id={id}
   data-sector={sector}
-  class="case-card shadow-l3"
+  class="case-card card-shimmer shadow-l3"
   style={`--glow:${color.text}; background:linear-gradient(180deg, ${color.bg} 0%, var(--color-canvas) 72px); border-radius:var(--radius-md); padding:24px; display:flex; flex-direction:column; gap:16px; text-decoration:none; color:inherit; border-top:1px solid ${color.border};`}
   target="_blank"
   rel="noopener noreferrer"
@@ -62,11 +62,26 @@ const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: '
   <!-- Description -->
   <p class="t-body-sm" style="color:var(--color-body-text); margin:0; flex:1;">{description}</p>
 
-  <!-- Tags -->
-  <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:auto;">
-    {tags.map(tag => (
-      <span class="badge t-caption-mono" style="font-size:11px;">{tag}</span>
-    ))}
+  <!-- Tags + read arrow row -->
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto; flex-wrap:wrap;">
+    <div style="display:flex; flex-wrap:wrap; gap:6px;">
+      {tags.map(tag => (
+        <span class="badge t-caption-mono" style="font-size:11px;">{tag}</span>
+      ))}
+    </div>
+    <!-- Read more arrow -->
+    <span class="card-arrow" aria-hidden="true" style={`
+      display:inline-flex; align-items:center; justify-content:center;
+      width:28px; height:28px; border-radius:50%;
+      border:1px solid ${color.border};
+      color:${color.text};
+      flex-shrink:0;
+      transition:background 0.2s ease, transform 0.2s ease;
+    `}>
+      <svg width="12" height="12" viewBox="0 0 10 10" fill="none">
+        <path d="M1.5 1.5h7m0 0v7m0-7L1.5 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
   </div>
 </a>
 
@@ -81,6 +96,10 @@ const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: '
       inset 0 0 0 1px rgba(255,255,255,0.16),
       0 24px 48px -8px rgba(0,0,0,0.65),
       0 0 36px -6px var(--glow, transparent);
+  }
+  .case-card:hover .card-arrow {
+    background: rgba(255,255,255,0.06);
+    transform: translate(2px, -2px);
   }
   .case-card:focus-visible {
     outline: 2px solid var(--color-link);

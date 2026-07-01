@@ -508,6 +508,73 @@ body::after {
 }
 .form-input::placeholder { color: var(--color-mute); }
 
+/* ── Section ambient glow ──────────────────── */
+/* Usage: <div class="section-ambient-top"></div> inside a section */
+.section-ambient-top {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(700px, 100%);
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(77,158,255,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Card shimmer ──────────────────────────── */
+/* Add ::before shimmer to any element with this class */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.card-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255,255,255,0.035) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0s;
+  pointer-events: none;
+  z-index: 2;
+}
+.card-shimmer:hover::before {
+  transform: translateX(100%);
+  transition: transform 0.55s ease;
+}
+
+/* ── Bento grid helpers ─────────────────────── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 860px) {
+  .bento-grid { grid-template-columns: 1.5fr 1fr; }
+}
+
+/* ── Section number eyebrow ────────────────── */
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.section-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  max-width: 40px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 1px;
+}
+
 /* ── Footer links ──────────────────────────── */
 .footer-link {
   color: var(--color-body-text);
