@@ -7,9 +7,19 @@ export const siteConfig = {
   email: "mohan.kholiya@gmail.com",
   linkedin: "https://www.linkedin.com/in/mohankholiya/",
   resumeUrl: "/resume.pdf",
+  resumeFileName: "Mohan_Kholiya_Resume_2026.pdf",
   positioning:
     "Procurement & supply chain leader who turns category strategy and supplier programs into measurable cost-out and resilience — across consulting and in-house roles.",
 };
+
+export const navLinks = [
+  { href: "#about",        label: "About" },
+  { href: "#case-studies", label: "Case Studies" },
+  { href: "#competencies", label: "Competencies" },
+  { href: "#credentials",  label: "Credentials" },
+  { href: "#testimonials", label: "Testimonials" },
+  { href: "#contact",      label: "Contact" },
+];
 
 export const heroStats = [
   { display: "16+", numeric: 16, suffix: "+", label: "Years experience" },

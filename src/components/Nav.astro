@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from "../content/site";
+import { siteConfig, navLinks } from "../content/site";
 ---
 
 <nav id="site-nav" aria-label="Main navigation">
@@ -16,14 +16,7 @@ import { siteConfig } from "../content/site";
       display:flex; align-items:center; gap:4px;
       list-style:none; margin:0; padding:0;
     ">
-      {[
-        { href: "#about",         label: "About" },
-        { href: "#case-studies",  label: "Case Studies" },
-        { href: "#competencies",  label: "Competencies" },
-        { href: "#credentials",   label: "Credentials" },
-        { href: "#testimonials",  label: "Testimonials" },
-        { href: "#contact",       label: "Contact" },
-      ].map(link => (
+      {navLinks.map(link => (
         <li>
           <a
             href={link.href}
@@ -52,7 +45,7 @@ import { siteConfig } from "../content/site";
       </a>
       <a
         href={siteConfig.resumeUrl}
-        download="Mohan_Kholiya_Resume_2026.pdf"
+        download={siteConfig.resumeFileName}
         class="btn-secondary-sm t-button-sm"
         aria-label="Download résumé PDF"
       >
@@ -95,14 +88,7 @@ import { siteConfig } from "../content/site";
       overflow-y:auto;
     "
   >
-    {[
-      { href: "#about",         label: "About" },
-      { href: "#case-studies",  label: "Case Studies" },
-      { href: "#competencies",  label: "Competencies" },
-      { href: "#credentials",   label: "Credentials" },
-      { href: "#testimonials",  label: "Testimonials" },
-      { href: "#contact",       label: "Contact" },
-    ].map(link => (
+    {navLinks.map(link => (
       <a
         href={link.href}
         class="mobile-nav-link t-display-sm"
@@ -120,7 +106,7 @@ import { siteConfig } from "../content/site";
     ))}
     <div style="display:flex; flex-direction:column; gap:8px; margin-top:24px;">
       <a href={`mailto:${siteConfig.email}`} class="btn-primary t-button-lg" style="justify-content:center;">Email Mohan</a>
-      <a href={siteConfig.resumeUrl} download class="btn-secondary t-button-lg" style="justify-content:center;">Download Résumé</a>
+      <a href={siteConfig.resumeUrl} download={siteConfig.resumeFileName} class="btn-secondary t-button-lg" style="justify-content:center;">Download Résumé</a>
     </div>
   </div>
 </nav>
@@ -235,7 +221,8 @@ import { siteConfig } from "../content/site";
 
   // ── Scrollspy active indicator ───────────────────────────────────
   const navLinks = document.querySelectorAll<HTMLElement>('.nav-link[data-nav-href]');
-  const sections = ['hero','about','case-studies','competencies','credentials','testimonials','contact']
+  const sectionIds = ['hero', ...Array.from(navLinks).map(l => l.dataset.navHref!.slice(1))];
+  const sections = sectionIds
     .map(id => document.getElementById(id))
     .filter(Boolean) as HTMLElement[];
 

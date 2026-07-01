@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from "../content/site";
+import { siteConfig, navLinks } from "../content/site";
 
 const year = new Date().getFullYear();
 ---
@@ -39,14 +39,7 @@ const year = new Date().getFullYear();
 
       <!-- Center: nav links -->
       <nav aria-label="Footer navigation" style="display:flex; flex-wrap:wrap; gap:4px;">
-        {[
-          { href: "#about",         label: "About" },
-          { href: "#case-studies",  label: "Case Studies" },
-          { href: "#competencies",  label: "Competencies" },
-          { href: "#credentials",   label: "Credentials" },
-          { href: "#testimonials",  label: "Testimonials" },
-          { href: "#contact",       label: "Contact" },
-        ].map(link => (
+        {navLinks.map(link => (
           <a href={link.href} class="footer-link t-body-sm">
             {link.label}
           </a>
@@ -65,7 +58,7 @@ const year = new Date().getFullYear();
         </a>
         <a
           href={siteConfig.resumeUrl}
-          download="Mohan_Kholiya_Resume_2026.pdf"
+          download={siteConfig.resumeFileName}
           class="footer-ext-link t-body-sm"
         >
           Download résumé
