@@ -12,20 +12,37 @@ import { siteConfig, heroStats } from "../content/site";
     overflow:hidden;
   "
 >
-  <!-- Mesh gradient backdrop — more vibrant on dark -->
+  <!-- Mesh gradient backdrop -->
   <div aria-hidden="true" style="
-    position:absolute; inset:0; pointer-events:none;
+    position:absolute; inset:0; pointer-events:none; z-index:0;
     background:
-      radial-gradient(ellipse 90%  50% at 50% -15%, rgba(0,112,243,0.30) 0%, transparent 60%),
-      radial-gradient(ellipse 70%  45% at 85%  25%, rgba(121,40,202,0.14) 0%, transparent 55%),
-      radial-gradient(ellipse 80%  55% at 10%  35%, rgba(0,223,216,0.10) 0%, transparent 55%),
-      radial-gradient(ellipse 60%  40% at 55%  85%, rgba(249,203,40,0.06) 0%, transparent 60%);
+      radial-gradient(ellipse 90%  50% at 50% -15%, rgba(0,112,243,0.28) 0%, transparent 60%),
+      radial-gradient(ellipse 70%  45% at 85%  25%, rgba(121,40,202,0.13) 0%, transparent 55%),
+      radial-gradient(ellipse 80%  55% at 10%  35%, rgba(0,223,216,0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 60%  40% at 55%  85%, rgba(249,203,40,0.05) 0%, transparent 60%);
   "></div>
 
-  <div class="container" style="position:relative; z-index:1;">
+  <!-- Cursor spotlight — follows mouse, illuminates the hero like a blueprint reader -->
+  <div
+    id="hero-spotlight"
+    aria-hidden="true"
+    style="
+      position:absolute; inset:0; pointer-events:none; z-index:1;
+      opacity:0;
+      transition:opacity 0.9s ease;
+      background:radial-gradient(
+        circle 420px at var(--cx, 50%) var(--cy, 50%),
+        rgba(77,158,255,0.11) 0%,
+        rgba(0,112,243,0.07) 35%,
+        transparent 70%
+      );
+    "
+  ></div>
+
+  <div class="container" style="position:relative; z-index:2;">
 
     <!-- Eyebrow -->
-    <div class="reveal" style="margin-bottom:24px;">
+    <div class="hero-in" style="--d:0s; margin-bottom:24px;">
       <span class="t-caption-mono badge" style="
         background:var(--color-canvas-soft-2);
         color:var(--color-body-text);
@@ -40,11 +57,11 @@ import { siteConfig, heroStats } from "../content/site";
     <!-- Headline -->
     <h1
       id="hero-headline"
-      class="t-display-xl gradient-text reveal"
+      class="t-display-xl gradient-text hero-in"
       style="
-        max-width:720px;
+        max-width:820px;
         margin:0 0 24px;
-        animation-delay:0.07s;
+        --d:0.1s;
       "
     >
       Delivering measurable cost-out and resilience.
@@ -52,12 +69,12 @@ import { siteConfig, heroStats } from "../content/site";
 
     <!-- Lead -->
     <p
-      class="t-body-lg reveal"
+      class="t-body-lg hero-in"
       style="
         max-width:540px;
         color:var(--color-body-text);
         margin:0 0 40px;
-        animation-delay:0.14s;
+        --d:0.2s;
       "
     >
       {siteConfig.positioning}
@@ -65,10 +82,10 @@ import { siteConfig, heroStats } from "../content/site";
 
     <!-- CTAs -->
     <div
-      class="reveal"
+      class="hero-in"
       style="
         display:flex; flex-wrap:wrap; gap:12px; margin-bottom:64px;
-        animation-delay:0.21s;
+        --d:0.3s;
       "
     >
       <a href="#case-studies" class="btn-primary t-button-lg">
@@ -79,22 +96,22 @@ import { siteConfig, heroStats } from "../content/site";
       </a>
     </div>
 
-    <!-- Divider -->
+    <!-- Divider — expands left-to-right -->
     <div
-      class="reveal"
+      class="hero-line-in"
       style="
         border-top:1px solid var(--color-hairline);
         margin-bottom:40px;
-        animation-delay:0.28s;
+        --d:0.38s;
       "
     ></div>
 
     <!-- Stats row -->
     <dl
-      class="reveal"
+      class="hero-in"
       style="
         display:flex; flex-wrap:wrap; gap:40px 48px;
-        animation-delay:0.35s;
+        --d:0.46s;
       "
     >
       {heroStats.map(stat => (
@@ -135,13 +152,13 @@ import { siteConfig, heroStats } from "../content/site";
   <div aria-hidden="true" style="
     position:absolute; bottom:32px; left:50%;
     transform:translateX(-50%);
-    z-index:1;
+    z-index:2;
   ">
     <a
       href="#about"
-      class="scroll-indicator"
+      class="scroll-indicator hero-in"
       aria-label="Scroll to About"
-      style="color:rgba(255,255,255,0.4); text-decoration:none; display:inline-flex;"
+      style="color:rgba(255,255,255,0.35); text-decoration:none; display:inline-flex; --d:0.6s;"
       tabindex="-1"
     >
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
@@ -152,22 +169,26 @@ import { siteConfig, heroStats } from "../content/site";
 </section>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll<HTMLElement>('.reveal');
-  const revealObs = new IntersectionObserver(
-    entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          (e.target as HTMLElement).classList.add('is-visible');
-          revealObs.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-  reveals.forEach(el => revealObs.observe(el));
+  // ── Cursor spotlight ──────────────────────────────────────────────
+  const hero = document.getElementById('hero');
+  const spotlight = document.getElementById('hero-spotlight') as HTMLElement | null;
 
-  // Counter animation
+  if (hero && spotlight && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    hero.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(2);
+      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(2);
+      spotlight.style.setProperty('--cx', x + '%');
+      spotlight.style.setProperty('--cy', y + '%');
+      spotlight.style.opacity = '1';
+    }, { passive: true });
+
+    hero.addEventListener('mouseleave', () => {
+      spotlight.style.opacity = '0';
+    });
+  }
+
+  // ── Counter animation ─────────────────────────────────────────────
   const counters = document.querySelectorAll<HTMLElement>('[data-counter]');
   const counterObs = new IntersectionObserver(
     entries => {

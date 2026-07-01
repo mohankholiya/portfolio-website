@@ -13,32 +13,20 @@ interface Props {
 const { id, sector, sectorLabel, headline, metric, metricLabel, description, tags } = Astro.props;
 
 const sectorColor: Record<string, { bg: string; text: string; border: string }> = {
-  energy:           { bg: 'rgba(249,115,22,0.12)',  text: '#fb923c', border: 'rgba(249,115,22,0.25)' },
-  utilities:        { bg: 'rgba(62,207,142,0.12)',  text: '#3ecf8e', border: 'rgba(62,207,142,0.25)' },
-  telecom:          { bg: 'rgba(167,139,250,0.12)', text: '#a78bfa', border: 'rgba(167,139,250,0.25)' },
-  'energy-utilities': { bg: 'rgba(77,158,255,0.12)', text: '#4d9eff', border: 'rgba(77,158,255,0.25)' },
+  energy:             { bg: 'rgba(249,115,22,0.12)',  text: '#fb923c', border: 'rgba(249,115,22,0.25)' },
+  utilities:          { bg: 'rgba(62,207,142,0.12)',  text: '#3ecf8e', border: 'rgba(62,207,142,0.25)' },
+  telecom:            { bg: 'rgba(167,139,250,0.12)', text: '#a78bfa', border: 'rgba(167,139,250,0.25)' },
+  'energy-utilities': { bg: 'rgba(77,158,255,0.12)',  text: '#4d9eff', border: 'rgba(77,158,255,0.25)' },
 };
-const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: 'var(--color-mute)', border: 'rgba(255,255,255,0.07)' };
+const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: '#888', border: 'rgba(255,255,255,0.07)' };
 ---
 
 <a
   href={`/case-studies/${id}/`}
   id={id}
   data-sector={sector}
-  class="case-card shadow-l3 reveal"
-  style="
-    background:var(--color-canvas);
-    border-radius:var(--radius-md);
-    padding:24px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
-    text-decoration:none;
-    color:inherit;
-  "
-  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='inset 0 0 0 1px rgba(255,255,255,0.14), 0px 8px 32px -4px rgba(0,0,0,0.7)';"
-  onmouseout="this.style.transform=''; this.style.boxShadow='';"
+  class="case-card shadow-l3"
+  style={`--glow:${color.text}; background:var(--color-canvas); border-radius:var(--radius-md); padding:24px; display:flex; flex-direction:column; gap:16px; text-decoration:none; color:inherit;`}
   target="_blank"
   rel="noopener noreferrer"
 >
@@ -81,3 +69,21 @@ const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: '
     ))}
   </div>
 </a>
+
+<style>
+  .case-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+  }
+  .case-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.16),
+      0 24px 48px -8px rgba(0,0,0,0.65),
+      0 0 36px -6px var(--glow, transparent);
+  }
+  .case-card:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+</style>

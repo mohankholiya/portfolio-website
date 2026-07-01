@@ -3,19 +3,11 @@ import { siteConfig } from "../content/site";
 ---
 
 <nav id="site-nav" aria-label="Main navigation">
-  <!-- position:relative + z-index:100 keeps this bar above the mobile overlay (z-index:99) -->
   <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 24px; position:relative; z-index:100;">
 
     <!-- Logo -->
     <a href="/" aria-label="Mohan Kholiya — home" style="display:flex; align-items:center; gap:8px; text-decoration:none; flex-shrink:0;">
-      <span style="
-        width:32px; height:32px;
-        background:var(--color-ink); color:var(--color-on-ink);
-        border-radius:var(--radius-sm);
-        display:flex; align-items:center; justify-content:center;
-        font-size:13px; font-weight:600; letter-spacing:-0.5px;
-        flex-shrink:0;
-      " aria-hidden="true">MK</span>
+      <span class="nav-logo-mark" aria-hidden="true">MK</span>
       <span class="t-body-sm-strong nav-name" style="color:var(--color-ink);">Mohan Kholiya</span>
     </a>
 
@@ -35,17 +27,8 @@ import { siteConfig } from "../content/site";
         <li>
           <a
             href={link.href}
-            class="t-body-sm"
-            style="
-              color:var(--color-body-text);
-              text-decoration:none;
-              padding:6px 12px;
-              border-radius:var(--radius-full);
-              transition:background 0.15s ease, color 0.15s ease;
-              display:block;
-            "
-            onmouseover="this.style.background='var(--color-canvas-soft-2)'; this.style.color='var(--color-ink)';"
-            onmouseout="this.style.background=''; this.style.color='var(--color-body-text)';"
+            class="nav-link t-body-sm"
+            data-nav-href={link.href}
           >
             {link.label}
           </a>
@@ -83,19 +66,13 @@ import { siteConfig } from "../content/site";
       </a>
     </div>
 
-    <!-- Hamburger / close (mobile only) -->
+    <!-- Hamburger (mobile only) -->
     <button
       id="nav-hamburger"
       class="hamburger"
       aria-label="Open navigation menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
-      style="
-        display:none;
-        background:none; border:none; cursor:pointer;
-        padding:8px; color:var(--color-ink);
-        border-radius:var(--radius-sm);
-      "
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path id="menu-icon" d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -103,7 +80,7 @@ import { siteConfig } from "../content/site";
     </button>
   </div>
 
-  <!-- Mobile overlay — solid dark background, full viewport, sits below the nav bar (z-index:99 < container z-index:100) -->
+  <!-- Mobile overlay -->
   <div
     id="mobile-menu"
     aria-label="Mobile navigation"
@@ -149,6 +126,67 @@ import { siteConfig } from "../content/site";
 </nav>
 
 <style>
+  .nav-logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--color-ink);
+    color: var(--color-on-ink);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+
+  .nav-link {
+    color: var(--color-body-text);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    transition: background 0.15s ease, color 0.15s ease;
+    display: block;
+    position: relative;
+  }
+  .nav-link:hover {
+    background: var(--color-canvas-soft-2);
+    color: var(--color-ink);
+  }
+  .nav-link.active {
+    color: var(--color-ink);
+  }
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-link);
+  }
+  .nav-link:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--color-ink);
+    border-radius: var(--radius-sm);
+  }
+  .hamburger:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+
   @media (max-width: 860px) {
     .nav-links  { display: none !important; }
     .nav-ctas   { display: none !important; }
@@ -158,13 +196,13 @@ import { siteConfig } from "../content/site";
 </style>
 
 <script>
-  // Scroll shadow
+  // ── Scroll shadow ───────────────────────────────────────────────
   const nav = document.getElementById('site-nav');
   window.addEventListener('scroll', () => {
     nav?.classList.toggle('scrolled', window.scrollY > 8);
   }, { passive: true });
 
-  // Mobile menu
+  // ── Mobile menu ─────────────────────────────────────────────────
   const hamburger = document.getElementById('nav-hamburger') as HTMLButtonElement | null;
   const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
   const menuIcon = document.getElementById('menu-icon') as SVGPathElement | null;
@@ -192,12 +230,27 @@ import { siteConfig } from "../content/site";
     document.body.style.overflow = '';
   }
 
-  hamburger?.addEventListener('click', () => {
-    menuOpen ? closeMenu() : openMenu();
-  });
+  hamburger?.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
+  mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-  // Close when a nav link is tapped
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
+  // ── Scrollspy active indicator ───────────────────────────────────
+  const navLinks = document.querySelectorAll<HTMLElement>('.nav-link[data-nav-href]');
+  const sections = ['hero','about','case-studies','competencies','credentials','testimonials','contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean) as HTMLElement[];
+
+  const spy = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = '#' + entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.navHref === id);
+        });
+      });
+    },
+    { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+  );
+
+  sections.forEach(s => spy.observe(s));
 </script>
