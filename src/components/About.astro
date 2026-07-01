@@ -27,8 +27,8 @@ import { siteConfig } from "../content/site";
     " class="about-grid">
 
       <!-- Left: headshot -->
-      <div class="reveal headshot-col" style="display:flex; justify-content:flex-start;">
-        <div style="position:relative; display:inline-block;">
+      <div class="reveal headshot-col" style="display:flex; justify-content:flex-start; perspective:800px;">
+        <div class="headshot-tilt" style="position:relative; display:inline-block; transition:transform 0.45s cubic-bezier(0.22,1,0.36,1); transform-style:preserve-3d; will-change:transform;">
           <!-- Spinning decorative ring -->
           <div aria-hidden="true" class="spin-ring" style="
             position:absolute;
@@ -191,3 +191,21 @@ import { siteConfig } from "../content/site";
     animation: pulse-dot 2s ease-in-out infinite;
   }
 </style>
+
+<script>
+  const tilt = document.querySelector<HTMLElement>('.headshot-tilt');
+  if (tilt && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    tilt.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = tilt.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      tilt.style.transform = `rotateY(${dx * 12}deg) rotateX(${-dy * 12}deg) scale(1.04)`;
+    }, { passive: true });
+
+    tilt.addEventListener('mouseleave', () => {
+      tilt.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+    });
+  }
+</script>

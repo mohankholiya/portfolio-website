@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { siteConfig } from "../content/site";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -42,6 +43,9 @@ const ogImage = `${siteConfig.url}/og-image.png`;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- View Transitions -->
+    <ClientRouter />
 
     <!-- Fonts: Syne (display) + DM Sans (body) + JetBrains Mono (captions) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -93,6 +97,14 @@ const ogImage = `${siteConfig.url}/og-image.png`;
     </script>
   </head>
   <body>
+    <!-- Loading screen — first visit only -->
+    <div id="page-loader" aria-hidden="true" role="presentation">
+      <div id="loader-inner">
+        <span id="loader-mark">MK</span>
+        <div id="loader-bar"><div id="loader-fill"></div></div>
+      </div>
+    </div>
+
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="scroll-progress" aria-hidden="true"></div>
     <slot />
@@ -101,6 +113,62 @@ const ogImage = `${siteConfig.url}/og-image.png`;
         <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
+    <style>
+      #page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: #0a0a0a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      #page-loader.done {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #loader-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        animation: loader-appear 0.25s ease both;
+      }
+      @keyframes loader-appear {
+        from { opacity: 0; transform: scale(0.88); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      #loader-mark {
+        width: 56px;
+        height: 56px;
+        background: #ededed;
+        color: #0a0a0a;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Syne', system-ui, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      #loader-bar {
+        width: 48px;
+        height: 1px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 1px;
+        overflow: hidden;
+      }
+      #loader-fill {
+        height: 100%;
+        width: 0%;
+        background: #4d9eff;
+        transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    </style>
+
     <script is:inline>
       // Scroll progress bar
       var progressEl = document.getElementById('scroll-progress');
@@ -119,6 +187,24 @@ const ogImage = `${siteConfig.url}/og-image.png`;
       bttBtn && bttBtn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+
+      // Loading screen — first visit only, skip on back/forward nav
+      (function () {
+        var loader = document.getElementById('page-loader');
+        var fill   = document.getElementById('loader-fill');
+        if (!loader) return;
+        if (sessionStorage.getItem('mk-visited')) {
+          loader.style.display = 'none';
+          return;
+        }
+        sessionStorage.setItem('mk-visited', '1');
+        requestAnimationFrame(function () {
+          if (fill) fill.style.width = '100%';
+        });
+        setTimeout(function () {
+          loader.classList.add('done');
+        }, 820);
+      })();
     </script>
   </body>
 </html>
