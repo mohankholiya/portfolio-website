@@ -4,3 +4,6 @@ dist/
 .env
 .env.*
 !.env.example
+
+# unrelated nested project, must not be a submodule
+workspace/
