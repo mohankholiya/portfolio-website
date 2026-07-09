@@ -47,16 +47,30 @@ const ogImage = `${siteConfig.url}/og-image.png`;
     <!-- View Transitions -->
     <ClientRouter />
 
-    <!-- Fonts: Syne (display) + DM Sans (body) + JetBrains Mono (captions) -->
+    <!-- Fonts: Archivo (display) + Source Sans 3 (body) + IBM Plex Mono (data) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {/* Load font CSS without blocking render; text paints in the fallback then swaps. */}
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400..700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      />
+    </noscript>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Mohan Kholiya, procurement, supply chain, category management, strategic sourcing, energy procurement, oil and gas procurement, telecom procurement, utilities procurement, cost reduction, supplier management, should-cost modelling, SRM" />
+    <meta name="keywords" content="Mohan Kholiya, procurement, supply chain, category management, strategic sourcing, energy procurement, oil and gas procurement, telecom procurement, utilities procurement, cost reduction, supplier management, should-cost modelling, SRM, Wood Mackenzie, Accenture, BT Group" />
 
     <!-- JSON-LD Person schema -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
@@ -67,6 +81,12 @@ const ogImage = `${siteConfig.url}/og-image.png`;
       "description": siteConfig.description,
       "url": siteConfig.url,
       "email": siteConfig.email,
+      "telephone": "+91 9990433916",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gurugram",
+        "addressCountry": "India"
+      },
       "sameAs": [siteConfig.linkedin],
       "knowsAbout": [
         "Strategic Sourcing",
@@ -107,56 +127,37 @@ const ogImage = `${siteConfig.url}/og-image.png`;
     </button>
     <style>
       #page-loader {
-        position: fixed;
-        inset: 0;
-        z-index: 99999;
-        background: #0a0a0a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        position: fixed; inset: 0; z-index: 99999;
+        background: var(--color-paper);
+        display: flex; align-items: center; justify-content: center;
         transition: opacity 0.5s ease, visibility 0.5s ease;
       }
-      #page-loader.done {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
+      #page-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
       #loader-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        display: flex; flex-direction: column; align-items: center; gap: 18px;
         animation: loader-appear 0.25s ease both;
       }
       @keyframes loader-appear {
-        from { opacity: 0; transform: scale(0.88); }
+        from { opacity: 0; transform: scale(0.9); }
         to   { opacity: 1; transform: scale(1); }
       }
       #loader-mark {
-        width: 56px;
-        height: 56px;
-        background: #ededed;
-        color: #0a0a0a;
+        width: 52px; height: 52px;
+        background: var(--color-ink);
+        color: var(--color-on-ink);
         border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Syne', system-ui, sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: -1px;
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-display);
+        font-size: 19px; font-weight: 700; letter-spacing: -0.5px;
       }
       #loader-bar {
-        width: 48px;
-        height: 1px;
-        background: rgba(255,255,255,0.1);
-        border-radius: 1px;
-        overflow: hidden;
+        width: 48px; height: 2px;
+        background: var(--color-hairline);
+        border-radius: 1px; overflow: hidden;
       }
       #loader-fill {
-        height: 100%;
-        width: 0%;
-        background: #4d9eff;
+        height: 100%; width: 0%;
+        background: var(--color-accent);
         transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
       }
     </style>
@@ -192,7 +193,7 @@ const ogImage = `${siteConfig.url}/og-image.png`;
         });
         setTimeout(function () {
           loader.classList.add('done');
-        }, 820);
+        }, 760);
       })();
     </script>
   </body>

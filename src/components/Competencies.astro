@@ -1,28 +1,20 @@
 ---
 import { competencies } from "../content/site";
 
+// Icons reordered to match the competency list; rendered monochrome.
 const svgIcons = [
-  // 1. Strategic Sourcing & Category Management — concentric target rings
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>`,
-  // 2. Supplier Development & Performance — network nodes
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v3.5M12 10.5l-5.1 6.6M12 10.5l5.1 6.6"/></svg>`,
-  // 3. Contract Strategy & Negotiation — document with lines
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>`,
-  // 4. Supply Chain Risk & Resilience — shield check
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>`,
-  // 5. Digital Procurement & Analytics — trending line
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/><polyline points="16,7 22,7 22,13"/></svg>`,
-  // 6. Spend Analytics & Cost Modelling — bar chart ascending
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
-];
-
-const cardColors = [
-  { gradient: "linear-gradient(135deg, rgba(77,158,255,0.18), rgba(77,158,255,0.04))", border: "rgba(77,158,255,0.2)", hoverBorder: "rgba(77,158,255,0.4)" },
-  { gradient: "linear-gradient(135deg, rgba(62,207,142,0.18), rgba(62,207,142,0.04))", border: "rgba(62,207,142,0.2)", hoverBorder: "rgba(62,207,142,0.4)" },
-  { gradient: "linear-gradient(135deg, rgba(249,115,22,0.18), rgba(249,115,22,0.04))",  border: "rgba(249,115,22,0.2)",  hoverBorder: "rgba(249,115,22,0.4)" },
-  { gradient: "linear-gradient(135deg, rgba(139,92,246,0.18), rgba(139,92,246,0.04))", border: "rgba(139,92,246,0.2)", hoverBorder: "rgba(139,92,246,0.4)" },
-  { gradient: "linear-gradient(135deg, rgba(236,72,153,0.18), rgba(236,72,153,0.04))", border: "rgba(236,72,153,0.2)", hoverBorder: "rgba(236,72,153,0.4)" },
-  { gradient: "linear-gradient(135deg, rgba(6,182,212,0.18), rgba(6,182,212,0.04))",   border: "rgba(6,182,212,0.2)",   hoverBorder: "rgba(6,182,212,0.4)" },
+  // 1. Strategic Sourcing & Category Management — concentric target
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>`,
+  // 2. Contract Strategy & Negotiation — document
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2.5H6.5A1.5 1.5 0 005 4v16A1.5 1.5 0 006.5 21.5h11A1.5 1.5 0 0019 20V7.5z"/><polyline points="14 2.5 14 7.5 19 7.5"/><line x1="8.5" y1="12" x2="15.5" y2="12"/><line x1="8.5" y1="15.5" x2="15.5" y2="15.5"/><line x1="8.5" y1="9" x2="10.5" y2="9"/></svg>`,
+  // 3. Supplier Development & Performance — network nodes
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v3.2M11 11l-5 6M13 11l5 6"/></svg>`,
+  // 4. Capital Benchmarking & Cost Modelling — ascending bars
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="20" x2="20" y2="20"/><line x1="8" y1="20" x2="8" y2="14"/><line x1="12.5" y1="20" x2="12.5" y2="9"/><line x1="17" y1="20" x2="17" y2="4"/></svg>`,
+  // 5. Supply Chain Risk & Resilience — shield check
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s7.5-3.8 7.5-9.5V5.2L12 2.5 4.5 5.2V12c0 5.7 7.5 9.5 7.5 9.5z"/><polyline points="9 11.8 11.2 14 15.2 10"/></svg>`,
+  // 6. Digital Procurement & Spend Analytics — trending line
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3.5 16.5 9 11 13 14.5 20.5 6.5"/><polyline points="15 6.5 20.5 6.5 20.5 12"/></svg>`,
 ];
 ---
 
@@ -30,83 +22,39 @@ const cardColors = [
   id="competencies"
   aria-labelledby="competencies-heading"
   class="section"
-  style="background:var(--color-canvas-soft); position:relative; overflow:hidden;"
+  style="background:var(--color-surface-tint); position:relative;"
 >
-  <div aria-hidden="true" class="section-ambient-top"></div>
-  <div class="container" style="position:relative; z-index:1;">
+  <div class="container">
 
     <!-- Header -->
-    <div style="max-width:560px; margin-bottom:48px;">
-      <div class="section-eyebrow reveal">
-        <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Core Competencies</p>
+    <div class="reveal" style="max-width:600px; margin-bottom:40px;">
+      <div class="section-eyebrow">
+        <p class="t-eyebrow" style="margin:0;">Core Competencies</p>
       </div>
 
-      <h2 id="competencies-heading" class="t-display-lg reveal" style="
-        color:var(--color-ink); margin:0 0 16px;
-        animation-delay:0.07s;
-      ">
+      <h2 id="competencies-heading" class="t-display-lg" style="margin:0 0 14px; animation-delay:0.07s;">
         Six functional areas. One integrated approach.
       </h2>
 
-      <p class="t-body-md reveal" style="color:var(--color-body-text); margin:0; animation-delay:0.12s;">
-        Across 16 years the work has covered the full procurement spectrum — from upstream strategy
-        to delivery and digital capability uplift.
+      <p class="t-body-md" style="margin:0; animation-delay:0.12s;">
+        The full procurement spectrum &mdash; from upstream category strategy through
+        contracting, supplier governance, and digital analytics.
       </p>
     </div>
 
     <!-- Competency grid -->
-    <div style="
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-      gap:12px;
-    ">
+    <div class="reveal comp-grid" style="animation-delay:0.16s;">
       {competencies.map((c, i) => (
-        <div
-          class="comp-card reveal shadow-l2"
-          style={`
-            background:var(--color-canvas);
-            border-radius:var(--radius-md);
-            padding:24px;
-            animation-delay:${(i % 3) * 0.06 + Math.floor(i / 3) * 0.1}s;
-            border:1px solid ${cardColors[i].border};
-            transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            position:relative;
-            overflow:hidden;
-          `}
-          data-hover-border={cardColors[i].hoverBorder}
-        >
-          <!-- Icon -->
-          <div class="comp-icon" style={`
-            width:48px; height:48px;
-            background:${cardColors[i].gradient};
-            border-radius:var(--radius-sm);
-            display:flex; align-items:center; justify-content:center;
-            color:var(--color-ink);
-            margin-bottom:16px;
-            flex-shrink:0;
-          `}>
-            <Fragment set:html={svgIcons[i]} />
+        <article class="comp-card">
+          <div class="comp-card__top">
+            <span class="comp-card__icon" aria-hidden="true">
+              <Fragment set:html={svgIcons[i]} />
+            </span>
+            <span class="comp-card__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           </div>
-
-          <!-- Title -->
-          <h3 class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 8px;">
-            {c.title}
-          </h3>
-
-          <!-- Description -->
-          <p class="t-body-sm" style="color:var(--color-body-text); margin:0; line-height:1.6;">
-            {c.description}
-          </p>
-
-          <!-- Bottom accent line on hover -->
-          <div class="comp-accent-line" aria-hidden="true" style="
-            position:absolute; bottom:0; left:24px; right:24px;
-            height:1px;
-            background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-            opacity:0;
-            transition:opacity 0.2s ease;
-          "></div>
-        </div>
+          <h3 class="comp-card__title">{c.title}</h3>
+          <p class="comp-card__desc">{c.description}</p>
+        </article>
       ))}
     </div>
 
@@ -114,26 +62,58 @@ const cardColors = [
 </section>
 
 <style>
-  .comp-card:hover {
-    transform: translateY(-4px);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0px 12px 32px -6px rgba(0,0,0,0.6) !important;
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1px;
+    background: var(--color-hairline);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
   }
-  .comp-card:hover .comp-accent-line {
-    opacity: 1 !important;
+  .comp-card {
+    background: var(--color-surface);
+    padding: 26px 24px;
+    transition: background 0.2s ease;
+    position: relative;
   }
-  .comp-card:hover .comp-icon {
-    transform: scale(1.08);
+  .comp-card:hover { background: #fff; }
+  .comp-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
   }
-  .comp-icon {
-    transition: transform 0.25s ease;
+  .comp-card__icon {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-accent);
+    background: var(--color-accent-tint);
+    border-radius: var(--radius-sm);
+  }
+  .comp-card__icon :global(svg) { width: 19px; height: 19px; display: block; }
+  .comp-card__num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-faint);
+    letter-spacing: 0.08em;
+  }
+  .comp-card__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0 0 8px;
+  }
+  .comp-card__desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-body);
+    margin: 0;
+  }
+  @media (min-width: 960px) {
+    .comp-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
-
-<script>
-  document.querySelectorAll<HTMLElement>('.comp-card').forEach(card => {
-    const hoverBorder = card.dataset.hoverBorder ?? 'rgba(255,255,255,0.2)';
-    const defaultBorder = card.style.borderColor;
-    card.addEventListener('mouseenter', () => { card.style.borderColor = hoverBorder; });
-    card.addEventListener('mouseleave', () => { card.style.borderColor = defaultBorder; });
-  });
-</script>

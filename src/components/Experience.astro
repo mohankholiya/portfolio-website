@@ -1,0 +1,248 @@
+---
+import { experience } from "../content/site";
+
+/*
+  Tenure bar — proportional to actual months in role.
+  Copper = consulting advisory, navy = in-house category leadership.
+  Durations computed from the CV dates (Sep 2009 → May 2026).
+*/
+const ACCENT = "#C2772F";
+const NAVY = "#0C2438";
+const FAINT = "#7E8E9E";
+const HAIR = "#D7DEE4";
+const MONO = "IBM Plex Mono, monospace";
+
+// months per role (chronological)
+const tenure = [
+  { label: "Shyama Power", months: 44, type: "in" },
+  { label: "Quippo Oil & Gas", months: 51, type: "in" },
+  { label: "Jindal Drilling", months: 47, type: "in" },
+  { label: "Accenture", months: 18, type: "co" },
+  { label: "BT Group", months: 24, type: "co" },
+  { label: "Wood Mackenzie", months: 16, type: "co" },
+];
+const total = tenure.reduce((s, r) => s + r.months, 0);
+let cursor = 0;
+const bars = tenure.map(r => {
+  const start = (cursor / total) * 100;
+  cursor += r.months;
+  const width = (r.months / total) * 100;
+  return { ...r, start, width };
+});
+
+// year ticks across the 2009–2026 span
+const spanStart = 2009;
+const spanEnd = 2026;
+const spanYears = spanEnd - spanStart;
+const yearTicks = [2009, 2013, 2017, 2021, 2025];
+---
+
+<section
+  id="experience"
+  aria-labelledby="experience-heading"
+  class="section"
+  style="background:var(--color-paper); position:relative;"
+>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="reveal" style="max-width:640px; margin-bottom:40px;">
+      <div class="section-eyebrow">
+        <p class="t-eyebrow" style="margin:0;">Experience</p>
+      </div>
+
+      <h2 id="experience-heading" class="t-display-lg" style="margin:0 0 14px; animation-delay:0.07s;">
+        Consulting advisory and in-house category leadership.
+      </h2>
+
+      <p class="t-body-md" style="margin:0; animation-delay:0.12s;">
+        Sixteen years across six organisations &mdash; global consulting (Wood Mackenzie, Accenture)
+        and senior in-house procurement roles (BT Group, Jindal Drilling, Quippo, Shyama Power).
+      </p>
+    </div>
+
+    <!-- Tenure bar (signature viz) -->
+    <figure class="reveal" style="margin:0 0 56px; animation-delay:0.16s;">
+      <!-- Legend -->
+      <figcaption style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:14px;">
+        <span style="display:inline-flex; align-items:center; gap:8px;">
+          <span aria-hidden="true" style={`width:14px; height:10px; background:#E1E7ED; border:1px solid ${HAIR}; border-radius:2px; display:inline-block;`}></span>
+          <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.1em;">In-house</span>
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:8px;">
+          <span aria-hidden="true" style={`width:14px; height:10px; background:${ACCENT}; border-radius:2px; display:inline-block;`}></span>
+          <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.1em;">Consulting</span>
+        </span>
+        <span class="t-caption-mono" style="margin-left:auto; color:var(--color-faint);">2009 &mdash; 2026 &middot; 16+ years</span>
+      </figcaption>
+
+      <div style="background:var(--color-surface); border:1px solid var(--color-hairline); border-radius:var(--radius-lg); padding:20px;">
+        <svg viewBox="0 0 1000 76" style="width:100%; height:auto; display:block;" role="img" aria-label="Tenure timeline from 2009 to 2026 split across six employers, in-house roles in navy and consulting roles in copper">
+          <!-- segments -->
+          {bars.map(b => (
+            <rect
+              x={b.start * 10}
+              y="6"
+              width={Math.max(b.width * 10 - 3, 4)}
+              height="34"
+              rx="3"
+              fill={b.type === 'co' ? ACCENT : NAVY}
+              opacity={b.type === 'in' ? '0.12' : '0.92'}
+              stroke={b.type === 'in' ? NAVY : 'none'}
+              stroke-width="1"
+            />
+          ))}
+          <!-- segment labels (only where they fit; hidden on mobile where they shrink illegibly) -->
+          {bars.map(b => b.width > 8 && (
+            <text
+              class="gantt-seg-label"
+              x={b.start * 10 + (b.width * 10) / 2}
+              y="27"
+              font-family={MONO}
+              font-size="11"
+              fill={b.type === 'in' ? NAVY : '#fff'}
+              text-anchor="middle"
+              letter-spacing="0.3"
+            >{b.label}</text>
+          ))}
+          <!-- year axis -->
+          <line x1="0" y1="54" x2="1000" y2="54" stroke={HAIR} />
+          {yearTicks.map(yr => {
+            const x = ((yr - spanStart) / spanYears) * 1000;
+            return (
+              <g>
+                <line x1={x} y1="54" x2={x} y2="59" stroke={HAIR} />
+                <text class="gantt-axis-label" x={x} y="71" font-family={MONO} font-size="10.5" fill={FAINT} text-anchor="middle">{yr}</text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </figure>
+
+    <!-- Role list -->
+    <ol class="exp-list" style="list-style:none; margin:0; padding:0;">
+      {experience.map((job, i) => (
+        <li class="reveal exp-row" style={`animation-delay:${0.1 + i * 0.05}s;`}>
+          <!-- Period (left rail) -->
+          <div class="exp-period">
+            <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.08em;">{job.period}</span>
+            <span class={`exp-type ${job.type === 'Consulting' ? 'exp-type--co' : ''}`}>{job.type}</span>
+          </div>
+
+          <!-- Node -->
+          <span class="exp-node" aria-hidden="true"></span>
+
+          <!-- Content -->
+          <div class="exp-content">
+            <h3 class="exp-company">{job.company}</h3>
+            <p class="exp-role">{job.role}</p>
+            <p class="exp-loc t-caption-mono" style="text-transform:uppercase; letter-spacing:0.08em;">{job.location}</p>
+            <p class="exp-summary">{job.summary}</p>
+            <div class="exp-highlights">
+              {job.highlights.map(h => (
+                <span class="exp-chip">
+                  <span aria-hidden="true" class="exp-chip__dot"></span>
+                  {h}
+                </span>
+              ))}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>
+
+<style>
+  /* On narrow screens the Gantt text scales down below legibility; drop it and
+     let the bar read as a clean proportion strip (the legend states the span,
+     the list below carries every role, date, and label in full). */
+  @media (max-width: 759px) {
+    .gantt-seg-label, .gantt-axis-label { display: none; }
+  }
+
+  .exp-list { position: relative; }
+  .exp-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 24px 0;
+    border-top: 1px solid var(--color-hairline-soft);
+    position: relative;
+  }
+  .exp-row:last-child { border-bottom: 1px solid var(--color-hairline-soft); }
+  .exp-period { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .exp-type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    box-shadow: inset 0 0 0 1px var(--color-hairline);
+    background: var(--color-paper);
+  }
+  .exp-type--co { color: var(--color-accent-dark); box-shadow: inset 0 0 0 1px #E6CDB2; background: var(--color-accent-tint); }
+  .exp-node {
+    display: none;
+  }
+  .exp-company {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .exp-role {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--color-ink-2);
+    margin: 4px 0 0;
+  }
+  .exp-loc { margin: 6px 0 0; }
+  .exp-summary {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-body);
+    margin: 12px 0 0;
+    max-width: 60ch;
+  }
+  .exp-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .exp-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--color-ink-2);
+    padding: 5px 11px;
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    box-shadow: inset 0 0 0 1px var(--color-hairline);
+  }
+  .exp-chip__dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 760px) {
+    .exp-row {
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 30px 0;
+    }
+    .exp-period { padding-top: 4px; }
+  }
+</style>

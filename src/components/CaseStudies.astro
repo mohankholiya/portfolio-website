@@ -3,10 +3,10 @@ import { caseStudies } from "../content/site";
 import CaseStudyCard from "./CaseStudyCard.astro";
 
 const sectors = [
-  { key: "all",       label: "All",          activeColor: '' },
-  { key: "energy",    label: "Energy & O&G", activeColor: '#fb923c' },
-  { key: "utilities", label: "Utilities",    activeColor: '#3ecf8e' },
-  { key: "telecom",   label: "Telecom",      activeColor: '#a78bfa' },
+  { key: "all",       label: "All" },
+  { key: "energy",    label: "Energy & O&G" },
+  { key: "utilities", label: "Utilities" },
+  { key: "telecom",   label: "Telecom" },
 ];
 ---
 
@@ -14,33 +14,23 @@ const sectors = [
   id="case-studies"
   aria-labelledby="case-studies-heading"
   class="section"
-  style="background:var(--color-canvas); position:relative; overflow:hidden;"
+  style="background:var(--color-surface-tint); position:relative;"
 >
-  <div aria-hidden="true" style="
-    position:absolute; top:-80px; right:-80px;
-    width:400px; height:400px;
-    border-radius:50%;
-    background:radial-gradient(ellipse, rgba(77,158,255,0.06) 0%, transparent 70%);
-    pointer-events:none;
-    z-index:0;
-  "></div>
-  <div class="container" style="position:relative; z-index:1;">
+  <div class="container">
 
     <!-- Header -->
-    <div style="max-width:600px; margin-bottom:48px;">
-      <div class="section-eyebrow reveal">
-        <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Selected Case Studies</p>
+    <div class="reveal" style="max-width:640px; margin-bottom:40px;">
+      <div class="section-eyebrow">
+        <p class="t-eyebrow" style="margin:0;">Selected Case Studies</p>
       </div>
 
-      <h2 id="case-studies-heading" class="t-display-lg reveal" style="
-        color:var(--color-ink); margin:0 0 16px;
-        animation-delay:0.07s;
-      ">
+      <h2 id="case-studies-heading" class="t-display-lg" style="margin:0 0 14px; animation-delay:0.07s;">
         Outcomes at scale across complex supply chains.
       </h2>
 
-      <p class="t-body-md reveal" style="color:var(--color-body-text); margin:0; animation-delay:0.12s;">
-        All client names are anonymised. Metrics reflect programme outcomes confirmed at project close.
+      <p class="t-body-md" style="margin:0; animation-delay:0.12s;">
+        Six engagements across energy, utilities, and telecom. Client identities anonymised;
+        every metric reflects a programme outcome confirmed at close.
       </p>
     </div>
 
@@ -49,64 +39,53 @@ const sectors = [
       id="filter-row"
       role="group"
       aria-label="Filter case studies by sector"
+      class="reveal"
       style="
-        display:flex; flex-wrap:wrap; gap:4px;
-        margin-bottom:32px;
+        display:inline-flex; flex-wrap:wrap; gap:2px;
+        margin-bottom:28px;
         padding:4px;
-        background:var(--color-canvas-soft-2);
-        border-radius:var(--radius-pill-sm);
-        box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06);
-        width:fit-content;
+        background: var(--color-paper);
+        border-radius: var(--radius-pill);
+        box-shadow: inset 0 0 0 1px var(--color-hairline);
+        animation-delay:0.16s;
       "
     >
       {sectors.map(s => (
         <button
-          class={`filter-tab t-body-sm ${s.key === 'all' ? 'active' : ''}`}
+          class={`filter-tab ${s.key === 'all' ? 'active' : ''}`}
           data-filter={s.key}
-          data-color={s.activeColor}
           aria-pressed={s.key === 'all' ? 'true' : 'false'}
         >
-          {s.activeColor && (
-            <span aria-hidden="true" style={`
-              display:inline-block;
-              width:7px; height:7px;
-              border-radius:50%;
-              background:${s.activeColor};
-              margin-right:6px;
-              flex-shrink:0;
-              opacity:0.8;
-            `}></span>
-          )}
           {s.label}
         </button>
       ))}
     </div>
 
-    <!-- Card grid -->
+    <!-- Card grid — each card reveals individually with a small stagger -->
     <div
       id="case-grid"
       style="
         display:grid;
-        grid-template-columns:repeat(auto-fill, minmax(min(100%, 360px), 1fr));
-        gap:16px;
+        grid-template-columns:repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+        gap:18px;
       "
     >
       {caseStudies.map((cs, i) => (
         <div
           class="card-wrapper reveal"
           data-sector={cs.sector}
-          style={`animation-delay:${i * 0.08}s`}
+          style={`animation-delay:${Math.min(i * 0.06, 0.24)}s;`}
         >
-          <CaseStudyCard {...cs} />
+          <CaseStudyCard {...cs} index={i + 1} />
         </div>
       ))}
     </div>
 
-    <!-- No results fallback (hidden by default) -->
+    <!-- No results fallback -->
     <p
       id="no-results"
       class="t-body-md"
-      style="display:none; color:var(--color-mute); text-align:center; padding:48px 0;"
+      style="display:none; color:var(--color-muted); text-align:center; padding:48px 0;"
     >
       No case studies in this sector yet.
     </p>
@@ -122,23 +101,14 @@ const sectors = [
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter ?? 'all';
-      const color  = (btn as HTMLButtonElement).dataset.color ?? '';
 
-      // Update button states
       filterBtns.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-pressed', 'false');
-        (b as HTMLElement).style.color = '';
-        (b as HTMLElement).style.boxShadow = '';
       });
       btn.classList.add('active');
       btn.setAttribute('aria-pressed', 'true');
-      if (color) {
-        (btn as HTMLElement).style.color = color;
-        (btn as HTMLElement).style.boxShadow = `inset 0 0 0 1px ${color}40`;
-      }
 
-      // Show/hide cards
       let visible = 0;
       wrappers.forEach(w => {
         const match = filter === 'all' || w.dataset.sector === filter;

@@ -2,9 +2,11 @@ export const siteConfig = {
   name: "Mohan Kholiya",
   title: "Mohan Kholiya — Procurement & Supply Chain Leader",
   description:
-    "Senior procurement and supply chain executive with 16+ years across energy, oil & gas, utilities, and telecom. Category strategy that delivers measurable cost-out and resilience.",
+    "Procurement and supply chain leader with 16+ years across energy, oil & gas, utilities, and telecom. $12M+ in verified savings on $400M+ of annual spend influenced. Consulting advisory (Wood Mackenzie, Accenture) and in-house category leadership (BT Group, Jindal Drilling).",
   url: "https://mohankholiya.co.in",
   email: "mohan.kholiya@gmail.com",
+  phone: "+91 9990433916",
+  location: "Gurugram, India",
   linkedin: "https://www.linkedin.com/in/mohankholiya/",
   resumeUrl: "/resume.pdf",
   resumeFileName: "Mohan_Kholiya_Resume_2026.pdf",
@@ -15,16 +17,26 @@ export const siteConfig = {
 export const navLinks = [
   { href: "#about",        label: "About" },
   { href: "#case-studies", label: "Case Studies" },
+  { href: "#experience",   label: "Experience" },
   { href: "#competencies", label: "Competencies" },
   { href: "#credentials",  label: "Credentials" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#contact",      label: "Contact" },
 ];
 
+/* Hero — the three quick facts */
 export const heroStats = [
   { display: "16+", numeric: 16, suffix: "+", label: "Years experience" },
   { display: "4",   numeric: 4,  suffix: "",  label: "Sectors" },
   { display: "3",   numeric: 3,  suffix: "",  label: "Continents" },
+];
+
+/* Hero signature strip — board-pack headline metrics (all verified on the CV) */
+export const heroMetrics = [
+  { value: "$400M+", label: "Annual spend influenced" },
+  { value: "$12M+",  label: "Verified savings delivered" },
+  { value: "$2.2B",  label: "Largest capital benchmark" },
+  { value: "27",     label: "Peer projects benchmarked" },
 ];
 
 export const caseStudies = [
@@ -96,6 +108,70 @@ export const caseStudies = [
   },
 ];
 
+/* ── Career history (sourced from the CV — employer names stated, end-clients anonymised) ── */
+export const experience = [
+  {
+    company: "Wood Mackenzie",
+    role: "Principal Consultant — Supply Chain Consulting (Energy)",
+    period: "Feb 2025 – May 2026",
+    location: "Gurugram, India",
+    type: "Consulting",
+    summary:
+      "Capital benchmarking, category strategy, and supply-chain operating-model design for global energy operators and utilities.",
+    highlights: ["$2.2B upstream capital benchmark", "$233M contractor strategy", "10-peer utility operating model"],
+  },
+  {
+    company: "BT Group (British Telecom)",
+    role: "Category Manager — Procurement",
+    period: "Mar 2023 – Feb 2025",
+    location: "Gurugram, India",
+    type: "In-house",
+    summary:
+      "Owned £100M of annual civil-infrastructure spend; led should-cost contract renewal and source-to-pay digital transformation.",
+    highlights: ["£100M spend owned", "£2M+ total-cost optimisation", "S2P digital transformation"],
+  },
+  {
+    company: "Accenture",
+    role: "Senior Analyst & Team Lead — Sourcing & Category Enablement",
+    period: "Oct 2021 – Mar 2023",
+    location: "Gurugram, India",
+    type: "Consulting",
+    summary:
+      "Capex sourcing and category enablement for a leading upstream O&G operator across EPC, surface facilities, and drilling & completions.",
+    highlights: ["~$4M capex savings", "3 major categories", "Business Partner Award"],
+  },
+  {
+    company: "Jindal Drilling & Industries",
+    role: "Manager — Procurement",
+    period: "Sep 2017 – Jul 2021",
+    location: "Gurugram, India",
+    type: "In-house",
+    summary:
+      "Offshore drilling procurement for ONGC and OIL India jack-up rig and MWD contracts; built a 50-vendor ecosystem from scratch.",
+    highlights: ["~$100M annual portfolio", "50-vendor ecosystem", "Zero rig downtime"],
+  },
+  {
+    company: "Quippo Oil & Gas Infrastructure",
+    role: "Assistant Manager — Supply Chain Management",
+    period: "May 2013 – Aug 2017",
+    location: "Gurugram, India",
+    type: "In-house",
+    summary:
+      "Directed global sourcing for 2,000 HP onshore drilling rigs serving ONGC and OIL India across five geographies.",
+    highlights: ["~$50M annual sourcing", "$30M rig-equipment contract", "5-geography supplier network"],
+  },
+  {
+    company: "Shyama Power India",
+    role: "Assistant Manager — Procurement",
+    period: "Sep 2009 – May 2013",
+    location: "Gurugram, India",
+    type: "In-house",
+    summary:
+      "EPC procurement for RGGVY Power Grid turnkey projects — BOQs, technical approvals, contractor selection, and quality compliance.",
+    highlights: ["Turnkey EPC procurement", "Power Grid projects", "On-time completion"],
+  },
+];
+
 export const competencies = [
   {
     title: "Strategic Sourcing & Category Management",
@@ -103,14 +179,19 @@ export const competencies = [
       "End-to-end category strategy, market analysis, and sourcing execution across complex, high-value spend areas in energy and infrastructure.",
   },
   {
+    title: "Contract Strategy & Negotiation",
+    description:
+      "Commercial structuring, risk allocation, and negotiation for complex multi-year service and supply agreements — anchored in should-cost and TCO.",
+  },
+  {
     title: "Supplier Development & Performance",
     description:
       "Structured SRM frameworks, KPI governance, and joint value-creation programmes across strategic supplier relationships.",
   },
   {
-    title: "Contract Strategy & Negotiation",
+    title: "Capital Benchmarking & Cost Modelling",
     description:
-      "Commercial structuring, risk allocation, and negotiation for complex multi-year service and supply agreements.",
+      "Peer-set benchmarking, should-cost baselines, and cost-driver analysis that turn fragmented cost pictures into defensible, board-ready verdicts.",
   },
   {
     title: "Supply Chain Risk & Resilience",
@@ -118,14 +199,9 @@ export const competencies = [
       "Dependency mapping, supplier risk tiering, and resilience programme design for critical supply chains under regulatory and market pressure.",
   },
   {
-    title: "Digital Procurement & Analytics",
+    title: "Digital Procurement & Spend Analytics",
     description:
-      "Deployment of e-procurement platforms, spend analytics, and digital capability uplift across procurement functions.",
-  },
-  {
-    title: "Spend Analytics & Cost Modelling",
-    description:
-      "Baseline spend analysis, should-cost modelling, and savings tracking frameworks that underpin credible business cases.",
+      "Deployment of e-procurement platforms, spend analytics, and AI-enabled category intelligence across procurement functions.",
   },
 ];
 
@@ -147,21 +223,29 @@ export const credentials = [
     category: "Certifications",
     entries: [
       {
-        title: "MITx SCx — Supply Chain Analytics & Fundamentals",
-        body: "MIT SC0x (Analytics, 2026) and SC1x (Fundamentals, 2025) — completed courses in the MITx Supply Chain Management program.",
+        title: "MITx SCx — Supply Chain Management",
+        body: "MIT SC0x (Supply Chain Analytics, 2026) and SC1x (Fundamentals, 2025) — completed courses in the MITx MicroMasters programme.",
+      },
+      {
+        title: "MSME — Supply Chain Management",
+        body: "Ministry of Micro, Small & Medium Enterprises certification, 2013.",
       },
     ],
   },
   {
-    category: "Career footprint",
+    category: "Awards & recognition",
     entries: [
       {
-        title: "Global consulting advisory",
-        body: "Senior advisory roles at leading global management and supply chain consulting firms.",
+        title: "Q3 Innovation Award — Wood Mackenzie (2025)",
+        body: "$2.2B capital benchmarking across a multi-geography team.",
       },
       {
-        title: "In-house category ownership",
-        body: "Category Manager and senior procurement roles at major energy, utilities, and telecom businesses.",
+        title: "Business Partner Employee Award (FY 2022–23)",
+        body: "Recognised for a high-value contract turnaround during consulting advisory.",
+      },
+      {
+        title: "Distinguished Contributor Award — Quippo Oil & Gas (2015–16)",
+        body: "Zero rig-downtime record across onshore drilling operations.",
       },
     ],
   },

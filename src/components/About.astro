@@ -1,159 +1,121 @@
 ---
+import { Picture } from "astro:assets";
 import { siteConfig } from "../content/site";
+import headshot from "../assets/headshot.jpeg";
 ---
 
 <section
   id="about"
   aria-labelledby="about-heading"
   class="section"
-  style="background:var(--color-canvas-soft); position:relative; overflow:hidden;"
+  style="background:var(--color-paper); position:relative;"
 >
   <div class="container">
 
     <!-- Section eyebrow -->
     <div class="section-eyebrow reveal">
-      <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">About</p>
+      <p class="t-eyebrow" style="margin:0;">About</p>
     </div>
 
     <!-- Two-column layout -->
-    <div style="
+    <div class="about-grid" style="
       display:grid;
       grid-template-columns: 1fr;
-      gap:48px;
+      gap:40px;
       align-items:start;
-    " class="about-grid">
+    ">
 
       <!-- Left: headshot -->
-      <div class="reveal headshot-col" style="display:flex; justify-content:flex-start; perspective:800px;">
-        <div class="headshot-tilt" style="position:relative; display:inline-block; transition:transform 0.45s cubic-bezier(0.22,1,0.36,1); transform-style:preserve-3d; will-change:transform;">
-          <!-- Spinning decorative ring -->
-          <div aria-hidden="true" class="spin-ring" style="
-            position:absolute;
-            inset:-12px;
-            border-radius:50%;
-            border:1px dashed rgba(255,255,255,0.1);
-            pointer-events:none;
-          "></div>
-          <!-- Headshot -->
+      <div class="reveal headshot-col" style="animation-delay:0.05s;">
+        <div style="position:relative; display:inline-block; max-width:280px; width:100%;">
           <div style="
-            width:200px; height:200px;
-            border-radius:9999px;
-            box-shadow:0 0 0 2px var(--color-link), 0 8px 40px rgba(77,158,255,0.25);
-            overflow:hidden;
-            flex-shrink:0;
-            position:relative;
-            z-index:1;
+            border:1px solid var(--color-hairline);
+            border-radius:var(--radius-lg);
+            padding:12px;
+            background:var(--color-surface);
           ">
-            <img
-              src="/images/headshot.jpeg"
+            <Picture
+              src={headshot}
               alt="Mohan Kholiya — Procurement &amp; Supply Chain Leader"
-              width="200"
-              height="200"
-              loading="eager"
+              width={560}
+              height={640}
+              widths={[280, 560]}
+              sizes="(min-width: 760px) 256px, 100vw"
+              formats={["avif", "webp"]}
+              loading="lazy"
               decoding="async"
-              style="width:100%; height:100%; object-fit:cover; display:block;"
+              style="width:100%; height:auto; aspect-ratio:7/8; object-fit:cover; display:block; border-radius:calc(var(--radius-lg) - 6px);"
             />
+          </div>
+          <!-- Mono caption strip -->
+          <div style="
+            display:flex; align-items:center; justify-content:space-between;
+            margin-top:14px; padding:0 2px;
+          ">
+            <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.1em;">{siteConfig.location}</span>
+            <span class="t-caption-mono" style="color:var(--color-accent-text);">16+ years</span>
           </div>
         </div>
       </div>
 
       <!-- Right: copy -->
       <div>
-        <h2 id="about-heading" class="t-display-lg reveal" style="color:var(--color-ink); margin:0 0 20px;">
+        <h2 id="about-heading" class="t-display-lg reveal" style="margin:0 0 20px; animation-delay:0.07s;">
           Procurement leader with a track record in energy, utilities, and telecom.
         </h2>
 
-        <p class="t-body-lg reveal" style="color:var(--color-body-text); margin:0 0 16px; animation-delay:0.07s;">
-          I have spent 16+ years at the intersection of strategic procurement and operational delivery —
-          first in global management consulting, then in senior in-house category roles across
-          major energy operators, utilities, and telecom businesses.
+        <p class="t-body-lg reveal" style="margin:0 0 16px; animation-delay:0.12s;">
+          16+ years at the intersection of strategic procurement and operational delivery &mdash;
+          first in global management consulting (<span style="color:var(--color-ink); font-weight:600;">Wood Mackenzie</span>, <span style="color:var(--color-ink); font-weight:600;">Accenture</span>),
+          then in senior in-house category roles across major energy operators, utilities, and telecom
+          (<span style="color:var(--color-ink); font-weight:600;">BT Group</span>, <span style="color:var(--color-ink); font-weight:600;">Jindal Drilling</span>).
         </p>
 
-        <p class="t-body-md reveal" style="color:var(--color-body-text); margin:0 0 32px; animation-delay:0.12s;">
-          My work sits at the point where supplier strategy meets real business outcomes: cost reduction
+        <p class="t-body-md reveal" style="margin:0 0 28px; animation-delay:0.17s;">
+          My work sits at the point where supplier strategy meets real business outcomes: cost-out
           programmes that hold, supplier bases that perform under pressure, and procurement functions
-          rebuilt for scale. I have led category strategy in upstream O&amp;G and E&amp;P, regulated
-          utilities, and tier-1 telecom — across the UK, North America, and India, with global
-          supplier-base reach including the Middle East.
+          rebuilt for scale &mdash; across upstream O&amp;G and E&amp;P, regulated utilities, and tier-1
+          telecom, with global supplier-base reach across the Middle East, North America, the UK, and Asia.
         </p>
 
         <!-- Key points -->
-        <ul class="reveal" style="
-          list-style:none; margin:0; padding:0;
-          display:flex; flex-direction:column; gap:12px;
-          animation-delay:0.17s;
+        <ul class="reveal about-points" style="
+          list-style:none; margin:0 0 28px; padding:0;
+          display:grid; grid-template-columns:1fr; gap:12px;
+          animation-delay:0.22s;
         ">
           {[
             "Global consulting advisory across E&P, utilities, and telecom",
             "In-house category ownership: drilling, completion, capex, indirect spend",
-            "Track record in digital procurement and supplier risk programme design",
+            "Capital benchmarking against 27-peer sets; should-cost and TCO discipline",
             "Available for senior leadership roles and consulting engagements globally",
           ].map(point => (
             <li style="display:flex; gap:10px; align-items:flex-start;">
-              <span aria-hidden="true" style="
-                color:var(--color-success);
-                flex-shrink:0;
-                margin-top:1px;
-                line-height:20px;
-              ">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:block;">
-                  <circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-opacity="0.3"/>
-                  <path d="M5 8.5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <span aria-hidden="true" style="color:var(--color-accent); flex-shrink:0; margin-top:6px;">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="display:block;">
+                  <path d="M1 5.5l2.5 2.5L9 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              <span class="t-body-sm" style="color:var(--color-body-text);">{point}</span>
+              <span class="t-body-sm" style="color:var(--color-body);">{point}</span>
             </li>
           ))}
         </ul>
 
-        <!-- Dual-pathway chips -->
+        <!-- Availability + quick links -->
         <div class="reveal" style="
-          display:flex; flex-wrap:wrap; gap:8px; margin-top:32px;
-          animation-delay:0.22s;
+          display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+          padding-top:24px; border-top:1px solid var(--color-hairline-soft);
+          animation-delay:0.27s;
         ">
-          <span style="
-            display:inline-flex; align-items:center; gap:6px;
-            background:rgba(62,207,142,0.1);
-            color:var(--color-success);
-            border:1px solid rgba(62,207,142,0.3);
-            border-radius:var(--radius-full);
-            padding:0 12px; height:28px;
-            font-size:12px; font-weight:500;
-            font-family:var(--font-sans);
-          ">
-            <span aria-hidden="true" class="pulse-dot" style="width:6px;height:6px;border-radius:50%;background:var(--color-success);flex-shrink:0;"></span>
-            Open to senior leadership roles
+          <span style="display:inline-flex; align-items:center; gap:8px;">
+            <span aria-hidden="true" style="width:7px; height:7px; border-radius:50%; background:#2F7D5B; flex-shrink:0;"></span>
+            <span class="t-body-sm-strong" style="color:var(--color-ink);">Open to senior leadership &amp; consulting roles</span>
           </span>
-          <span style="
-            display:inline-flex; align-items:center; gap:6px;
-            background:rgba(77,158,255,0.1);
-            color:var(--color-link);
-            border:1px solid rgba(77,158,255,0.3);
-            border-radius:var(--radius-full);
-            padding:0 12px; height:28px;
-            font-size:12px; font-weight:500;
-            font-family:var(--font-sans);
-          ">
-            Available for consulting engagements
-          </span>
-        </div>
-
-        <!-- Quick links -->
-        <div class="reveal" style="display:flex; gap:12px; margin-top:24px; animation-delay:0.27s;">
-          <a href={`mailto:${siteConfig.email}`} class="btn-primary-sm t-button-sm">
-            Email Mohan
-          </a>
-          <a
-            href={siteConfig.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-secondary-sm t-button-sm"
-          >
-            LinkedIn ↗
-          </a>
-          <a href={siteConfig.resumeUrl} download class="btn-secondary-sm t-button-sm">
-            Download résumé
-          </a>
+          <div style="display:flex; gap:8px; margin-left:auto;">
+            <a href={`mailto:${siteConfig.email}`} class="btn-secondary-sm t-button-sm">Email</a>
+            <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="btn-secondary-sm t-button-sm">LinkedIn</a>
+            <a href={siteConfig.resumeUrl} download class="btn-secondary-sm t-button-sm">Résumé</a>
+          </div>
         </div>
       </div>
 
@@ -164,45 +126,12 @@ import { siteConfig } from "../content/site";
 <style>
   @media (min-width: 760px) {
     .about-grid {
-      grid-template-columns: auto 1fr !important;
+      grid-template-columns: 280px 1fr !important;
+      gap: 56px !important;
     }
-    .headshot-col {
-      justify-content: flex-end !important;
-      padding-right: 24px;
-    }
+    .headshot-col { position: sticky; top: 88px; }
   }
-
-  @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-  .spin-ring {
-    animation: spin-slow 30s linear infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.4; }
-  }
-  .pulse-dot {
-    animation: pulse-dot 2s ease-in-out infinite;
+  @media (min-width: 760px) {
+    .about-points { grid-template-columns: 1fr 1fr !important; }
   }
 </style>
-
-<script>
-  const tilt = document.querySelector<HTMLElement>('.headshot-tilt');
-  if (tilt && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    tilt.addEventListener('mousemove', (e: MouseEvent) => {
-      const rect = tilt.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / (rect.width / 2);
-      const dy = (e.clientY - cy) / (rect.height / 2);
-      tilt.style.transform = `rotateY(${dx * 12}deg) rotateX(${-dy * 12}deg) scale(1.04)`;
-    }, { passive: true });
-
-    tilt.addEventListener('mouseleave', () => {
-      tilt.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
-    });
-  }
-</script>

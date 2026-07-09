@@ -7,3 +7,10 @@ dist/
 
 # unrelated nested project, must not be a submodule
 workspace/
+
+# generated knowledge-graph output (graphify)
+graphify-out/
+
+# local dev artifacts — QA screenshots and machine-local settings
+.claude/shots/
+.claude/settings.local.json

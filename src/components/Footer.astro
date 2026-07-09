@@ -4,70 +4,36 @@ import { siteConfig, navLinks } from "../content/site";
 const year = new Date().getFullYear();
 ---
 
-<footer
-  aria-label="Site footer"
-  style="
-    background:var(--color-canvas);
-    position:relative;
-    padding:40px 24px;
-  "
->
-  <!-- Gradient top border -->
-  <div aria-hidden="true" style="
-    position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 20%, rgba(77,158,255,0.18) 50%, rgba(255,255,255,0.08) 80%, transparent 100%);
-  "></div>
+<footer aria-label="Site footer" style="background:var(--color-surface-tint); position:relative; padding:40px 24px; border-top:1px solid var(--color-hairline);">
   <div class="container">
-    <div style="
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    ">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
 
       <!-- Left: brand -->
       <div style="display:flex; align-items:center; gap:10px;">
-        <span style="
-          width:24px; height:24px;
-          background:var(--color-ink);
-          color:var(--color-on-ink);
-          border-radius:4px;
+        <span aria-hidden="true" style="
+          width:26px; height:26px;
+          background:var(--color-ink); color:var(--color-on-ink);
+          border-radius:var(--radius-sm);
           display:flex; align-items:center; justify-content:center;
-          font-size:10px; font-weight:600; letter-spacing:-0.3px;
+          font-family:var(--font-display); font-size:11px; font-weight:700; letter-spacing:-0.5px;
           flex-shrink:0;
-        " aria-hidden="true">MK</span>
-        <span class="t-caption-mono" style="color:var(--color-mute);">
-          &copy; {year} Mohan Kholiya
+        ">MK</span>
+        <span class="t-caption-mono" style="color:var(--color-faint);">
+          &copy; {year} Mohan Kholiya &middot; {siteConfig.location}
         </span>
       </div>
 
       <!-- Center: nav links -->
-      <nav aria-label="Footer navigation" style="display:flex; flex-wrap:wrap; gap:4px;">
+      <nav aria-label="Footer navigation" style="display:flex; flex-wrap:wrap; gap:2px;">
         {navLinks.map(link => (
-          <a href={link.href} class="footer-link t-body-sm">
-            {link.label}
-          </a>
+          <a href={link.href} class="footer-link">{link.label}</a>
         ))}
       </nav>
 
       <!-- Right: external links -->
       <div style="display:flex; align-items:center; gap:16px;">
-        <a
-          href={siteConfig.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="footer-ext-link t-body-sm"
-        >
-          LinkedIn ↗
-        </a>
-        <a
-          href={siteConfig.resumeUrl}
-          download={siteConfig.resumeFileName}
-          class="footer-ext-link t-body-sm"
-        >
-          Download résumé
-        </a>
+        <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="footer-ext-link">LinkedIn &nearr;</a>
+        <a href={siteConfig.resumeUrl} download={siteConfig.resumeFileName} class="footer-ext-link">Résumé &darr;</a>
       </div>
 
     </div>

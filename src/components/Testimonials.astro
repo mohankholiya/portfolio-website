@@ -6,8 +6,6 @@ const testimonials = [
     title: "VP Procurement",
     company: "Global E&P Operator",
     initials: "VP",
-    accentColor: "#fb923c",
-    accentBg: "rgba(249,115,22,0.08)",
   },
   {
     quote:
@@ -15,8 +13,6 @@ const testimonials = [
     title: "Director of Supply Chain",
     company: "UK Energy Utility",
     initials: "DS",
-    accentColor: "#3ecf8e",
-    accentBg: "rgba(62,207,142,0.08)",
   },
   {
     quote:
@@ -24,8 +20,6 @@ const testimonials = [
     title: "Head of Procurement",
     company: "Tier-1 Telecom Operator",
     initials: "HP",
-    accentColor: "#a78bfa",
-    accentBg: "rgba(167,139,250,0.08)",
   },
 ];
 
@@ -36,188 +30,55 @@ const [featured, ...rest] = testimonials;
   id="testimonials"
   aria-labelledby="testimonials-heading"
   class="section"
-  style="background:var(--color-canvas-soft); position:relative; overflow:hidden;"
+  style="background:var(--color-surface-tint); position:relative;"
 >
-  <!-- Ambient glow -->
-  <div aria-hidden="true" class="section-ambient-top"></div>
-
-  <div class="container" style="position:relative; z-index:1;">
+  <div class="container">
 
     <!-- Header -->
-    <div style="max-width:560px; margin-bottom:48px;">
-      <div class="section-eyebrow reveal">
-        <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Testimonials</p>
+    <div class="reveal" style="max-width:600px; margin-bottom:40px;">
+      <div class="section-eyebrow">
+        <p class="t-eyebrow" style="margin:0;">Testimonials</p>
       </div>
 
-      <h2 id="testimonials-heading" class="t-display-lg reveal" style="
-        color:var(--color-ink); margin:0 0 12px;
-        animation-delay:0.07s;
-      ">
+      <h2 id="testimonials-heading" class="t-display-lg" style="margin:0 0 14px; animation-delay:0.07s;">
         What leaders say.
       </h2>
 
-      <p class="t-body-md reveal" style="color:var(--color-body-text); margin:0; animation-delay:0.12s;">
-        Client endorsements from senior procurement and supply chain leaders across energy, utilities, and telecom.
+      <p class="t-body-md" style="margin:0; animation-delay:0.12s;">
+        Client endorsements from senior procurement and supply chain leaders across energy,
+        utilities, and telecom.
       </p>
     </div>
 
-    <!-- Bento layout: featured large | two stacked -->
-    <div class="bento-grid">
+    <!-- Bento layout -->
+    <div class="reveal bento-grid" style="animation-delay:0.16s;">
 
-      <!-- Featured testimonial (left, full height) -->
-      <figure
-        class="reveal testimonial-card testimonial-featured card-shimmer shadow-l3"
-        style={`
-          background: var(--color-canvas);
-          border-radius: var(--radius-lg);
-          padding: 36px;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          border: 1px solid rgba(255,255,255,0.07);
-          border-top: 1px solid ${featured.accentColor}30;
-          transition: border-color 0.2s ease, transform 0.25s ease;
-          position: relative;
-          overflow: hidden;
-        `}
-      >
-        <!-- Top accent line -->
-        <div aria-hidden="true" style={`
-          position:absolute; top:0; left:36px; right:36px;
-          height:1px;
-          background:linear-gradient(90deg, transparent, ${featured.accentColor}50, transparent);
-        `}></div>
-
-        <!-- Decorative large quote mark -->
-        <div aria-hidden="true" style={`
-          font-family: var(--font-display);
-          font-size: 120px;
-          line-height: 0.8;
-          color: ${featured.accentColor};
-          opacity: 0.12;
-          margin-bottom: 8px;
-          font-weight: 700;
-          letter-spacing: -4px;
-          user-select: none;
-        `}>&ldquo;</div>
-
-        <!-- Quote -->
-        <blockquote class="t-body-lg" style="
-          color: var(--color-body-text);
-          margin: 0 0 32px;
-          flex: 1;
-          line-height: 1.65;
-          font-style: normal;
-        ">
+      <!-- Featured -->
+      <figure class="tst tst--featured">
+        <span class="tst__quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote class="tst__quote tst__quote--lg">
           {featured.quote}
         </blockquote>
-
-        <!-- Attribution -->
-        <figcaption style="
-          border-top: 1px solid var(--color-hairline);
-          padding-top: 20px;
-          display: flex;
-          align-items: center;
-          gap: 14px;
-        ">
-          <div style={`
-            width: 48px; height: 48px;
-            border-radius: 50%;
-            background: ${featured.accentBg};
-            color: ${featured.accentColor};
-            border: 1px solid ${featured.accentColor}40;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 13px; font-weight: 700;
-            flex-shrink: 0;
-            font-family: var(--font-sans);
-          `} aria-hidden="true">
-            {featured.initials}
-          </div>
-          <div>
-            <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 3px;">{featured.title}</p>
-            <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em;">{featured.company}</p>
-          </div>
+        <figcaption class="tst__attr">
+          <span class="tst__initials" aria-hidden="true">{featured.initials}</span>
+          <span>
+            <span class="tst__title">{featured.title}</span>
+            <span class="tst__company">{featured.company}</span>
+          </span>
         </figcaption>
       </figure>
 
-      <!-- Two stacked testimonials (right column) -->
-      <div style="display:flex; flex-direction:column; gap:16px;">
-        {rest.map((t, i) => (
-          <figure
-            class="reveal testimonial-card card-shimmer shadow-l2"
-            style={`
-              background: var(--color-canvas);
-              border-radius: var(--radius-md);
-              padding: 24px 28px;
-              margin: 0;
-              display: flex;
-              flex-direction: column;
-              gap: 0;
-              animation-delay: ${(i + 1) * 0.1}s;
-              border: 1px solid rgba(255,255,255,0.06);
-              border-top: 1px solid ${t.accentColor}30;
-              transition: border-color 0.2s ease, transform 0.25s ease;
-              position: relative;
-              overflow: hidden;
-              flex: 1;
-            `}
-          >
-            <!-- Top accent line -->
-            <div aria-hidden="true" style={`
-              position:absolute; top:0; left:28px; right:28px;
-              height:1px;
-              background:linear-gradient(90deg, transparent, ${t.accentColor}45, transparent);
-            `}></div>
-
-            <!-- Small quote mark -->
-            <div aria-hidden="true" style={`
-              color: ${t.accentColor};
-              opacity: 0.25;
-              margin-bottom: 12px;
-              line-height: 1;
-            `}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M11.3 4.8l-4.5 9H2V4.8h9.3zm9.4 0l-4.5 9H11.4V4.8H20.7z" opacity="0.4"/>
-                <path d="M3 9h3.5L4 14H1l2-5zm9.4 0h3.5L13.4 14h-3l2-5z"/>
-              </svg>
-            </div>
-
-            <!-- Quote -->
-            <blockquote class="t-body-md" style="
-              color: var(--color-body-text);
-              margin: 0 0 20px;
-              flex: 1;
-              line-height: 1.65;
-              font-style: normal;
-            ">
-              &ldquo;{t.quote}&rdquo;
-            </blockquote>
-
-            <!-- Attribution -->
-            <figcaption style="
-              border-top: 1px solid var(--color-hairline);
-              padding-top: 14px;
-              display: flex;
-              align-items: center;
-              gap: 10px;
-            ">
-              <div style={`
-                width: 36px; height: 36px;
-                border-radius: 50%;
-                background: ${t.accentBg};
-                color: ${t.accentColor};
-                border: 1px solid ${t.accentColor}40;
-                display: flex; align-items: center; justify-content: center;
-                font-size: 11px; font-weight: 700;
-                flex-shrink: 0;
-                font-family: var(--font-sans);
-              `} aria-hidden="true">
-                {t.initials}
-              </div>
-              <div>
-                <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px;">{t.title}</p>
-                <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:uppercase; letter-spacing:0.06em; font-size:10px;">{t.company}</p>
-              </div>
+      <!-- Two stacked -->
+      <div class="tst-stack">
+        {rest.map(t => (
+          <figure class="tst">
+            <blockquote class="tst__quote">&ldquo;{t.quote}&rdquo;</blockquote>
+            <figcaption class="tst__attr">
+              <span class="tst__initials tst__initials--sm" aria-hidden="true">{t.initials}</span>
+              <span>
+                <span class="tst__title">{t.title}</span>
+                <span class="tst__company">{t.company}</span>
+              </span>
             </figcaption>
           </figure>
         ))}
@@ -228,11 +89,83 @@ const [featured, ...rest] = testimonials;
 </section>
 
 <style>
-  .testimonial-card:hover {
-    border-color: rgba(255,255,255,0.12) !important;
-    transform: translateY(-3px);
+  .tst {
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: 26px 28px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
   }
-  .testimonial-featured:hover {
-    transform: translateY(-4px);
+  .tst::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--color-accent);
+    opacity: 0.5;
+  }
+  .tst--featured {
+    padding: 38px 40px;
+    justify-content: space-between;
+    min-height: 100%;
+  }
+  .tst--featured::before { opacity: 0.9; }
+  .tst__quote-mark {
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 0.6;
+    color: var(--color-accent);
+    opacity: 0.28;
+    display: block;
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  .tst__quote {
+    margin: 0;
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-body);
+  }
+  .tst__quote--lg { font-size: 18px; line-height: 1.6; color: var(--color-ink); font-weight: 400; }
+  .tst-stack { display: flex; flex-direction: column; gap: 16px; }
+  .tst__attr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--color-hairline-soft);
+  }
+  .tst__initials {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--color-accent-tint);
+    color: var(--color-accent-dark);
+    box-shadow: inset 0 0 0 1px #E6CDB2;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 13px;
+    flex-shrink: 0;
+  }
+  .tst__initials--sm { width: 36px; height: 36px; font-size: 11px; }
+  .tst__title {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 600; font-size: 14px;
+    color: var(--color-ink);
+  }
+  .tst__company {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+    margin-top: 2px;
   }
 </style>

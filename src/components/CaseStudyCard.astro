@@ -8,101 +8,233 @@ interface Props {
   metricLabel: string;
   description: string;
   tags: string[];
+  index: number;
 }
 
-const { id, sector, sectorLabel, headline, metric, metricLabel, description, tags } = Astro.props;
+const { id, sector, sectorLabel, headline, metric, metricLabel, description, tags, index } = Astro.props;
 
-const sectorColor: Record<string, { bg: string; text: string; border: string }> = {
-  energy:             { bg: 'rgba(249,115,22,0.12)',  text: '#fb923c', border: 'rgba(249,115,22,0.25)' },
-  utilities:          { bg: 'rgba(62,207,142,0.12)',  text: '#3ecf8e', border: 'rgba(62,207,142,0.25)' },
-  telecom:            { bg: 'rgba(167,139,250,0.12)', text: '#a78bfa', border: 'rgba(167,139,250,0.25)' },
-  'energy-utilities': { bg: 'rgba(77,158,255,0.12)',  text: '#4d9eff', border: 'rgba(77,158,255,0.25)' },
+/*
+  Mini data-visualisations — one grammar across all six cards:
+  copper = the subject / story, navy/gray = context, hairline axes, mono labels.
+  Every figure matches the case study and CV exactly. No invented numbers.
+*/
+const ACCENT = "#C2772F";
+const ACCENT_SOFT = "#F0DCC4";
+const NAVY = "#0C2438";
+const GRAY = "#C2CDD6";
+const HAIR = "#D7DEE4";
+const FAINT = "#7E8E9E";
+const MONO = "IBM Plex Mono, monospace";
+
+// reusable mono <text>
+const t = (x:number, y:number, s:string, opts:Record<string,string|number> = {}) =>
+  `<text x="${x}" y="${y}" font-family="${MONO}" font-size="9" fill="${opts.fill ?? FAINT}" text-anchor="${opts.anchor ?? 'middle'}" letter-spacing="0.5">${s}</text>`;
+
+const viz: Record<string, string> = {
+  // 1. Quartile verdict Q2 → Q4 vs 27 peers
+  "ntgm-cost-competitiveness": `
+    <svg viewBox="0 0 280 66" role="img" aria-label="Quartile position: facilities second quartile, pipeline and drilling and completions fourth quartile">
+      <g>${[0,1,2,3].map(i=>`<rect x="${8+i*66}" y="28" width="64" height="16" fill="${i===1||i===3?ACCENT_SOFT:'#fff'}" stroke="${HAIR}"/>`).join('')}</g>
+      <circle cx="${8+1*66+32}" cy="36" r="4" fill="${NAVY}"/>
+      <circle cx="${8+3*66+32}" cy="36" r="4" fill="${ACCENT}"/>
+      ${[0,1,2,3].map(i=>t(8+i*66+32,24,['Q1','Q2','Q3','Q4'][i])).join('')}
+      ${t(8+1*66+32,58,'Facilities',{fill:NAVY})}
+      ${t(8+3*66+32,58,'Pipeline · D&C',{fill:ACCENT})}
+    </svg>`,
+  // 2. $233M programme — annual exposure + 5-yr value (bullet bars)
+  "unit-rate-governance": `
+    <svg viewBox="0 0 280 66" role="img" aria-label="$233 million programme with 4.9 to 6 million annual above-market exposure and 20 to 28 million five-year value">
+      <rect x="8" y="14" width="264" height="9" rx="2" fill="${GRAY}"/>
+      ${t(272,12,'$233M programme',{anchor:'end',fill:FAINT})}
+      <rect x="8" y="34" width="40" height="9" rx="2" fill="${ACCENT}"/>
+      ${t(140,42,'$4.9M–6M / yr above-market',{anchor:'start',fill:ACCENT})}
+      <line x1="8" y1="50" x2="272" y2="50" stroke="${HAIR}" stroke-dasharray="2 3"/>
+      ${t(8,62,'↑ $20M–28M over 5 yrs (addressable)',{anchor:'start',fill:NAVY})}
+    </svg>`,
+  // 3. Spend / FTE — lean, above peer Q3
+  "supply-chain-benchmarking": `
+    <svg viewBox="0 0 280 66" role="img" aria-label="Spend supported per FTE positioned third quartile among peers">
+      <g>${[0,1,2,3].map(i=>`<rect x="${8+i*66}" y="28" width="64" height="16" fill="${i===2?ACCENT_SOFT:'#fff'}" stroke="${HAIR}"/>`).join('')}</g>
+      <circle cx="${8+2*66+32}" cy="36" r="4" fill="${ACCENT}"/>
+      ${[0,1,2,3].map(i=>t(8+i*66+32,24,['Q1','Q2','Q3','Q4'][i])).join('')}
+      ${t(8+2*66+32,58,'This utility — lean',{fill:ACCENT})}
+    </svg>`,
+  // 4. Opposite dynamics: Lighting (deflationary) vs E-STATCOM (inflationary)
+  "category-intelligence": `
+    <svg viewBox="0 0 280 66" role="img" aria-label="Lighting deflationary versus E-STATCOM inflationary">
+      <line x1="140" y1="12" x2="140" y2="54" stroke="${HAIR}"/>
+      <text x="20" y="24" font-family="${MONO}" font-size="10" fill="${ACCENT}" text-anchor="start">Lighting</text>
+      <path d="M120 26 L96 26 M102 22 L96 26 L102 30" stroke="${ACCENT}" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      ${t(70,40,'deflationary',{fill:ACCENT})}
+      <text x="160" y="24" font-family="${MONO}" font-size="10" fill="${NAVY}" text-anchor="start">E-STATCOM</text>
+      <path d="M160 26 L260 26 M254 22 L260 26 L254 30" stroke="${NAVY}" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      ${t(230,40,'inflationary',{fill:NAVY})}
+      ${t(140,60,'Differentiated sourcing by market',{fill:FAINT})}
+    </svg>`,
+  // 5. £100M renewal — £2M should-cost / TCO optimisation
+  "bt-contract-renewal": `
+    <svg viewBox="0 0 280 66" role="img" aria-label="£100 million renewal with £2 million total-cost optimisation">
+      <rect x="8" y="18" width="264" height="11" rx="2" fill="${GRAY}"/>
+      <rect x="8" y="18" width="18" height="11" rx="2" fill="${ACCENT}"/>
+      ${t(272,15,'£100M renewal',{anchor:'end',fill:FAINT})}
+      ${t(8,44,'~£2M optimisation',{anchor:'start',fill:ACCENT})}
+      ${t(272,44,'should-cost · TCO',{anchor:'end',fill:NAVY})}
+      <line x1="8" y1="52" x2="272" y2="52" stroke="${HAIR}" stroke-dasharray="2 3"/>
+      ${t(8,62,'Incumbent retained · zero service disruption',{anchor:'start',fill:FAINT})}
+    </svg>`,
+  // 6. Three categories aggregated — ~$4M capex savings
+  "accenture-capex-sourcing": `
+    <svg viewBox="0 0 280 66" role="img" aria-label="Three capex categories: EPC, surface facilities, drilling and completions">
+      ${['EPC','Surface','D&C'].map((l,i)=>`<rect x="${8+i*90}" y="16" width="80" height="26" rx="2" fill="${i===1?'#fff':NAVY}" stroke="${HAIR}"/>${t(8+i*90+40,55,l,{fill:FAINT})}`).join('')}
+      ${t(272,12,'~$4M savings',{anchor:'end',fill:ACCENT})}
+    </svg>`,
 };
-const color = sectorColor[sector] ?? { bg: 'var(--color-canvas-soft-2)', text: '#888', border: 'rgba(255,255,255,0.07)' };
 ---
 
 <a
   href={`/case-studies/${id}/`}
   id={id}
   data-sector={sector}
-  class="case-card card-shimmer shadow-l3"
-  style={`--glow:${color.text}; background:linear-gradient(180deg, ${color.bg} 0%, var(--color-canvas) 72px); border-radius:var(--radius-md); padding:24px; display:flex; flex-direction:column; gap:16px; text-decoration:none; color:inherit; border-top:1px solid ${color.border};`}
-  target="_blank"
-  rel="noopener noreferrer"
+  class="case-card"
 >
-  <!-- Sector tag -->
-  <div>
-    <span class="t-caption-mono" style={`
-      display:inline-block;
-      background:${color.bg};
-      color:${color.text};
-      border:1px solid ${color.border};
-      border-radius:var(--radius-full);
-      padding:0 10px;
-      height:22px;
-      line-height:20px;
-      text-transform:uppercase;
-      letter-spacing:0.06em;
-      font-size:11px;
-    `}>{sectorLabel}</span>
+  <!-- Top row: index + sector -->
+  <div class="case-card__top">
+    <span class="t-eyebrow">{sectorLabel}</span>
+    <span class="case-card__index" aria-hidden="true">{String(index).padStart(2, '0')}</span>
   </div>
 
-  <!-- Metric (hero number) -->
-  <div>
-    <p class="t-display-md" style="color:var(--color-ink); margin:0 0 4px;">{metric}</p>
-    <p class="t-caption-mono" style="color:var(--color-mute); margin:0; text-transform:lowercase;">{metricLabel}</p>
+  <!-- Hero metric -->
+  <div class="case-card__metric">
+    <p class="case-card__value">{metric}</p>
+    <p class="case-card__metric-label">{metricLabel}</p>
   </div>
+
+  <!-- Data viz -->
+  <div class="case-card__viz" set:html={viz[id] ?? ''}></div>
 
   <!-- Headline -->
-  <h3 class="t-display-sm" style="color:var(--color-ink); margin:0;">{headline}</h3>
+  <h3 class="case-card__headline">{headline}</h3>
 
-  <!-- Divider -->
-  <div style="border-top:1px solid var(--color-hairline);"></div>
+  <!-- Hairline divider -->
+  <div class="case-card__rule" aria-hidden="true"></div>
 
   <!-- Description -->
-  <p class="t-body-sm" style="color:var(--color-body-text); margin:0; flex:1;">{description}</p>
+  <p class="case-card__desc">{description}</p>
 
-  <!-- Tags + read arrow row -->
-  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto; flex-wrap:wrap;">
-    <div style="display:flex; flex-wrap:wrap; gap:6px;">
-      {tags.map(tag => (
-        <span class="badge t-caption-mono" style="font-size:11px;">{tag}</span>
-      ))}
+  <!-- Footer: tags + read -->
+  <div class="case-card__footer">
+    <div class="case-card__tags">
+      {tags.map(tag => <span class="badge">{tag}</span>)}
     </div>
-    <!-- Read more arrow -->
-    <span class="card-arrow" aria-hidden="true" style={`
-      display:inline-flex; align-items:center; justify-content:center;
-      width:28px; height:28px; border-radius:50%;
-      border:1px solid ${color.border};
-      color:${color.text};
-      flex-shrink:0;
-      transition:background 0.2s ease, transform 0.2s ease;
-    `}>
-      <svg width="12" height="12" viewBox="0 0 10 10" fill="none">
-        <path d="M1.5 1.5h7m0 0v7m0-7L1.5 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <span class="case-card__read" aria-hidden="true">
+      Read case
+      <svg width="11" height="11" viewBox="0 0 10 10" fill="none"><path d="M1.5 1.5h7m0 0v7m0-7L1.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </span>
   </div>
 </a>
 
 <style>
   .case-card {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
     position: relative;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 24px; right: 24px;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .case-card:hover {
-    transform: translateY(-5px);
-    box-shadow:
-      inset 0 0 0 1px rgba(255,255,255,0.16),
-      0 24px 48px -8px rgba(0,0,0,0.65),
-      0 0 36px -6px var(--glow, transparent);
+    transform: translateY(-3px);
+    box-shadow: 0 2px 6px rgba(12,36,56,0.05), 0 18px 40px -22px rgba(12,36,56,0.28);
+    border-color: #C5D0D9;
   }
-  .case-card:hover .card-arrow {
-    background: rgba(255,255,255,0.06);
-    transform: translate(2px, -2px);
-  }
+  .case-card:hover::before { transform: scaleX(1); }
   .case-card:focus-visible {
-    outline: 2px solid var(--color-link);
-    outline-offset: 2px;
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
+  .case-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .case-card__index {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-faint);
+    letter-spacing: 0.06em;
+  }
+  .case-card__metric { display: flex; flex-direction: column; gap: 4px; }
+  .case-card__value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(26px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .case-card__metric-label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .case-card__viz {
+    margin: 6px 0 2px;
+    padding: 6px 0;
+  }
+  .case-card__viz :global(svg) { width: 100%; height: auto; display: block; }
+  .case-card__headline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .case-card__rule { height: 1px; background: var(--color-hairline-soft); }
+  .case-card__desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-body);
+    margin: 0;
+    flex: 1;
+  }
+  .case-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+  .case-card__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .case-card__read {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--color-accent-dark);
+    transition: gap 0.2s ease;
+  }
+  .case-card:hover .case-card__read { gap: 8px; }
 </style>

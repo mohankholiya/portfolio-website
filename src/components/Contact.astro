@@ -6,248 +6,94 @@ import { siteConfig } from "../content/site";
   id="contact"
   aria-labelledby="contact-heading"
   class="section"
-  style="
-    background:var(--color-canvas-soft);
-    position:relative;
-    overflow:hidden;
-  "
+  style="background:var(--color-paper); position:relative;"
 >
-  <!-- Background glow -->
-  <div aria-hidden="true" style="
-    position:absolute; bottom:0; left:50%;
-    width:400px; height:400px;
-    transform:translateX(-50%);
-    border-radius:50%;
-    background:rgba(77,158,255,0.05);
-    filter:blur(120px);
-    pointer-events:none;
-  "></div>
-
-  <div class="container" style="position:relative;">
+  <div class="container">
 
     <!-- Eyebrow -->
     <div class="section-eyebrow reveal">
-      <p class="t-caption-mono" style="color:var(--color-mute); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Get in Touch</p>
+      <p class="t-eyebrow" style="margin:0;">Get in touch</p>
     </div>
 
     <!-- Headline -->
-    <h2 id="contact-heading" class="t-display-lg reveal" style="
-      color:var(--color-ink);
-      margin:0 0 12px;
-      animation-delay:0.07s;
-    ">
-      Let's work together.
+    <h2 id="contact-heading" class="t-display-lg reveal" style="margin:0 0 12px; animation-delay:0.07s;">
+      Let&rsquo;s work together.
     </h2>
 
     <!-- Sub -->
-    <p class="t-body-md reveal" style="
-      color:var(--color-body-text);
-      margin:0 0 56px;
-      max-width:500px;
-      animation-delay:0.12s;
-    ">
+    <p class="t-body-md reveal" style="margin:0 0 48px; max-width:520px; animation-delay:0.12s;">
       Open to senior procurement and supply chain leadership roles and consulting engagements
       globally. Response within 24 hours.
     </p>
 
     <!-- Two-column layout -->
-    <div class="contact-grid" style="
-      display:grid;
-      grid-template-columns:1fr;
-      gap:48px;
-      align-items:start;
-    ">
+    <div class="contact-grid reveal" style="animation-delay:0.16s;">
 
       <!-- Left: contact form -->
-      <div class="reveal" style="animation-delay:0.18s;">
-        <!-- Web3Forms: get your free access key at web3forms.com (enter your email, takes ~60s) -->
-        <!-- Replace YOUR_ACCESS_KEY below with the key sent to mohan.kholiya@gmail.com -->
-        <form
-          id="contact-form"
-          style="display:flex; flex-direction:column; gap:16px;"
-          novalidate
-        >
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
-          <input type="hidden" name="subject" value="Portfolio enquiry — mohankholiya.co.in" />
-          <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true" />
+      <form id="contact-form" style="display:flex; flex-direction:column; gap:14px;" novalidate>
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="Portfolio enquiry — mohankholiya.co.in" />
+        <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true" />
 
-          <div>
-            <label for="cf-name" class="t-body-sm-strong" style="display:block; color:var(--color-mute); margin-bottom:6px; font-size:12px;">Name</label>
-            <input
-              type="text"
-              id="cf-name"
-              name="name"
-              required
-              class="form-input"
-              placeholder="Your full name"
-              autocomplete="name"
-            />
-          </div>
+        <div>
+          <label for="cf-name" class="cf-label">Name</label>
+          <input type="text" id="cf-name" name="name" required class="form-input" placeholder="Your full name" autocomplete="name" />
+        </div>
 
-          <div>
-            <label for="cf-email" class="t-body-sm-strong" style="display:block; color:var(--color-mute); margin-bottom:6px; font-size:12px;">Email</label>
-            <input
-              type="email"
-              id="cf-email"
-              name="email"
-              required
-              class="form-input"
-              placeholder="you@company.com"
-              autocomplete="email"
-            />
-          </div>
+        <div>
+          <label for="cf-email" class="cf-label">Email</label>
+          <input type="email" id="cf-email" name="email" required class="form-input" placeholder="you@company.com" autocomplete="email" />
+        </div>
 
-          <div>
-            <label for="cf-message" class="t-body-sm-strong" style="display:block; color:var(--color-mute); margin-bottom:6px; font-size:12px;">Message</label>
-            <textarea
-              id="cf-message"
-              name="message"
-              required
-              rows="5"
-              class="form-input"
-              placeholder="Tell me about the role or engagement..."
-            ></textarea>
-          </div>
+        <div>
+          <label for="cf-message" class="cf-label">Message</label>
+          <textarea id="cf-message" name="message" required rows="5" class="form-input" placeholder="Tell me about the role or engagement..."></textarea>
+        </div>
 
-          <button
-            type="submit"
-            id="cf-submit"
-            class="btn-primary t-button-lg"
-            style="
-              justify-content:center;
-              width:fit-content;
-              gap:8px;
-            "
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-            Send Message
-          </button>
+        <button type="submit" id="cf-submit" class="btn-primary t-button-lg" style="justify-content:center; width:fit-content; gap:8px; margin-top:4px;">
+          Send message
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
 
-          <p
-            id="form-status"
-            role="status"
-            aria-live="polite"
-            class="t-body-sm"
-            style="display:none; margin:0;"
-          ></p>
-        </form>
-      </div>
+        <p id="form-status" role="status" aria-live="polite" class="t-body-sm" style="display:none; margin:0;"></p>
+      </form>
 
-      <!-- Right: sidebar links -->
-      <div class="reveal contact-sidebar" style="display:flex; flex-direction:column; gap:12px; animation-delay:0.25s;">
+      <!-- Right: sidebar -->
+      <div class="contact-sidebar">
 
-        <!-- Email -->
-        <a
-          href={`mailto:${siteConfig.email}`}
-          class="contact-link-card card-shimmer"
-          style="
-            display:flex; align-items:center; gap:16px;
-            background:var(--color-canvas);
-            border:1px solid rgba(255,255,255,0.05);
-            border-radius:var(--radius-md);
-            padding:16px 20px;
-            text-decoration:none;
-            transition:border-color 0.2s ease;
-          "
-        >
-          <div style="
-            width:40px; height:40px; flex-shrink:0;
-            border-radius:var(--radius-sm);
-            background:rgba(77,158,255,0.1);
-            display:flex; align-items:center; justify-content:center;
-          " aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </div>
-          <div>
-            <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px; transition:color 0.2s ease;">Email directly</p>
-            <p class="t-caption-mono" style="color:var(--color-mute); margin:0;">{siteConfig.email}</p>
-          </div>
-        </a>
-
-        <!-- LinkedIn -->
-        <a
-          href={siteConfig.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="contact-link-card card-shimmer"
-          style="
-            display:flex; align-items:center; gap:16px;
-            background:var(--color-canvas);
-            border:1px solid rgba(255,255,255,0.05);
-            border-radius:var(--radius-md);
-            padding:16px 20px;
-            text-decoration:none;
-            transition:border-color 0.2s ease;
-          "
-        >
-          <div style="
-            width:40px; height:40px; flex-shrink:0;
-            border-radius:var(--radius-sm);
-            background:rgba(10,102,194,0.12);
-            display:flex; align-items:center; justify-content:center;
-          " aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </div>
-          <div>
-            <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px; transition:color 0.2s ease;">
-              LinkedIn
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="display:inline-block; margin-left:4px; vertical-align:middle;">
-                <path d="M1.5 1.5h7m0 0v7m0-7L1.5 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </p>
-            <p class="t-caption-mono" style="color:var(--color-mute); margin:0;">Connect on LinkedIn</p>
-          </div>
-        </a>
-
-        <!-- Resume -->
-        <a
-          href={siteConfig.resumeUrl}
-          download="Mohan_Kholiya_Resume_2026.pdf"
-          class="contact-link-card card-shimmer"
-          style="
-            display:flex; align-items:center; gap:16px;
-            background:var(--color-canvas);
-            border:1px solid rgba(255,255,255,0.05);
-            border-radius:var(--radius-md);
-            padding:16px 20px;
-            text-decoration:none;
-            transition:border-color 0.2s ease;
-          "
-        >
-          <div style="
-            width:40px; height:40px; flex-shrink:0;
-            border-radius:var(--radius-sm);
-            background:rgba(62,207,142,0.1);
-            display:flex; align-items:center; justify-content:center;
-          " aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-          </div>
-          <div>
-            <p class="t-body-sm-strong" style="color:var(--color-ink); margin:0 0 2px; transition:color 0.2s ease;">Download résumé</p>
-            <p class="t-caption-mono" style="color:var(--color-mute); margin:0;">PDF — updated 2026</p>
-          </div>
-        </a>
-
-        <!-- Response time chip -->
-        <div style="
-          border-radius:var(--radius-md);
-          border:1px solid rgba(255,255,255,0.05);
-          background:rgba(255,255,255,0.02);
-          padding:14px 20px;
-          text-align:center;
-        ">
-          <span class="t-caption-mono" style="color:var(--color-mute); display:inline-flex; align-items:center; gap:6px;">
-            <span aria-hidden="true" class="pulse-dot-green" style="width:6px; height:6px; border-radius:50%; background:var(--color-success); flex-shrink:0;"></span>
-            Typically responds within 24 hours
+        <a href={`mailto:${siteConfig.email}`} class="contact-card">
+          <span class="contact-card__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2z"/><polyline points="22 7 12 13 2 7"/></svg>
           </span>
+          <span class="contact-card__text">
+            <span class="contact-card__title">Email directly</span>
+            <span class="contact-card__sub">{siteConfig.email}</span>
+          </span>
+        </a>
+
+        <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="contact-card">
+          <span class="contact-card__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          </span>
+          <span class="contact-card__text">
+            <span class="contact-card__title">LinkedIn</span>
+            <span class="contact-card__sub">/in/mohankholiya</span>
+          </span>
+        </a>
+
+        <a href={siteConfig.resumeUrl} download={siteConfig.resumeFileName} class="contact-card">
+          <span class="contact-card__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </span>
+          <span class="contact-card__text">
+            <span class="contact-card__title">Download résumé</span>
+            <span class="contact-card__sub">PDF &middot; updated 2026</span>
+          </span>
+        </a>
+
+        <div class="contact-resp">
+          <span aria-hidden="true" style="width:7px; height:7px; border-radius:50%; background:#2F7D5B; flex-shrink:0;"></span>
+          <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.1em;">Typically responds within 24 hours</span>
         </div>
 
       </div>
@@ -256,22 +102,51 @@ import { siteConfig } from "../content/site";
 </section>
 
 <style>
+  .cf-label {
+    display:block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+    margin-bottom: 7px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: start;
+  }
   @media (min-width: 860px) {
-    .contact-grid {
-      grid-template-columns: 1fr 380px !important;
-    }
+    .contact-grid { grid-template-columns: 1fr 360px; gap: 48px; }
   }
-
-  .contact-link-card:hover {
-    border-color: rgba(77,158,255,0.2) !important;
+  .contact-sidebar { display: flex; flex-direction: column; gap: 12px; }
+  .contact-card {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    padding: 15px 18px;
+    text-decoration: none;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
   }
-
-  @keyframes pulse-green {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.4; }
+  .contact-card:hover { box-shadow: inset 0 0 0 1px var(--color-ink); transform: translateY(-1px); }
+  .contact-card__icon {
+    width: 38px; height: 38px; flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent-tint);
+    color: var(--color-accent-dark);
+    display: flex; align-items: center; justify-content: center;
   }
-  .pulse-dot-green {
-    animation: pulse-green 2s ease-in-out infinite;
+  .contact-card__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .contact-card__title { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--color-ink); }
+  .contact-card__sub { font-family: var(--font-mono); font-size: 12px; color: var(--color-faint); }
+  .contact-resp {
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
   }
 </style>
 
@@ -285,7 +160,6 @@ import { siteConfig } from "../content/site";
     if (!submitBtn || !status) return;
 
     const data = Object.fromEntries(new FormData(form));
-
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
@@ -296,7 +170,6 @@ import { siteConfig } from "../content/site";
         body: JSON.stringify(data),
       });
       const json = await res.json();
-
       if (json.success) {
         status.textContent = '✓ Message sent — I\'ll respond within 24 hours.';
         status.style.color = 'var(--color-success)';
@@ -306,11 +179,11 @@ import { siteConfig } from "../content/site";
         throw new Error('failed');
       }
     } catch {
-      status.textContent = 'Something went wrong. Please email me directly at mohan.kholiya@gmail.com';
+      status.textContent = 'Please email me directly at mohan.kholiya@gmail.com';
       status.style.color = 'var(--color-error)';
       status.style.display = 'block';
     } finally {
-      submitBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+      submitBtn.innerHTML = 'Send message <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
       submitBtn.disabled = false;
     }
   });
