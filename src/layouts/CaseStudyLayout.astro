@@ -90,5 +90,14 @@ const { title } = Astro.props;
     <div class="wrap">
       <slot />
     </div>
+
+    <!-- If a visitor enters on a case study first, still hide the home page's
+         first-visit loader when they navigate back via a view-transition swap. -->
+    <script is:inline>
+      document.addEventListener('astro:after-swap', function () {
+        var l = document.getElementById('page-loader');
+        if (l) l.style.display = 'none';
+      });
+    </script>
   </body>
 </html>

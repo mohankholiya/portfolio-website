@@ -163,37 +163,53 @@ const ogImage = `${siteConfig.url}/og-image.png`;
     </style>
 
     <script is:inline>
-      // Scroll progress bar + back-to-top (single listener)
-      var progressEl = document.getElementById('scroll-progress');
-      var bttBtn = document.getElementById('back-to-top');
-      window.addEventListener('scroll', function () {
-        var scrollY = window.scrollY;
-        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        if (progressEl && scrollable > 0) {
-          progressEl.style.width = (scrollY / scrollable * 100) + '%';
-        }
-        if (bttBtn) bttBtn.classList.toggle('visible', scrollY > 400);
-      }, { passive: true });
-      bttBtn && bttBtn.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      // Loading screen — first visit only, skip on back/forward nav
+      // These listeners bind once and live on `document`/`window`, which persist
+      // across Astro view-transition swaps. Element refs are refreshed on
+      // astro:after-swap so scroll UI keeps working after client-side navigation.
       (function () {
+        var progressEl, bttBtn;
+        function refresh() {
+          progressEl = document.getElementById('scroll-progress');
+          bttBtn = document.getElementById('back-to-top');
+        }
+        refresh();
+
+        window.addEventListener('scroll', function () {
+          var scrollY = window.scrollY;
+          var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          if (progressEl && scrollable > 0) {
+            progressEl.style.width = (scrollY / scrollable * 100) + '%';
+          }
+          if (bttBtn) bttBtn.classList.toggle('visible', scrollY > 400);
+        }, { passive: true });
+
+        // Delegated so the handler survives DOM swaps (button is re-created).
+        document.addEventListener('click', function (e) {
+          if (e.target && e.target.closest && e.target.closest('#back-to-top')) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+
+        // Loading screen — genuine first visit of the session only.
         var loader = document.getElementById('page-loader');
         var fill   = document.getElementById('loader-fill');
-        if (!loader) return;
-        if (sessionStorage.getItem('mk-visited')) {
-          loader.style.display = 'none';
-          return;
+        if (loader) {
+          if (sessionStorage.getItem('mk-visited')) {
+            loader.style.display = 'none';
+          } else {
+            sessionStorage.setItem('mk-visited', '1');
+            requestAnimationFrame(function () { if (fill) fill.style.width = '100%'; });
+            setTimeout(function () { loader.classList.add('done'); }, 760);
+          }
         }
-        sessionStorage.setItem('mk-visited', '1');
-        requestAnimationFrame(function () {
-          if (fill) fill.style.width = '100%';
+
+        // After any view-transition swap (e.g. returning home from a case study),
+        // force-hide the re-inserted loader and re-point the scroll refs.
+        document.addEventListener('astro:after-swap', function () {
+          var l = document.getElementById('page-loader');
+          if (l) l.style.display = 'none';
+          refresh();
         });
-        setTimeout(function () {
-          loader.classList.add('done');
-        }, 760);
       })();
     </script>
   </body>
