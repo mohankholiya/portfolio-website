@@ -147,62 +147,68 @@ import { siteConfig, navLinks } from "../content/site";
 </style>
 
 <script>
-  // Scroll shadow
-  const nav = document.getElementById('site-nav');
-  window.addEventListener('scroll', () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 8);
-  }, { passive: true });
+  // This module only ever evaluates once, so its top-level code wouldn't
+  // re-bind to the fresh Nav markup that a view-transition swap inserts when
+  // returning to "/" from a case study. astro:page-load fires on the initial
+  // load AND after every transition, so init from there instead.
+  document.addEventListener('astro:page-load', () => {
+    // Scroll shadow
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav?.classList.toggle('scrolled', window.scrollY > 8);
+    }, { passive: true });
 
-  // Mobile menu
-  const hamburger = document.getElementById('nav-hamburger') as HTMLButtonElement | null;
-  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
-  const menuIcon = document.getElementById('menu-icon') as SVGPathElement | null;
+    // Mobile menu
+    const hamburger = document.getElementById('nav-hamburger') as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+    const menuIcon = document.getElementById('menu-icon') as SVGPathElement | null;
 
-  const HAMBURGER_D = 'M2 5h16M2 10h16M2 15h16';
-  const CLOSE_D     = 'M4 4l12 12M4 16L16 4';
+    const HAMBURGER_D = 'M2 5h16M2 10h16M2 15h16';
+    const CLOSE_D     = 'M4 4l12 12M4 16L16 4';
 
-  let menuOpen = false;
+    let menuOpen = false;
 
-  function openMenu() {
-    menuOpen = true;
-    hamburger?.setAttribute('aria-expanded', 'true');
-    hamburger?.setAttribute('aria-label', 'Close navigation menu');
-    menuIcon?.setAttribute('d', CLOSE_D);
-    if (mobileMenu) mobileMenu.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
+    function openMenu() {
+      menuOpen = true;
+      hamburger?.setAttribute('aria-expanded', 'true');
+      hamburger?.setAttribute('aria-label', 'Close navigation menu');
+      menuIcon?.setAttribute('d', CLOSE_D);
+      if (mobileMenu) mobileMenu.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
 
-  function closeMenu() {
-    menuOpen = false;
-    hamburger?.setAttribute('aria-expanded', 'false');
-    hamburger?.setAttribute('aria-label', 'Open navigation menu');
-    menuIcon?.setAttribute('d', HAMBURGER_D);
-    if (mobileMenu) mobileMenu.style.display = 'none';
-    document.body.style.overflow = '';
-  }
+    function closeMenu() {
+      menuOpen = false;
+      hamburger?.setAttribute('aria-expanded', 'false');
+      hamburger?.setAttribute('aria-label', 'Open navigation menu');
+      menuIcon?.setAttribute('d', HAMBURGER_D);
+      if (mobileMenu) mobileMenu.style.display = 'none';
+      document.body.style.overflow = '';
+    }
 
-  hamburger?.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
-  mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    hamburger?.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
+    mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-  // Scrollspy active indicator
-  const navLinks = document.querySelectorAll<HTMLElement>('.nav-link[data-nav-href]');
-  const sectionIds = ['hero', ...Array.from(navLinks).map(l => l.dataset.navHref!.slice(1))];
-  const sections = sectionIds
-    .map(id => document.getElementById(id))
-    .filter(Boolean) as HTMLElement[];
+    // Scrollspy active indicator
+    const navLinks = document.querySelectorAll<HTMLElement>('.nav-link[data-nav-href]');
+    const sectionIds = ['hero', ...Array.from(navLinks).map(l => l.dataset.navHref!.slice(1))];
+    const sections = sectionIds
+      .map(id => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
 
-  const spy = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const id = '#' + entry.target.id;
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.dataset.navHref === id);
+    const spy = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = '#' + entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.navHref === id);
+          });
         });
-      });
-    },
-    { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
-  );
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+    );
 
-  sections.forEach(s => spy.observe(s));
+    sections.forEach(s => spy.observe(s));
+  });
 </script>

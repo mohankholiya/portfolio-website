@@ -29,19 +29,25 @@ import Footer from "../components/Footer.astro";
   <Footer />
 </BaseLayout>
 
-<!-- Global scroll-reveal observer (runs after all components have mounted) -->
+<!-- Global scroll-reveal observer. As an Astro module script this only ever
+     evaluates once, so re-running it directly wouldn't fire again after a
+     client-side view-transition swap brings back a fresh set of .reveal
+     elements — astro:page-load fires on the initial load AND after every
+     transition, so binding through it keeps reveals working on return visits. -->
 <script>
-  const allReveals = document.querySelectorAll<HTMLElement>('.reveal');
-  const obs = new IntersectionObserver(
-    entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          (e.target as HTMLElement).classList.add('is-visible');
-          obs.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-  allReveals.forEach(el => obs.observe(el));
+  document.addEventListener('astro:page-load', () => {
+    const allReveals = document.querySelectorAll<HTMLElement>('.reveal');
+    const obs = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).classList.add('is-visible');
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    allReveals.forEach(el => obs.observe(el));
+  });
 </script>

@@ -94,29 +94,34 @@ const sectors = [
 </section>
 
 <script>
-  const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-  const wrappers   = document.querySelectorAll<HTMLElement>('.card-wrapper[data-sector]');
-  const noResults  = document.getElementById('no-results');
+  // Module scripts only evaluate once, so binding at top level wouldn't
+  // rebind to the fresh markup a view-transition swap inserts on return to
+  // "/". astro:page-load fires on initial load AND after every transition.
+  document.addEventListener('astro:page-load', () => {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const wrappers   = document.querySelectorAll<HTMLElement>('.card-wrapper[data-sector]');
+    const noResults  = document.getElementById('no-results');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter ?? 'all';
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter ?? 'all';
 
-      filterBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-pressed', 'false');
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        let visible = 0;
+        wrappers.forEach(w => {
+          const match = filter === 'all' || w.dataset.sector === filter;
+          w.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+
+        if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
       });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-
-      let visible = 0;
-      wrappers.forEach(w => {
-        const match = filter === 'all' || w.dataset.sector === filter;
-        w.style.display = match ? '' : 'none';
-        if (match) visible++;
-      });
-
-      if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
     });
   });
 </script>

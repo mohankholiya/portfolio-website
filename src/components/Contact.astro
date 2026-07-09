@@ -151,40 +151,45 @@ import { siteConfig } from "../content/site";
 </style>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const status = document.getElementById('form-status') as HTMLElement | null;
-  const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement | null;
+  // Module scripts only evaluate once, so binding at top level wouldn't
+  // rebind to the fresh markup a view-transition swap inserts on return to
+  // "/". astro:page-load fires on initial load AND after every transition.
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const status = document.getElementById('form-status') as HTMLElement | null;
+    const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement | null;
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!submitBtn || !status) return;
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!submitBtn || !status) return;
 
-    const data = Object.fromEntries(new FormData(form));
-    submitBtn.textContent = 'Sending…';
-    submitBtn.disabled = true;
+      const data = Object.fromEntries(new FormData(form));
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
 
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json();
-      if (json.success) {
-        status.textContent = '✓ Message sent — I\'ll respond within 24 hours.';
-        status.style.color = 'var(--color-success)';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (json.success) {
+          status.textContent = '✓ Message sent — I\'ll respond within 24 hours.';
+          status.style.color = 'var(--color-success)';
+          status.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error('failed');
+        }
+      } catch {
+        status.textContent = 'Please email me directly at mohan.kholiya@gmail.com';
+        status.style.color = 'var(--color-error)';
         status.style.display = 'block';
-        form.reset();
-      } else {
-        throw new Error('failed');
+      } finally {
+        submitBtn.innerHTML = 'Send message <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+        submitBtn.disabled = false;
       }
-    } catch {
-      status.textContent = 'Please email me directly at mohan.kholiya@gmail.com';
-      status.style.color = 'var(--color-error)';
-      status.style.display = 'block';
-    } finally {
-      submitBtn.innerHTML = 'Send message <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
-      submitBtn.disabled = false;
-    }
+    });
   });
 </script>
