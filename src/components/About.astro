@@ -1,7 +1,7 @@
 ---
 import { Picture } from "astro:assets";
 import headshot from "../assets/headshot.jpeg";
-import { siteConfig, copy, credentials } from "../content/site";
+import { siteConfig, copy } from "../content/site";
 import Arrow from "./Arrow.astro";
 ---
 
@@ -50,22 +50,6 @@ import Arrow from "./Arrow.astro";
             <Arrow />
           </a>
         </div>
-      </div>
-    </div>
-    <div class="credentials" id="credentials">
-      <h3>{copy.about.credentialsTitle}</h3>
-      <div class="credentials-grid">
-        {credentials.map((c) => (
-          <div>
-            <h4>{c.category}</h4>
-            {c.entries.map((e) => (
-              <div class="credential-item">
-                <p class="credential-title">{e.title}</p>
-                <p>{e.body}</p>
-              </div>
-            ))}
-          </div>
-        ))}
       </div>
     </div>
   </div>

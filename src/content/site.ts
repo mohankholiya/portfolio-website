@@ -14,10 +14,10 @@ export const siteConfig = {
     "I help energy, infrastructure and telecom organisations make stronger procurement decisions — from category strategy and cost analysis to negotiation and delivery.",
 };
 export const navLinks = [
+  { href: "/#about", label: "About" },
   { href: "/#case-studies", label: "Selected work" },
   { href: "/#services", label: "Consulting" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#about", label: "About" },
 ];
 export const copy = {
   hero: {
@@ -78,7 +78,7 @@ export const copy = {
     ],
   },
   cases: {
-    eyebrow: "01 / Selected work",
+    eyebrow: "02 / Selected work",
     heading: "The work behind the numbers.",
     description:
       "Commercial outcomes and decision support across consulting and in-house roles. Each case explains the context, my contribution and the result.",
@@ -93,7 +93,7 @@ export const copy = {
     ],
   },
   services: {
-    eyebrow: "02 / Independent consulting",
+    eyebrow: "03 / Independent consulting",
     heading: "A clear problem.\nA practical way forward.",
     description:
       "Specialist procurement support for operating businesses and consulting firms. A defined scope, transparent assumptions and deliverables your team can use.",
@@ -119,7 +119,7 @@ export const copy = {
     partnershipCta: "Discuss a collaboration",
   },
   experience: {
-    eyebrow: "03 / Career & leadership",
+    eyebrow: "04 / Career & leadership",
     heading: "Consulting perspective.\nIn-house accountability.",
     description:
       "16+ years across six organisations, from drilling operations and capital sourcing to category leadership and energy supply-chain advisory.",
@@ -143,7 +143,7 @@ export const copy = {
     downloadNote: "PDF · Updated September 2026",
   },
   about: {
-    eyebrow: "04 / About Mohan",
+    eyebrow: "01 / About Mohan",
     heading: "I connect the analysis\nto the decision.",
     paragraphs: [
       "My experience combines consulting at Wood Mackenzie and Accenture with procurement ownership at BT Group, Jindal Drilling, Quippo and Shyama Power. I understand the analytical question — and the operational responsibility behind it.",
@@ -307,7 +307,7 @@ export const caseStudies = [
       "Incumbent retained and field-service continuity protected.",
       "A reusable should-cost baseline and clearer view of cost levers.",
     ],
-    note: "The £100M figure elsewhere describes annual category responsibility at BT Group, not this individual contract. The chart below is a synthetic method illustration, not the contract's actual cost baseline.",
+    note: "The £100M figure elsewhere describes annual category responsibility at BT Group, not this individual contract. The cost bridge is a synthetic method illustration, not the contract's actual cost baseline.",
     chart: "waterfall",
   },
   {

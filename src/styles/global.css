@@ -26,17 +26,10 @@
   }
 }
 @font-face {
-  font-family: Archivo;
-  src: url("/fonts/archivo-latin.woff2") format("woff2");
+  font-family: Inter;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Source Sans 3";
-  src: url("/fonts/source-sans-latin.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 200 900;
   font-display: swap;
 }
 @theme {
@@ -51,8 +44,8 @@
   --color-accent-text: #8a4e18;
   --color-accent-tint: #f6e9da;
   --color-on-ink: #f4f7fa;
-  --font-display: Archivo, system-ui, sans-serif;
-  --font-sans: "Source Sans 3", system-ui, sans-serif;
+  --font-display: Inter, Arial, sans-serif;
+  --font-sans: Inter, Arial, sans-serif;
 }
 :root {
   --space-section: 100px;

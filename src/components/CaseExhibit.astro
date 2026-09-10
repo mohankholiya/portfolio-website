@@ -1,0 +1,512 @@
+---
+import MethodFigure from "./MethodFigure.astro";
+interface Props {
+  type: string;
+}
+const { type } = Astro.props;
+const titles: Record<string, string> = {
+  waterfall: "Negotiate the total cost, not only the headline rate.",
+  governance: "A bounded opportunity, built from transaction-level evidence.",
+  sourcing: "Three capital categories. One coordinated sourcing approach.",
+  benchmark: "Broaden the peer set, then control for comparability.",
+  capacity: "Workload and capacity must be assessed together.",
+  categories: "One research framework. Two distinct sourcing strategies.",
+};
+---
+
+<section
+  id="analysis-exhibit"
+  class="analysis-exhibit"
+  aria-labelledby="exhibit-title"
+>
+  <div class="exhibit-header">
+    <p class="eyebrow">Analytical exhibit</p>
+    <h2 id="exhibit-title">{titles[type]}</h2>
+  </div>
+  {type === "waterfall" && (
+    <>
+      <div class="exhibit-split">
+        <div class="exhibit-reading">
+          <p class="exhibit-label">Reported commercial outcome</p>
+          <p class="exhibit-value">~£2M</p>
+          <p>Total-cost optimisation secured in the renewal.</p>
+          <dl class="exhibit-facts">
+            <div>
+              <dt>Negotiating basis</dt>
+              <dd>Should-cost and full-service economics</dd>
+            </div>
+            <div>
+              <dt>Delivery constraint</dt>
+              <dd>Protect field-service continuity</dd>
+            </div>
+            <div>
+              <dt>Commercial outcome</dt>
+              <dd>Incumbent retained</dd>
+            </div>
+          </dl>
+        </div>
+        <MethodFigure type="waterfall" />
+      </div>
+      <div class="decision-strip">
+        <span>Decision rule</span>
+        <p>
+          Test rate reductions against mobilisation, travel, service levels and
+          rework before judging the offer.
+        </p>
+      </div>
+    </>
+  )}
+  {type === "governance" && (
+    <>
+      <div class="exhibit-split">
+        <div class="exhibit-reading">
+          <p class="exhibit-label">Assessment scope</p>
+          <p class="exhibit-value">$233M</p>
+          <p>Contractor programme spend assessed.</p>
+          <dl class="exhibit-facts">
+            <div>
+              <dt>Transaction base</dt>
+              <dd>Approximately 565,000 records</dd>
+            </div>
+            <div>
+              <dt>Rate-code coverage</dt>
+              <dd>482 codes</dd>
+            </div>
+            <div>
+              <dt>Outcome stage</dt>
+              <dd>Identified opportunity; implementation dependent</dd>
+            </div>
+          </dl>
+        </div>
+        <figure class="chart-sheet">
+          <figcaption>
+            Annual opportunity range <span>$M per year</span>
+          </figcaption>
+          <div
+            class="exhibit-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Annual opportunity range chart"
+          >
+            <svg
+              viewBox="0 0 660 270"
+              class="consulting-chart"
+              role="img"
+              aria-labelledby="opportunity-title opportunity-desc"
+            >
+              <title id="opportunity-title">Annual identified opportunity: $4.9M to $6M</title>
+              <desc id="opportunity-desc">
+                A horizontal scale from zero to seven million dollars per year.
+                The highlighted interval starts at 4.9 and ends at 6. This is an
+                assessment range, not realised savings or a statistical
+                confidence interval.
+              </desc>
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((v) => (
+                <g>
+                  <line
+                    class="chart-grid"
+                    x1={50 + v * 80}
+                    x2={50 + v * 80}
+                    y1="65"
+                    y2="191"
+                  />
+                  <text x={50 + v * 80} y="217" text-anchor="middle">
+                    {v}
+                  </text>
+                </g>
+              ))}
+              <line class="chart-baseline" x1="50" x2="610" y1="190" y2="190" />
+              <line
+                x1="442"
+                x2="530"
+                y1="123"
+                y2="123"
+                stroke="var(--color-accent)"
+                stroke-width="20"
+              />
+              <circle cx="442" cy="123" r="7" fill="var(--color-ink)" />
+              <circle cx="530" cy="123" r="7" fill="var(--color-ink)" />
+              <text class="chart-value" x="442" y="93" text-anchor="middle">
+                4.9
+              </text>
+              <text class="chart-value" x="530" y="93" text-anchor="middle">
+                6.0
+              </text>
+              <text x="50" y="251">
+                Scale begins at zero
+              </text>
+            </svg>
+          </div>
+          <p class="exhibit-note">
+            Reported assessment range against the selected rate reference. The
+            reference does not by itself establish an external market price.
+          </p>
+        </figure>
+      </div>
+      <div class="analysis-chain">
+        <div>
+          <span>01 / Make comparable</span>
+          <strong>Work definition + unit of measure</strong>
+        </div>
+        <div>
+          <span>02 / Size the exposure</span>
+          <strong>Rate variance + contractor volume</strong>
+        </div>
+        <div>
+          <span>03 / Change the contract</span>
+          <strong>Scope clarity + billing rules</strong>
+        </div>
+      </div>
+      <div class="decision-strip">
+        <span>Decision rule</span>
+        <p>
+          Validate like-for-like work and the rate reference before converting
+          an analytical opportunity into a negotiation target.
+        </p>
+      </div>
+    </>
+  )}
+  {type === "benchmark" && (
+    <>
+      <div class="exhibit-split">
+        <div class="exhibit-reading">
+          <p class="exhibit-label">Peer-set construction</p>
+          <p class="exhibit-value">27 projects</p>
+          <p>In the expanded comparison set.</p>
+          <dl class="exhibit-facts">
+            <div>
+              <dt>Coverage choice</dt>
+              <dd>Broaden geographic inclusion</dd>
+            </div>
+            <div>
+              <dt>Comparability controls</dt>
+              <dd>Time, location and specification</dd>
+            </div>
+            <div>
+              <dt>Decision use</dt>
+              <dd>Set defensible targets by cost system</dd>
+            </div>
+          </dl>
+        </div>
+        <figure class="chart-sheet">
+          <figcaption>
+            Peer coverage expanded by nine projects{" "}
+            <span>Number of peer projects</span>
+          </figcaption>
+          <div
+            class="exhibit-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Peer-set size comparison"
+          >
+            <svg
+              viewBox="0 0 660 280"
+              class="consulting-chart"
+              role="img"
+              aria-labelledby="peers-title peers-desc"
+            >
+              <title id="peers-title">Peer-set expansion from 18 to 27 projects</title>
+              <desc id="peers-desc">
+                Two horizontal bars start at zero. The initial regional set
+                contains 18 projects and the expanded geographic set contains 27
+                projects. This represents coverage, not project performance.
+              </desc>
+              {[0, 10, 20, 30].map((v) => (
+                <g>
+                  <line
+                    class="chart-grid"
+                    x1={190 + v * 14}
+                    x2={190 + v * 14}
+                    y1="48"
+                    y2="214"
+                  />
+                  <text x={190 + v * 14} y="241" text-anchor="middle">
+                    {v}
+                  </text>
+                </g>
+              ))}
+              <text x="172" y="90" text-anchor="end">
+                Initial regional set
+              </text>
+              <text x="172" y="178" text-anchor="end">
+                Expanded set
+              </text>
+              <rect
+                x="190"
+                y="64"
+                width="252"
+                height="40"
+                fill="var(--color-muted)"
+              />
+              <rect
+                x="190"
+                y="152"
+                width="378"
+                height="40"
+                fill="var(--color-ink)"
+              />
+              <text class="chart-value" x="456" y="90">
+                18
+              </text>
+              <text class="chart-value" x="582" y="178">
+                27
+              </text>
+              <line
+                class="chart-baseline"
+                x1="190"
+                x2="610"
+                y1="214"
+                y2="214"
+              />
+            </svg>
+          </div>
+          <p class="exhibit-note">
+            Counts reconstructed from the project snapshot. Broader coverage
+            increases the importance of normalising differences; it does not
+            prove comparability by itself.
+          </p>
+        </figure>
+      </div>
+      <div class="lens-comparison">
+        <div>
+          <span>Top-down / Project lens</span>
+          <h3>Where is the cost gap?</h3>
+          <p>Normalised peer comparisons by major cost system.</p>
+        </div>
+        <div>
+          <span>Bottom-up / Component lens</span>
+          <h3>What explains the gap?</h3>
+          <p>
+            Cost drivers, technical specifications and commercial assumptions.
+          </p>
+        </div>
+      </div>
+      <div class="decision-strip">
+        <span>Decision rule</span>
+        <p>
+          Triangulate both lenses before proposing a target. First-quartile cost
+          is not automatically achievable for every system.
+        </p>
+      </div>
+    </>
+  )}
+  {type === "sourcing" && (
+    <>
+      <div class="sourcing-exhibit">
+        <div class="sourcing-inputs">
+          <p class="exhibit-label">Category scope</p>
+          <div>EPC packages</div>
+          <div>Surface facilities</div>
+          <div>Drilling & completions</div>
+        </div>
+        <div class="sourcing-method">
+          <p class="exhibit-label">Common sourcing discipline</p>
+          <ol>
+            <li>
+              <strong>Aggregate demand</strong>
+              <span>Coordinate requirements across projects.</span>
+            </li>
+            <li>
+              <strong>Structure competition</strong>
+              <span>Qualify suppliers, run RFx and evaluate total cost.</span>
+            </li>
+            <li>
+              <strong>Negotiate and embed</strong>
+              <span>Award packages and transfer category playbooks.</span>
+            </li>
+          </ol>
+        </div>
+        <div class="sourcing-outcome">
+          <p class="exhibit-label">Reported portfolio outcome</p>
+          <p class="exhibit-value">~$4M</p>
+          <p>CapEx sourcing savings across the managed portfolio.</p>
+          <span class="exhibit-note">
+            No category-level savings allocation is implied.
+          </span>
+        </div>
+      </div>
+      <div
+        class="exhibit-scroll"
+        tabindex="0"
+        role="region"
+        aria-label="Sourcing decision criteria"
+      >
+        <table class="exhibit-table">
+          <caption>Evaluation lens carried through to award</caption>
+          <thead>
+            <tr>
+              <th scope="col">Cost</th>
+              <th scope="col">Quality</th>
+              <th scope="col">Schedule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Comparable offers and total-cost exposure</td>
+              <td>Technical compliance and supplier capability</td>
+              <td>Delivery commitments and project requirements</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="decision-strip">
+        <span>Decision rule</span>
+        <p>
+          Coordinate demand at category level while tailoring the commercial
+          approach to each supply market.
+        </p>
+      </div>
+      <p class="exhibit-note">
+        Method reconstruction from the engagement snapshot. Boxes represent
+        categories and decisions, not spend proportions.
+      </p>
+    </>
+  )}
+  {type === "capacity" && (
+    <>
+      <div class="exhibit-split capacity-split">
+        <div class="exhibit-reading">
+          <p class="exhibit-label">Diagnostic framework</p>
+          <h3>Separate utilisation from coverage.</h3>
+          <p>
+            Spend per person is one input. Interpret it alongside role scope,
+            workload and service expectations.
+          </p>
+          <dl class="exhibit-facts">
+            <div>
+              <dt>Compare consistently</dt>
+              <dd>Cluster roles by capability</dd>
+            </div>
+            <div>
+              <dt>Look beyond headcount</dt>
+              <dd>Check workload and functional ownership</dd>
+            </div>
+            <div>
+              <dt>Frame the decision</dt>
+              <dd>Capacity, role allocation or process design</dd>
+            </div>
+          </dl>
+        </div>
+        <figure class="capacity-map" tabindex="0" aria-label="Workload and available capacity decision map; scroll horizontally on small screens">
+          <figcaption>
+            Workload × available capacity <span>Qualitative decision map</span>
+          </figcaption>
+          <div class="capacity-axis">Available capacity: higher ↑</div>
+          <div class="quadrant-grid">
+            <div>
+              <span>Higher capacity / Lower workload</span>
+              <h3>Review role allocation</h3>
+              <p>Check scope, duplication and redeployment options.</p>
+            </div>
+            <div>
+              <span>Higher capacity / Higher workload</span>
+              <h3>Test service adequacy</h3>
+              <p>Check whether resources meet complexity and service needs.</p>
+            </div>
+            <div>
+              <span>Lower capacity / Lower workload</span>
+              <h3>Monitor coverage</h3>
+              <p>Check specialist capability and resilience.</p>
+            </div>
+            <div class="quadrant-focus">
+              <span>Lower capacity / Higher workload</span>
+              <h3>Investigate constraints</h3>
+              <p>Test capacity, prioritisation and process bottlenecks.</p>
+            </div>
+          </div>
+          <div class="capacity-axis axis-bottom">Workload: lower → higher</div>
+          <p class="exhibit-note">
+            Illustrative assessment logic. No client teams, peer scores or
+            measured staffing outcomes are plotted.
+          </p>
+        </figure>
+      </div>
+      <div class="decision-strip">
+        <span>Decision rule</span>
+        <p>
+          A lean organisation and an overloaded organisation can have the same
+          spend-per-FTE ratio. Test the context before recommending headcount
+          changes.
+        </p>
+      </div>
+    </>
+  )}
+  {type === "categories" && (
+    <>
+      <div
+        class="exhibit-scroll"
+        tabindex="0"
+        role="region"
+        aria-label="Lighting and E-STATCOM category comparison"
+      >
+        <table class="exhibit-table category-comparison">
+          <caption>
+            Category drivers translated into procurement questions
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Decision dimension</th>
+              <th scope="col">Lighting</th>
+              <th scope="col">E-STATCOM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Supply-market lens</th>
+              <td>OEM and distributor routes; supplier fragmentation</td>
+              <td>OEM capabilities; technology and system requirements</td>
+            </tr>
+            <tr>
+              <th scope="row">Cost-driver lens</th>
+              <td>Materials, including copper; fixture specification</td>
+              <td>
+                Power electronics, engineered equipment and system content
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Lead-time lens</th>
+              <td>Stocked versus non-stocked fixtures; replenishment</td>
+              <td>
+                Coupling transformers, power electronics and manufacturing
+                capacity
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Commercial question</th>
+              <td>
+                Which supply route and stocking strategy fit the requirement?
+              </td>
+              <td>
+                Which contracting structure and performance guarantees manage
+                delivery risk?
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lens-comparison">
+        <div>
+          <span>Research input</span>
+          <h3>Markets + internal spend</h3>
+          <p>Supplier landscape, cost exposure and delivery constraints.</p>
+        </div>
+        <div>
+          <span>Decision-support output</span>
+          <h3>Two executive reports</h3>
+          <p>A comparable structure with category-specific implications.</p>
+        </div>
+      </div>
+      <div class="decision-strip">
+        <span>Decision rule</span>
+        <p>
+          Use consistent research questions, then let each market's cost and
+          supply drivers determine the sourcing implications.
+        </p>
+      </div>
+      <p class="exhibit-note">
+        Reconstructed from the category-report snapshot. This shows the
+        engagement's analytical framework, not a current market forecast.
+      </p>
+    </>
+  )}
+</section>

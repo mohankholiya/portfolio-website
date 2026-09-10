@@ -1,7 +1,7 @@
 ---
 import CaseStudyLayout from "../layouts/CaseStudyLayout.astro";
 import { caseStudies, copy } from "../content/site";
-import MethodFigure from "./MethodFigure.astro";
+import CaseExhibit from "./CaseExhibit.astro";
 import Arrow from "./Arrow.astro";
 interface Props {
   id: string;
@@ -39,9 +39,13 @@ const c = copy.detail;
       </div>
     </div>
   </section>
+  <div class="container exhibit-container">
+    <CaseExhibit type={cs.chart} />
+  </div>
   <div class="container detail-grid">
     <nav class="detail-toc" aria-label="On this page">
       <p class="eyebrow">Inside the case</p>
+      <a href="#analysis-exhibit">Analytical exhibit</a>
       <a href="#challenge">{c.challenge}</a>
       <a href="#contribution">{c.role}</a>
       <a href="#approach">{c.approach}</a>
@@ -72,10 +76,6 @@ const c = copy.detail;
       <section id="judgment" class="detail-section judgment">
         <h2>{c.judgment}</h2>
         <p>{cs.judgment}</p>
-      </section>
-      <section class="detail-section">
-        <h2>{c.method}</h2>
-        <MethodFigure type={cs.chart} />
       </section>
       <section id="results" class="detail-section">
         <h2>{c.results}</h2>

@@ -4,16 +4,22 @@ Source for [mohankholiya.co.in](https://mohankholiya.co.in), supporting senior-r
 
 ## Stack and content
 
-Astro 6, TypeScript and Tailwind 4. Static output, native browser scripts, self-hosted Archivo and Source Sans 3, and an optimised responsive portrait. No client framework, tracking SDK or page loader.
+Astro 6, TypeScript and Tailwind 4. Static output, native browser scripts, self-hosted Inter, and an optimised responsive portrait. No client framework, tracking SDK or page loader.
 
 - `src/content/site.ts`: positioning, services, case studies, career history and credentials.
-- Homepage: two audience routes, selected cases, services, experience, two resumes, about and contact.
+- Homepage: two audience routes, About directly after the introduction, selected cases, services, experience, two resumes, credentials and contact.
 - `/case-studies/`: all six studies with sector filters. Existing detail URLs are preserved.
 - `/privacy/`, `/sitemap.xml`, `/robots.txt` and a custom 404.
 - `public/resume.pdf`: consulting resume; original download URL retained.
 - `public/Mohan_Kholiya_Industry_Resume.pdf`: industry resume.
 
 Outcomes distinguish contracted optimisation, sourcing savings, identified opportunity and decision support. Do not aggregate different currencies, portfolio scopes or opportunity stages. The BT waterfall is synthetic, not an actual contract baseline. Consulting end-clients are anonymised.
+
+## Portfolio presentation and exhibits
+
+The name-based header and single-font typography support a restrained professional presentation. The early introduction and visible project evidence adapt structural patterns from [Brittany Chiang](https://brittanychiang.com/) and [Tobias van Schneider](https://vanschneider.com/); their code, artwork and personal branding are not copied.
+
+Each case opens with an analytical exhibit in `CaseExhibit.astro`: a total-cost bridge, annual-opportunity range, category-sourcing map, peer-set comparison, workload/capacity decision matrix or category comparison. Numeric charts have explicit units and zero baselines. The capacity matrix is qualitative; the BT bridge uses labelled synthetic data. The capital peer counts of 18 and 27 are sourced from the uploaded project snapshot. No staffing performance or category-level savings breakdown is invented.
 
 ## Development and checks
 

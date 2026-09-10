@@ -74,7 +74,7 @@ for path, page in pages.items():
 
 for name in ('resume.pdf', 'Mohan_Kholiya_Industry_Resume.pdf'):
     assert (ROOT / name).read_bytes().startswith(b'%PDF-'), f'Invalid PDF: {name}'
-for name in ('archivo-latin.woff2', 'source-sans-latin.woff2'):
+for name in ('inter-latin.woff2',):
     assert (ROOT / 'fonts' / name).read_bytes().startswith(b'wOF2'), f'Invalid font: {name}'
 sitemap = ET.parse(ROOT / 'sitemap.xml')
 assert len(sitemap.getroot()) == 9
