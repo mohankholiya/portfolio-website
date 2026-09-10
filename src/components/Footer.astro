@@ -1,41 +1,20 @@
 ---
-import { siteConfig, navLinks } from "../content/site";
-
-const year = new Date().getFullYear();
+import { siteConfig, copy } from "../content/site";
 ---
 
-<footer aria-label="Site footer" style="background:var(--color-surface-tint); position:relative; padding:40px 24px; border-top:1px solid var(--color-hairline);">
-  <div class="container">
-    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
-
-      <!-- Left: brand -->
-      <div style="display:flex; align-items:center; gap:10px;">
-        <span aria-hidden="true" style="
-          width:26px; height:26px;
-          background:var(--color-ink); color:var(--color-on-ink);
-          border-radius:var(--radius-sm);
-          display:flex; align-items:center; justify-content:center;
-          font-family:var(--font-display); font-size:11px; font-weight:700; letter-spacing:-0.5px;
-          flex-shrink:0;
-        ">MK</span>
-        <span class="t-caption-mono" style="color:var(--color-faint);">
-          &copy; {year} Mohan Kholiya &middot; {siteConfig.location}
-        </span>
-      </div>
-
-      <!-- Center: nav links -->
-      <nav aria-label="Footer navigation" style="display:flex; flex-wrap:wrap; gap:2px;">
-        {navLinks.map(link => (
-          <a href={link.href} class="footer-link">{link.label}</a>
-        ))}
-      </nav>
-
-      <!-- Right: external links -->
-      <div style="display:flex; align-items:center; gap:16px;">
-        <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="footer-ext-link">LinkedIn &nearr;</a>
-        <a href={siteConfig.resumeUrl} download={siteConfig.resumeFileName} class="footer-ext-link">Résumé &darr;</a>
-      </div>
-
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="brand" href="/">
+      {siteConfig.name}
+      <span aria-hidden="true">.</span>
+    </a>
+    <p>{copy.footer.tagline}</p>
+    <div>
+      <a href="/privacy/">{copy.footer.privacy}</a>
+      <a href="#top">{copy.footer.back} ↑</a>
     </div>
+    <span>
+      © {new Date().getFullYear()} {copy.footer.copyright}
+    </span>
   </div>
 </footer>

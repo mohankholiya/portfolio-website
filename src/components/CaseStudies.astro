@@ -1,127 +1,33 @@
 ---
-import { caseStudies } from "../content/site";
+import { caseStudies, copy } from "../content/site";
 import CaseStudyCard from "./CaseStudyCard.astro";
-
-const sectors = [
-  { key: "all",       label: "All" },
-  { key: "energy",    label: "Energy & O&G" },
-  { key: "utilities", label: "Utilities" },
-  { key: "telecom",   label: "Telecom" },
-];
+import Arrow from "./Arrow.astro";
 ---
 
 <section
   id="case-studies"
-  aria-labelledby="case-studies-heading"
-  class="section"
-  style="background:var(--color-surface-tint); position:relative;"
+  class="section section-tint"
+  aria-labelledby="work-heading"
 >
   <div class="container">
-
-    <!-- Header -->
-    <div class="reveal" style="max-width:640px; margin-bottom:40px;">
-      <div class="section-eyebrow">
-        <p class="t-eyebrow" style="margin:0;">Selected Case Studies</p>
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{copy.cases.eyebrow}</p>
+        <h2 id="work-heading">{copy.cases.heading}</h2>
       </div>
-
-      <h2 id="case-studies-heading" class="t-display-lg" style="margin:0 0 14px; animation-delay:0.07s;">
-        Outcomes at scale across complex supply chains.
-      </h2>
-
-      <p class="t-body-md" style="margin:0; animation-delay:0.12s;">
-        Six engagements across energy, utilities, and telecom. Client identities anonymised;
-        every metric reflects a programme outcome confirmed at close.
-      </p>
+      <p>{copy.cases.description}</p>
     </div>
-
-    <!-- Filter tabs -->
-    <div
-      id="filter-row"
-      role="group"
-      aria-label="Filter case studies by sector"
-      class="reveal"
-      style="
-        display:inline-flex; flex-wrap:wrap; gap:2px;
-        margin-bottom:28px;
-        padding:4px;
-        background: var(--color-paper);
-        border-radius: var(--radius-pill);
-        box-shadow: inset 0 0 0 1px var(--color-hairline);
-        animation-delay:0.16s;
-      "
-    >
-      {sectors.map(s => (
-        <button
-          class={`filter-tab ${s.key === 'all' ? 'active' : ''}`}
-          data-filter={s.key}
-          aria-pressed={s.key === 'all' ? 'true' : 'false'}
-        >
-          {s.label}
-        </button>
+    <div class="case-grid">
+      {caseStudies.slice(0, 3).map((cs, index) => (
+        <CaseStudyCard {...cs} index={index} />
       ))}
     </div>
-
-    <!-- Card grid — each card reveals individually with a small stagger -->
-    <div
-      id="case-grid"
-      style="
-        display:grid;
-        grid-template-columns:repeat(auto-fill, minmax(min(100%, 350px), 1fr));
-        gap:18px;
-      "
-    >
-      {caseStudies.map((cs, i) => (
-        <div
-          class="card-wrapper reveal"
-          data-sector={cs.sector}
-          style={`animation-delay:${Math.min(i * 0.06, 0.24)}s;`}
-        >
-          <CaseStudyCard {...cs} index={i + 1} />
-        </div>
-      ))}
+    <div class="section-end">
+      <span>Consulting & in-house engagements</span>
+      <a href="/case-studies/" class="text-link">
+        {copy.cases.more}
+        <Arrow />
+      </a>
     </div>
-
-    <!-- No results fallback -->
-    <p
-      id="no-results"
-      class="t-body-md"
-      style="display:none; color:var(--color-muted); text-align:center; padding:48px 0;"
-    >
-      No case studies in this sector yet.
-    </p>
-
   </div>
 </section>
-
-<script>
-  // Module scripts only evaluate once, so binding at top level wouldn't
-  // rebind to the fresh markup a view-transition swap inserts on return to
-  // "/". astro:page-load fires on initial load AND after every transition.
-  document.addEventListener('astro:page-load', () => {
-    const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-    const wrappers   = document.querySelectorAll<HTMLElement>('.card-wrapper[data-sector]');
-    const noResults  = document.getElementById('no-results');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter ?? 'all';
-
-        filterBtns.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-pressed', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-pressed', 'true');
-
-        let visible = 0;
-        wrappers.forEach(w => {
-          const match = filter === 'all' || w.dataset.sector === filter;
-          w.style.display = match ? '' : 'none';
-          if (match) visible++;
-        });
-
-        if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
-      });
-    });
-  });
-</script>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { privacyCopy as c } from "../content/site";
+---
+
+<BaseLayout
+  title="Enquiry Privacy | Mohan Kholiya"
+  description="How portfolio enquiries are handled."
+>
+  <Nav />
+  <main id="main-content" class="container">
+    <article class="privacy-body">
+      <h1>{c.title}</h1>
+      <p>{c.intro}</p>
+      {c.sections.map((s) => (
+        <section>
+          <h2>{s.heading}</h2>
+          <p>{s.body}</p>
+        </section>
+      ))}
+      <p>
+        <a
+          href="https://web3forms.com/privacy"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {c.provider}
+        </a>
+      </p>
+      <p>{c.updated}</p>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

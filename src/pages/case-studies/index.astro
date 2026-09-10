@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import CaseStudyCard from "../../components/CaseStudyCard.astro";
+import { caseStudies, copy } from "../../content/site";
+---
+
+<BaseLayout
+  title="Procurement & Supply Chain Case Studies | Mohan Kholiya"
+  description="Explore six procurement case studies spanning contract optimisation, spend governance, capital sourcing, benchmarking and category intelligence."
+>
+  <Nav />
+  <main id="main-content">
+    <section class="index-hero">
+      <div class="container">
+        <p class="eyebrow">{copy.cases.all}</p>
+        <h1>{copy.cases.heading}</h1>
+        <p>{copy.cases.description}</p>
+      </div>
+    </section>
+    <section class="work-index" aria-label="Case studies">
+      <div class="container">
+        <div
+          class="filters"
+          role="group"
+          aria-label="Filter case studies by sector"
+        >
+          {copy.cases.filters.map((f, i) => (
+            <button data-filter={f.key} aria-pressed={i === 0}>
+              {f.label}
+            </button>
+          ))}
+        </div>
+        <div class="case-grid case-index-grid">
+          {caseStudies.map((cs, index) => (
+            <div data-sector={cs.sector}>
+              <CaseStudyCard {...cs} index={index} />
+            </div>
+          ))}
+        </div>
+        <p class="filter-summary" role="status" aria-live="polite">
+          Showing all six case studies.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const cards = document.querySelectorAll<HTMLElement>(
+    ".case-index-grid>[data-sector]",
+  );
+  const status = document.querySelector(".filter-summary");
+  buttons.forEach((button) =>
+    button.addEventListener("click", () => {
+      buttons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b === button)),
+      );
+      let count = 0;
+      cards.forEach((card) => {
+        const sector = card.dataset.sector;
+        const show =
+          button.dataset.filter === "all" || sector === button.dataset.filter;
+        card.hidden = !show;
+        if (show) count++;
+      });
+      if (status)
+        status.textContent = `Showing ${count} case ${count === 1 ? "study" : "studies"}.`;
+    }),
+  );
+</script>

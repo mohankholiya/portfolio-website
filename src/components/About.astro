@@ -1,137 +1,72 @@
 ---
 import { Picture } from "astro:assets";
-import { siteConfig } from "../content/site";
 import headshot from "../assets/headshot.jpeg";
+import { siteConfig, copy, credentials } from "../content/site";
+import Arrow from "./Arrow.astro";
 ---
 
-<section
-  id="about"
-  aria-labelledby="about-heading"
-  class="section"
-  style="background:var(--color-paper); position:relative;"
->
+<section id="about" class="section" aria-labelledby="about-heading">
   <div class="container">
-
-    <!-- Section eyebrow -->
-    <div class="section-eyebrow reveal">
-      <p class="t-eyebrow" style="margin:0;">About</p>
-    </div>
-
-    <!-- Two-column layout -->
-    <div class="about-grid" style="
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:40px;
-      align-items:start;
-    ">
-
-      <!-- Left: headshot -->
-      <div class="reveal headshot-col" style="animation-delay:0.05s;">
-        <div style="position:relative; display:inline-block; max-width:280px; width:100%;">
-          <div style="
-            border:1px solid var(--color-hairline);
-            border-radius:var(--radius-lg);
-            padding:12px;
-            background:var(--color-surface);
-          ">
-            <Picture
-              src={headshot}
-              alt="Mohan Kholiya — Procurement &amp; Supply Chain Leader"
-              width={560}
-              height={640}
-              widths={[280, 560]}
-              sizes="(min-width: 760px) 256px, 100vw"
-              formats={["avif", "webp"]}
-              loading="lazy"
-              decoding="async"
-              style="width:100%; height:auto; aspect-ratio:7/8; object-fit:cover; display:block; border-radius:calc(var(--radius-lg) - 6px);"
-            />
-          </div>
-          <!-- Mono caption strip -->
-          <div style="
-            display:flex; align-items:center; justify-content:space-between;
-            margin-top:14px; padding:0 2px;
-          ">
-            <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.1em;">{siteConfig.location}</span>
-            <span class="t-caption-mono" style="color:var(--color-accent-text);">16+ years</span>
-          </div>
-        </div>
+    <div class="about-grid">
+      <div class="about-portrait">
+        <Picture
+          src={headshot}
+          alt="Mohan Kholiya — Procurement &amp; Supply Chain Leader"
+          width={480}
+          height={480}
+          widths={[240, 480]}
+          sizes="240px"
+          formats={["avif", "webp"]}
+          loading="lazy"
+        />
+        <p class="portrait-name">{siteConfig.name}</p>
+        <p>{siteConfig.location}</p>
+        <a
+          class="text-link"
+          href={siteConfig.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Connect on LinkedIn
+          <Arrow />
+        </a>
       </div>
-
-      <!-- Right: copy -->
-      <div>
-        <h2 id="about-heading" class="t-display-lg reveal" style="margin:0 0 20px; animation-delay:0.07s;">
-          Procurement leader with a track record in energy, utilities, and telecom.
+      <div class="about-copy">
+        <p class="eyebrow">{copy.about.eyebrow}</p>
+        <h2 class="multiline" id="about-heading">
+          {copy.about.heading}
         </h2>
-
-        <p class="t-body-lg reveal" style="margin:0 0 16px; animation-delay:0.12s;">
-          16+ years at the intersection of strategic procurement and operational delivery &mdash;
-          first in global management consulting (<span style="color:var(--color-ink); font-weight:600;">Wood Mackenzie</span>, <span style="color:var(--color-ink); font-weight:600;">Accenture</span>),
-          then in senior in-house category roles across major energy operators, utilities, and telecom
-          (<span style="color:var(--color-ink); font-weight:600;">BT Group</span>, <span style="color:var(--color-ink); font-weight:600;">Jindal Drilling</span>).
-        </p>
-
-        <p class="t-body-md reveal" style="margin:0 0 28px; animation-delay:0.17s;">
-          My work sits at the point where supplier strategy meets real business outcomes: cost-out
-          programmes that hold, supplier bases that perform under pressure, and procurement functions
-          rebuilt for scale &mdash; across upstream O&amp;G and E&amp;P, regulated utilities, and tier-1
-          telecom, with global supplier-base reach across the Middle East, North America, the UK, and Asia.
-        </p>
-
-        <!-- Key points -->
-        <ul class="reveal about-points" style="
-          list-style:none; margin:0 0 28px; padding:0;
-          display:grid; grid-template-columns:1fr; gap:12px;
-          animation-delay:0.22s;
-        ">
-          {[
-            "Global consulting advisory across E&P, utilities, and telecom",
-            "In-house category ownership: drilling, completion, capex, indirect spend",
-            "Capital benchmarking against 27-peer sets; should-cost and TCO discipline",
-            "Available for senior leadership roles and consulting engagements globally",
-          ].map(point => (
-            <li style="display:flex; gap:10px; align-items:flex-start;">
-              <span aria-hidden="true" style="color:var(--color-accent); flex-shrink:0; margin-top:6px;">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="display:block;">
-                  <path d="M1 5.5l2.5 2.5L9 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="t-body-sm" style="color:var(--color-body);">{point}</span>
-            </li>
-          ))}
-        </ul>
-
-        <!-- Availability + quick links -->
-        <div class="reveal" style="
-          display:flex; align-items:center; gap:20px; flex-wrap:wrap;
-          padding-top:24px; border-top:1px solid var(--color-hairline-soft);
-          animation-delay:0.27s;
-        ">
-          <span style="display:inline-flex; align-items:center; gap:8px;">
-            <span aria-hidden="true" style="width:7px; height:7px; border-radius:50%; background:#2F7D5B; flex-shrink:0;"></span>
-            <span class="t-body-sm-strong" style="color:var(--color-ink);">Open to senior leadership &amp; consulting roles</span>
-          </span>
-          <div style="display:flex; gap:8px; margin-left:auto;">
-            <a href={`mailto:${siteConfig.email}`} class="btn-secondary-sm t-button-sm">Email</a>
-            <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="btn-secondary-sm t-button-sm">LinkedIn</a>
-            <a href={siteConfig.resumeUrl} download class="btn-secondary-sm t-button-sm">Résumé</a>
-          </div>
+        {copy.about.paragraphs.map((p) => (
+          <p>{p}</p>
+        ))}
+        <div class="tools-note">
+          <h3>{copy.about.toolsTitle}</h3>
+          <p>{copy.about.toolsBody}</p>
+          <a
+            class="text-link"
+            href={`mailto:${siteConfig.email}?subject=Procurement%20tools%20enquiry`}
+          >
+            {copy.about.toolsCta}
+            <Arrow />
+          </a>
         </div>
       </div>
-
+    </div>
+    <div class="credentials" id="credentials">
+      <h3>{copy.about.credentialsTitle}</h3>
+      <div class="credentials-grid">
+        {credentials.map((c) => (
+          <div>
+            <h4>{c.category}</h4>
+            {c.entries.map((e) => (
+              <div class="credential-item">
+                <p class="credential-title">{e.title}</p>
+                <p>{e.body}</p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  @media (min-width: 760px) {
-    .about-grid {
-      grid-template-columns: 280px 1fr !important;
-      gap: 56px !important;
-    }
-    .headshot-col { position: sticky; top: 88px; }
-  }
-  @media (min-width: 760px) {
-    .about-points { grid-template-columns: 1fr 1fr !important; }
-  }
-</style>

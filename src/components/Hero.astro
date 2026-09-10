@@ -1,116 +1,113 @@
 ---
-import { siteConfig, heroMetrics } from "../content/site";
-
-const previousFirms = ["Wood Mackenzie", "Accenture", "BT Group", "Jindal Drilling"];
+import { siteConfig, copy } from "../content/site";
+import Arrow from "./Arrow.astro";
 ---
 
-<section
-  id="hero"
-  aria-labelledby="hero-headline"
-  style="
-    position: relative;
-    background: var(--color-paper);
-    padding: 150px 24px 72px;
-    overflow: hidden;
-  "
->
-  <div class="container" style="position:relative; z-index:2;">
-
-    <!-- Eyebrow row -->
-    <div class="hero-in" style="--d:0s; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:34px;">
-      <span class="t-eyebrow">Procurement &amp; Supply Chain</span>
-      <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.12em;">{siteConfig.location}</span>
-    </div>
-
-    <!-- Headline -->
-    <h1
-      id="hero-headline"
-      class="t-display-xl hero-in"
-      style="max-width:900px; margin:0 0 28px; --d:0.08s;"
-    >
-      Category strategy, converted to <span style="color:var(--color-accent);">cost-out</span> and resilience.
-    </h1>
-
-    <!-- Lead -->
-    <p
-      class="t-body-lg hero-in"
-      style="max-width:560px; margin:0 0 36px; --d:0.16s;"
-    >
-      {siteConfig.positioning}
-    </p>
-
-    <!-- CTAs -->
-    <div
-      class="hero-in"
-      style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:52px; --d:0.24s;"
-    >
-      <a href="#case-studies" class="btn-primary t-button-lg">
-        View track record
-      </a>
-      <a href="#contact" class="btn-secondary t-button-lg">
-        Discuss an engagement
-      </a>
-    </div>
-
-    <!-- Signature: board-pack metrics strip -->
-    <div class="hero-in metrics-strip" style="--d:0.32s;" role="list" aria-label="Headline metrics">
-      {heroMetrics.map((m) => (
-        <div class="metric-cell" role="listitem">
-          <span class="t-caption-mono metric-cell__label">{m.label}</span>
-          <span class="metric-cell__value">{m.value}</span>
+<section class="hero" aria-labelledby="hero-headline">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">{copy.hero.eyebrow}</p>
+        <h1 id="hero-headline">{copy.hero.intro}</h1>
+        <p class="hero-tagline">
+          {copy.hero.first}
+          <br />
+          <span>{copy.hero.second}</span>
+        </p>
+        <p class="hero-intro">{siteConfig.positioning}</p>
+        <div class="button-row">
+          <a class="button" href="#experience">
+            {copy.hero.primary}
+            <Arrow />
+          </a>
+          <a class="text-link" href="#services">
+            {copy.hero.secondary}
+            <Arrow />
+          </a>
         </div>
-      ))}
+        <p class="hero-sectors">{copy.hero.footnote}</p>
+      </div>
+      <aside class="proof-panel" aria-label="Explore experience by audience">
+        <div class="proof-top">
+          <span class="eyebrow">{copy.proof.eyebrow}</span>
+          <span aria-hidden="true" class="panel-monogram">
+            MK
+          </span>
+        </div>
+        <div
+          class="audience-switch"
+          role="group"
+          aria-label="Choose your interest"
+        >
+          {copy.proof.panels.map((panel, i) => (
+            <button
+              type="button"
+              data-audience={panel.id}
+              aria-pressed={i === 0}
+              aria-controls={`proof-${panel.id}`}
+            >
+              {copy.proof.labels[i]}
+            </button>
+          ))}
+        </div>
+        {copy.proof.panels.map((panel, i) => (
+          <div
+            class="proof-content"
+            id={`proof-${panel.id}`}
+            data-proof-panel={panel.id}
+            hidden={i !== 0}
+          >
+            <h2>{panel.heading}</h2>
+            <p>{panel.description}</p>
+            <div class="proof-facts">
+              {panel.facts.map((f) => (
+                <a href={f.href}>
+                  <strong>{f.value}</strong>
+                  <span>{f.label}</span>
+                  <Arrow />
+                </a>
+              ))}
+            </div>
+            <a class="proof-cta" href={panel.href}>
+              {panel.cta}
+              <Arrow />
+            </a>
+          </div>
+        ))}
+        <noscript>
+          <style>
+            .proof-content[hidden] {
+              display: block !important;
+            }
+            .audience-switch {
+              display: none !important;
+            }
+          </style>
+        </noscript>
+      </aside>
     </div>
-
-    <!-- Previously credibility line -->
-    <div class="hero-in" style="--d:0.4s; display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:30px;">
-      <span class="t-caption-mono" style="text-transform:uppercase; letter-spacing:0.12em;">Previously</span>
-      <span aria-hidden="true" style="width:24px; height:1px; background:var(--color-hairline);"></span>
-      <div style="display:flex; flex-wrap:wrap; gap:6px 14px;">
-        {previousFirms.map(firm => (
-          <span style="font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--color-muted);">{firm}</span>
+    <div class="firm-strip">
+      <span class="eyebrow">Experience across</span>
+      <div>
+        {copy.firms.map((f) => (
+          <span>{f}</span>
         ))}
       </div>
     </div>
-
   </div>
 </section>
-
-<style>
-  .metrics-strip {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    background: var(--color-surface);
-    border: 1px solid var(--color-hairline);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-  .metric-cell {
-    padding: 22px 24px;
-    border-right: 1px solid var(--color-hairline-soft);
-    border-bottom: 1px solid var(--color-hairline-soft);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .metric-cell:nth-child(2n)   { border-right: none; }
-  .metric-cell:nth-last-child(-n+2) { border-bottom: none; }
-  .metric-cell__label {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-  .metric-cell__value {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(26px, 3vw, 34px);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--color-ink);
-  }
-  @media (min-width: 760px) {
-    .metrics-strip { grid-template-columns: repeat(4, 1fr); }
-    .metric-cell { border-bottom: none; }
-    .metric-cell:nth-child(2n) { border-right: 1px solid var(--color-hairline-soft); }
-    .metric-cell:nth-child(4n) { border-right: none; }
-  }
-</style>
+<script>
+  const buttons =
+    document.querySelectorAll<HTMLButtonElement>("[data-audience]");
+  const panels = document.querySelectorAll<HTMLElement>("[data-proof-panel]");
+  buttons.forEach((b) =>
+    b.addEventListener("click", () => {
+      buttons.forEach((other) =>
+        other.setAttribute("aria-pressed", String(other === b)),
+      );
+      panels.forEach(
+        (p) => (p.hidden = p.dataset.proofPanel !== b.dataset.audience),
+      );
+    }),
+  );
+</script>

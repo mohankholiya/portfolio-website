@@ -1,214 +1,61 @@
 ---
 import { siteConfig, navLinks } from "../content/site";
+import Arrow from "./Arrow.astro";
 ---
 
-<nav id="site-nav" aria-label="Main navigation">
-  <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:60px; padding:0 24px; position:relative; z-index:100;">
-
-    <!-- Logo -->
-    <a href="/" aria-label="Mohan Kholiya — home" style="display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0;">
-      <span class="nav-logo-mark" aria-hidden="true"></span>
-      <span class="nav-name" style="font-family:var(--font-display); font-weight:700; font-size:14px; letter-spacing:-0.01em; color:var(--color-ink);">Mohan Kholiya</span>
+<header class="site-header" id="top">
+  <nav class="container nav-bar" aria-label="Main navigation">
+    <a class="brand" href="/" aria-label="Mohan Kholiya — home">
+      <span class="brand-mark" aria-hidden="true">
+        MK<span>.</span>
+      </span>
+      <span class="brand-name">{siteConfig.name}</span>
     </a>
-
-    <!-- Desktop nav links -->
-    <ul class="nav-links" style="
-      display:flex; align-items:center; gap:2px;
-      list-style:none; margin:0; padding:0;
-    ">
-      {navLinks.map(link => (
-        <li>
-          <a
-            href={link.href}
-            class="nav-link"
-            data-nav-href={link.href}
-          >
-            {link.label}
-          </a>
-        </li>
+    <div class="desktop-nav">
+      {navLinks.map((l) => (
+        <a href={l.href}>{l.label}</a>
       ))}
-    </ul>
-
-    <!-- Desktop CTAs -->
-    <div class="nav-ctas" style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
-      <a
-        href={siteConfig.resumeUrl}
-        download={siteConfig.resumeFileName}
-        class="btn-secondary-sm t-button-sm"
-        aria-label="Download résumé PDF"
-      >
-        Résumé
-      </a>
-      <a
-        href={`mailto:${siteConfig.email}`}
-        class="btn-primary-sm t-button-sm"
-      >
-        Get in touch
-      </a>
     </div>
-
-    <!-- Hamburger (mobile only) -->
-    <button
-      id="nav-hamburger"
-      class="hamburger"
-      aria-label="Open navigation menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path id="menu-icon" d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Mobile overlay -->
-  <div
-    id="mobile-menu"
-    aria-label="Mobile navigation"
-    style="
-      display:none;
-      position:fixed; top:0; left:0; right:0; height:100dvh;
-      background:var(--color-paper);
-      z-index:99;
-      padding:76px 24px 32px;
-      flex-direction:column;
-      gap:2px;
-      overflow-y:auto;
-    "
-  >
-    {navLinks.map((link, i) => (
-      <a
-        href={link.href}
-        class="mobile-nav-link"
-        style="
-          color:var(--color-ink);
-          text-decoration:none;
-          padding:14px 0;
-          border-bottom:1px solid var(--color-hairline-soft);
-          display:flex; align-items:baseline; gap:14px;
-        "
-      >
-        <span style="font-family:var(--font-mono); font-size:11px; color:var(--color-faint); letter-spacing:0.08em;">0{i + 1}</span>
-        <span style="font-family:var(--font-display); font-weight:600; font-size:20px;">{link.label}</span>
-      </a>
-    ))}
-    <div style="display:flex; flex-direction:column; gap:8px; margin-top:24px;">
-      <a href={`mailto:${siteConfig.email}`} class="btn-primary t-button-lg" style="justify-content:center;">Get in touch</a>
-      <a href={siteConfig.resumeUrl} download={siteConfig.resumeFileName} class="btn-secondary t-button-lg" style="justify-content:center;">Download résumé</a>
-    </div>
-  </div>
-</nav>
-
-<style>
-  .nav-logo-mark {
-    width: 30px; height: 30px;
-    background: var(--color-ink);
-    color: var(--color-on-ink);
-    border-radius: var(--radius-sm);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display);
-    font-size: 12px; font-weight: 700; letter-spacing: -0.5px;
-    flex-shrink: 0;
-  }
-  .nav-logo-mark::before { content: "MK"; }
-  .nav-link {
-    color: var(--color-muted);
-    text-decoration: none;
-    padding: 6px 11px;
-    border-radius: var(--radius-full);
-    font-family: var(--font-display);
-    font-size: 13px; font-weight: 600;
-    letter-spacing: -0.005em;
-    transition: color 0.15s ease, background 0.15s ease;
-    display: block;
-  }
-  .nav-link:hover { color: var(--color-ink); background: var(--color-surface-tint); }
-  .nav-link.active { color: var(--color-ink); }
-  .nav-link.active::after {
-    content: '';
-    display: block;
-    width: 16px; height: 2px;
-    background: var(--color-accent);
-    margin: 2px auto 0;
-    border-radius: 1px;
-  }
-  .hamburger {
-    display: none;
-    background: none; border: none; cursor: pointer;
-    padding: 8px; color: var(--color-ink);
-    border-radius: var(--radius-sm);
-  }
-  @media (max-width: 900px) {
-    .nav-links  { display: none !important; }
-    .nav-ctas   { display: none !important; }
-    .nav-name   { display: none !important; }
-    .hamburger  { display: flex !important; }
-  }
-</style>
-
+    <a class="button button-small nav-contact" href="/#contact">
+      Let's talk <Arrow />
+    </a>
+    <details class="mobile-nav">
+      <summary aria-label="Navigation menu">
+        <span>Menu</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M3 6h14M3 13h14" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </summary>
+      <div class="mobile-links">
+        {navLinks.map((l) => (
+          <a href={l.href}>{l.label}</a>
+        ))}
+        <a href="/#contact">Contact Mohan</a>
+        <a href="/#resumes">Download resumes</a>
+      </div>
+    </details>
+  </nav>
+</header>
 <script>
-  // This module only ever evaluates once, so its top-level code wouldn't
-  // re-bind to the fresh Nav markup that a view-transition swap inserts when
-  // returning to "/" from a case study. astro:page-load fires on the initial
-  // load AND after every transition, so init from there instead.
-  document.addEventListener('astro:page-load', () => {
-    // Scroll shadow
-    const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll', () => {
-      nav?.classList.toggle('scrolled', window.scrollY > 8);
-    }, { passive: true });
-
-    // Mobile menu
-    const hamburger = document.getElementById('nav-hamburger') as HTMLButtonElement | null;
-    const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
-    const menuIcon = document.getElementById('menu-icon') as SVGPathElement | null;
-
-    const HAMBURGER_D = 'M2 5h16M2 10h16M2 15h16';
-    const CLOSE_D     = 'M4 4l12 12M4 16L16 4';
-
-    let menuOpen = false;
-
-    function openMenu() {
-      menuOpen = true;
-      hamburger?.setAttribute('aria-expanded', 'true');
-      hamburger?.setAttribute('aria-label', 'Close navigation menu');
-      menuIcon?.setAttribute('d', CLOSE_D);
-      if (mobileMenu) mobileMenu.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+  const menu = document.querySelector<HTMLDetailsElement>(".mobile-nav");
+  menu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      menu.open = false;
+    }),
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu?.open) {
+      menu.open = false;
+      menu.querySelector("summary")?.focus();
     }
-
-    function closeMenu() {
-      menuOpen = false;
-      hamburger?.setAttribute('aria-expanded', 'false');
-      hamburger?.setAttribute('aria-label', 'Open navigation menu');
-      menuIcon?.setAttribute('d', HAMBURGER_D);
-      if (mobileMenu) mobileMenu.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    hamburger?.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
-    mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-
-    // Scrollspy active indicator
-    const navLinks = document.querySelectorAll<HTMLElement>('.nav-link[data-nav-href]');
-    const sectionIds = ['hero', ...Array.from(navLinks).map(l => l.dataset.navHref!.slice(1))];
-    const sections = sectionIds
-      .map(id => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
-
-    const spy = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = '#' + entry.target.id;
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.dataset.navHref === id);
-          });
-        });
-      },
-      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
-    );
-
-    sections.forEach(s => spy.observe(s));
+  });
+  document.addEventListener("click", (e) => {
+    if (menu?.open && !menu.contains(e.target as Node)) menu.open = false;
   });
 </script>

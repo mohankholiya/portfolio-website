@@ -2,52 +2,23 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
 import CaseStudies from "../components/CaseStudies.astro";
+import Services from "../components/Services.astro";
 import Experience from "../components/Experience.astro";
-import Competencies from "../components/Competencies.astro";
-import Credentials from "../components/Credentials.astro";
-import Testimonials from "../components/Testimonials.astro";
+import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout>
   <Nav />
-
   <main id="main-content">
     <Hero />
-    <About />
     <CaseStudies />
+    <Services />
     <Experience />
-    <Competencies />
-    <Credentials />
-    <Testimonials />
+    <About />
     <Contact />
   </main>
-
   <Footer />
 </BaseLayout>
-
-<!-- Global scroll-reveal observer. As an Astro module script this only ever
-     evaluates once, so re-running it directly wouldn't fire again after a
-     client-side view-transition swap brings back a fresh set of .reveal
-     elements — astro:page-load fires on the initial load AND after every
-     transition, so binding through it keeps reveals working on return visits. -->
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const allReveals = document.querySelectorAll<HTMLElement>('.reveal');
-    const obs = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.add('is-visible');
-            obs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-    allReveals.forEach(el => obs.observe(el));
-  });
-</script>

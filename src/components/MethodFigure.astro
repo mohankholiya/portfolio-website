@@ -1,0 +1,146 @@
+---
+import { methods } from "../content/site";
+interface Props {
+  type: string;
+}
+const m = methods[Astro.props.type];
+const bridge = [
+  {
+    x: 76,
+    label: "Quoted",
+    label2: "renewal",
+    value: "11.0",
+    y: 52,
+    height: 220,
+    total: true,
+  },
+  {
+    x: 174,
+    label: "Rate /",
+    label2: "should-cost",
+    value: "−0.9",
+    y: 52,
+    height: 18,
+    total: false,
+  },
+  {
+    x: 272,
+    label: "Travel /",
+    label2: "mobilisation",
+    value: "−0.6",
+    y: 70,
+    height: 12,
+    total: false,
+  },
+  {
+    x: 370,
+    label: "SLA /",
+    label2: "rework",
+    value: "−0.5",
+    y: 82,
+    height: 10,
+    total: false,
+  },
+  {
+    x: 468,
+    label: "Optimised",
+    label2: "cost",
+    value: "9.0",
+    y: 92,
+    height: 180,
+    total: true,
+  },
+];
+---
+
+{m && (
+  <figure class="method-figure">
+    <figcaption>{m.title}</figcaption>
+    {Astro.props.type === "waterfall" ? (
+      <div
+        class="chart-scroll"
+        tabindex="0"
+        role="region"
+        aria-label="Illustrative cost bridge; scroll horizontally on small screens"
+      >
+        <svg
+          class="waterfall"
+          viewBox="0 0 570 340"
+          role="img"
+          aria-labelledby="bridge-title bridge-description"
+        >
+          <title id="bridge-title">Illustrative total-cost bridge</title>
+          <desc id="bridge-description">
+            A synthetic quoted renewal of eleven million pounds is reduced by
+            0.9, 0.6 and 0.5 million to nine million. Totals share a zero
+            baseline. These are not actual contract values.
+          </desc>
+          {[0, 3, 6, 9, 12].map((v) => (
+            <g>
+              <line
+                class="axis"
+                x1="60"
+                x2="550"
+                y1={272 - v * 20}
+                y2={272 - v * 20}
+              />
+              <text x="46" y={277 - v * 20} text-anchor="end">
+                {v}
+              </text>
+            </g>
+          ))}
+          <text x="23" y="16">
+            £M
+          </text>
+          {bridge.map((b, i) => (
+            <g>
+              <rect
+                class={b.total ? "total" : "delta"}
+                x={b.x}
+                y={b.y}
+                width="63"
+                height={b.height}
+                rx="2"
+              />
+              <text
+                x={b.x + 31.5}
+                y={b.y - 10}
+                text-anchor="middle"
+                font-weight="600"
+              >
+                {b.value}
+              </text>
+              <text x={b.x + 31.5} y="299" text-anchor="middle">
+                <tspan x={b.x + 31.5}>{b.label}</tspan>
+                <tspan x={b.x + 31.5} dy="20">
+                  {b.label2}
+                </tspan>
+              </text>
+              {i < 4 && (
+                <line
+                  x1={b.x + 63}
+                  x2={bridge[i + 1].x}
+                  y1={i === 0 ? 52 : b.y + b.height}
+                  y2={i === 0 ? 52 : b.y + b.height}
+                  stroke="var(--color-muted)"
+                  stroke-dasharray="3 3"
+                />
+              )}
+            </g>
+          ))}
+        </svg>
+      </div>
+    ) : (
+      <div class="method-steps">
+        {m.steps.map((s, i) => (
+          <div class="method-step">
+            <span>{String(i + 1).padStart(2, "0")}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    )}
+    <p class="method-caption">{m.note}</p>
+  </figure>
+)}

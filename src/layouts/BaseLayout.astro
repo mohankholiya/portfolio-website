@@ -1,19 +1,17 @@
 ---
 import "../styles/global.css";
 import { siteConfig } from "../content/site";
-import { ClientRouter } from "astro:transitions";
-
 interface Props {
   title?: string;
   description?: string;
 }
-
-const {
-  title = siteConfig.title,
-  description = siteConfig.description,
-} = Astro.props;
-
-const ogImage = `${siteConfig.url}/og-image.png`;
+const { title = siteConfig.title, description = siteConfig.description } =
+  Astro.props;
+const is404 = Astro.url.pathname.replace(/\/$/, "") === "/404";
+const canonical = new URL(
+  is404 ? "/404.html" : Astro.url.pathname,
+  siteConfig.url,
+).href;
 ---
 
 <!doctype html>
@@ -21,196 +19,65 @@ const ogImage = `${siteConfig.url}/og-image.png`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-
-    <!-- Primary SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={siteConfig.url} />
-
-    <!-- Open Graph -->
+    <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteConfig.url} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- View Transitions -->
-    <ClientRouter />
-
-    <!-- Fonts: Archivo (display) + Source Sans 3 (body) + IBM Plex Mono (data) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    {/* Load font CSS without blocking render; text paints in the fallback then swaps. */}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {is404 && <meta name="robots" content="noindex" />}
     <link
       rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="/fonts/archivo-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      media="print"
-      onload="this.media='all'"
+      rel="preload"
+      href="/fonts/source-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      />
-    </noscript>
-
-    <!-- Keywords -->
-    <meta name="keywords" content="Mohan Kholiya, procurement, supply chain, category management, strategic sourcing, energy procurement, oil and gas procurement, telecom procurement, utilities procurement, cost reduction, supplier management, should-cost modelling, SRM, Wood Mackenzie, Accenture, BT Group" />
-
-    <!-- JSON-LD Person schema -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": siteConfig.name,
-      "jobTitle": "Procurement & Supply Chain Leader",
-      "description": siteConfig.description,
-      "url": siteConfig.url,
-      "email": siteConfig.email,
-      "telephone": "+91 9990433916",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Gurugram",
-        "addressCountry": "India"
-      },
-      "sameAs": [siteConfig.linkedin],
-      "knowsAbout": [
-        "Strategic Sourcing",
-        "Category Management",
-        "Supply Chain Management",
-        "Supplier Development",
-        "Procurement Transformation",
-        "Energy Sector Procurement",
-        "Oil & Gas Procurement",
-        "Utilities Procurement",
-        "Telecom Procurement",
-        "Contract Strategy",
-        "Cost Modelling",
-        "Digital Procurement"
-      ],
-      "alumniOf": [
-        { "@type": "CollegeOrUniversity", "name": "University of Petroleum & Energy Studies" },
-        { "@type": "CollegeOrUniversity", "name": "Kumaun University" }
-      ]
-    })} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: siteConfig.name,
+        url: siteConfig.url,
+        jobTitle: "Procurement & Supply Chain Leader",
+        description: siteConfig.description,
+        sameAs: [siteConfig.linkedin],
+        image: `${siteConfig.url}/images/headshot.jpeg`,
+        knowsAbout: [
+          "Strategic sourcing",
+          "Procurement transformation",
+          "Capital benchmarking",
+          "Category strategy",
+          "Supplier governance",
+        ],
+        alumniOf: [
+          {
+            "@type": "CollegeOrUniversity",
+            name: "University of Petroleum & Energy Studies",
+          },
+          { "@type": "CollegeOrUniversity", name: "Kumaun University" },
+        ],
+      }).replace(/</g, "\u003c")}
+    ></script>
   </head>
   <body>
-    <!-- Loading screen — first visit only -->
-    <div id="page-loader" aria-hidden="true" role="presentation">
-      <div id="loader-inner">
-        <span id="loader-mark">MK</span>
-        <div id="loader-bar"><div id="loader-fill"></div></div>
-      </div>
-    </div>
-
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div id="scroll-progress" aria-hidden="true"></div>
+    <a class="skip-link" href="#main-content">
+      Skip to main content
+    </a>
     <slot />
-    <button id="back-to-top" aria-label="Back to top">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <style>
-      #page-loader {
-        position: fixed; inset: 0; z-index: 99999;
-        background: var(--color-paper);
-        display: flex; align-items: center; justify-content: center;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
-      }
-      #page-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-      #loader-inner {
-        display: flex; flex-direction: column; align-items: center; gap: 18px;
-        animation: loader-appear 0.25s ease both;
-      }
-      @keyframes loader-appear {
-        from { opacity: 0; transform: scale(0.9); }
-        to   { opacity: 1; transform: scale(1); }
-      }
-      #loader-mark {
-        width: 52px; height: 52px;
-        background: var(--color-ink);
-        color: var(--color-on-ink);
-        border-radius: 10px;
-        display: flex; align-items: center; justify-content: center;
-        font-family: var(--font-display);
-        font-size: 19px; font-weight: 700; letter-spacing: -0.5px;
-      }
-      #loader-bar {
-        width: 48px; height: 2px;
-        background: var(--color-hairline);
-        border-radius: 1px; overflow: hidden;
-      }
-      #loader-fill {
-        height: 100%; width: 0%;
-        background: var(--color-accent);
-        transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-    </style>
-
-    <script is:inline>
-      // These listeners bind once and live on `document`/`window`, which persist
-      // across Astro view-transition swaps. Element refs are refreshed on
-      // astro:after-swap so scroll UI keeps working after client-side navigation.
-      (function () {
-        var progressEl, bttBtn;
-        function refresh() {
-          progressEl = document.getElementById('scroll-progress');
-          bttBtn = document.getElementById('back-to-top');
-        }
-        refresh();
-
-        window.addEventListener('scroll', function () {
-          var scrollY = window.scrollY;
-          var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-          if (progressEl && scrollable > 0) {
-            progressEl.style.width = (scrollY / scrollable * 100) + '%';
-          }
-          if (bttBtn) bttBtn.classList.toggle('visible', scrollY > 400);
-        }, { passive: true });
-
-        // Delegated so the handler survives DOM swaps (button is re-created).
-        document.addEventListener('click', function (e) {
-          if (e.target && e.target.closest && e.target.closest('#back-to-top')) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        });
-
-        // Loading screen — genuine first visit of the session only.
-        var loader = document.getElementById('page-loader');
-        var fill   = document.getElementById('loader-fill');
-        if (loader) {
-          if (sessionStorage.getItem('mk-visited')) {
-            loader.style.display = 'none';
-          } else {
-            sessionStorage.setItem('mk-visited', '1');
-            requestAnimationFrame(function () { if (fill) fill.style.width = '100%'; });
-            setTimeout(function () { loader.classList.add('done'); }, 760);
-          }
-        }
-
-        // After any view-transition swap (e.g. returning home from a case study),
-        // force-hide the re-inserted loader and re-point the scroll refs.
-        document.addEventListener('astro:after-swap', function () {
-          var l = document.getElementById('page-loader');
-          if (l) l.style.display = 'none';
-          refresh();
-        });
-      })();
-    </script>
   </body>
 </html>

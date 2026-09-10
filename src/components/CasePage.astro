@@ -1,0 +1,114 @@
+---
+import CaseStudyLayout from "../layouts/CaseStudyLayout.astro";
+import { caseStudies, copy } from "../content/site";
+import MethodFigure from "./MethodFigure.astro";
+import Arrow from "./Arrow.astro";
+interface Props {
+  id: string;
+}
+const cs = caseStudies.find((c) => c.id === Astro.props.id)!;
+const next = caseStudies[(caseStudies.indexOf(cs) + 1) % caseStudies.length];
+const c = copy.detail;
+---
+
+<CaseStudyLayout title={cs.headline} description={cs.description}>
+  <section class="case-page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/case-studies/">← {c.back}</a>
+      </nav>
+      <p class="eyebrow">
+        {cs.sectorLabel} / {c.eyebrow}
+      </p>
+      <h1>{cs.headline}</h1>
+      <p class="case-lead">{cs.description}</p>
+      <div class="case-page-facts">
+        <div>
+          <span>{c.proof}</span>
+          <strong>{cs.metric}</strong>
+          <p>{cs.metricLabel}</p>
+        </div>
+        <div>
+          <span>{c.scope}</span>
+          <p>{cs.scope}</p>
+        </div>
+        <div>
+          <span>{c.status}</span>
+          <p>{cs.status}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container detail-grid">
+    <nav class="detail-toc" aria-label="On this page">
+      <p class="eyebrow">Inside the case</p>
+      <a href="#challenge">{c.challenge}</a>
+      <a href="#contribution">{c.role}</a>
+      <a href="#approach">{c.approach}</a>
+      <a href="#judgment">{c.judgment}</a>
+      <a href="#results">{c.results}</a>
+      <a href="#case-enquiry">Discuss a project</a>
+    </nav>
+    <div class="detail-body">
+      <section id="challenge" class="detail-section">
+        <h2>{c.challenge}</h2>
+        <p>{cs.challenge}</p>
+      </section>
+      <section id="contribution" class="detail-section">
+        <h2>{c.role}</h2>
+        <p>{cs.role}</p>
+      </section>
+      <section id="approach" class="detail-section">
+        <h2>{c.approach}</h2>
+        <ol class="approach-list">
+          {cs.approach.map((s) => (
+            <li>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <section id="judgment" class="detail-section judgment">
+        <h2>{c.judgment}</h2>
+        <p>{cs.judgment}</p>
+      </section>
+      <section class="detail-section">
+        <h2>{c.method}</h2>
+        <MethodFigure type={cs.chart} />
+      </section>
+      <section id="results" class="detail-section">
+        <h2>{c.results}</h2>
+        <ul class="result-list">
+          {cs.results.map((r) => (
+            <li>{r}</li>
+          ))}
+        </ul>
+        <p class="case-note">{cs.note}</p>
+      </section>
+    </div>
+  </div>
+  <section id="case-enquiry" class="case-cta">
+    <div class="container">
+      <div class="case-cta-inner">
+        <div>
+          <h2>{c.ctaHeading}</h2>
+          <p>{c.ctaBody}</p>
+        </div>
+        <a
+          class="button button-light"
+          href={`/#contact?service=${encodeURIComponent(cs.tags[0])}`}
+        >
+          {c.cta}
+          <Arrow />
+        </a>
+      </div>
+      <div class="next-case">
+        <span>{c.next}</span>
+        <a href={`/case-studies/${next.id}/`}>
+          {next.headline} <Arrow />
+        </a>
+      </div>
+    </div>
+  </section>
+</CaseStudyLayout>
