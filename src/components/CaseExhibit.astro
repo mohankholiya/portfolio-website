@@ -80,66 +80,108 @@ const titles: Record<string, string> = {
         </div>
         <figure class="chart-sheet">
           <figcaption>
-            Annual opportunity range <span>$M per year</span>
+            What the opportunity is worth against the programme it sits in
+            <span>Annual, $M. Both bars share one scale and start at zero.</span>
           </figcaption>
           <div
             class="exhibit-scroll"
             tabindex="0"
             role="region"
-            aria-label="Annual opportunity range chart"
+            aria-label="Identified opportunity against total programme spend"
           >
+            {/* One measure, one axis. The comparison that matters to a reader
+                is materiality: 4.9 to 6.0 against 233 is 2.1% to 2.6% of the
+                programme, which is the number a client actually weighs. */}
             <svg
-              viewBox="0 0 660 270"
-              class="consulting-chart"
+              viewBox="0 0 660 300"
+              class="consulting-chart chart-animate bars-horizontal"
               role="img"
               aria-labelledby="opportunity-title opportunity-desc"
             >
-              <title id="opportunity-title">Annual identified opportunity: $4.9M to $6M</title>
+              <title id="opportunity-title"
+                >Identified opportunity of $4.9M to $6M per year against $233M of
+                programme spend</title
+              >
               <desc id="opportunity-desc">
-                A horizontal scale from zero to seven million dollars per year.
-                The highlighted interval starts at 4.9 and ends at 6. This is an
-                assessment range, not realised savings or a statistical
-                confidence interval.
+                Two horizontal bars on a shared scale from zero to 240 million
+                dollars. Programme spend assessed is 233 million. The identified
+                annual opportunity runs from 4.9 to 6.0 million, which is 2.1 to
+                2.6 percent of the programme. This is an assessment range, not
+                realised savings and not a statistical confidence interval.
               </desc>
-              {[0, 1, 2, 3, 4, 5, 6, 7].map((v) => (
+
+              {[0, 60, 120, 180, 240].map((v) => (
                 <g>
                   <line
                     class="chart-grid"
-                    x1={50 + v * 80}
-                    x2={50 + v * 80}
-                    y1="65"
-                    y2="191"
+                    x1={196 + (v / 240) * 400}
+                    x2={196 + (v / 240) * 400}
+                    y1="52"
+                    y2="196"
                   />
-                  <text x={50 + v * 80} y="217" text-anchor="middle">
+                  <text x={196 + (v / 240) * 400} y="222" text-anchor="middle">
                     {v}
                   </text>
                 </g>
               ))}
-              <line class="chart-baseline" x1="50" x2="610" y1="190" y2="190" />
-              <line
-                x1="442"
-                x2="530"
-                y1="123"
-                y2="123"
-                stroke="var(--color-accent)"
-                stroke-width="20"
-              />
-              <circle cx="442" cy="123" r="7" fill="var(--color-ink)" />
-              <circle cx="530" cy="123" r="7" fill="var(--color-ink)" />
-              <text class="chart-value" x="442" y="93" text-anchor="middle">
-                4.9
+
+              <text class="chart-series-label" x="182" y="88" text-anchor="end">
+                Programme assessed
               </text>
-              <text class="chart-value" x="530" y="93" text-anchor="middle">
-                6.0
+              <rect
+                class="bar series-context"
+                x="196"
+                y="66"
+                width={(233 / 240) * 400}
+                height="36"
+                rx="2"
+              >
+                <title>Programme spend assessed: $233M across 12 months</title>
+              </rect>
+              <text class="chart-value" x={196 + (233 / 240) * 400 + 12} y="92">
+                233
               </text>
-              <text x="50" y="251">
-                Scale begins at zero
+
+              <text
+                class="chart-series-label"
+                x="182"
+                y="166"
+                text-anchor="end"
+              >
+                Opportunity identified
+              </text>
+              {/* The range is drawn to scale. At this axis it is deliberately a
+                  sliver: that honesty is the point of putting them together. */}
+              <rect
+                class="bar series-subject"
+                x="196"
+                y="144"
+                width={Math.max((6 / 240) * 400, 4)}
+                height="36"
+                rx="2"
+              >
+                <title>Identified annual opportunity: $4.9M to $6.0M</title>
+              </rect>
+              <text class="chart-value" x="222" y="170">
+                4.9 – 6.0
+              </text>
+              <text class="chart-caption" x="330" y="170">
+                2.1% – 2.6% of programme spend
+              </text>
+
+              <line class="chart-baseline" x1="196" x2="596" y1="196" y2="196" />
+              <text class="chart-caption" x="196" y="258">
+                Identified opportunity against the assessment benchmark.
+              </text>
+              <text class="chart-caption" x="196" y="278">
+                Not realised savings. Realisation depends on validation.
               </text>
             </svg>
           </div>
           <p class="exhibit-note">
-            Reported assessment range against the selected rate reference. The
-            reference does not by itself establish an external market price.
+            Percentages are derived from the two reported figures. The assessment
+            uses a selected rate reference, which does not by itself establish an
+            external market price.
           </p>
         </figure>
       </div>
@@ -200,64 +242,96 @@ const titles: Record<string, string> = {
             aria-label="Peer-set size comparison"
           >
             <svg
-              viewBox="0 0 660 280"
-              class="consulting-chart"
+              viewBox="0 0 660 300"
+              class="consulting-chart chart-animate bars-horizontal"
               role="img"
               aria-labelledby="peers-title peers-desc"
             >
-              <title id="peers-title">Peer-set expansion from 18 to 27 projects</title>
+              <title id="peers-title"
+                >Peer-set expansion from 18 to 27 projects</title
+              >
               <desc id="peers-desc">
-                Two horizontal bars start at zero. The initial regional set
-                contains 18 projects and the expanded geographic set contains 27
-                projects. This represents coverage, not project performance.
+                Two horizontal bars on a shared scale starting at zero. The
+                initial regional set contains 18 projects. The expanded set
+                contains 27 projects, nine more. This represents coverage of the
+                comparison, not the performance of any project in it.
               </desc>
               {[0, 10, 20, 30].map((v) => (
                 <g>
                   <line
                     class="chart-grid"
-                    x1={190 + v * 14}
-                    x2={190 + v * 14}
+                    x1={196 + v * 13.5}
+                    x2={196 + v * 13.5}
                     y1="48"
-                    y2="214"
+                    y2="206"
                   />
-                  <text x={190 + v * 14} y="241" text-anchor="middle">
+                  <text x={196 + v * 13.5} y="232" text-anchor="middle">
                     {v}
                   </text>
                 </g>
               ))}
-              <text x="172" y="90" text-anchor="end">
+              <text class="chart-series-label" x="182" y="90" text-anchor="end">
                 Initial regional set
               </text>
-              <text x="172" y="178" text-anchor="end">
-                Expanded set
+              <text
+                class="chart-series-label"
+                x="182"
+                y="174"
+                text-anchor="end"
+              >
+                Expanded peer set
               </text>
               <rect
-                x="190"
-                y="64"
-                width="252"
-                height="40"
-                fill="var(--color-muted)"
-              />
+                class="bar series-context"
+                x="196"
+                y="66"
+                width={18 * 13.5}
+                height="38"
+                rx="2"
+              >
+                <title>Initial regional peer set: 18 projects</title>
+              </rect>
               <rect
-                x="190"
-                y="152"
-                width="378"
-                height="40"
-                fill="var(--color-ink)"
-              />
-              <text class="chart-value" x="456" y="90">
+                class="bar series-subject"
+                x="196"
+                y="150"
+                width={27 * 13.5}
+                height="38"
+                rx="2"
+              >
+                <title>Expanded peer set: 27 projects</title>
+              </rect>
+              <text class="chart-value" x={196 + 18 * 13.5 + 12} y="93">
                 18
               </text>
-              <text class="chart-value" x="582" y="178">
+              <text class="chart-value" x={196 + 27 * 13.5 + 12} y="177">
                 27
               </text>
+              {/* The delta is the decision, so it gets called out rather than
+                  left for the reader to subtract. */}
               <line
-                class="chart-baseline"
-                x1="190"
-                x2="610"
-                y1="214"
-                y2="214"
+                x1={196 + 18 * 13.5}
+                x2={196 + 18 * 13.5}
+                y1="150"
+                y2="196"
+                stroke="var(--chart-axis)"
+                stroke-dasharray="3 3"
               />
+              <text
+                class="chart-caption"
+                x={196 + 22.5 * 13.5}
+                y="212"
+                text-anchor="middle"
+              >
+                +9 projects
+              </text>
+              <line class="chart-baseline" x1="196" x2="600" y1="206" y2="206" />
+              <text class="chart-caption" x="196" y="272">
+                Coverage of the comparison set. Not a ranking, and not a measure
+              </text>
+              <text class="chart-caption" x="196" y="290">
+                of any project's cost performance.
+              </text>
             </svg>
           </div>
           <p class="exhibit-note">
@@ -433,6 +507,148 @@ const titles: Record<string, string> = {
   )}
   {type === "categories" && (
     <>
+      <figure class="chart-sheet">
+        <figcaption>
+          Why one framework produces two different sourcing postures
+          <span
+            >Positioning follows from the cost and supply drivers in the table
+            below. Analytical framework, not a market forecast.</span
+          >
+        </figcaption>
+        <div
+          class="exhibit-scroll"
+          tabindex="0"
+          role="region"
+          aria-label="Category positioning matrix: supply-market concentration against engineering and lead-time intensity"
+        >
+          {/* A 2x2 is the right form here: the insight is relative position on
+              two qualitative dimensions, not a magnitude. Axes are deliberately
+              unnumbered because the underlying scores are qualitative. */}
+          <svg
+            viewBox="0 0 660 420"
+            class="consulting-chart"
+            role="img"
+            aria-labelledby="cat-matrix-title cat-matrix-desc"
+          >
+            <title id="cat-matrix-title"
+              >Category positioning: Lighting and E-STATCOM</title
+            >
+            <desc id="cat-matrix-desc">
+              A two-by-two matrix. The horizontal axis runs from a fragmented to
+              a concentrated supply market. The vertical axis runs from low to
+              high engineering and lead-time intensity. Lighting sits in the
+              lower left: a fragmented market with low engineering intensity,
+              which supports competitive tendering. E-STATCOM sits in the upper
+              right: a concentrated market with high engineering intensity,
+              which supports a partnership posture with delivery guarantees.
+              Positions are qualitative and follow from the cost drivers listed
+              in the comparison table.
+            </desc>
+
+            <rect
+              x="130"
+              y="34"
+              width="440"
+              height="300"
+              fill="var(--color-paper)"
+            />
+            <line
+              class="chart-grid"
+              x1="350"
+              x2="350"
+              y1="34"
+              y2="334"
+              stroke-dasharray="4 4"
+            />
+            <line
+              class="chart-grid"
+              x1="130"
+              x2="570"
+              y1="184"
+              y2="184"
+              stroke-dasharray="4 4"
+            />
+
+            {/* Quadrant names sit in the corners they describe. */}
+            <text class="chart-caption" x="142" y="56">
+              Competitive tendering
+            </text>
+            <text class="chart-caption" x="558" y="56" text-anchor="end">
+              Partnership &amp; guarantees
+            </text>
+
+            {/* E-STATCOM: concentrated OEM market, engineered equipment.
+                Labels sit directly under each marker so neither crosses the
+                quadrant divider. */}
+            <circle
+              class="series-context"
+              cx="462"
+              cy="104"
+              r="13"
+              opacity="0.92"
+            >
+              <title
+                >E-STATCOM: concentrated OEM market, engineered equipment with
+                long-lead components</title
+              >
+            </circle>
+            <text
+              class="chart-series-label"
+              x="462"
+              y="142"
+              text-anchor="middle"
+            >
+              E-STATCOM
+            </text>
+            <text class="chart-caption" x="462" y="162" text-anchor="middle">
+              Engineered. Long-lead.
+            </text>
+
+            {/* Lighting: fragmented market, low engineering intensity. */}
+            <circle
+              class="series-subject"
+              cx="232"
+              cy="256"
+              r="13"
+              opacity="0.92"
+            >
+              <title
+                >Lighting: fragmented OEM and distributor market, low
+                engineering intensity</title
+              >
+            </circle>
+            <text
+              class="chart-series-label"
+              x="232"
+              y="294"
+              text-anchor="middle"
+            >
+              Lighting
+            </text>
+            <text class="chart-caption" x="232" y="314" text-anchor="middle">
+              Materials-led. Stocked.
+            </text>
+
+            <line class="chart-baseline" x1="130" x2="570" y1="334" y2="334" />
+            <line class="chart-baseline" x1="130" x2="130" y1="34" y2="334" />
+            <text class="chart-caption" x="350" y="360" text-anchor="middle">
+              Supply market: fragmented → concentrated
+            </text>
+            <text
+              class="chart-caption"
+              x="116"
+              y="184"
+              text-anchor="middle"
+              transform="rotate(-90 116 184)"
+            >
+              Engineering &amp; lead time: low → high
+            </text>
+            <text class="chart-caption" x="130" y="398">
+              Qualitative positioning. Axes carry no numeric scale.
+            </text>
+          </svg>
+        </div>
+      </figure>
       <div
         class="exhibit-scroll"
         tabindex="0"

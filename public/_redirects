@@ -1,0 +1,4 @@
+# The old slug leaked an internal project codename and is already indexed.
+# Cloudflare Pages serves this file; 301 so the link equity follows the move.
+/case-studies/ntgm-cost-competitiveness   /case-studies/capital-cost-competitiveness/   301
+/case-studies/ntgm-cost-competitiveness/  /case-studies/capital-cost-competitiveness/   301

@@ -3,7 +3,11 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "python scripts/check-build.py && python scripts/check-contrast.py",
+    "check:browser": "node scripts/responsive-audit.mjs && node scripts/check-keyboard.mjs",
+    "og": "python scripts/generate-og-image.py",
+    "astro:check": "astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -12,6 +16,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.1",
+    "playwright-core": "^1.63.0",
     "tailwindcss": "^4.3.1"
   }
 }

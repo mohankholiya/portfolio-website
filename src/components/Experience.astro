@@ -8,7 +8,7 @@ import { experience, copy } from "../content/site";
   aria-labelledby="experience-heading"
 >
   <div class="container">
-    <div class="section-heading">
+    <div class="section-heading reveal">
       <div>
         <p class="eyebrow">{copy.experience.eyebrow}</p>
         <h2 class="multiline" id="experience-heading">
@@ -17,9 +17,9 @@ import { experience, copy } from "../content/site";
       </div>
       <p>{copy.experience.description}</p>
     </div>
-    <ol class="career-list">
+    <ol class="career-list reveal-group">
       {experience.map((job) => (
-        <li>
+        <li class="reveal">
           <div class="career-period">
             <span>{job.period}</span>
             <span
@@ -44,12 +44,12 @@ import { experience, copy } from "../content/site";
         </li>
       ))}
     </ol>
-    <div id="resumes" class="resume-section">
+    <div id="resumes" class="resume-section reveal">
       <h3>{copy.experience.downloadsTitle}</h3>
       <p>{copy.experience.downloadsBody}</p>
-      <div class="resume-grid">
+      <div class="resume-grid reveal-group">
         {copy.experience.downloads.map((r) => (
-          <a class="resume-card" href={r.href} download>
+          <a class="resume-card reveal" href={r.href} download>
             <div>
               <span class="eyebrow">{copy.experience.downloadNote}</span>
               <h4>{r.title}</h4>

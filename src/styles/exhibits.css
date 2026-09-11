@@ -126,8 +126,11 @@ h4 {
   align-items: start;
 }
 .exhibit-label {
-  font-size: 13px;
-  font-weight: 650;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
   color: var(--color-muted);
   margin-bottom: 13px;
 }
@@ -155,7 +158,9 @@ h4 {
   padding: 13px 0;
 }
 .exhibit-facts dt {
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
   color: var(--color-muted);
   margin-bottom: 5px;
 }
@@ -182,38 +187,93 @@ h4 {
   font-weight: 400;
   margin-top: 4px;
 }
+/* `min-width: 0` is load-bearing. As a grid item the default `min-width: auto`
+   makes this box size to its content, so the chart's 560px min-width escaped
+   the scroll container and pushed the whole page to 600px at 375px wide. */
 .exhibit-scroll {
   overflow-x: auto;
+  min-width: 0;
   padding-bottom: 6px;
+}
+/* WCAG 2.2 target size (AA) is 24px; the breadcrumb was 20px tall. This lives
+   in exhibits.css, which is imported after global.css, so the coarse-pointer
+   bump has to be restated here or the 24px baseline would win on touch. */
+.breadcrumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+@media (pointer: coarse) {
+  .breadcrumbs a {
+    min-height: 44px;
+  }
+}
+.exhibit-split > * {
+  min-width: 0;
 }
 .exhibit-scroll:focus-visible,
 .capacity-map:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 5px;
 }
+/* Charts are drawn at a fixed user-space size and must not scale past it.
+   Without the cap an SVG stretches to the container and drags its 13.5px mono
+   labels up to ~24px, which is what made the exhibits read as oversized. */
 .consulting-chart {
   width: 100%;
   min-width: 560px;
+  max-width: 680px;
+  margin-inline: 0;
   display: block;
   height: auto;
 }
+/* Chart text is mono so axis ticks, values and category labels align on a
+   common width and read as measurement rather than prose. */
 .consulting-chart text {
-  font-family: var(--font-sans);
-  font-size: 15px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
   fill: var(--color-body);
+  font-variant-numeric: tabular-nums;
 }
 .consulting-chart .chart-value {
-  font-weight: 650;
-  font-size: 21px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  fill: var(--color-ink);
+}
+.consulting-chart .chart-caption {
+  font-size: 12px;
+  fill: var(--color-muted);
+}
+.consulting-chart .chart-series-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
   fill: var(--color-ink);
 }
 .chart-grid {
-  stroke: #e3e8ec;
+  stroke: var(--chart-grid);
   stroke-width: 1;
 }
 .chart-baseline {
-  stroke: #768592;
+  stroke: var(--chart-axis);
   stroke-width: 1;
+}
+/* Every fill in an exhibit comes from the validated series tokens. */
+.series-subject {
+  fill: var(--series-subject);
+}
+.series-context {
+  fill: var(--series-context);
+}
+.series-third {
+  fill: var(--series-third);
+}
+/* A 2px surface gap between adjacent fills so bars never bleed together. */
+.consulting-chart rect.bar {
+  stroke: var(--color-surface);
+  stroke-width: 2;
+  paint-order: stroke;
 }
 .exhibit-note,
 .analysis-exhibit .method-caption {

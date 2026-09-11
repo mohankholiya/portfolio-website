@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Mohan Kholiya",
   title: "Mohan Kholiya | Procurement Leader & Supply Chain Consultant",
   description:
-    "Procurement and supply chain leader with 16+ years across energy, utilities and telecom. Strategic sourcing, cost transformation and independent consulting, grounded in operational experience.",
+    "Procurement and supply chain leader with 16+ years across energy, utilities and telecom. Category ownership at BT Group and Jindal Drilling, supply-chain advisory at Wood Mackenzie and Accenture. Open to senior leadership roles in India, the GCC and globally.",
   url: "https://mohankholiya.co.in",
   email: "mohan.kholiya@gmail.com",
   phone: "+91 9990433916",
@@ -11,12 +11,12 @@ export const siteConfig = {
   resumeUrl: "/resume.pdf",
   resumeFileName: "Mohan_Kholiya_Consulting_Resume.pdf",
   positioning:
-    "I help energy, infrastructure and telecom organisations make stronger procurement decisions — from category strategy and cost analysis to negotiation and delivery.",
+    "I lead procurement and supply chain for energy, infrastructure and telecom organisations, from category strategy and cost analysis through negotiation and delivery.",
 };
 export const navLinks = [
   { href: "/#about", label: "About" },
   { href: "/#case-studies", label: "Selected work" },
-  { href: "/#services", label: "Consulting" },
+  { href: "/#capabilities", label: "Capabilities" },
   { href: "/#experience", label: "Experience" },
 ];
 export const copy = {
@@ -26,20 +26,22 @@ export const copy = {
     second: "Operational impact.",
     intro: "Mohan Kholiya",
     footnote: "Energy & utilities / Oil & gas / Telecom",
-    primary: "Explore my experience",
-    secondary: "Discuss a project",
+    primary: "View selected work",
+    secondary: "Download resume",
   },
   firms: ["Wood Mackenzie", "BT Group", "Accenture", "Jindal Drilling"],
+  /* Two hiring tracks, not two customer segments. Both panels describe the
+     kind of role Mohan is a candidate for; neither offers services for sale. */
   proof: {
-    eyebrow: "A perspective built on both sides",
+    eyebrow: "Both sides of the table",
     heading: "Advisory depth.\nOperator accountability.",
-    labels: ["For hiring teams", "For project buyers"],
+    labels: ["In-house leadership", "Consulting firms"],
     panels: [
       {
-        id: "hiring",
-        heading: "Leadership grounded in delivery",
+        id: "leadership",
+        heading: "Category ownership with delivery accountability",
         description:
-          "Category ownership, team leadership and consulting experience across complex supply chains.",
+          "Spend ownership, supplier programmes and team leadership inside operating businesses.",
         facts: [
           {
             value: "£100M",
@@ -47,38 +49,38 @@ export const copy = {
             href: "/case-studies/bt-contract-renewal/",
           },
           {
-            value: "16+ years",
-            label: "Across in-house procurement and advisory",
+            value: "13+ years",
+            label: "In-house across energy, drilling and telecom",
             href: "/#experience",
           },
         ],
-        cta: "View leadership experience",
+        cta: "See the career record",
         href: "/#experience",
       },
       {
-        id: "projects",
-        heading: "Clarity for your next commercial decision",
+        id: "advisory",
+        heading: "Client-facing rigour at principal level",
         description:
-          "Focused support for sourcing, contract renewals, cost diagnostics and category strategy.",
+          "Capital benchmarking, cost diagnostics and operating-model work for global operators and utilities.",
         facts: [
           {
-            value: "~£2M",
-            label: "Optimisation secured in a service-contract renewal",
-            href: "/case-studies/bt-contract-renewal/",
+            value: "$2.2B",
+            label: "Upstream capital benchmark at Wood Mackenzie",
+            href: "/#experience",
           },
           {
-            value: "$4.9M–$6M",
-            label: "Annual opportunity identified in a utility programme",
+            value: "$233M",
+            label: "Contractor programme assessed transaction by transaction",
             href: "/case-studies/unit-rate-governance/",
           },
         ],
-        cta: "Explore consulting support",
-        href: "/#services",
+        cta: "See how I work",
+        href: "/#capabilities",
       },
     ],
   },
   cases: {
-    eyebrow: "02 / Selected work",
+    eyebrow: "Selected work",
     heading: "The work behind the numbers.",
     description:
       "Commercial outcomes and decision support across consulting and in-house roles. Each case explains the context, my contribution and the result.",
@@ -92,49 +94,47 @@ export const copy = {
       { key: "telecom", label: "Telecom" },
     ],
   },
-  services: {
-    eyebrow: "03 / Independent consulting",
-    heading: "A clear problem.\nA practical way forward.",
+  /* Capability areas, not a service menu. Each one names a problem Mohan has
+     been accountable for and points at the case that evidences it. No pricing,
+     no scope language, no availability signalling. */
+  capabilities: {
+    heading: "Four problems I am brought in to solve.",
     description:
-      "Specialist procurement support for operating businesses and consulting firms. A defined scope, transparent assumptions and deliverables your team can use.",
-    cta: "Discuss this service",
-    processTitle: "From the first conversation to a useful answer",
+      "The recurring shape of the work across sixteen years, in-house and in advisory. Each one links to the engagement that evidences it.",
+    cta: "See the case",
+    processTitle: "How I work a problem",
     steps: [
       {
         title: "Define the decision",
-        body: "Agree the business question, scope and data needed.",
+        body: "Establish the business question, the scope and the data it actually needs.",
       },
       {
         title: "Build the evidence",
-        body: "Analyse costs, markets and commercial options.",
+        body: "Analyse costs, supply markets and commercial options on a comparable basis.",
       },
       {
-        title: "Equip your team",
-        body: "Deliver the model, recommendations and next steps.",
+        title: "Make it usable",
+        body: "Hand over the model, the recommendation and the governance to sustain it.",
       },
     ],
-    partnershipTitle: "An experienced extension of your consulting team.",
-    partnershipBody:
-      "Available for defined workstreams in cost analysis, category research, sourcing and executive reporting. Also open to expert-network discussions in energy and procurement.",
-    partnershipCta: "Discuss a collaboration",
   },
   experience: {
-    eyebrow: "04 / Career & leadership",
+    eyebrow: "Career record",
     heading: "Consulting perspective.\nIn-house accountability.",
     description:
       "16+ years across six organisations, from drilling operations and capital sourcing to category leadership and energy supply-chain advisory.",
-    downloadsTitle: "Find the experience relevant to your role.",
+    downloadsTitle: "Find the version relevant to the role you are hiring for.",
     downloadsBody:
-      "Two focused resumes, covering the same career through an industry or consulting lens.",
+      "Two focused resumes covering the same career, one through an industry lens and one through a consulting lens.",
     downloads: [
       {
-        title: "Industry leadership",
+        title: "Industry leadership roles",
         body: "Category ownership, sourcing, supplier development and operational delivery.",
         href: "/Mohan_Kholiya_Industry_Resume.pdf",
         label: "Download industry resume",
       },
       {
-        title: "Consulting & advisory",
+        title: "Consulting firm roles",
         body: "Cost diagnostics, capital benchmarking, category strategy and operating models.",
         href: "/resume.pdf",
         label: "Download consulting resume",
@@ -143,45 +143,44 @@ export const copy = {
     downloadNote: "PDF · Updated September 2026",
   },
   about: {
-    eyebrow: "01 / About Mohan",
     heading: "I connect the analysis\nto the decision.",
     paragraphs: [
-      "My experience combines consulting at Wood Mackenzie and Accenture with procurement ownership at BT Group, Jindal Drilling, Quippo and Shyama Power. I understand the analytical question — and the operational responsibility behind it.",
-      "Across energy, infrastructure and telecom, my focus is consistent: understand the cost drivers, make the commercial choices clear and give teams an approach they can put to work.",
+      "My experience combines procurement ownership at BT Group, Jindal Drilling, Quippo and Shyama Power with supply-chain advisory at Wood Mackenzie and Accenture. I understand the analytical question and the operational responsibility behind it.",
+      "Across energy, infrastructure and telecom, my focus is consistent: understand the cost drivers, make the commercial choices clear and leave the team with an approach they can run without me.",
     ],
-    toolsTitle: "Building practical procurement tools",
+    /* Framed as applied capability, which is what it is. Deliberately not
+       framed as a product, a venture or anything a hiring manager could read
+       as a competing commitment. */
+    toolsTitle: "Hands-on with digital and AI procurement",
     toolsBody:
-      "Alongside my professional work, I independently develop tools for should-cost modelling and category intelligence, combining structured calculations with AI-assisted research. Ask me about the current builds.",
-    toolsCta: "Ask about my procurement tools",
+      "I build my own should-cost and category-intelligence models, combining structured cost calculations with AI-assisted market research. It keeps me fluent in the tooling I would be asking a team to adopt.",
+    toolsCta: "Ask me about this",
     credentialsTitle: "Education & recognition",
   },
   contact: {
-    eyebrow: "05 / Start a conversation",
-    heading: "What are you\nworking towards?",
+    heading: "What role are you\nlooking to fill?",
     description:
-      "A leadership role, a complex renewal or a procurement challenge — tell me what you have in mind.",
+      "Tell me about the mandate, the organisation and the timing. I reply to every genuine enquiry.",
     emailLabel: "Email Mohan",
     linkedinLabel: "Connect on LinkedIn",
     location:
-      "Based in Gurugram, India. Open to global roles and consulting conversations.",
+      "Based in Gurugram, India. Open to senior roles across India, the GCC and globally.",
     types: [
-      "Leadership opportunity",
-      "Consulting project",
-      "Consulting-firm collaboration",
-      "Expert-network discussion",
+      "In-house leadership role",
+      "Consulting firm role",
+      "Something else",
     ],
     formTitle: "Tell me a little about it",
     labels: {
       type: "I'm getting in touch about",
       name: "Your name",
       email: "Your email",
-      message: "Your role or project",
+      message: "The role",
     },
     placeholders: {
       name: "Name",
       email: "you@company.com",
-      message:
-        "The opportunity, your organisation and any timing that matters.",
+      message: "The mandate, your organisation and any timing that matters.",
     },
     prepare: "Prepare email",
     send: "Send enquiry",
@@ -210,46 +209,46 @@ export const copy = {
     judgment: "The decision that mattered",
     results: "What the work delivered",
     method: "A closer look at the method",
-    ctaHeading: "Facing a similar challenge?",
+    ctaHeading: "Hiring for work like this?",
     ctaBody:
-      "Let's discuss the decision you need to make and where I can help.",
-    cta: "Discuss a related project",
+      "If this is the kind of problem your team is carrying, I would be glad to talk about the role.",
+    cta: "Get in touch",
     next: "Next case study",
     scope: "Engagement context",
     status: "Outcome type",
     proof: "At a glance",
   },
 };
+/* Capability areas. `question` is the business question the capability answers;
+   `deliverables` is what the work produces. Written as what Mohan does in a
+   role, not as a scope of supply. */
 export const services = [
   {
-    number: "01",
     title: "Spend & contract diagnostics",
     question: "Where is value being lost?",
-    body: "A focused assessment of contractor spend, rate consistency and billing rules before your next commercial decision.",
+    body: "Finding the commercial exposure sitting inside contractor spend, rate inconsistency and billing rules, before the next renewal.",
     deliverables: [
       "Spend and rate-variance analysis",
-      "Opportunity range and assumptions",
+      "Quantified opportunity with stated assumptions",
       "Contract-governance priorities",
     ],
     caseId: "unit-rate-governance",
   },
   {
-    number: "02",
-    title: "Should-cost & negotiation support",
+    title: "Should-cost & negotiation",
     question: "What should this really cost?",
-    body: "Understand supplier economics and total cost before a renewal, sourcing event or negotiation.",
+    body: "Rebuilding supplier economics from the cost drivers up, then carrying that model into the negotiation.",
     deliverables: [
-      "Cost-driver and TCO models",
+      "Cost-driver and total-cost models",
       "Commercial scenarios and sensitivities",
-      "Negotiation priorities",
+      "A negotiation position that holds",
     ],
     caseId: "bt-contract-renewal",
   },
   {
-    number: "03",
     title: "Category strategy & intelligence",
     question: "How should we approach this market?",
-    body: "Translate supplier markets, costs and supply risks into a sourcing approach suited to your category.",
+    body: "Turning supplier markets, cost drivers and supply risk into a sourcing posture that fits the category.",
     deliverables: [
       "Market and supplier landscape",
       "Cost and lead-time drivers",
@@ -258,10 +257,9 @@ export const services = [
     caseId: "category-intelligence",
   },
   {
-    number: "04",
     title: "Supply-chain operating models",
-    question: "Is the function ready for what's next?",
-    body: "Assess workload, roles and functional coverage to make informed capacity and organisation decisions.",
+    question: "Is the function ready for what is next?",
+    body: "Assessing workload, role design and functional coverage so capacity decisions rest on evidence rather than headcount ratios.",
     deliverables: [
       "Workload and peer comparisons",
       "Role and capability assessment",
@@ -389,7 +387,7 @@ export const caseStudies = [
     chart: "sourcing",
   },
   {
-    id: "ntgm-cost-competitiveness",
+    id: "capital-cost-competitiveness",
     sector: "energy",
     sectorLabel: "Energy & oil & gas",
     headline: "A defensible benchmark for a complex capital decision.",
@@ -612,11 +610,7 @@ export const credentials = [
     entries: [
       {
         title: "MITx SCx — Supply Chain Management",
-        body: "MIT SC0x (Supply Chain Analytics, 2026) and SC1x (Fundamentals, 2025) — completed courses in the MITx MicroMasters programme.",
-      },
-      {
-        title: "MSME — Supply Chain Management",
-        body: "Ministry of Micro, Small & Medium Enterprises certification, 2013.",
+        body: "MIT SC0x (Supply Chain Analytics, 2026) and SC1x (Fundamentals, 2025), completed courses in the MITx MicroMasters programme.",
       },
     ],
   },
@@ -746,7 +740,7 @@ export const privacyCopy = {
   sections: [
     {
       heading: "Contacting Mohan",
-      body: "Your name, email and message are used to understand and respond to your role, project or collaboration enquiry. Please avoid sending confidential client information in an initial message.",
+      body: "Your name, email and message are used to understand and respond to your enquiry about a role. Please avoid sending confidential client or candidate information in an initial message.",
     },
     {
       heading: "When the form prepares an email",

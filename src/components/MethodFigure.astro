@@ -64,7 +64,7 @@ const bridge = [
         aria-label="Illustrative cost bridge; scroll horizontally on small screens"
       >
         <svg
-          class="waterfall"
+          class="waterfall chart-animate"
           viewBox="0 0 570 340"
           role="img"
           aria-labelledby="bridge-title bridge-description"
@@ -95,18 +95,21 @@ const bridge = [
           {bridge.map((b, i) => (
             <g>
               <rect
-                class={b.total ? "total" : "delta"}
+                class:list={["bar", b.total ? "total" : "delta"]}
+                style={`--reveal-delay: ${i * 0.08}s`}
                 x={b.x}
                 y={b.y}
                 width="63"
                 height={b.height}
                 rx="2"
-              />
+              >
+                <title>{`${b.label} ${b.label2}: ${b.value}`}</title>
+              </rect>
               <text
+                class="bar-label"
                 x={b.x + 31.5}
                 y={b.y - 10}
                 text-anchor="middle"
-                font-weight="600"
               >
                 {b.value}
               </text>

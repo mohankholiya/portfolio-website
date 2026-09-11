@@ -13,6 +13,7 @@ const canonical = new URL(
   is404 ? "/404.html" : Astro.url.pathname,
   siteConfig.url,
 ).href;
+const ogImage = new URL("/og-image.png", siteConfig.url).href;
 ---
 
 <!doctype html>
@@ -27,14 +28,34 @@ const canonical = new URL(
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Mohan Kholiya, procurement and supply chain leadership. 16+ years across energy, utilities and telecom."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {is404 && <meta name="robots" content="noindex" />}
+    {/* Only the two faces that paint above the fold are preloaded. Plex Mono
+        carries small labels, where a swap is not worth a third blocking
+        request on a 4G connection. */}
     <link
       rel="preload"
-      href="/fonts/inter-latin.woff2"
+      href="/fonts/archivo-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-var.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -69,9 +90,54 @@ const canonical = new URL(
     ></script>
   </head>
   <body>
+    {/* Set before paint so the reveal styles never flash content in and out,
+        and so a no-JS visitor gets the fully visible page. */}
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
     <a class="skip-link" href="#main-content">
       Skip to main content
     </a>
     <slot />
+    <script>
+      // IntersectionObserver only. No scroll listener anywhere on this site.
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function activate() {
+        const targets = document.querySelectorAll<HTMLElement>(
+          ".reveal, .chart-animate",
+        );
+        if (reduce.matches || !("IntersectionObserver" in window)) {
+          targets.forEach((el) => el.classList.add("is-in"));
+          return;
+        }
+
+        // Stagger siblings inside a group so a grid arrives as a wave rather
+        // than all at once. Capped so a long list never crawls in.
+        document.querySelectorAll(".reveal-group").forEach((group) => {
+          Array.from(group.children).forEach((child, i) => {
+            (child as HTMLElement).style.setProperty(
+              "--reveal-delay",
+              `${Math.min(i, 5) * 0.07}s`,
+            );
+          });
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-in");
+              observer.unobserve(entry.target); // reveal once, never replay
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+        );
+
+        targets.forEach((el) => observer.observe(el));
+      }
+
+      activate();
+    </script>
   </body>
 </html>

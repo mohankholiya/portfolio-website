@@ -10,14 +10,14 @@ import Arrow from "./Arrow.astro";
   aria-labelledby="work-heading"
 >
   <div class="container">
-    <div class="section-heading">
+    <div class="section-heading reveal">
       <div>
         <p class="eyebrow">{copy.cases.eyebrow}</p>
         <h2 id="work-heading">{copy.cases.heading}</h2>
       </div>
       <p>{copy.cases.description}</p>
     </div>
-    <div class="case-grid">
+    <div class="case-grid reveal-group">
       {caseStudies.slice(0, 3).map((cs, index) => (
         <CaseStudyCard {...cs} index={index} />
       ))}

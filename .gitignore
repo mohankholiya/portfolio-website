@@ -14,3 +14,6 @@ graphify-out/
 # local dev artifacts — QA screenshots and machine-local settings
 .claude/shots/
 .claude/settings.local.json
+
+# Local reference copy of a previously deployed build, not source.
+mohan kholiya draft build/

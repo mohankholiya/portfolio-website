@@ -25,11 +25,38 @@
     overflow-wrap: break-word;
   }
 }
+/* Three voices, each with one job:
+   Archivo carries headlines and figures, Source Sans 3 carries reading copy,
+   IBM Plex Mono carries anything that is data (labels, axes, captions, scope
+   metadata). A single family at every size is what made the previous pass read
+   as a template; the mono in particular is what makes an exhibit look measured
+   rather than decorative. */
 @font-face {
-  font-family: Inter;
-  src: url("/fonts/inter-latin.woff2") format("woff2");
+  font-family: Archivo;
+  src: url("/fonts/archivo-var.woff2") format("woff2-variations");
   font-style: normal;
   font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/fonts/source-sans-3-var.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/plex-mono-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/plex-mono-500.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
   font-display: swap;
 }
 @theme {
@@ -44,8 +71,9 @@
   --color-accent-text: #8a4e18;
   --color-accent-tint: #f6e9da;
   --color-on-ink: #f4f7fa;
-  --font-display: Inter, Arial, sans-serif;
-  --font-sans: Inter, Arial, sans-serif;
+  --font-display: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 :root {
   --space-section: 100px;
@@ -55,6 +83,43 @@
   --light-ink: #bdcbd5;
   --light-accent: #e4ae74;
   --dark-rule: #30495c;
+
+  /* Spacing scale. One ramp, used everywhere, so vertical rhythm is a
+     decision rather than an accident of whatever number was to hand. */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Radii. One scale, no mixed corner systems. */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+
+  /* Elevation, tinted to the page hue. No pure-black shadows on a slate page. */
+  --shadow-sm: 0 1px 2px rgb(12 36 56 / 0.05);
+  --shadow-md:
+    0 1px 3px rgb(12 36 56 / 0.05), 0 10px 24px -14px rgb(12 36 56 / 0.22);
+  --shadow-lg:
+    0 2px 6px rgb(12 36 56 / 0.06), 0 22px 48px -26px rgb(12 36 56 / 0.3);
+
+  /* Series colours for every exhibit. Validated with the dataviz palette
+     checker against a white chart surface: lightness band, chroma floor,
+     CVD separation, normal-vision floor and contrast all PASS.
+     Copper is always the subject of the finding; petrol is always the
+     comparison or context. Never swapped, never cycled. */
+  --series-subject: #c2772f;
+  --series-context: #1f6f9c;
+  --series-third: #3f8f5f;
+  /* Grid lines are decorative scaffolding and stay recessive. The baseline is
+     a meaningful graphical object (it establishes zero), so it is held to the
+     3:1 non-text contrast minimum against both chart surfaces. */
+  --chart-grid: #e3e9ee;
+  --chart-axis: #7e8c99;
 }
 *,
 *::before,
@@ -89,13 +154,24 @@ h3,
 h4 {
   font-family: var(--font-display);
   line-height: 1.18;
-  letter-spacing: 0;
+  letter-spacing: -0.011em;
   font-weight: 600;
+  text-wrap: balance;
 }
 h1 {
   font-size: 60px;
   font-weight: 700;
-  letter-spacing: 0;
+  letter-spacing: -0.022em;
+}
+/* Figures line up in columns and read as measurements, not prose. */
+.tabular,
+.case-result strong,
+.exhibit-value,
+.proof-facts strong,
+.consulting-chart text,
+.waterfall text {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 h2 {
   font-size: 42px;
@@ -173,12 +249,12 @@ img {
   white-space: pre-line;
 }
 .eyebrow {
-  font-family: var(--font-display);
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
   line-height: 1.5;
-  letter-spacing: 0;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-accent-text);
 }
 .section-heading {
@@ -559,9 +635,20 @@ img {
 }
 .case-card:hover {
   transform: translateY(-4px);
-  box-shadow:
-    0 2px 5px #0c24380a,
-    0 20px 38px -25px #0c24384d;
+  box-shadow: var(--shadow-lg);
+}
+/* The per-card spark. One grammar across all six, sized so it reads at a
+   glance without competing with the headline figure above it. */
+.case-spark {
+  width: 100%;
+  margin: 4px 0 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-hairline);
+}
+.case-spark svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .case-card-featured {
   border-top: 3px solid var(--color-accent);
@@ -1392,8 +1479,11 @@ img {
   margin-top: 18px;
   line-height: 1.5;
 }
+/* Same grid min-width trap as .exhibit-scroll: without this the waterfall's
+   500px min-width pushes the page to 571px at a 375px viewport. */
 .chart-scroll {
   overflow-x: auto;
+  min-width: 0;
   padding-bottom: 8px;
 }
 .waterfall {
@@ -1403,19 +1493,29 @@ img {
   display: block;
 }
 .waterfall text {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  fill: var(--color-body);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  fill: var(--color-muted);
+  font-variant-numeric: tabular-nums;
 }
 .waterfall .axis {
-  stroke: var(--color-hairline);
+  stroke: var(--chart-grid);
   stroke-width: 1;
 }
+/* Totals are context (the opening and closing position), the steps between
+   them are the subject of the story. Same copper/petrol rule as every other
+   exhibit, so the grammar holds across the whole site. */
 .waterfall .total {
-  fill: var(--color-ink);
+  fill: var(--series-context);
 }
 .waterfall .delta {
-  fill: var(--color-accent);
+  fill: var(--series-subject);
+}
+.waterfall .bar-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  fill: var(--color-ink);
 }
 .method-steps {
   display: grid;
@@ -2097,6 +2197,80 @@ img {
     font-size: 34px;
   }
 }
+/* ── Motion layer ───────────────────────────────────────────────────────────
+   Three motivated moves, nothing decorative:
+   1. Scroll reveal sequences a section so a scanning reader takes it in order.
+   2. Card lift and arrow travel give feedback that a card is a link.
+   3. Exhibit bars grow from their baseline, which is the one place motion
+      carries meaning: it shows a quantity being measured.
+   Deliberately NOT here: count-up on the headline figures. An animated number
+   reads as a gimmick to a hiring partner scanning for evidence, and it would
+   mangle values like "$4.9M-$6M" and "13+ years".
+
+   The hidden state is gated on `.js` so the page is fully readable with
+   JavaScript disabled rather than blank. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.5s var(--ease);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Bars in an exhibit draw themselves once the exhibit is in view.
+   `transform-box: fill-box` scopes transform-origin to each rect's own box, so
+   every bar grows from its own baseline rather than from the SVG origin. */
+.js .chart-animate rect.bar {
+  transform-box: fill-box;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  transition: transform 0.7s var(--ease);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.js .chart-animate.is-in rect.bar {
+  transform: scaleY(1);
+}
+.js .chart-animate.bars-horizontal rect.bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.js .chart-animate.bars-horizontal.is-in rect.bar {
+  transform: scaleX(1);
+}
+
+/* Touch targets. On a coarse pointer every interactive element clears the
+   44px minimum, using padding rather than height so the visual rhythm of the
+   text links is unchanged. */
+@media (pointer: coarse) {
+  .brand,
+  .breadcrumbs a,
+  .case-bottom a,
+  .detail-toc a,
+  .site-footer a,
+  .next-case a,
+  .text-link,
+  .secondary-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .audience-switch button {
+    min-height: 44px;
+  }
+  .case-spark {
+    /* The spark is decorative relative to the card link; keep it out of the
+       way of the enlarged tap areas around it. */
+    pointer-events: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2112,8 +2286,29 @@ img {
   .text-link:hover svg {
     transform: none;
   }
+  /* Everything that would have animated in is simply present. */
+  .js .reveal,
+  .js .chart-animate rect.bar,
+  .js .chart-animate line.bar,
+  .js .chart-animate.bars-horizontal rect.bar {
+    opacity: 1;
+    transform: none;
+  }
 }
 @media print {
+  /* Scroll reveal never fires when printing, so without this every section
+     below the fold prints blank. A recruiter saving the page as a PDF is a
+     real path, so the reveal state has to be neutralised here. */
+  .js .reveal,
+  .js .chart-animate rect.bar,
+  .js .chart-animate.bars-horizontal rect.bar {
+    opacity: 1 !important;
+    transform: none !important;
+    /* The transition has to go too. Left running, the browser snapshots the
+       page mid-fade and prints it washed out. */
+    transition: none !important;
+    animation: none !important;
+  }
   .site-header,
   .site-footer,
   .detail-toc,

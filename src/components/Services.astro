@@ -3,24 +3,21 @@ import { services, copy } from "../content/site";
 import Arrow from "./Arrow.astro";
 ---
 
-<section id="services" class="section" aria-labelledby="services-heading">
+<section
+  id="capabilities"
+  class="section"
+  aria-labelledby="capabilities-heading"
+>
   <div class="container">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">{copy.services.eyebrow}</p>
-        <h2 class="multiline" id="services-heading">
-          {copy.services.heading}
-        </h2>
-      </div>
-      <p>{copy.services.description}</p>
+    <div class="section-heading section-heading-stacked">
+      <h2 class="multiline" id="capabilities-heading">
+        {copy.capabilities.heading}
+      </h2>
+      <p>{copy.capabilities.description}</p>
     </div>
-    <div class="service-grid">
+    <div class="service-grid reveal-group">
       {services.map((s) => (
-        <article class="service-card">
-          <div class="service-number">
-            {s.number}
-            <span aria-hidden="true">/</span>
-          </div>
+        <article class="service-card reveal">
           <p class="service-question">{s.question}</p>
           <h3>{s.title}</h3>
           <p>{s.body}</p>
@@ -30,41 +27,24 @@ import Arrow from "./Arrow.astro";
             ))}
           </ul>
           <div class="service-links">
-            <a
-              class="text-link"
-              href={`/#contact?service=${encodeURIComponent(s.title)}`}
-            >
-              {copy.services.cta}
+            <a class="text-link" href={`/case-studies/${s.caseId}/`}>
+              {copy.capabilities.cta}
               <Arrow />
-            </a>
-            <a href={`/case-studies/${s.caseId}/`} class="secondary-link">
-              Related work
             </a>
           </div>
         </article>
       ))}
     </div>
-    <div class="process">
-      <h3>{copy.services.processTitle}</h3>
+    <div class="process reveal">
+      <h3>{copy.capabilities.processTitle}</h3>
       <ol>
-        {copy.services.steps.map((s) => (
+        {copy.capabilities.steps.map((s) => (
           <li>
             <h4>{s.title}</h4>
             <p>{s.body}</p>
           </li>
         ))}
       </ol>
-    </div>
-    <div class="partnership">
-      <div>
-        <p class="eyebrow">For consulting firms & expert networks</p>
-        <h3>{copy.services.partnershipTitle}</h3>
-        <p>{copy.services.partnershipBody}</p>
-      </div>
-      <a class="button button-light" href="/#contact?type=collaboration">
-        {copy.services.partnershipCta}
-        <Arrow />
-      </a>
     </div>
   </div>
 </section>

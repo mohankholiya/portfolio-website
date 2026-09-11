@@ -11,9 +11,8 @@ const c = copy.contact;
   class="section contact-section"
   aria-labelledby="contact-heading"
 >
-  <div class="container contact-grid">
+  <div class="container contact-grid reveal">
     <div>
-      <p class="eyebrow">{c.eyebrow}</p>
       <h2 class="multiline" id="contact-heading">
         {c.heading}
       </h2>
@@ -122,15 +121,16 @@ const c = copy.contact;
   const type = document.querySelector<HTMLSelectElement>("#contact-type");
   const message =
     document.querySelector<HTMLTextAreaElement>("#contact-message");
+  // Deep links from a case study carry the case headline so the enquiry
+  // arrives with context already filled in. The enquiry type stays on its
+  // default (an in-house leadership role) unless the visitor changes it.
   function populate() {
     const query = window.location.hash.split("?")[1];
     if (!query || !type || !message) return;
     const params = new URLSearchParams(query);
-    if (params.get("type") === "collaboration") type.selectedIndex = 2;
-    else if (params.has("service")) {
-      type.selectedIndex = 1;
-      if (!message.value)
-        message.value = `I'd like to discuss ${params.get("service")}. `;
+    const from = params.get("case");
+    if (from && !message.value) {
+      message.value = `I read the "${from}" case study. `;
     }
     document.getElementById("contact")?.scrollIntoView();
   }

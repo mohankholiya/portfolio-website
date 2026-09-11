@@ -8,7 +8,7 @@ import Arrow from "./Arrow.astro";
 <section id="about" class="section" aria-labelledby="about-heading">
   <div class="container">
     <div class="about-grid">
-      <div class="about-portrait">
+      <div class="about-portrait reveal">
         <Picture
           src={headshot}
           alt="Mohan Kholiya — Procurement &amp; Supply Chain Leader"
@@ -31,8 +31,7 @@ import Arrow from "./Arrow.astro";
           <Arrow />
         </a>
       </div>
-      <div class="about-copy">
-        <p class="eyebrow">{copy.about.eyebrow}</p>
+      <div class="about-copy reveal">
         <h2 class="multiline" id="about-heading">
           {copy.about.heading}
         </h2>

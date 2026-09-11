@@ -51,7 +51,7 @@ const c = copy.detail;
       <a href="#approach">{c.approach}</a>
       <a href="#judgment">{c.judgment}</a>
       <a href="#results">{c.results}</a>
-      <a href="#case-enquiry">Discuss a project</a>
+      <a href="#case-enquiry">{c.cta}</a>
     </nav>
     <div class="detail-body">
       <section id="challenge" class="detail-section">
@@ -97,7 +97,7 @@ const c = copy.detail;
         </div>
         <a
           class="button button-light"
-          href={`/#contact?service=${encodeURIComponent(cs.tags[0])}`}
+          href={`/#contact?case=${encodeURIComponent(cs.headline)}`}
         >
           {c.cta}
           <Arrow />

@@ -17,6 +17,8 @@ class Page(HTMLParser):
         self.h1 = 0
         self.canonical = []
         self.description = []
+        self.og_image = []
+        self.twitter_card = []
         self.in_schema = False
         self.schema = ''
         self.feed(path.read_text())
@@ -36,6 +38,10 @@ class Page(HTMLParser):
             self.canonical.append(a['href'])
         if tag == 'meta' and a.get('name') == 'description':
             self.description.append(a.get('content', ''))
+        if tag == 'meta' and a.get('property') == 'og:image':
+            self.og_image.append(a.get('content', ''))
+        if tag == 'meta' and a.get('name') == 'twitter:card':
+            self.twitter_card.append(a.get('content', ''))
         if tag == 'script' and a.get('type') == 'application/ld+json':
             self.in_schema = True
 
@@ -59,6 +65,10 @@ for path, page in pages.items():
     if relative != '404.html':
         assert page.canonical[0] == ORIGIN + route, f'Wrong canonical: {path}'
     assert json.loads(page.schema)['@type'] == 'Person'
+    # A share card regression is invisible on the site itself but breaks every
+    # LinkedIn post, which is the main distribution channel for this page.
+    assert page.og_image == [ORIGIN + '/og-image.png'], f'Missing og:image: {path}'
+    assert page.twitter_card == ['summary_large_image'], f'Wrong twitter:card: {path}'
     for link in page.links:
         target = urlsplit(urljoin(ORIGIN + route, link))
         if target.scheme not in ('https', 'http') or target.netloc != urlsplit(ORIGIN).netloc:
@@ -74,8 +84,18 @@ for path, page in pages.items():
 
 for name in ('resume.pdf', 'Mohan_Kholiya_Industry_Resume.pdf'):
     assert (ROOT / name).read_bytes().startswith(b'%PDF-'), f'Invalid PDF: {name}'
-for name in ('inter-latin.woff2',):
+for name in (
+    'archivo-var.woff2',
+    'source-sans-3-var.woff2',
+    'plex-mono-400.woff2',
+    'plex-mono-500.woff2',
+):
     assert (ROOT / 'fonts' / name).read_bytes().startswith(b'wOF2'), f'Invalid font: {name}'
+assert (ROOT / 'og-image.png').read_bytes().startswith(b'\x89PNG'), 'Invalid og-image.png'
+# The old case-study slug leaked a project codename and is indexed; the
+# redirect that retires it must survive future builds.
+redirects = (ROOT / '_redirects').read_text()
+assert 'ntgm-cost-competitiveness' in redirects, 'Missing redirect for the retired slug'
 sitemap = ET.parse(ROOT / 'sitemap.xml')
 assert len(sitemap.getroot()) == 9
 print(f'PASS: {len(pages)} pages; {checked} local references; metadata, structured data, sitemap, PDFs and fonts.')

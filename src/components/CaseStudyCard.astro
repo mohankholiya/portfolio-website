@@ -14,9 +14,103 @@ interface Props {
   index: number;
 }
 const cs = Astro.props;
+
+/* One grammar across all six sparks: copper is always the finding, petrol is
+   always the context it sits inside, hairline is scaffolding. Every figure
+   below is either stated in that case study or derived from two figures that
+   are. Where a case has no defensible ratio, the spark shows the shape of the
+   analysis instead of inventing a proportion. */
+const A = "var(--series-subject)";
+const C = "var(--series-context)";
+const H = "var(--color-hairline)";
+const F = "var(--color-muted)";
+const MONO = "var(--font-mono)";
+
+const label = (x: number, y: number, s: string, fill = F, anchor = "start") =>
+  `<text x="${x}" y="${y}" font-family="${MONO}" font-size="9.5" fill="${fill}" text-anchor="${anchor}">${s}</text>`;
+
+const sparks: Record<string, string> = {
+  // Total cost is the thesis: three named levers, not one headline rate.
+  // The levers are stated in the case; their individual values are not, so
+  // the segments are equal and carry no value labels.
+  "bt-contract-renewal": `
+    <svg viewBox="0 0 280 54" role="img" aria-label="Three total-cost levers carried into the renewal: rates, travel and mobilisation, service levels and rework">
+      ${label(0, 10, "Levers beyond the headline rate")}
+      <rect x="0" y="19" width="86" height="12" rx="2" fill="${A}"/>
+      <rect x="91" y="19" width="86" height="12" rx="2" fill="${A}" opacity="0.72"/>
+      <rect x="182" y="19" width="86" height="12" rx="2" fill="${A}" opacity="0.5"/>
+      ${label(0, 46, "Rates")}
+      ${label(91, 46, "Travel")}
+      ${label(182, 46, "SLA / rework")}
+    </svg>`,
+
+  // 4.9-6.0 of 233 is 2.1%-2.6%. Drawn to scale, which is the honest picture.
+  "unit-rate-governance": `
+    <svg viewBox="0 0 280 54" role="img" aria-label="Identified opportunity of 4.9 to 6 million dollars against a 233 million dollar programme, about 2 percent">
+      ${label(0, 10, "Opportunity against programme spend")}
+      <rect x="0" y="19" width="268" height="12" rx="2" fill="${C}" opacity="0.28"/>
+      <rect x="0" y="19" width="${(6 / 233) * 268}" height="12" rx="2" fill="${A}"/>
+      ${label(0, 46, "$4.9M-$6M identified", A)}
+      ${label(268, 46, "of $233M", F, "end")}
+    </svg>`,
+
+  // Three categories coordinated; savings are portfolio-level only, so the
+  // category blocks are drawn as outlines and carry no share of the total.
+  "accenture-capex-sourcing": `
+    <svg viewBox="0 0 280 58" role="img" aria-label="Three capital categories coordinated under one sourcing approach, with portfolio savings of about four million dollars and no category split implied">
+      ${label(0, 10, "Three categories, one approach")}
+      ${["EPC", "Surface", "D&C"]
+        .map(
+          (t, i) =>
+            `<rect x="${i * 93}" y="16" width="84" height="16" rx="2" fill="none" stroke="${H}"/>` +
+            `<text x="${i * 93 + 42}" y="27" font-family="${MONO}" font-size="9" fill="${F}" text-anchor="middle">${t}</text>`,
+        )
+        .join("")}
+      <rect x="0" y="37" width="268" height="5" rx="2" fill="${A}"/>
+      ${label(0, 54, "~$4M across the portfolio", A)}
+      ${label(268, 54, "no split implied", F, "end")}
+    </svg>`,
+
+  // Peer-set coverage, 18 expanded to 27. Both bars share one scale.
+  "capital-cost-competitiveness": `
+    <svg viewBox="0 0 280 54" role="img" aria-label="Peer set expanded from 18 projects to 27 projects">
+      ${label(0, 10, "Peer-set coverage")}
+      <rect x="66" y="15" width="${18 * 7.4}" height="11" rx="2" fill="${C}" opacity="0.55"/>
+      <rect x="66" y="30" width="${27 * 7.4}" height="11" rx="2" fill="${A}"/>
+      ${label(60, 24, "18", F, "end")}
+      ${label(60, 39, "27", A, "end")}
+      ${label(0, 52, "Regional set expanded by nine projects")}
+    </svg>`,
+
+  // No published ratio for this engagement, so the spark shows the decision
+  // frame rather than a number: workload against available capacity.
+  "supply-chain-benchmarking": `
+    <svg viewBox="0 0 280 54" role="img" aria-label="Workload against available capacity decision matrix, with the constrained quadrant highlighted">
+      ${label(0, 10, "Workload x available capacity")}
+      <rect x="0" y="16" width="62" height="15" fill="none" stroke="${H}"/>
+      <rect x="62" y="16" width="62" height="15" fill="none" stroke="${H}"/>
+      <rect x="0" y="31" width="62" height="15" fill="none" stroke="${H}"/>
+      <rect x="62" y="31" width="62" height="15" fill="${A}" opacity="0.85"/>
+      ${label(134, 29, "Lower capacity, higher workload")}
+      ${label(134, 43, "is the quadrant to investigate")}
+    </svg>`,
+
+  // Two categories placed on the same two axes as the detail exhibit.
+  "category-intelligence": `
+    <svg viewBox="0 0 280 54" role="img" aria-label="Lighting and E-STATCOM positioned on supply-market concentration against engineering intensity">
+      ${label(0, 10, "One framework, two postures")}
+      <rect x="0" y="15" width="124" height="31" fill="none" stroke="${H}"/>
+      <line x1="62" y1="15" x2="62" y2="46" stroke="${H}" stroke-dasharray="2 2"/>
+      <line x1="0" y1="30.5" x2="124" y2="30.5" stroke="${H}" stroke-dasharray="2 2"/>
+      <circle cx="30" cy="39" r="5" fill="${A}"/>
+      <circle cx="95" cy="23" r="5" fill="${C}"/>
+      ${label(134, 29, "Lighting: competitive tendering", A)}
+      ${label(134, 43, "E-STATCOM: partnership", C)}
+    </svg>`,
+};
 ---
 
-<article class:list={["case-card", { "case-card-featured": cs.index === 0 }]}>
+<article class:list={["case-card", "reveal", { "case-card-featured": cs.index === 0 }]}>
   <div class="case-meta">
     <span>{cs.sectorLabel}</span>
     <span aria-hidden="true">{String(cs.index + 1).padStart(2, "0")}</span>
@@ -26,6 +120,7 @@ const cs = Astro.props;
     <p>{cs.metricLabel}</p>
   </div>
   <span class="outcome-label">{cs.status}</span>
+  <div class="case-spark" set:html={sparks[cs.id] ?? ""}></div>
   <h3>
     <a href={`/case-studies/${cs.id}/`}>{cs.headline}</a>
   </h3>
