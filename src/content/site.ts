@@ -84,7 +84,7 @@ export const copy = {
     heading: "The work behind the numbers.",
     description:
       "Commercial outcomes and decision support across consulting and in-house roles. Each case explains the context, my contribution and the result.",
-    more: "Explore all six case studies",
+    more: "Browse by sector",
     read: "Read case study",
     all: "All work",
     filters: [
@@ -123,24 +123,16 @@ export const copy = {
     heading: "Consulting perspective.\nIn-house accountability.",
     description:
       "16+ years across six organisations, from drilling operations and capital sourcing to category leadership and energy supply-chain advisory.",
-    downloadsTitle: "Find the version relevant to the role you are hiring for.",
+    downloadsTitle: "The full career record.",
     downloadsBody:
-      "Two focused resumes covering the same career, one through an industry lens and one through a consulting lens.",
-    downloads: [
-      {
-        title: "Industry leadership roles",
-        body: "Category ownership, sourcing, supplier development and operational delivery.",
-        href: "/Mohan_Kholiya_Industry_Resume.pdf",
-        label: "Download industry resume",
-      },
-      {
-        title: "Consulting firm roles",
-        body: "Cost diagnostics, capital benchmarking, category strategy and operating models.",
-        href: "/resume.pdf",
-        label: "Download consulting resume",
-      },
-    ],
-    downloadNote: "PDF · Updated September 2026",
+      "Category ownership, sourcing and supplier development alongside cost diagnostics, capital benchmarking and operating-model work.",
+    download: {
+      title: "Curriculum vitae",
+      body: "Sixteen years across energy, utilities and telecom, in-house and in advisory.",
+      href: "/resume.pdf",
+      label: "Download resume",
+    },
+    downloadNote: "PDF · 2 pages",
   },
   about: {
     heading: "I connect the analysis\nto the decision.",
@@ -270,43 +262,43 @@ export const services = [
 ];
 export const caseStudies = [
   {
-    id: "bt-contract-renewal",
-    sector: "telecom",
-    sectorLabel: "Telecom",
-    headline: "A stronger renewal. Service continuity protected.",
-    metric: "~£2M",
-    metricLabel: "total-cost optimisation secured",
-    status: "Contracted optimisation",
+    id: "capital-cost-competitiveness",
+    sector: "energy",
+    sectorLabel: "Energy & oil & gas",
+    headline: "A defensible benchmark for a complex capital decision.",
+    metric: "27 projects",
+    metricLabel: "in the comparative peer set",
+    status: "Decision support",
     description:
-      "Should-cost modelling and negotiation across a complex BT Group service-delivery renewal.",
-    tags: ["Should-cost modelling", "Negotiation"],
-    scope: "In-house category ownership · BT Group",
-    role: "I led the renewal: developing the cost model, building the negotiation position and negotiating the commercial outcome.",
+      "Top-down and component-level benchmarking to focus a pre-FEED cost-competitiveness review.",
+    tags: ["Capital benchmarking", "Cost modelling"],
+    scope: "Consulting · Global upstream energy operator",
+    role: "My work contributed to the benchmarking, cost-driver analysis and executive synthesis within the independent competitiveness review team.",
     challenge:
-      "A multi-year field-services agreement was approaching renewal. Historical rates offered a weak negotiating baseline, while a supplier change could put service continuity at risk. The decision needed to account for the full cost of delivery.",
+      "A shallow-water gas development needed a credible cost comparison before the next design stage. Ideal peers were scarce, and a single headline cost ranking would not explain which systems were competitive or where the gaps originated.",
     approach: [
       {
-        title: "Rebuild the baseline",
-        body: "Decompose labour, productivity, materials, overhead and margin to understand the cost of the service.",
+        title: "Construct a useful peer set",
+        body: "Widen the comparison criteria deliberately, then account for differences in location, timing and specification.",
       },
       {
-        title: "Look beyond the day rate",
-        body: "Evaluate mobilisation, travel, rework and service-level commitments alongside quoted rates.",
+        title: "Use complementary analytical views",
+        body: "Combine project-level comparisons with a bottom-up examination of component costs and drivers.",
       },
       {
-        title: "Negotiate with continuity in mind",
-        body: "Use the cost model to prioritise commercial asks and close a renewal with the incumbent.",
+        title: "Focus the decision",
+        body: "Distinguish structural constraints from commercially addressable drivers and translate the findings into a focused review agenda.",
       },
     ],
     judgment:
-      "The useful negotiation was about the complete service economics. A lower headline rate would have meant little if mobilisation, rework or delivery disruption increased the total cost.",
+      "A first-quartile target is not automatically appropriate for every cost system. The value of the benchmark was to explain the differences and frame a realistic goal for each part of the project.",
     results: [
-      "Approximately £2M of total-cost optimisation secured in the renewal.",
-      "Incumbent retained and field-service continuity protected.",
-      "A reusable should-cost baseline and clearer view of cost levers.",
+      "A 27-project peer set to inform the competitiveness review.",
+      "System-level comparisons supported by component-level cost-driver analysis.",
+      "A clearer agenda for evaluating cost gaps ahead of further project decisions.",
     ],
-    note: "The £100M figure elsewhere describes annual category responsibility at BT Group, not this individual contract. The cost bridge is a synthetic method illustration, not the contract's actual cost baseline.",
-    chart: "waterfall",
+    note: "This case describes benchmarking and decision support. It does not claim ownership of the final investment decision or subsequent savings. Client and project details are anonymised.",
+    chart: "benchmark",
   },
   {
     id: "unit-rate-governance",
@@ -348,84 +340,6 @@ export const caseStudies = [
     chart: "governance",
   },
   {
-    id: "accenture-capex-sourcing",
-    sector: "energy",
-    sectorLabel: "Energy & oil & gas",
-    headline: "Turning fragmented CapEx buying into category leverage.",
-    metric: "~$4M",
-    metricLabel: "CapEx savings delivered",
-    status: "Sourcing outcome",
-    description:
-      "Category strategy and end-to-end sourcing across EPC, surface facilities, and drilling and completions.",
-    tags: ["Strategic sourcing", "Category management"],
-    scope: "Consulting · Indian upstream E&P operator",
-    role: "Within Accenture's engagement team, I led category strategy and sourcing across major capital packages, from qualification and RFx through evaluation, negotiation and award.",
-    challenge:
-      "Project-by-project tendering fragmented demand and limited supplier leverage. The operator needed a coordinated category approach while maintaining attention to technical requirements, quality and delivery schedules.",
-    approach: [
-      {
-        title: "Manage spend as categories",
-        body: "Develop approaches for EPC, surface facilities, and drilling and completions based on their different supply markets.",
-      },
-      {
-        title: "Aggregate demand and compete appropriately",
-        body: "Consolidate requirements across projects and run structured qualification, RFx and technical-commercial evaluation.",
-      },
-      {
-        title: "Carry the strategy through award",
-        body: "Negotiate and award packages using total cost, quality and schedule considerations, then establish category playbooks.",
-      },
-    ],
-    judgment:
-      "Supplier leverage came from the structure of the process as well as the size of the package. Different categories needed different contracting approaches rather than a single tendering formula.",
-    results: [
-      "Approximately $4M in CapEx savings across the managed sourcing portfolio.",
-      "Coordinated strategies across three major capital categories.",
-      "Category playbooks and supplier-management routines for the in-house team.",
-    ],
-    note: "Client identity is withheld. Savings describe the sourcing portfolio; category proportions and supplier counts are omitted rather than reconstructed as project facts.",
-    chart: "sourcing",
-  },
-  {
-    id: "capital-cost-competitiveness",
-    sector: "energy",
-    sectorLabel: "Energy & oil & gas",
-    headline: "A defensible benchmark for a complex capital decision.",
-    metric: "27 projects",
-    metricLabel: "in the comparative peer set",
-    status: "Decision support",
-    description:
-      "Top-down and component-level benchmarking to focus a pre-FEED cost-competitiveness review.",
-    tags: ["Capital benchmarking", "Cost modelling"],
-    scope: "Consulting · Global upstream energy operator",
-    role: "My work contributed to the benchmarking, cost-driver analysis and executive synthesis within the independent competitiveness review team.",
-    challenge:
-      "A shallow-water gas development needed a credible cost comparison before the next design stage. Ideal peers were scarce, and a single headline cost ranking would not explain which systems were competitive or where the gaps originated.",
-    approach: [
-      {
-        title: "Construct a useful peer set",
-        body: "Widen the comparison criteria deliberately, then account for differences in location, timing and specification.",
-      },
-      {
-        title: "Use complementary analytical views",
-        body: "Combine project-level comparisons with a bottom-up examination of component costs and drivers.",
-      },
-      {
-        title: "Focus the decision",
-        body: "Distinguish structural constraints from commercially addressable drivers and translate the findings into a focused review agenda.",
-      },
-    ],
-    judgment:
-      "A first-quartile target is not automatically appropriate for every cost system. The value of the benchmark was to explain the differences and frame a realistic goal for each part of the project.",
-    results: [
-      "A 27-project peer set to inform the competitiveness review.",
-      "System-level comparisons supported by component-level cost-driver analysis.",
-      "A clearer agenda for evaluating cost gaps ahead of further project decisions.",
-    ],
-    note: "This case describes benchmarking and decision support. It does not claim ownership of the final investment decision or subsequent savings. Client and project details are anonymised.",
-    chart: "benchmark",
-  },
-  {
     id: "supply-chain-benchmarking",
     sector: "utilities",
     sectorLabel: "Utilities",
@@ -463,6 +377,84 @@ export const caseStudies = [
     ],
     note: "The case describes a diagnostic and recommendations. Unconfirmed peer counts, pilot results, headcount changes and downstream savings are not presented as outcomes.",
     chart: "capacity",
+  },
+  {
+    id: "bt-contract-renewal",
+    sector: "telecom",
+    sectorLabel: "Telecom",
+    headline: "A stronger renewal. Service continuity protected.",
+    metric: "~£2M",
+    metricLabel: "total-cost optimisation secured",
+    status: "Contracted optimisation",
+    description:
+      "Should-cost modelling and negotiation across a complex BT Group service-delivery renewal.",
+    tags: ["Should-cost modelling", "Negotiation"],
+    scope: "In-house category ownership · BT Group",
+    role: "I led the renewal: developing the cost model, building the negotiation position and negotiating the commercial outcome.",
+    challenge:
+      "A multi-year field-services agreement was approaching renewal. Historical rates offered a weak negotiating baseline, while a supplier change could put service continuity at risk. The decision needed to account for the full cost of delivery.",
+    approach: [
+      {
+        title: "Rebuild the baseline",
+        body: "Decompose labour, productivity, materials, overhead and margin to understand the cost of the service.",
+      },
+      {
+        title: "Look beyond the day rate",
+        body: "Evaluate mobilisation, travel, rework and service-level commitments alongside quoted rates.",
+      },
+      {
+        title: "Negotiate with continuity in mind",
+        body: "Use the cost model to prioritise commercial asks and close a renewal with the incumbent.",
+      },
+    ],
+    judgment:
+      "The useful negotiation was about the complete service economics. A lower headline rate would have meant little if mobilisation, rework or delivery disruption increased the total cost.",
+    results: [
+      "Approximately £2M of total-cost optimisation secured in the renewal.",
+      "Incumbent retained and field-service continuity protected.",
+      "A reusable should-cost baseline and clearer view of cost levers.",
+    ],
+    note: "The £100M figure elsewhere describes annual category responsibility at BT Group, not this individual contract. The cost bridge is a synthetic method illustration, not the contract's actual cost baseline.",
+    chart: "waterfall",
+  },
+  {
+    id: "accenture-capex-sourcing",
+    sector: "energy",
+    sectorLabel: "Energy & oil & gas",
+    headline: "Turning fragmented CapEx buying into category leverage.",
+    metric: "~$4M",
+    metricLabel: "CapEx savings delivered",
+    status: "Sourcing outcome",
+    description:
+      "Category strategy and end-to-end sourcing across EPC, surface facilities, and drilling and completions.",
+    tags: ["Strategic sourcing", "Category management"],
+    scope: "Consulting · Indian upstream E&P operator",
+    role: "Within Accenture's engagement team, I led category strategy and sourcing across major capital packages, from qualification and RFx through evaluation, negotiation and award.",
+    challenge:
+      "Project-by-project tendering fragmented demand and limited supplier leverage. The operator needed a coordinated category approach while maintaining attention to technical requirements, quality and delivery schedules.",
+    approach: [
+      {
+        title: "Manage spend as categories",
+        body: "Develop approaches for EPC, surface facilities, and drilling and completions based on their different supply markets.",
+      },
+      {
+        title: "Aggregate demand and compete appropriately",
+        body: "Consolidate requirements across projects and run structured qualification, RFx and technical-commercial evaluation.",
+      },
+      {
+        title: "Carry the strategy through award",
+        body: "Negotiate and award packages using total cost, quality and schedule considerations, then establish category playbooks.",
+      },
+    ],
+    judgment:
+      "Supplier leverage came from the structure of the process as well as the size of the package. Different categories needed different contracting approaches rather than a single tendering formula.",
+    results: [
+      "Approximately $4M in CapEx savings across the managed sourcing portfolio.",
+      "Coordinated strategies across three major capital categories.",
+      "Category playbooks and supplier-management routines for the in-house team.",
+    ],
+    note: "Client identity is withheld. Savings describe the sourcing portfolio; category proportions and supplier counts are omitted rather than reconstructed as project facts.",
+    chart: "sourcing",
   },
   {
     id: "category-intelligence",

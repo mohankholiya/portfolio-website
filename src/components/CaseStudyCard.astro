@@ -58,7 +58,7 @@ const sparks: Record<string, string> = {
   // category blocks are drawn as outlines and carry no share of the total.
   "accenture-capex-sourcing": `
     <svg viewBox="0 0 280 58" role="img" aria-label="Three capital categories coordinated under one sourcing approach, with portfolio savings of about four million dollars and no category split implied">
-      ${label(0, 10, "Three categories, one approach")}
+      ${label(1, 10, "Three categories, one approach")}
       ${["EPC", "Surface", "D&C"]
         .map(
           (t, i) =>
@@ -91,8 +91,8 @@ const sparks: Record<string, string> = {
       <rect x="62" y="16" width="62" height="15" fill="none" stroke="${H}"/>
       <rect x="0" y="31" width="62" height="15" fill="none" stroke="${H}"/>
       <rect x="62" y="31" width="62" height="15" fill="${A}" opacity="0.85"/>
-      ${label(134, 29, "Lower capacity, higher workload")}
-      ${label(134, 43, "is the quadrant to investigate")}
+      ${label(134, 29, "Lower capacity +")}
+      ${label(134, 43, "higher workload")}
     </svg>`,
 
   // Two categories placed on the same two axes as the detail exhibit.
@@ -104,8 +104,8 @@ const sparks: Record<string, string> = {
       <line x1="0" y1="30.5" x2="124" y2="30.5" stroke="${H}" stroke-dasharray="2 2"/>
       <circle cx="30" cy="39" r="5" fill="${A}"/>
       <circle cx="95" cy="23" r="5" fill="${C}"/>
-      ${label(134, 29, "Lighting: competitive tendering", A)}
-      ${label(134, 43, "E-STATCOM: partnership", C)}
+      ${label(134, 29, "Lighting: tendering", A)}
+      ${label(134, 43, "E-STATCOM: partner", C)}
     </svg>`,
 };
 ---

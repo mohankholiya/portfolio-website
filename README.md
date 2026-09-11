@@ -4,14 +4,15 @@ Source for [mohankholiya.co.in](https://mohankholiya.co.in), supporting senior-r
 
 ## Stack and content
 
-Astro 6, TypeScript and Tailwind 4. Static output, native browser scripts, self-hosted Inter, and an optimised responsive portrait. No client framework, tracking SDK or page loader.
+Astro 6, TypeScript and Tailwind 4. Static output, native browser scripts, self-hosted fonts, and an optimised responsive portrait. No client framework, tracking SDK or page loader.
 
-- `src/content/site.ts`: positioning, services, case studies, career history and credentials.
-- Homepage: two audience routes, About directly after the introduction, selected cases, services, experience, two resumes, credentials and contact.
-- `/case-studies/`: all six studies with sector filters. Existing detail URLs are preserved.
+- `src/content/site.ts`: positioning, capabilities, case studies, career history and credentials.
+- Homepage: two hiring tracks, About directly after the introduction, **all six case studies**, capabilities, experience, one resume, credentials and contact.
+- `/case-studies/`: the same six studies with sector filters, for readers who want to narrow by sector. Existing detail URLs are preserved.
 - `/privacy/`, `/sitemap.xml`, `/robots.txt` and a custom 404.
-- `public/resume.pdf`: consulting resume; original download URL retained.
-- `public/Mohan_Kholiya_Industry_Resume.pdf`: industry resume.
+- `public/resume.pdf`: the single resume offered on the site. Do not split it into role-specific variants; one document, one download URL.
+
+Case-study order is the display order. `caseStudies` in `site.ts` leads with capital benchmarking, then the identified opportunity, then the operating-model diagnostic, and the "next case" link on each detail page follows the same sequence.
 
 Outcomes distinguish contracted optimisation, sourcing savings, identified opportunity and decision support. Do not aggregate different currencies, portfolio scopes or opportunity stages. The BT waterfall is synthetic, not an actual contract baseline. Consulting end-clients are anonymised.
 
@@ -95,12 +96,8 @@ An earlier README described a local post-commit deployment hook. Hooks are not t
 
 ## Resume maintenance
 
-The PDFs are editorially aligned with the site, with separate industry and advisory introductions. Uploaded source resumes are unchanged.
+`public/resume.pdf` is an authored document, not a generated one. To update it, replace the file and rebuild; the download URL never changes.
 
-```bash
-python3 scripts/generate-resumes.py
-```
-
-This optional authoring utility requires ReportLab, Node TypeScript stripping support and DejaVu Sans in `/usr/share/fonts/truetype/dejavu/`. It is not required to build the website. Render and inspect both PDFs after editing, then rebuild.
+The site offers exactly one resume. An earlier revision generated two role-specific variants via `scripts/generate-resumes.py`, and that script has been removed because it would silently overwrite the authored PDF. It remains in Git history if the approach is ever wanted back.
 
 Fonts are distributed with their licences in `public/fonts/`.

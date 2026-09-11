@@ -82,7 +82,7 @@ for path, page in pages.items():
             assert fragment in pages[local].ids, f'Broken fragment: {relative}: {link}'
         checked += 1
 
-for name in ('resume.pdf', 'Mohan_Kholiya_Industry_Resume.pdf'):
+for name in ('resume.pdf',):
     assert (ROOT / name).read_bytes().startswith(b'%PDF-'), f'Invalid PDF: {name}'
 for name in (
     'archivo-var.woff2',

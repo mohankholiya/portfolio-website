@@ -17,8 +17,11 @@ import Arrow from "./Arrow.astro";
       </div>
       <p>{copy.cases.description}</p>
     </div>
+    {/* All six render here. A hiring manager scanning for evidence should not
+        have to click through to a second page to find it; the index page
+        remains for filtering by sector. */}
     <div class="case-grid reveal-group">
-      {caseStudies.slice(0, 3).map((cs, index) => (
+      {caseStudies.map((cs, index) => (
         <CaseStudyCard {...cs} index={index} />
       ))}
     </div>

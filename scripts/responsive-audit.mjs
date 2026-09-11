@@ -107,9 +107,31 @@ for (const vp of VIEWPORTS) {
         });
       }
 
+      // SVG text is clipped silently by the viewBox, so a label that grew too
+      // long just disappears off the right edge of a card with no layout
+      // symptom. Compare each text run against its own SVG's box.
+      const clipped = [];
+      for (const svg of document.querySelectorAll(
+        ".case-spark svg, .consulting-chart",
+      )) {
+        const box = svg.getBoundingClientRect();
+        for (const t of svg.querySelectorAll("text")) {
+          const r = t.getBoundingClientRect();
+          if (r.width === 0) continue;
+          if (r.right > box.right + 0.5 || r.left < box.left - 0.5) {
+            clipped.push({
+              text: (t.textContent ?? "").trim().slice(0, 34),
+              overflowPx: Math.round(Math.max(r.right - box.right, box.left - r.left)),
+            });
+          }
+        }
+      }
+
       return {
         vw,
         scrollWidth: doc.scrollWidth,
+        clipped: clipped.slice(0, 8),
+        clippedCount: clipped.length,
         overflows: doc.scrollWidth > vw + 1,
         offenders: offenders.slice(0, 8),
         offenderCount: offenders.length,
@@ -120,7 +142,12 @@ for (const vp of VIEWPORTS) {
       };
     }, vp.mobile ? 44 : 24);
 
-    if (report.overflows || report.offenderCount || report.smallCount) {
+    if (
+      report.overflows ||
+      report.offenderCount ||
+      report.smallCount ||
+      report.clippedCount
+    ) {
       findings.push({ viewport: vp.name, page: page.name, ...report });
     }
 
@@ -136,7 +163,9 @@ for (const vp of VIEWPORTS) {
 await browser.close();
 
 if (!findings.length) {
-  console.log("PASS: no horizontal overflow, no sub-44px targets, alt text present.");
+  console.log(
+    "PASS: no horizontal overflow, no sub-44px targets, no clipped chart text, alt text present.",
+  );
 } else {
   console.log(`${findings.length} finding group(s):\n`);
   for (const f of findings) {
@@ -146,6 +175,8 @@ if (!findings.length) {
       console.log(`  overflowing (${f.offenderCount}):`, JSON.stringify(f.offenders));
     if (f.smallCount)
       console.log(`  small targets (${f.smallCount}):`, JSON.stringify(f.smallTargets));
+    if (f.clippedCount)
+      console.log(`  clipped SVG text (${f.clippedCount}):`, JSON.stringify(f.clipped));
     if (f.imgNoAlt) console.log(`  images without alt: ${f.imgNoAlt}`);
     if (f.h1 !== 1) console.log(`  h1 count: ${f.h1}`);
     console.log("");
