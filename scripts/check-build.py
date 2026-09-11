@@ -96,6 +96,11 @@ assert (ROOT / 'og-image.png').read_bytes().startswith(b'\x89PNG'), 'Invalid og-
 # redirect that retires it must survive future builds.
 redirects = (ROOT / '_redirects').read_text()
 assert 'ntgm-cost-competitiveness' in redirects, 'Missing redirect for the retired slug'
+assert 'Mohan_Kholiya_Industry_Resume.pdf' in redirects, 'Missing redirect for the retired resume'
+# Exactly one resume is offered. A second variant reintroduces the "which CV
+# is current?" problem the single-resume decision was meant to remove.
+pdfs = sorted(p.name for p in ROOT.glob('*.pdf'))
+assert pdfs == ['resume.pdf'], f'Expected only resume.pdf, found {pdfs}'
 sitemap = ET.parse(ROOT / 'sitemap.xml')
 assert len(sitemap.getroot()) == 9
 print(f'PASS: {len(pages)} pages; {checked} local references; metadata, structured data, sitemap, PDFs and fonts.')

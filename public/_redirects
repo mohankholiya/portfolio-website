@@ -2,3 +2,7 @@
 # Cloudflare Pages serves this file; 301 so the link equity follows the move.
 /case-studies/ntgm-cost-competitiveness   /case-studies/capital-cost-competitiveness/   301
 /case-studies/ntgm-cost-competitiveness/  /case-studies/capital-cost-competitiveness/   301
+
+# The site briefly offered a second, role-specific resume. That file is gone,
+# so send anyone holding the old link to the single current CV rather than a 404.
+/Mohan_Kholiya_Industry_Resume.pdf        /resume.pdf                                   301
