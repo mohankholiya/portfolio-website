@@ -2,7 +2,13 @@
 import { siteConfig, copy } from "../content/site";
 import Arrow from "./Arrow.astro";
 const formKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
-const enabled = Boolean(formKey && formKey !== "YOUR_ACCESS_KEY");
+/* An unreplaced placeholder must never enable the form: it would render
+   "Send enquiry" and then post to nothing, losing enquiries silently while
+   looking like it worked. Web3Forms keys are UUIDs, so require that shape
+   rather than blocklisting placeholder strings one at a time. */
+const enabled = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+  formKey ?? "",
+);
 const c = copy.contact;
 ---
 

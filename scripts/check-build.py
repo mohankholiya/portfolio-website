@@ -103,4 +103,19 @@ pdfs = sorted(p.name for p in ROOT.glob('*.pdf'))
 assert pdfs == ['resume.pdf'], f'Expected only resume.pdf, found {pdfs}'
 sitemap = ET.parse(ROOT / 'sitemap.xml')
 assert len(sitemap.getroot()) == 9
+
+# The enquiry form silently degrades to a mailto draft when the Web3Forms key
+# is absent at build time. That is a legitimate fallback, not an error, but it
+# is invisible in the UI unless you know to read the button label, so report it
+# on every build rather than letting it go unnoticed for weeks.
+home = (ROOT / 'index.html').read_text(encoding='utf-8')
+if 'name="access_key"' in home:
+    form_state = 'form SENDS via Web3Forms'
+else:
+    form_state = (
+        'form is in MAILTO FALLBACK (no valid PUBLIC_WEB3FORMS_ACCESS_KEY at '
+        'build time; enquiries open a draft instead of sending)'
+    )
+
 print(f'PASS: {len(pages)} pages; {checked} local references; metadata, structured data, sitemap, PDFs and fonts.')
+print(f'NOTE: {form_state}.')
