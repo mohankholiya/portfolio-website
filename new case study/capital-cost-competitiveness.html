@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<title>A defensible benchmark for a complex capital decision. — Mohan Kholiya</title>
+<style>
+@font-face{font-family:"Archivo";src:url("fonts/archivo-var.woff2")format("woff2");font-weight:100 900;font-display:block;}
+@font-face{font-family:"Source Sans 3";src:url("fonts/source-sans-3-var.woff2")format("woff2");font-weight:200 900;font-display:block;}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/plex-mono-400.woff2")format("woff2");font-weight:400;font-display:block;}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/plex-mono-500.woff2")format("woff2");font-weight:500;font-display:block;}
+
+:root{
+  --ink:#0c2438; --deep:#10314c; --body:#3a4751; --muted:#536575;
+  --hair:#d7dee4; --accent:#c2772f; --accent-text:#8a4e18; --accent-tint:#f6e9da;
+  --band:#eef2f6; --paper:#fff; --on-ink:#f4f7fa; --dark-rule:#30495c;
+  --display:"Archivo",sans-serif; --sans:"Source Sans 3",sans-serif; --mono:"IBM Plex Mono",monospace;
+}
+
+@page{size:297mm 210mm;margin:0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#fff;}
+body{
+  font-family:var(--sans); color:var(--body);
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  text-rendering:geometricPrecision;
+}
+
+.page{
+  width:297mm; height:210mm; padding:11mm;
+  display:flex; flex-direction:column; overflow:hidden; position:relative;
+}
+/* Spine: a thin ochre rule down the bound edge. */
+.page::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:2.6mm;
+  background:var(--ink);
+}
+.page::after{
+  content:""; position:absolute; left:0; top:0; width:2.6mm; height:46mm;
+  background:var(--accent);
+}
+.page > *{ padding-left:5mm; }
+
+/* ── Header ───────────────────────────────────────────── */
+.head{
+  height:8mm; flex:0 0 8mm; display:flex; align-items:baseline;
+  justify-content:space-between; border-bottom:0.35mm solid var(--ink);
+}
+.wordmark{
+  font-family:var(--display); font-weight:700; font-size:9pt;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+}
+.head-right{ font-family:var(--mono); font-size:7pt; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted); }
+.head-right b{ color:var(--accent-text); font-weight:500; }
+
+/* ── Title block ──────────────────────────────────────── */
+.title-block{ flex:0 0 21mm; padding-top:3.4mm; display:flex; gap:6mm; align-items:flex-start; }
+.title-block h1{
+  font-family:var(--display); font-weight:600; font-size:18.5pt; line-height:1.14;
+  letter-spacing:-0.012em; color:var(--ink); flex:0 0 104mm;
+}
+.governing{ font-size:9.2pt; line-height:1.42; color:var(--muted); padding-top:0.6mm;
+  border-left:0.35mm solid var(--hair); padding-left:5mm; }
+
+/* ── Facts strip ──────────────────────────────────────── */
+.facts{ flex:0 0 11mm; display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:0.25mm solid var(--hair); border-bottom:0.25mm solid var(--hair);
+  margin-top:1.2mm; }
+.fact{ padding:1.8mm 4mm 1.8mm 0; border-right:0.25mm solid var(--hair); }
+.fact:last-child{ border-right:0; }
+.fact-k{ display:block; font-family:var(--mono); font-size:6.4pt; letter-spacing:.14em;
+  text-transform:uppercase; color:#8295a3; margin-bottom:0.7mm; }
+.fact-v{ display:block; font-family:var(--display); font-weight:600; font-size:8.4pt;
+  line-height:1.22; color:var(--deep); }
+
+/* ── Body ─────────────────────────────────────────────── */
+.body{ flex:1 1 auto; display:grid; grid-template-columns:93mm 1fr; gap:6.4mm;
+  padding-top:3.4mm; min-height:0; }
+.col-left{ display:flex; flex-direction:column; gap:3mm; min-height:0; }
+
+.sec-label{
+  font-family:var(--mono); font-size:6.6pt; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent-text); display:flex; align-items:center; gap:2mm; margin-bottom:1.4mm;
+}
+.sec-label::after{ content:""; flex:1; height:0.25mm; background:var(--hair); }
+
+.col-left p{ font-size:8pt; line-height:1.36; color:var(--body); }
+.col-left ul{ list-style:none; }
+.col-left li{ font-size:8pt; line-height:1.34; color:var(--body);
+  padding-left:3.4mm; position:relative; margin-bottom:1.3mm; }
+.col-left li:last-child{ margin-bottom:0; }
+.col-left li::before{ content:""; position:absolute; left:0; top:1.5mm;
+  width:1.6mm; height:0.5mm; background:var(--accent); }
+.judgment p{ font-family:var(--display); font-weight:500; font-size:8.2pt;
+  line-height:1.32; color:var(--deep); }
+
+/* ── Exhibits ─────────────────────────────────────────── */
+.col-right{ display:flex; flex-direction:column; gap:3.6mm; min-height:0; }
+.exhibit{ flex:1 1 0; display:flex; flex-direction:column; min-height:0;
+  border:0.25mm solid var(--hair); border-radius:1.6mm; padding:2.6mm 3mm 2.2mm;
+  background:var(--paper); }
+.ex-head{ display:flex; align-items:baseline; gap:2.6mm; flex-wrap:wrap;
+  border-bottom:0.25mm solid var(--hair); padding-bottom:1.4mm; }
+.ex-num{ font-family:var(--mono); font-size:6.4pt; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent-text); }
+.ex-head h3{ font-family:var(--display); font-weight:700; font-size:9pt;
+  color:var(--ink); letter-spacing:-0.005em; }
+.ex-sub{ font-size:7.4pt; color:#8295a3; margin-left:auto; }
+.ex-body{ flex:1 1 auto; display:grid; grid-template-columns:1fr 46mm; gap:3.2mm;
+  min-height:0; padding-top:1.6mm; }
+.ex-chart{ min-height:0; display:flex; align-items:center; }
+.ex-chart svg{ width:100%; height:auto; max-height:100%; display:block; }
+.ex-sowhat{ border-left:0.35mm solid var(--accent); padding-left:2.8mm;
+  display:flex; flex-direction:column; justify-content:center; }
+.sw-label{ font-family:var(--mono); font-size:6.4pt; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--accent-text); margin-bottom:1.2mm; }
+.ex-sowhat p{ font-size:7.8pt; line-height:1.38; color:var(--body); }
+
+/* ── Results band ─────────────────────────────────────── */
+.results{ flex:0 0 27mm; margin-top:3.2mm; display:grid;
+  grid-template-columns:1fr 52mm; background:var(--ink); border-radius:1.6mm;
+  overflow:hidden; }
+.results-main{ padding:2.6mm 4mm 2.4mm; min-width:0; }
+.results .sec-label{ color:#e4ae74; margin-bottom:1.4mm; }
+.results .sec-label::after{ background:var(--dark-rule); }
+.results ul{ list-style:none; display:grid; grid-template-columns:1fr 1fr;
+  gap:0.8mm 5mm; }
+.results li{ font-size:7.5pt; line-height:1.3; color:var(--on-ink);
+  padding-left:3mm; position:relative; }
+.results li::before{ content:""; position:absolute; left:0; top:1.3mm;
+  width:1.4mm; height:0.45mm; background:#e4ae74; }
+.metric{ background:var(--accent); padding:2.6mm 4mm; display:flex;
+  flex-direction:column; justify-content:center; }
+.metric .m-label{ font-family:var(--mono); font-size:6.2pt; letter-spacing:.14em;
+  text-transform:uppercase; color:#4a2a0c; margin-bottom:1mm; }
+.metric .m-value{ font-family:var(--display); font-weight:700; font-size:20pt;
+  line-height:1; color:#fff; letter-spacing:-0.02em; }
+.metric .m-sub{ font-size:7.4pt; line-height:1.24; color:#fdf3e8; margin-top:1.2mm; }
+
+/* ── Footer ───────────────────────────────────────────── */
+.foot{ flex:0 0 8.4mm; display:flex; align-items:flex-end; gap:6mm;
+  padding-top:1.8mm; }
+.note{ font-size:6.4pt; line-height:1.34; color:#7b8896; flex:1 1 auto; }
+.note b{ color:var(--muted); font-weight:600; }
+.contact{ font-family:var(--mono); font-size:6.6pt; line-height:1.5;
+  color:var(--muted); text-align:right; white-space:nowrap; }
+.contact b{ color:var(--ink); font-weight:500; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="head">
+    <span class="wordmark">Mohan Kholiya</span>
+    <span class="head-right">Energy &amp; oil and gas &nbsp;·&nbsp; <b>Case 01</b> &nbsp;·&nbsp; Capital cost benchmarking</span>
+  </header>
+
+  <div class="title-block" data-region="title">
+    <h1>A defensible benchmark for a complex capital decision.</h1>
+    <p class="governing">A pre-FEED gas development was told it was not first quartile, with no evidence of where or why. Benchmarking it system by system against 27 peers replaced a blanket cost-cutting mandate with a focused, defensible to-goal agenda.</p>
+  </div>
+
+  <div class="facts"><div class="fact"><span class="fact-k">Industry</span><span class="fact-v">Oil &amp; gas — upstream, offshore</span></div><div class="fact"><span class="fact-k">Engagement context</span><span class="fact-v">Consulting · global upstream operator</span></div><div class="fact"><span class="fact-k">Role</span><span class="fact-v">Independent competitiveness review (pre-FEED)</span></div><div class="fact"><span class="fact-k">Duration</span><span class="fact-v">4 months</span></div></div>
+
+  <div class="body">
+    <div class="col-left" data-region="left">
+      <section data-block="situation">
+        <p class="sec-label">The situation</p>
+        <ul><li>An internal review had flagged system-level costs as not first quartile, but leadership had no like-for-like evidence of where the project actually sat.</li><li>Directly comparable shallow-water gas peers were scarce, making a credible comparison set the first problem to solve rather than an input.</li><li>Without isolating which cost systems drove the gap, the pre-FEED response would default to cutting cost everywhere, including where the project was already strong.</li></ul>
+      </section>
+      <section data-block="contribution">
+        <p class="sec-label">My contribution</p>
+        <p>I led the benchmarking workstream feeding a joint gap-to-goal workshop: building the peer set, normalising costs top-down at system level and bottom-up at component level, quantifying the variance, and synthesising a fragmented cost picture into a board-ready verdict — independent of the project team, not a defence of it.</p>
+      </section>
+      <section class="judgment" data-block="judgment">
+        <p class="sec-label">The judgment that mattered</p>
+        <p>A first-quartile target is not automatically the right goal for every cost system. Separating structural gaps — tie-back distance, seabed conditions — from commercially addressable ones such as rig contracting is what made the benchmark actionable rather than merely damning.</p>
+      </section>
+    </div>
+
+    <div class="col-right" data-region="right">
+      
+    <figure class="exhibit" data-region="exhibit">
+      <div class="ex-head">
+        <span class="ex-num">Exhibit 1</span>
+        <h3>Peer-group benchmark by cost system</h3>
+        <p class="ex-sub">Project position against 27 peers, by quartile · directional</p>
+      </div>
+      <div class="ex-body">
+        <div class="ex-chart"><svg viewBox="0 0 640 240" role="img" aria-label="Quartile benchmark: second quartile on production facilities, fourth quartile on pipeline and on drilling and completions" preserveAspectRatio="xMidYMid meet"><rect x="168" y="26" width="115" height="190" fill="#ffffff" /><rect x="283" y="26" width="115" height="190" fill="#eef2f6" /><rect x="398" y="26" width="115" height="190" fill="#ffffff" /><rect x="513" y="26" width="115" height="190" fill="#eef2f6" /><line x1="283" y1="26" x2="283" y2="216" stroke="#c2cdd6" stroke-width="1" stroke-dasharray="3 3" /><line x1="398" y1="26" x2="398" y2="216" stroke="#c2cdd6" stroke-width="1" stroke-dasharray="3 3" /><line x1="513" y1="26" x2="513" y2="216" stroke="#c2cdd6" stroke-width="1" stroke-dasharray="3 3" /><text x="225.5" y="20" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">1st</text><text x="340.5" y="20" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">2nd</text><text x="455.5" y="20" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">3rd</text><text x="570.5" y="20" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">4th</text><text x="158" y="59" font-family="Archivo, sans-serif" font-size="11.5" fill="#10314c" text-anchor="end" font-weight="600">Production facilities</text><text x="158" y="73" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#7e8e9e" text-anchor="end">$m / tonne</text><line x1="168" y1="64" x2="628" y2="64" stroke="#d7dee4" stroke-width="1.5" /><circle cx="204.8" cy="67.4" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="250.8" cy="58.7" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="292.2" cy="59.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="333.6" cy="59.4" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="375.0" cy="65.1" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="407.2" cy="61.2" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="453.2" cy="62.8" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="494.6" cy="62.1" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="531.4" cy="62.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="572.8" cy="64.1" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="605.0" cy="60.4" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><line x1="398" y1="52" x2="398" y2="76" stroke="#33536e" stroke-width="2" /><rect x="317.9" y="57.5" width="13" height="13" fill="#c2772f" rx="3" stroke="#8a4e18" stroke-width="1.5" /><text x="324.4" y="51" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#8a4e18" text-anchor="middle" font-weight="500">2nd quartile</text><text x="158" y="121" font-family="Archivo, sans-serif" font-size="11.5" fill="#10314c" text-anchor="end" font-weight="600">Pipeline</text><text x="158" y="135" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#7e8e9e" text-anchor="end">$m / in-km</text><line x1="168" y1="126" x2="628" y2="126" stroke="#d7dee4" stroke-width="1.5" /><circle cx="191.0" cy="120.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="227.8" cy="128.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="269.2" cy="123.9" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="306.0" cy="122.8" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="347.4" cy="130.8" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="384.2" cy="123.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="425.6" cy="125.3" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="457.8" cy="129.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="499.2" cy="129.0" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="545.2" cy="120.7" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="582.0" cy="126.8" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><line x1="407.20000000000005" y1="114" x2="407.20000000000005" y2="138" stroke="#33536e" stroke-width="2" /><rect x="589.3" y="119.5" width="13" height="13" fill="#c2772f" rx="3" stroke="#8a4e18" stroke-width="1.5" /><text x="595.8" y="113" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#8a4e18" text-anchor="middle" font-weight="500">4th quartile</text><text x="158" y="183" font-family="Archivo, sans-serif" font-size="11.5" fill="#10314c" text-anchor="end" font-weight="600">Drilling & completions</text><text x="158" y="197" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#7e8e9e" text-anchor="end">$k / ft</text><line x1="168" y1="188" x2="628" y2="188" stroke="#d7dee4" stroke-width="1.5" /><circle cx="200.2" cy="192.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="237.0" cy="190.4" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="278.4" cy="187.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="319.8" cy="184.0" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="356.6" cy="189.2" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="398.0" cy="184.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="434.8" cy="188.7" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="476.2" cy="183.5" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="513.0" cy="193.2" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="554.4" cy="189.4" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><circle cx="591.2" cy="185.9" r="4.4" fill="#8a99a8" fill-opacity="0.9" /><line x1="388.79999999999995" y1="176" x2="388.79999999999995" y2="200" stroke="#33536e" stroke-width="2" /><rect x="566.3" y="181.5" width="13" height="13" fill="#c2772f" rx="3" stroke="#8a4e18" stroke-width="1.5" /><text x="572.8" y="175" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#8a4e18" text-anchor="middle" font-weight="500">4th quartile</text><circle cx="172" cy="231" r="4.4" fill="#8a99a8" /><text x="182" y="235" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">Peer project (27)</text><line x1="300" y1="225" x2="300" y2="237" stroke="#33536e" stroke-width="2" /><text x="308" y="235" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">Peer average</text><rect x="410" y="225" width="12" height="12" fill="#c2772f" rx="3" stroke="#8a4e18" stroke-width="1.5" /><text x="428" y="235" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">This project</text></svg></div>
+        <aside class="ex-sowhat">
+          <span class="sw-label">So what</span>
+          <p>The cost story is not uniform. Facilities are competitive at 2nd quartile; pipeline and drilling sit in the 4th — so a blanket cut-everything goal would spend effort on the part that is already strong.</p>
+        </aside>
+      </div>
+    </figure>
+      
+    <figure class="exhibit" data-region="exhibit">
+      <div class="ex-head">
+        <span class="ex-num">Exhibit 2</span>
+        <h3>Peer landscape — unit cost against schedule</h3>
+        <p class="ex-sub">Bubble size ≈ recoverable resource (mmboe) · directional</p>
+      </div>
+      <div class="ex-body">
+        <div class="ex-chart"><svg viewBox="0 0 640 240" role="img" aria-label="Bubble chart of peer projects by unit development cost and schedule, this project at higher cost without a faster schedule" preserveAspectRatio="xMidYMid meet"><line x1="60" y1="147.5" x2="618" y2="147.5" stroke="#e3e9ee" stroke-width="1" /><line x1="60" y1="107" x2="618" y2="107" stroke="#e3e9ee" stroke-width="1" /><line x1="60" y1="66.5" x2="618" y2="66.5" stroke="#e3e9ee" stroke-width="1" /><line x1="60" y1="26" x2="618" y2="26" stroke="#e3e9ee" stroke-width="1" /><line x1="60" y1="188" x2="618" y2="188" stroke="#33536e" stroke-width="1.4" /><line x1="60" y1="26" x2="60" y2="188" stroke="#33536e" stroke-width="1.4" /><text x="60" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">0</text><text x="153" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">5</text><text x="246" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">10</text><text x="339" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">15</text><text x="432" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">20</text><text x="525" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">25</text><text x="618" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="middle">30</text><text x="52" y="192" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">0</text><text x="52" y="151.5" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">2</text><text x="52" y="111" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">4</text><text x="52" y="70.5" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">6</text><text x="52" y="30" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">8</text><line x1="60" y1="131.3" x2="618" y2="131.3" stroke="#c2772f" stroke-width="1.2" stroke-dasharray="5 4" /><text x="66" y="144.3" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#8a4e18" text-anchor="start">Peer average 2.8 yrs</text><circle cx="153.0" cy="159.7" r="12" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="208.8" cy="135.3" r="19" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="246.0" cy="125.2" r="15" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="283.2" cy="149.5" r="24" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="320.4" cy="98.9" r="14" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="357.6" cy="143.4" r="18" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="227.4" cy="60.4" r="10" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="413.4" cy="131.3" r="21" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="487.8" cy="74.6" r="16" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="543.6" cy="147.5" r="12" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="450.6" cy="105.0" r="13" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><circle cx="171.6" cy="115.1" r="11" fill="#8a99a8" fill-opacity="0.45" stroke="#5b6b7a" stroke-width="1" /><text x="227.4" y="46.425" font-family="'IBM Plex Mono', monospace" font-size="9.5" fill="#7e8c99" text-anchor="middle">Slow-funded peer</text><circle cx="515.7" cy="127.3" r="21" fill="#c2772f" fill-opacity="0.85" stroke="#8a4e18" stroke-width="1.5" /><text x="515.7" y="99.25" font-family="Archivo, sans-serif" font-size="11.5" fill="#8a4e18" text-anchor="middle" font-weight="700">This project</text><circle cx="108.4" cy="48.3" r="14" fill="none" stroke="#9aa8b4" stroke-width="1.1" /><text x="108.36" y="74.275" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#7e8c99" text-anchor="middle">≈ 50 mmboe</text><text x="339" y="216" font-family="Archivo, sans-serif" font-size="11.5" fill="#10314c" text-anchor="middle" font-weight="600">Total unit development cost ($/boe)</text><text x="0" y="0" font-family="Archivo, sans-serif" font-size="11.5" fill="#10314c" text-anchor="middle" font-weight="600" transform="translate(18 107) rotate(-90)">FID → first production (yrs)</text></svg></div>
+        <aside class="ex-sowhat">
+          <span class="sw-label">So what</span>
+          <p>The project carries higher unit cost than most peers without a faster schedule to offset it, which puts the weight of the investment case on closing the cost gap rather than on speed to first production.</p>
+        </aside>
+      </div>
+    </figure>
+    </div>
+  </div>
+
+  <div class="results" data-region="results">
+    <div class="results-main">
+      <p class="sec-label">What the work delivered</p>
+      <ul><li>A 27-project peer benchmark built where few ideal comparators existed — the first credible like-for-like cost view available to the decision.</li><li>A clear category-level verdict: 2nd quartile on production facilities, 4th quartile on pipeline and on drilling &amp; completions.</li><li>The dominant lever isolated — rig rate, roughly 41% of drilling and completions cost — with schedule holding near the peer median.</li><li>The pre-FEED conversation reframed from cut costs everywhere to a focused, evidence-backed to-goal agenda.</li></ul>
+    </div>
+    <div class="metric">
+      <span class="m-label">Headline</span>
+      <span class="m-value">27 projects</span>
+      <span class="m-sub">in the comparative peer set</span>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <p class="note"><b>Anonymisation & basis of figures.</b> Client, project and peer identities withheld. This case describes benchmarking and decision support; it does not claim ownership of the final investment decision or of subsequent savings. Exhibit internals are directional, reconstructed to demonstrate the analytical structure rather than to report client figures.</p>
+    <p class="contact"><b>Mohan Kholiya</b> · Gurugram, India<br />mohan.kholiya@gmail.com · mohankholiya.co.in</p>
+  </footer>
+
+</div>
+</body>
+</html>

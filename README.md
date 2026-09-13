@@ -94,6 +94,23 @@ The repository default branch is `master`; the existing Pages production branch 
 
 An earlier README described a local post-commit deployment hook. Hooks are not tracked by Git and are not installed by this repository. Publishing should be deliberate and follow validation.
 
+## Case study downloads
+
+Every case study is also downloadable as a one-page PDF, and all six as a single case pack. These are generated, not authored:
+
+| Step | Command | Produces |
+|---|---|---|
+| 1 | `node scripts/gen-case-pdfs.mjs` | `public/case-studies/<id>.pdf`, one per case |
+| 2 | `python scripts/merge-case-pack.py` | `public/Mohan_Kholiya_Case_Studies.pdf` |
+
+The source is the six consulting one-pagers in `new case study/` — the same A4-landscape artefacts circulated as PDFs, and the origin of the case copy already in `src/content/site.ts`. Step 1 renders each in headless Chrome at 297x210mm with `printBackground`, so the text layer is selectable and searchable rather than a flat scan.
+
+The one-pagers reference the same four woff2 files the site self-hosts in `public/fonts/`, under the same names, so the script copies those next to the page and prints with no network access. It asserts all three families actually loaded before writing each PDF; a PDF silently set in a fallback face is the failure mode worth blocking.
+
+The filename map at the top of `scripts/gen-case-pdfs.mjs` is keyed by case id. `scripts/check-build.py` asserts there is exactly one one-pager per case route, so renaming a route without regenerating fails the build instead of orphaning a download.
+
+Run both steps after editing a one-pager, then rebuild.
+
 ## Resume maintenance
 
 `public/resume.pdf` is an authored document, not a generated one. To update it, replace the file and rebuild; the download URL never changes.

@@ -47,34 +47,32 @@ import { experience, copy } from "../content/site";
     <div id="resumes" class="resume-section reveal">
       <h3>{copy.experience.downloadsTitle}</h3>
       <p>{copy.experience.downloadsBody}</p>
-      <div class="resume-grid resume-grid-single">
-        <a
-          class="resume-card reveal"
-          href={copy.experience.download.href}
-          download
-        >
-          <div>
-            <span class="eyebrow">{copy.experience.downloadNote}</span>
-            <h4>{copy.experience.download.title}</h4>
-            <p>{copy.experience.download.body}</p>
-            <span class="resume-cta">{copy.experience.download.label}</span>
-          </div>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
+      <div class="resume-grid">
+        {copy.experience.downloads.map((d) => (
+          <a class="resume-card reveal" href={d.href} download>
+            <div>
+              <span class="eyebrow">{d.note}</span>
+              <h4>{d.title}</h4>
+              <p>{d.body}</p>
+              <span class="resume-cta">{d.label}</span>
+            </div>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        ))}
       </div>
     </div>
   </div>

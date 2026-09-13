@@ -126,13 +126,24 @@ export const copy = {
     downloadsTitle: "The full career record.",
     downloadsBody:
       "Category ownership, sourcing and supplier development alongside cost diagnostics, capital benchmarking and operating-model work.",
-    download: {
-      title: "Curriculum vitae",
-      body: "Sixteen years across energy, utilities and telecom, in-house and in advisory.",
-      href: "/resume.pdf",
-      label: "Download resume",
-    },
-    downloadNote: "PDF · 2 pages",
+    /* Two artefacts a hiring manager can forward without opening the site
+       again: the career record, and the evidence behind it. */
+    downloads: [
+      {
+        note: "PDF · 2 pages",
+        title: "Curriculum vitae",
+        body: "Sixteen years across energy, utilities and telecom, in-house and in advisory.",
+        href: "/resume.pdf",
+        label: "Download resume",
+      },
+      {
+        note: "PDF · 6 pages",
+        title: "Case pack",
+        body: "All six case studies, one page each, with the exhibits behind every verdict.",
+        href: "/Mohan_Kholiya_Case_Studies.pdf",
+        label: "Download case pack",
+      },
+    ],
   },
   about: {
     heading: "I connect the analysis\nto the decision.",
@@ -209,6 +220,11 @@ export const copy = {
     scope: "Engagement context",
     status: "Outcome type",
     proof: "At a glance",
+    onePagerNote: "PDF · 1 page",
+    onePagerTitle: "Take this case with you",
+    onePagerBody:
+      "The same engagement on a single page, with both exhibits, formatted to circulate.",
+    onePagerLabel: "Download one-pager",
   },
 };
 /* Capability areas. `question` is the business question the capability answers;

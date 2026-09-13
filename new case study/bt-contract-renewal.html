@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<title>A stronger renewal. Service continuity protected. — Mohan Kholiya</title>
+<style>
+@font-face{font-family:"Archivo";src:url("fonts/archivo-var.woff2")format("woff2");font-weight:100 900;font-display:block;}
+@font-face{font-family:"Source Sans 3";src:url("fonts/source-sans-3-var.woff2")format("woff2");font-weight:200 900;font-display:block;}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/plex-mono-400.woff2")format("woff2");font-weight:400;font-display:block;}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/plex-mono-500.woff2")format("woff2");font-weight:500;font-display:block;}
+
+:root{
+  --ink:#0c2438; --deep:#10314c; --body:#3a4751; --muted:#536575;
+  --hair:#d7dee4; --accent:#c2772f; --accent-text:#8a4e18; --accent-tint:#f6e9da;
+  --band:#eef2f6; --paper:#fff; --on-ink:#f4f7fa; --dark-rule:#30495c;
+  --display:"Archivo",sans-serif; --sans:"Source Sans 3",sans-serif; --mono:"IBM Plex Mono",monospace;
+}
+
+@page{size:297mm 210mm;margin:0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#fff;}
+body{
+  font-family:var(--sans); color:var(--body);
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  text-rendering:geometricPrecision;
+}
+
+.page{
+  width:297mm; height:210mm; padding:11mm;
+  display:flex; flex-direction:column; overflow:hidden; position:relative;
+}
+/* Spine: a thin ochre rule down the bound edge. */
+.page::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:2.6mm;
+  background:var(--ink);
+}
+.page::after{
+  content:""; position:absolute; left:0; top:0; width:2.6mm; height:46mm;
+  background:var(--accent);
+}
+.page > *{ padding-left:5mm; }
+
+/* ── Header ───────────────────────────────────────────── */
+.head{
+  height:8mm; flex:0 0 8mm; display:flex; align-items:baseline;
+  justify-content:space-between; border-bottom:0.35mm solid var(--ink);
+}
+.wordmark{
+  font-family:var(--display); font-weight:700; font-size:9pt;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+}
+.head-right{ font-family:var(--mono); font-size:7pt; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted); }
+.head-right b{ color:var(--accent-text); font-weight:500; }
+
+/* ── Title block ──────────────────────────────────────── */
+.title-block{ flex:0 0 21mm; padding-top:3.4mm; display:flex; gap:6mm; align-items:flex-start; }
+.title-block h1{
+  font-family:var(--display); font-weight:600; font-size:18.5pt; line-height:1.14;
+  letter-spacing:-0.012em; color:var(--ink); flex:0 0 104mm;
+}
+.governing{ font-size:9.2pt; line-height:1.42; color:var(--muted); padding-top:0.6mm;
+  border-left:0.35mm solid var(--hair); padding-left:5mm; }
+
+/* ── Facts strip ──────────────────────────────────────── */
+.facts{ flex:0 0 11mm; display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:0.25mm solid var(--hair); border-bottom:0.25mm solid var(--hair);
+  margin-top:1.2mm; }
+.fact{ padding:1.8mm 4mm 1.8mm 0; border-right:0.25mm solid var(--hair); }
+.fact:last-child{ border-right:0; }
+.fact-k{ display:block; font-family:var(--mono); font-size:6.4pt; letter-spacing:.14em;
+  text-transform:uppercase; color:#8295a3; margin-bottom:0.7mm; }
+.fact-v{ display:block; font-family:var(--display); font-weight:600; font-size:8.4pt;
+  line-height:1.22; color:var(--deep); }
+
+/* ── Body ─────────────────────────────────────────────── */
+.body{ flex:1 1 auto; display:grid; grid-template-columns:93mm 1fr; gap:6.4mm;
+  padding-top:3.4mm; min-height:0; }
+.col-left{ display:flex; flex-direction:column; gap:3mm; min-height:0; }
+
+.sec-label{
+  font-family:var(--mono); font-size:6.6pt; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent-text); display:flex; align-items:center; gap:2mm; margin-bottom:1.4mm;
+}
+.sec-label::after{ content:""; flex:1; height:0.25mm; background:var(--hair); }
+
+.col-left p{ font-size:8pt; line-height:1.36; color:var(--body); }
+.col-left ul{ list-style:none; }
+.col-left li{ font-size:8pt; line-height:1.34; color:var(--body);
+  padding-left:3.4mm; position:relative; margin-bottom:1.3mm; }
+.col-left li:last-child{ margin-bottom:0; }
+.col-left li::before{ content:""; position:absolute; left:0; top:1.5mm;
+  width:1.6mm; height:0.5mm; background:var(--accent); }
+.judgment p{ font-family:var(--display); font-weight:500; font-size:8.2pt;
+  line-height:1.32; color:var(--deep); }
+
+/* ── Exhibits ─────────────────────────────────────────── */
+.col-right{ display:flex; flex-direction:column; gap:3.6mm; min-height:0; }
+.exhibit{ flex:1 1 0; display:flex; flex-direction:column; min-height:0;
+  border:0.25mm solid var(--hair); border-radius:1.6mm; padding:2.6mm 3mm 2.2mm;
+  background:var(--paper); }
+.ex-head{ display:flex; align-items:baseline; gap:2.6mm; flex-wrap:wrap;
+  border-bottom:0.25mm solid var(--hair); padding-bottom:1.4mm; }
+.ex-num{ font-family:var(--mono); font-size:6.4pt; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent-text); }
+.ex-head h3{ font-family:var(--display); font-weight:700; font-size:9pt;
+  color:var(--ink); letter-spacing:-0.005em; }
+.ex-sub{ font-size:7.4pt; color:#8295a3; margin-left:auto; }
+.ex-body{ flex:1 1 auto; display:grid; grid-template-columns:1fr 46mm; gap:3.2mm;
+  min-height:0; padding-top:1.6mm; }
+.ex-chart{ min-height:0; display:flex; align-items:center; }
+.ex-chart svg{ width:100%; height:auto; max-height:100%; display:block; }
+.ex-sowhat{ border-left:0.35mm solid var(--accent); padding-left:2.8mm;
+  display:flex; flex-direction:column; justify-content:center; }
+.sw-label{ font-family:var(--mono); font-size:6.4pt; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--accent-text); margin-bottom:1.2mm; }
+.ex-sowhat p{ font-size:7.8pt; line-height:1.38; color:var(--body); }
+
+/* ── Results band ─────────────────────────────────────── */
+.results{ flex:0 0 27mm; margin-top:3.2mm; display:grid;
+  grid-template-columns:1fr 52mm; background:var(--ink); border-radius:1.6mm;
+  overflow:hidden; }
+.results-main{ padding:2.6mm 4mm 2.4mm; min-width:0; }
+.results .sec-label{ color:#e4ae74; margin-bottom:1.4mm; }
+.results .sec-label::after{ background:var(--dark-rule); }
+.results ul{ list-style:none; display:grid; grid-template-columns:1fr 1fr;
+  gap:0.8mm 5mm; }
+.results li{ font-size:7.5pt; line-height:1.3; color:var(--on-ink);
+  padding-left:3mm; position:relative; }
+.results li::before{ content:""; position:absolute; left:0; top:1.3mm;
+  width:1.4mm; height:0.45mm; background:#e4ae74; }
+.metric{ background:var(--accent); padding:2.6mm 4mm; display:flex;
+  flex-direction:column; justify-content:center; }
+.metric .m-label{ font-family:var(--mono); font-size:6.2pt; letter-spacing:.14em;
+  text-transform:uppercase; color:#4a2a0c; margin-bottom:1mm; }
+.metric .m-value{ font-family:var(--display); font-weight:700; font-size:20pt;
+  line-height:1; color:#fff; letter-spacing:-0.02em; }
+.metric .m-sub{ font-size:7.4pt; line-height:1.24; color:#fdf3e8; margin-top:1.2mm; }
+
+/* ── Footer ───────────────────────────────────────────── */
+.foot{ flex:0 0 8.4mm; display:flex; align-items:flex-end; gap:6mm;
+  padding-top:1.8mm; }
+.note{ font-size:6.4pt; line-height:1.34; color:#7b8896; flex:1 1 auto; }
+.note b{ color:var(--muted); font-weight:600; }
+.contact{ font-family:var(--mono); font-size:6.6pt; line-height:1.5;
+  color:var(--muted); text-align:right; white-space:nowrap; }
+.contact b{ color:var(--ink); font-weight:500; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="head">
+    <span class="wordmark">Mohan Kholiya</span>
+    <span class="head-right">Telecom &nbsp;·&nbsp; <b>Case 04</b> &nbsp;·&nbsp; Should-cost modelling &amp; negotiation</span>
+  </header>
+
+  <div class="title-block" data-region="title">
+    <h1>A stronger renewal. Service continuity protected.</h1>
+    <p class="governing">A field-services renewal was on course to roll forward historical rates. Rebuilding the supplier's economics from the cost drivers up moved the negotiation onto what the service should cost — and secured roughly £2M of total-cost optimisation with the incumbent retained.</p>
+  </div>
+
+  <div class="facts"><div class="fact"><span class="fact-k">Industry</span><span class="fact-v">Telecommunications</span></div><div class="fact"><span class="fact-k">Engagement context</span><span class="fact-v">In-house category ownership · BT Group</span></div><div class="fact"><span class="fact-k">Role</span><span class="fact-v">Category &amp; sourcing manager — renewal and negotiation</span></div><div class="fact"><span class="fact-k">Duration</span><span class="fact-v">6 months</span></div></div>
+
+  <div class="body">
+    <div class="col-left" data-region="left">
+      <section data-block="situation">
+        <p class="sec-label">The situation</p>
+        <ul><li>A multi-year regional service-delivery contract was approaching renewal with no refreshed cost baseline behind it.</li><li>Rates had been accepted historically, with limited visibility of the supplier's underlying cost build-up, so the renewal risked simply carrying inflated pricing forward.</li><li>Savings could not come at the cost of continuity — pressing a regional incumbent too hard put field-service delivery at risk.</li></ul>
+      </section>
+      <section data-block="contribution">
+        <p class="sec-label">My contribution</p>
+        <p>I led the renewal end to end: building the should-cost model from first principles across labour, productivity, materials, overhead and a fair margin; constructing a total-cost view that priced mobilisation, travel, service-level credits and rework; setting the negotiation strategy and walk-away position; and leading the supplier negotiation to close.</p>
+      </section>
+      <section class="judgment" data-block="judgment">
+        <p class="sec-label">The judgment that mattered</p>
+        <p>The negotiation that mattered was about complete service economics, not the headline day rate. A lower rate would have meant little if mobilisation, rework or delivery disruption pushed total cost back up — so the ask was sequenced to protect continuity while still taking the margin gap.</p>
+      </section>
+    </div>
+
+    <div class="col-right" data-region="right">
+      
+    <figure class="exhibit" data-region="exhibit">
+      <div class="ex-head">
+        <span class="ex-num">Exhibit 1</span>
+        <h3>Should-cost build-up against the quoted renewal</h3>
+        <p class="ex-sub">Indexed annual cost, by cost element · directional</p>
+      </div>
+      <div class="ex-body">
+        <div class="ex-chart"><svg viewBox="0 0 640 240" role="img" aria-label="Stacked bars comparing quoted renewal with should-cost build-up, the gap concentrated in overhead and margin" preserveAspectRatio="xMidYMid meet"><line x1="78" y1="186" x2="378" y2="186" stroke="#33536e" stroke-width="1.4" /><rect x="100" y="122.3076923076923" width="104" height="63.69230769230769" fill="#33536e" /><text x="152" y="158.15384615384616" font-family="Archivo, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700">46</text><rect x="100" y="98.76923076923077" width="104" height="23.53846153846154" fill="#5b7f9c" /><text x="152" y="114.53846153846155" font-family="Archivo, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700">17</text><rect x="100" y="69.6923076923077" width="104" height="29.076923076923077" fill="#c2772f" /><text x="152" y="88.23076923076923" font-family="Archivo, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700">21</text><rect x="100" y="47.53846153846154" width="104" height="22.153846153846153" fill="#e0a86a" /><text x="152" y="62.61538461538461" font-family="Archivo, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700">16</text><text x="152" y="37.53846153846155" font-family="Archivo, sans-serif" font-size="13.5" fill="#10314c" text-anchor="middle" font-weight="700">100</text><text x="152" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#536575" text-anchor="middle">QUOTED RENEWAL</text><rect x="252" y="122.3076923076923" width="104" height="63.69230769230769" fill="#33536e" /><text x="304" y="158.15384615384616" font-family="Archivo, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700">46</text><rect x="252" y="98.76923076923077" width="104" height="23.53846153846154" fill="#5b7f9c" /><text x="304" y="114.53846153846155" font-family="Archivo, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700">17</text><rect x="252" y="80.76923076923077" width="104" height="18" fill="#c2772f" /><text x="304" y="93.76923076923077" font-family="Archivo, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700">13</text><rect x="252" y="69.6923076923077" width="104" height="11.076923076923077" fill="#e0a86a" /><text x="304" y="59.69230769230769" font-family="Archivo, sans-serif" font-size="13.5" fill="#10314c" text-anchor="middle" font-weight="700">84</text><text x="304" y="203" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#536575" text-anchor="middle">SHOULD-COST</text><line x1="376" y1="47.53846153846155" x2="376" y2="69.6923076923077" stroke="#8a4e18" stroke-width="1.6" /><line x1="370" y1="47.53846153846155" x2="382" y2="47.53846153846155" stroke="#8a4e18" stroke-width="1.6" /><line x1="370" y1="69.6923076923077" x2="382" y2="69.6923076923077" stroke="#8a4e18" stroke-width="1.6" /><text x="388" y="55.61538461538462" font-family="Archivo, sans-serif" font-size="12" fill="#8a4e18" text-anchor="start" font-weight="700">Negotiable gap</text><text x="388" y="70.61538461538461" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">overhead & margin ≈ £2M</text><rect x="78" y="222" width="11" height="11" fill="#33536e" rx="2" /><text x="95" y="231" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">Labour</text><rect x="142.4" y="222" width="11" height="11" fill="#5b7f9c" rx="2" /><text x="159.4" y="231" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">Materials</text><rect x="226" y="222" width="11" height="11" fill="#c2772f" rx="2" /><text x="243" y="231" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">Overhead</text><rect x="303.2" y="222" width="11" height="11" fill="#e0a86a" rx="2" /><text x="320.2" y="231" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="start">Margin</text><text x="78" y="20" font-family="'Source Sans 3', sans-serif" font-size="10.5" fill="#536575" text-anchor="start">Indexed annual cost — labour and materials match; the gap sits above them</text></svg></div>
+        <aside class="ex-sowhat">
+          <span class="sw-label">So what</span>
+          <p>The gap was not in labour rates — it sat in overhead and margin above a defensible build-up, which is precisely what made it negotiable rather than a market price to accept.</p>
+        </aside>
+      </div>
+    </figure>
+      
+    <figure class="exhibit" data-region="exhibit">
+      <div class="ex-head">
+        <span class="ex-num">Exhibit 2</span>
+        <h3>Total-cost optimisation, quote to signed contract</h3>
+        <p class="ex-sub">£M, annual contract value · directional</p>
+      </div>
+      <div class="ex-body">
+        <div class="ex-chart"><svg viewBox="0 0 640 240" role="img" aria-label="Waterfall from 11.0 million pound quoted renewal to 9.0 million optimised contract across four levers" preserveAspectRatio="xMidYMid meet"><line x1="58" y1="174" x2="608" y2="174" stroke="#e3e9ee" stroke-width="1" /><text x="50" y="178" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">£0</text><line x1="58" y1="126" x2="608" y2="126" stroke="#e3e9ee" stroke-width="1" /><text x="50" y="130" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">£4</text><line x1="58" y1="78" x2="608" y2="78" stroke="#e3e9ee" stroke-width="1" /><text x="50" y="82" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">£8</text><line x1="58" y1="30" x2="608" y2="30" stroke="#e3e9ee" stroke-width="1" /><text x="50" y="34" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7e8c99" text-anchor="end">£12</text><rect x="96.19999999999999" y="42" width="66" height="132" fill="#10314c" rx="2" /><text x="129.2" y="33" font-family="Archivo, sans-serif" font-size="12.5" fill="#10314c" text-anchor="middle" font-weight="700">£11.0M</text><text x="129.2" y="192" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">Quoted</text><text x="129.2" y="204" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">renewal</text><rect x="202.60000000000002" y="42" width="66" height="10.799999999999997" fill="#c2772f" rx="2" fill-opacity="0.92" /><text x="235.60000000000002" y="33" font-family="Archivo, sans-serif" font-size="12" fill="#8a4e18" text-anchor="middle" font-weight="700">−£0.9M</text><line x1="268.6" y1="52.8" x2="309" y2="52.8" stroke="#d7dee4" stroke-width="1.2" stroke-dasharray="3 3" /><text x="235.60000000000002" y="192" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">Rate /</text><text x="235.60000000000002" y="204" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">should-cost</text><rect x="309" y="52.8" width="66" height="7.200000000000003" fill="#c2772f" rx="2" fill-opacity="0.92" /><text x="342" y="43.8" font-family="Archivo, sans-serif" font-size="12" fill="#8a4e18" text-anchor="middle" font-weight="700">−£0.6M</text><line x1="375" y1="60" x2="415.4" y2="60" stroke="#d7dee4" stroke-width="1.2" stroke-dasharray="3 3" /><text x="342" y="192" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">Travel &</text><text x="342" y="204" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">mobilisation</text><rect x="415.40000000000003" y="60" width="66" height="6" fill="#c2772f" rx="2" fill-opacity="0.92" /><text x="448.40000000000003" y="51" font-family="Archivo, sans-serif" font-size="12" fill="#8a4e18" text-anchor="middle" font-weight="700">−£0.5M</text><line x1="481.40000000000003" y1="66" x2="521.8000000000001" y2="66" stroke="#d7dee4" stroke-width="1.2" stroke-dasharray="3 3" /><text x="448.40000000000003" y="192" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">SLA &</text><text x="448.40000000000003" y="204" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">rework</text><rect x="521.8" y="66" width="66" height="108" fill="#10314c" rx="2" /><text x="554.8" y="57" font-family="Archivo, sans-serif" font-size="12.5" fill="#10314c" text-anchor="middle" font-weight="700">£9.0M</text><text x="554.8" y="192" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">Optimised</text><text x="554.8" y="204" font-family="'Source Sans 3', sans-serif" font-size="11" fill="#3a4751" text-anchor="middle">contract</text><line x1="58" y1="174" x2="608" y2="174" stroke="#33536e" stroke-width="1.4" /><rect x="58" y="220" width="292" height="20" fill="#f6e9da" rx="4" /><text x="68" y="234" font-family="Archivo, sans-serif" font-size="11.5" fill="#8a4e18" text-anchor="start" font-weight="600">≈ £2.0M total optimisation, across four levers</text><text x="0" y="0" font-family="Archivo, sans-serif" font-size="11" fill="#10314c" text-anchor="middle" font-weight="600" transform="translate(16 102) rotate(-90)">£M per year</text></svg></div>
+        <aside class="ex-sowhat">
+          <span class="sw-label">So what</span>
+          <p>The optimisation came from several levers rather than one: the rate gap plus the costs the day rate hides — travel, mobilisation, SLA and rework — compounded to roughly £2M.</p>
+        </aside>
+      </div>
+    </figure>
+    </div>
+  </div>
+
+  <div class="results" data-region="results">
+    <div class="results-main">
+      <p class="sec-label">What the work delivered</p>
+      <ul><li>Approximately £2M of total-cost optimisation locked into the renewed contract across multiple levers.</li><li>The incumbent retained and field-service continuity protected through a phased, evidence-led negotiation.</li><li>A defensible should-cost baseline left with the team, reusable to anchor the next renewal.</li><li>Full total-cost visibility established across rates, travel, mobilisation, service levels and rework.</li></ul>
+    </div>
+    <div class="metric">
+      <span class="m-label">Headline</span>
+      <span class="m-value">~£2M</span>
+      <span class="m-sub">total-cost optimisation secured</span>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <p class="note"><b>Anonymisation & basis of figures.</b> BT Group is named as engagement context; the supplier is withheld. The ~£2M reflects the engagement outcome. The £100M figure associated with this role elsewhere describes annual category responsibility, not this contract. The cost build-up and bridge are synthetic method illustrations, not the contract's actual baseline.</p>
+    <p class="contact"><b>Mohan Kholiya</b> · Gurugram, India<br />mohan.kholiya@gmail.com · mohankholiya.co.in</p>
+  </footer>
+
+</div>
+</body>
+</html>
