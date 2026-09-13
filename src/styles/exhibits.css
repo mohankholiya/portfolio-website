@@ -195,6 +195,90 @@ h4 {
   min-width: 0;
   padding-bottom: 6px;
 }
+
+/* ── Case study exhibits ────────────────────────────────────────────
+   Two per case, carried over from the consulting one-pagers. The chart keeps
+   the type scale and fills it was authored with, so the shared
+   `.consulting-chart text` defaults deliberately do not apply to it. */
+.case-exhibit + .case-exhibit {
+  margin-top: 24px;
+}
+.case-exhibit .exhibit-header {
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+}
+.case-exhibit .exhibit-header h2 {
+  font-size: 24px;
+}
+.case-exhibit .method-caption {
+  margin-top: 8px;
+}
+.case-exhibit-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 32px;
+  align-items: center;
+}
+/* Same reason as .exhibit-scroll above: without this the chart's min-width
+   escapes the grid track and pushes the page into horizontal scroll. */
+.case-exhibit-body > * {
+  min-width: 0;
+}
+.onepager-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.case-exhibit-sowhat {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 22px;
+}
+.case-exhibit-sowhat p:not(.exhibit-label) {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+/* Shown only at the width where the chart actually becomes pannable. */
+.chart-pan {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .case-exhibit-body {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .case-exhibit-sowhat {
+    border-left: 0;
+    border-top: 1px solid var(--color-hairline);
+    padding: 18px 0 0;
+  }
+}
+/* The one-pager charts carry print-sized type inside a fixed 640-unit viewBox,
+   so below this width their axis labels would render at 6-8px. Pan the chart
+   rather than shrinking it, and say so: a clipped chart with no affordance
+   reads as a broken layout. No edge fade, because in most of these exhibits
+   the highlighted mark sits at the far right of the plot. */
+@media (max-width: 620px) {
+  .onepager-chart {
+    min-width: 600px;
+  }
+  .chart-pan {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+}
+@media print {
+  .onepager-chart {
+    min-width: 0;
+  }
+  .chart-pan {
+    display: none;
+  }
+}
+
 /* WCAG 2.2 target size (AA) is 24px; the breadcrumb was 20px tall. This lives
    in exhibits.css, which is imported after global.css, so the coarse-pointer
    bump has to be restated here or the 24px baseline would win on touch. */

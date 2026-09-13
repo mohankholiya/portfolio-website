@@ -1,0 +1,51 @@
+---
+/*
+  The two analytical exhibits for a case study, carried over from its consulting
+  one-pager. Each is a chart plus the reading of that chart: the "so what" sits
+  beside the exhibit rather than under it, because the point of the exhibit is
+  the conclusion, not the plot.
+*/
+import { caseExhibits } from "../content/exhibits";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const exhibits = caseExhibits[id];
+if (!exhibits) {
+  throw new Error(`No exhibits for case "${id}" — re-run scripts/extract-exhibits.py`);
+}
+---
+
+{
+  exhibits.map((ex) => (
+    <figure class="analysis-exhibit case-exhibit reveal">
+      <figcaption class="exhibit-header">
+        <p class="eyebrow">{ex.num}</p>
+        <h2>{ex.title}</h2>
+        <p class="method-caption">{ex.sub}</p>
+      </figcaption>
+
+      <div class="case-exhibit-body">
+        <div>
+          {/* Authored SVG from the one-pager; no external input reaches this. */}
+          <div
+            class="exhibit-scroll"
+            role="group"
+            tabindex="0"
+            aria-label={`${ex.num}: ${ex.title}`}
+          >
+            <div class="onepager-chart" set:html={ex.svg} />
+          </div>
+          <p class="chart-pan" aria-hidden="true">Swipe the chart</p>
+        </div>
+
+        <div class="exhibit-reading case-exhibit-sowhat">
+          <p class="exhibit-label">So what</p>
+          <p>{ex.soWhat}</p>
+        </div>
+      </div>
+    </figure>
+  ))
+}

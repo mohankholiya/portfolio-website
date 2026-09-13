@@ -94,22 +94,35 @@ The repository default branch is `master`; the existing Pages production branch 
 
 An earlier README described a local post-commit deployment hook. Hooks are not tracked by Git and are not installed by this repository. Publishing should be deliberate and follow validation.
 
-## Case study downloads
+## Case study exhibits and downloads
 
-Every case study is also downloadable as a one-page PDF, and all six as a single case pack. These are generated, not authored:
+The six consulting one-pagers in `new case study/` are the source of truth for both the analytical exhibits on the case study pages and the downloadable PDFs. Nothing here is authored by hand:
 
 | Step | Command | Produces |
 |---|---|---|
-| 1 | `node scripts/gen-case-pdfs.mjs` | `public/case-studies/<id>.pdf`, one per case |
-| 2 | `python scripts/merge-case-pack.py` | `public/Mohan_Kholiya_Case_Studies.pdf` |
+| 1 | `python scripts/extract-exhibits.py` | `src/content/exhibits.ts` |
+| 2 | `node scripts/gen-case-pdfs.mjs` | `public/case-studies/<id>.pdf`, one per case |
+| 3 | `python scripts/merge-case-pack.py` | `public/Mohan_Kholiya_Case_Studies.pdf` |
 
-The source is the six consulting one-pagers in `new case study/` — the same A4-landscape artefacts circulated as PDFs, and the origin of the case copy already in `src/content/site.ts`. Step 1 renders each in headless Chrome at 297x210mm with `printBackground`, so the text layer is selectable and searchable rather than a flat scan.
+Run all three after editing a one-pager, then rebuild.
+
+### Exhibits
+
+Each case page carries the two exhibits from its one-pager, each paired with the reading of that chart. `src/content/exhibits.ts` is generated — **do not hand-edit it**; change the SVG in `new case study/` and re-run step 1. The SVGs are carried over rather than redrawn, so a chart only changes when the one-pager changes.
+
+The one-pagers were authored against the same navy and copper system as the site, but some of their greys and navies are near-duplicates of the tokens rather than the tokens themselves. `PALETTE` in `scripts/extract-exhibits.py` maps those onto real token values and the script then fails if any colour outside the token set survives, so an exhibit cannot quietly drift off-palette. Colours are written as literal hex, not `var()`: a custom property inside an SVG presentation attribute is not reliably supported.
+
+Four of the one-pager label colours were series-tinted text between 2.0:1 and 4.3:1 on a white chart, below the 4.5:1 that ~10px labels need. `PALETTE` moves them to the accessible token of the same hue; the series association still reads from position and from the mark each label sits beside.
+
+The charts keep the type scale they were authored with, so the shared `.consulting-chart text` rules deliberately do not apply to them. Below 620px their axis labels would render at 6-8px, so the chart pans inside `.exhibit-scroll` instead of shrinking, with a visible affordance. `scripts/responsive-audit.mjs` checks these SVGs for clipped text alongside the other charts.
+
+### Downloads
+
+Step 2 renders each one-pager in headless Chrome at 297x210mm with `printBackground`, so the text layer is selectable and searchable rather than a flat scan.
 
 The one-pagers reference the same four woff2 files the site self-hosts in `public/fonts/`, under the same names, so the script copies those next to the page and prints with no network access. It asserts all three families actually loaded before writing each PDF; a PDF silently set in a fallback face is the failure mode worth blocking.
 
 The filename map at the top of `scripts/gen-case-pdfs.mjs` is keyed by case id. `scripts/check-build.py` asserts there is exactly one one-pager per case route, so renaming a route without regenerating fails the build instead of orphaning a download.
-
-Run both steps after editing a one-pager, then rebuild.
 
 ## Resume maintenance
 

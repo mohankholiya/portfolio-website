@@ -220,6 +220,7 @@ export const copy = {
     scope: "Engagement context",
     status: "Outcome type",
     proof: "At a glance",
+    exhibits: "Analytical exhibits",
     onePagerNote: "PDF · 1 page",
     onePagerTitle: "Take this case with you",
     onePagerBody:
@@ -314,7 +315,6 @@ export const caseStudies = [
       "A clearer agenda for evaluating cost gaps ahead of further project decisions.",
     ],
     note: "This case describes benchmarking and decision support. It does not claim ownership of the final investment decision or subsequent savings. Client and project details are anonymised.",
-    chart: "benchmark",
   },
   {
     id: "unit-rate-governance",
@@ -353,7 +353,6 @@ export const caseStudies = [
       "An analytical framework linking each recommendation to a specific commercial issue.",
     ],
     note: "This is an identified opportunity, not realised savings. The assessment uses a selected rate reference; an internal weighted-average rate does not, by itself, establish external market pricing. Realisation depends on validation and implementation.",
-    chart: "governance",
   },
   {
     id: "supply-chain-benchmarking",
@@ -392,7 +391,6 @@ export const caseStudies = [
       "Recommendations for targeted capacity and role-design decisions.",
     ],
     note: "The case describes a diagnostic and recommendations. Unconfirmed peer counts, pilot results, headcount changes and downstream savings are not presented as outcomes.",
-    chart: "capacity",
   },
   {
     id: "bt-contract-renewal",
@@ -431,7 +429,6 @@ export const caseStudies = [
       "A reusable should-cost baseline and clearer view of cost levers.",
     ],
     note: "The £100M figure elsewhere describes annual category responsibility at BT Group, not this individual contract. The cost bridge is a synthetic method illustration, not the contract's actual cost baseline.",
-    chart: "waterfall",
   },
   {
     id: "accenture-capex-sourcing",
@@ -470,7 +467,6 @@ export const caseStudies = [
       "Category playbooks and supplier-management routines for the in-house team.",
     ],
     note: "Client identity is withheld. Savings describe the sourcing portfolio; category proportions and supplier counts are omitted rather than reconstructed as project facts.",
-    chart: "sourcing",
   },
   {
     id: "category-intelligence",
@@ -509,7 +505,6 @@ export const caseStudies = [
       "Clearer visibility of category-specific cost, supply and contracting considerations.",
     ],
     note: "This is a description of the engagement method, not a current market forecast. It does not claim subsequent sourcing savings or implementation outcomes.",
-    chart: "categories",
   },
 ];
 export const experience = [

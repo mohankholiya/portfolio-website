@@ -112,7 +112,7 @@ for (const vp of VIEWPORTS) {
       // symptom. Compare each text run against its own SVG's box.
       const clipped = [];
       for (const svg of document.querySelectorAll(
-        ".case-spark svg, .consulting-chart",
+        ".case-spark svg, .consulting-chart, .onepager-chart svg",
       )) {
         const box = svg.getBoundingClientRect();
         for (const t of svg.querySelectorAll("text")) {
