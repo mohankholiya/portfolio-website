@@ -30,28 +30,28 @@ const label = (x: number, y: number, s: string, fill = F, anchor = "start") =>
   `<text x="${x}" y="${y}" font-family="${MONO}" font-size="9.5" fill="${fill}" text-anchor="${anchor}">${s}</text>`;
 
 const sparks: Record<string, string> = {
-  // Total cost is the thesis: three named levers, not one headline rate.
-  // The levers are stated in the case; their individual values are not, so
-  // the segments are equal and carry no value labels.
+  // The bridge from quote to signed contract. Three named reductions sum to
+  // ~£2M; widths are proportional to the £0.9M / £0.6M / £0.5M split stated
+  // in the case, so the rate gap reads as under half the outcome.
   "bt-contract-renewal": `
-    <svg viewBox="0 0 280 54" role="img" aria-label="Three total-cost levers carried into the renewal: rates, travel and mobilisation, service levels and rework">
+    <svg viewBox="0 0 280 54" role="img" aria-label="Roughly two million pounds of optimisation from three levers: the rate gap, travel and mobilisation, and service levels and rework">
       ${label(0, 10, "Levers beyond the headline rate")}
-      <rect x="0" y="19" width="86" height="12" rx="2" fill="${A}"/>
-      <rect x="91" y="19" width="86" height="12" rx="2" fill="${A}" opacity="0.72"/>
-      <rect x="182" y="19" width="86" height="12" rx="2" fill="${A}" opacity="0.5"/>
-      ${label(0, 46, "Rates")}
-      ${label(91, 46, "Travel")}
-      ${label(182, 46, "SLA / rework")}
+      <rect x="0" y="19" width="116" height="12" rx="2" fill="${A}"/>
+      <rect x="121" y="19" width="77" height="12" rx="2" fill="${A}" opacity="0.72"/>
+      <rect x="203" y="19" width="65" height="12" rx="2" fill="${A}" opacity="0.5"/>
+      ${label(0, 46, "Rate gap")}
+      ${label(121, 46, "Travel")}
+      ${label(203, 46, "SLA / rework")}
     </svg>`,
 
-  // 4.9-6.0 of 233 is 2.1%-2.6%. Drawn to scale, which is the honest picture.
+  // ~6 of ~230 is about 2.6%. Drawn to scale, which is the honest picture.
   "unit-rate-governance": `
-    <svg viewBox="0 0 280 54" role="img" aria-label="Identified opportunity of 4.9 to 6 million dollars against a 233 million dollar programme, about 2 percent">
+    <svg viewBox="0 0 280 54" role="img" aria-label="Identified opportunity of about five to six million dollars against a programme of about 230 million dollars, roughly two and a half percent">
       ${label(0, 10, "Opportunity against programme spend")}
       <rect x="0" y="19" width="268" height="12" rx="2" fill="${C}" opacity="0.28"/>
-      <rect x="0" y="19" width="${(6 / 233) * 268}" height="12" rx="2" fill="${A}"/>
-      ${label(0, 46, "$4.9M-$6M identified", A)}
-      ${label(268, 46, "of $233M", F, "end")}
+      <rect x="0" y="19" width="${(6 / 230) * 268}" height="12" rx="2" fill="${A}"/>
+      ${label(0, 46, "~$5–6M identified", A)}
+      ${label(268, 46, "of ~$230M", F, "end")}
     </svg>`,
 
   // Three categories coordinated; savings are portfolio-level only, so the
@@ -82,30 +82,31 @@ const sparks: Record<string, string> = {
       ${label(0, 52, "Regional set expanded by nine projects")}
     </svg>`,
 
-  // No published ratio for this engagement, so the spark shows the decision
-  // frame rather than a number: workload against available capacity.
+  // The finding in one line: all four core roles sit at or above the peer upper
+  // quartile. The box is the peer interquartile range, the diamonds this utility.
   "supply-chain-benchmarking": `
-    <svg viewBox="0 0 280 54" role="img" aria-label="Workload against available capacity decision matrix, with the constrained quadrant highlighted">
-      ${label(0, 10, "Workload x available capacity")}
-      <rect x="0" y="16" width="62" height="15" fill="none" stroke="${H}"/>
-      <rect x="62" y="16" width="62" height="15" fill="none" stroke="${H}"/>
-      <rect x="0" y="31" width="62" height="15" fill="none" stroke="${H}"/>
-      <rect x="62" y="31" width="62" height="15" fill="${A}" opacity="0.85"/>
-      ${label(134, 29, "Lower capacity +")}
-      ${label(134, 43, "higher workload")}
+    <svg viewBox="0 0 280 54" role="img" aria-label="All four core supply-chain roles sit at or above the peer upper quartile for spend supported per full-time equivalent">
+      ${label(0, 10, "Spend per FTE vs the peer range")}
+      <line x1="12" y1="27" x2="200" y2="27" stroke="${H}"/>
+      <rect x="54" y="20" width="84" height="15" fill="${C}" opacity="0.2" stroke="${H}"/>
+      <line x1="96" y1="20" x2="96" y2="35" stroke="${C}"/>
+      ${[152, 166, 180, 194]
+        .map((x) => `<path d="M${x} 21 l6 6 -6 6 -6 -6 z" fill="${A}"/>`)
+        .join("")}
+      ${label(0, 50, "Peer interquartile range")}
+      ${label(268, 50, "4 of 4 roles above Q3", A, "end")}
     </svg>`,
 
-  // Two categories placed on the same two axes as the detail exhibit.
+  // E-STATCOM only. Power semiconductors (30%) plus coupling transformer and
+  // magnetics (24%) are ~54% of installed cost, and both are supply-constrained.
   "category-intelligence": `
-    <svg viewBox="0 0 280 54" role="img" aria-label="Lighting and E-STATCOM positioned on supply-market concentration against engineering intensity">
-      ${label(0, 10, "One framework, two postures")}
-      <rect x="0" y="15" width="124" height="31" fill="none" stroke="${H}"/>
-      <line x1="62" y1="15" x2="62" y2="46" stroke="${H}" stroke-dasharray="2 2"/>
-      <line x1="0" y1="30.5" x2="124" y2="30.5" stroke="${H}" stroke-dasharray="2 2"/>
-      <circle cx="30" cy="39" r="5" fill="${A}"/>
-      <circle cx="95" cy="23" r="5" fill="${C}"/>
-      ${label(134, 29, "Lighting: tendering", A)}
-      ${label(134, 43, "E-STATCOM: partner", C)}
+    <svg viewBox="0 0 280 54" role="img" aria-label="Power semiconductors and coupling transformer and magnetics are together about 54 percent of installed E-STATCOM cost, and both are supply-constrained">
+      ${label(0, 10, "What moves E-STATCOM price")}
+      <rect x="0" y="19" width="${268 * 0.3}" height="12" rx="2" fill="${A}"/>
+      <rect x="${268 * 0.3 + 2}" y="19" width="${268 * 0.24 - 2}" height="12" rx="2" fill="${A}" opacity="0.66"/>
+      <rect x="${268 * 0.54 + 2}" y="19" width="${268 * 0.46 - 2}" height="12" rx="2" fill="${C}" opacity="0.28"/>
+      ${label(0, 46, "Semiconductors + magnetics", A)}
+      ${label(268, 46, "~54% of cost", F, "end")}
     </svg>`,
 };
 ---
