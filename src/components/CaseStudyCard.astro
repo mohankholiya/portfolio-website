@@ -8,6 +8,10 @@ interface Props {
   headline: string;
   metric: string;
   metricLabel: string;
+  /* The card takes `summary`, not `description` — see the note in
+     src/content/site.ts. `description` is still spread in from the same
+     object, so it is declared here to keep the props typed. */
+  summary: string;
   description: string;
   tags: string[];
   status: string;
@@ -125,7 +129,7 @@ const sparks: Record<string, string> = {
   <h3>
     <a href={`/case-studies/${cs.id}/`}>{cs.headline}</a>
   </h3>
-  <p class="case-description">{cs.description}</p>
+  <p class="case-description">{cs.summary}</p>
   <div class="case-bottom">
     <span>{cs.tags[0]}</span>
     <a

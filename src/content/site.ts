@@ -292,6 +292,14 @@ export const caseStudies = [
     scope: "Consulting · Wood Mackenzie · supermajor, $2B+ gas development",
     engagementRole: "Independent competitiveness review (pre-FEED)",
     duration: "4 months",
+    /* `summary` is the card line; `description` is the lead paragraph on the
+       case page itself. A card already carries a headline, a metric, a spark
+       and a tag, so the full two-sentence description crowds it — and the
+       second sentence gives away the finding the case page exists to walk
+       through. Every summary is the first sentence of its description
+       verbatim: the situation, with the outcome held back for the click. */
+    summary:
+      "A pre-FEED gas development had been told it was not first quartile, with no evidence of where or why.",
     description:
       "A pre-FEED gas development had been told it was not first quartile, with no evidence of where or why. Two independent benchmarks — top-down against 27 peers and bottom-up to component level — put the gap in pipeline and rig rate, and cleared production facilities.",
     tags: ["Capital benchmarking", "Cost modelling"],
@@ -333,6 +341,8 @@ export const caseStudies = [
     scope: "Consulting · large US investor-owned utility",
     engagementRole: "Independent commercial assessment (pre-RFP)",
     duration: "6 weeks",
+    summary:
+      "A ~$230M contractor programme was billing roughly $5–6M a year above the assessment benchmark.",
     description:
       "A ~$230M contractor programme was billing roughly $5–6M a year above the assessment benchmark. The cause was not who held the work but the absence of rate-book enforcement — so replacing contractors would have reproduced it.",
     tags: ["Spend analytics", "Contract strategy"],
@@ -374,6 +384,7 @@ export const caseStudies = [
     scope: "Consulting · US energy utility",
     engagementRole: "Organisational benchmarking & operating model",
     duration: "12 weeks",
+    summary: "Headcount ratios would have called this function efficient.",
     description:
       "Headcount ratios would have called this function efficient. Assessing workload role by role showed a lean structure carrying ~70% more spend per FTE than the peer median, with no planning function and no headroom for the growth it was asked to absorb.",
     tags: ["Operating models", "Benchmarking"],
@@ -415,6 +426,8 @@ export const caseStudies = [
     scope: "In-house category ownership · BT Group",
     engagementRole: "Category & sourcing manager — renewal and negotiation",
     duration: "6 months",
+    summary:
+      "A field-services renewal was set to roll forward historical rates.",
     description:
       "A field-services renewal was set to roll forward historical rates. Rebuilding the supplier's economics from the cost drivers up moved the negotiation onto what the service should cost, and secured ~£2M a year with the incumbent retained.",
     tags: ["Should-cost modelling", "Negotiation"],
@@ -456,6 +469,8 @@ export const caseStudies = [
     scope: "Consulting · Accenture · upstream E&P operator",
     engagementRole: "CapEx category & sourcing lead",
     duration: "12 months",
+    summary:
+      "A large upstream capital programme was bought package by package, leaking leverage at every award.",
     description:
       "A large upstream capital programme was bought package by package, leaking leverage at every award. Managing it as three categories, each with its own sourcing posture, delivered ~$4M of CapEx savings and a governance model embedded in the client's own team.",
     tags: ["Strategic sourcing", "Category management"],
@@ -497,6 +512,8 @@ export const caseStudies = [
     scope: "Consulting · large US investor-owned utility",
     engagementRole: "Category intelligence & executive briefing",
     duration: "8 weeks",
+    summary:
+      "Fragmented market, supplier and spend information was rebuilt into one decision-ready view of the category.",
     description:
       "Fragmented market, supplier and spend information was rebuilt into one decision-ready view of the category. Decomposing cost and lead time into their real drivers showed why it rewards partnership and early commitment over aggressive competitive tendering.",
     tags: ["Category intelligence", "Supply markets"],
