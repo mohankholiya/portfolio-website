@@ -220,6 +220,8 @@ export const copy = {
     scope: "Engagement context",
     status: "Outcome type",
     proof: "At a glance",
+    engagementRole: "My role",
+    duration: "Duration",
     exhibits: "Analytical exhibits",
     onePagerNote: "PDF · 1 page",
     onePagerTitle: "Take this case with you",
@@ -282,21 +284,24 @@ export const caseStudies = [
     id: "capital-cost-competitiveness",
     sector: "energy",
     sectorLabel: "Energy & oil & gas",
-    headline: "Benchmarking system by system replaced a blanket cost mandate.",
-    metric: "27 projects",
-    metricLabel: "in the comparative peer set",
+    headline:
+      "Benchmarking system by system replaced a blanket cost mandate with a focused agenda.",
+    metric: "2 of 3",
+    metricLabel: "cost systems in the fourth quartile",
     status: "Decision support",
+    scope: "Consulting · Wood Mackenzie · supermajor, $2B+ gas development",
+    engagementRole: "Independent competitiveness review (pre-FEED)",
+    duration: "4 months",
     description:
-      "Two independent benchmarks — top-down against 27 peers and bottom-up to component level — located the gap in pipeline and rig rate, and left production facilities alone.",
+      "A pre-FEED gas development had been told it was not first quartile, with no evidence of where or why. Two independent benchmarks — top-down against 27 peers and bottom-up to component level — put the gap in pipeline and rig rate, and cleared production facilities.",
     tags: ["Capital benchmarking", "Cost modelling"],
-    scope: "Consulting · Supermajor upstream operator",
-    role: "I led the benchmarking workstream feeding a joint gap-to-goal workshop: building the peer set, normalising costs at system and component level, quantifying the variance, and synthesising a fragmented cost picture into a board-ready verdict.",
+    role: "Led the benchmarking workstream: built the 27-peer set, normalised cost top-down by system and bottom-up by component, and turned a fragmented cost picture into an independent, board-ready verdict for the gap-to-goal workshop.",
     challenge:
-      "An internal review had flagged costs as outside first quartile, with no like-for-like evidence of where the project actually sat. Comparable shallow-water gas peers were scarce, so a credible comparison set was the first problem to solve rather than an input to it.",
+      "An internal review placed costs outside first quartile, with no like-for-like evidence of where. Comparable shallow-water gas peers were scarce, so a credible peer set was the first problem to solve rather than an input to it — and without isolating the systems driving the gap, the default response would be to cut everywhere.",
     approach: [
       {
         title: "Construct a defensible peer set",
-        body: "Widen the comparison criteria deliberately — production year, water depth, adjacent basins — then normalise every peer cost for time, region and specification.",
+        body: "Widen the comparison criteria deliberately — production year, water depth, adjacent basins — then normalise every peer cost for scope, water depth and first-production year.",
       },
       {
         title: "Run two complementary benchmarks",
@@ -308,67 +313,73 @@ export const caseStudies = [
       },
     ],
     judgment:
-      "First quartile is not automatically the right goal for every cost system. Separating structural gaps — tie-back distance, seabed conditions, a thin regional contracting market — from addressable ones such as rig rate is what made the benchmark actionable rather than merely damning.",
+      "First quartile is not the right goal for every system. Separating structural gaps — tie-back distance, seabed conditions, a thin regional contracting market — from commercially addressable ones such as rig rate made the benchmark actionable rather than merely damning.",
     results: [
-      "A 27-project peer set built where fewer than five clean comparators existed.",
-      "A system-level verdict: second quartile on production facilities, fourth quartile on pipeline and on drilling and completions.",
-      "The dominant lever isolated — rig rate, roughly 41% of drilling and completions cost.",
+      "The first credible like-for-like cost view: a 27-project peer set built where few ideal comparators existed.",
+      "A system-level verdict: second quartile on facilities, fourth quartile on pipeline and on drilling & completions.",
+      "The pre-FEED agenda reframed from cutting everywhere to two evidence-backed levers: pipeline and rig rate.",
     ],
-    note: "This case describes benchmarking and decision support. It does not claim ownership of the final investment decision or subsequent savings. Client, project and peer identities are anonymised, and exhibit internals are directional.",
+    note: "Sources: operator cost submission benchmarked against an independent project-cost database; n=27 peers, normalised for scope, water depth and first-production year. Component shares from transactional benchmarking; ~52% of drilling and completions rebuilt bottom-up. Client, supplier and peer identities are withheld, and exhibit internals are indexed or illustrative — they show the analytical structure, not client data. This case describes benchmarking and decision support; it does not claim ownership of the final investment decision or of subsequent savings.",
   },
   {
     id: "unit-rate-governance",
     sector: "utilities",
     sectorLabel: "Utilities",
-    headline: "One governance gap repeating six times, not six expensive contractors.",
+    headline:
+      "One governance gap repeating six times, not six expensive contractors.",
     metric: "~$5–6M",
-    metricLabel: "annual opportunity identified",
+    metricLabel: "a year above benchmark — about 2–3% of annual contractor spend",
     status: "Identified opportunity",
+    scope: "Consulting · large US investor-owned utility",
+    engagementRole: "Independent commercial assessment (pre-RFP)",
+    duration: "6 weeks",
     description:
-      "Transaction-level analysis of a ~$230M contractor programme, translated into a five-pillar contracting framework tied to the renewal critical path.",
+      "A ~$230M contractor programme was billing roughly $5–6M a year above the assessment benchmark. The cause was not who held the work but the absence of rate-book enforcement — so replacing contractors would have reproduced it.",
     tags: ["Spend analytics", "Contract strategy"],
-    scope: "Consulting · Large US investor-owned utility",
-    role: "I led the assessment end to end — designing the three-step commercial-impact method, analysing twelve months of approved spend across roughly 565,000 transactions, isolating the structural root cause, and converting the diagnosis into a contracting framework and phased roadmap.",
+    role: "Led the assessment end to end: analysed ~565,000 transactions from twelve months of approved spend, quantified above-market billing, isolated its structural root cause, and converted it into a five-pillar contracting framework tied to the RFP critical path.",
     challenge:
-      "A five-year renewal of the overhead-construction contracts was approaching, against a rate book five years out of date. Ambiguous work descriptions and time-based billing made the exposure real but unquantified, with no competitive-tension mechanism in the contract.",
+      "A five-year renewal of the overhead-construction contracts was approaching, against a rate book five years out of date. Ambiguous work descriptions and time-based billing made the exposure real but unquantified, and spend ran across 482 rate-book items and six contractors — so the diagnosis had to find the few that mattered.",
     approach: [
       {
         title: "Concentrate the field",
-        body: "A Pareto of 482 rate-book items showed 45 of them driving roughly 80% of spend — and that the three largest items were not unit-billed at all.",
+        body: "A Pareto of 482 rate-book items showed 45 of them driving roughly 80% of annual spend, which put the whole problem inside one renewal cycle.",
       },
       {
         title: "Classify every gap, MECE",
-        body: "Sort the top-45 items into missing definition, urgent upgrade, monitor and clean, so the reform list fits inside one renewal cycle.",
+        body: "Sort the top-45 items into missing definition, urgent upgrade, monitor and clean, so the reform list is finite and sequenced.",
       },
       {
         title: "Quantify only what is defensible",
-        body: "Flag the item on rate variance, identify who sits above the volume-weighted average rate, then size exposure by that contractor's own volume, floored at zero.",
+        body: "Identify who sits above the volume-weighted average rate, then size exposure by that contractor's own volume, floored at zero.",
       },
     ],
     judgment:
-      "A rate comparison is only useful when the work and its measurement units are genuinely comparable. I weighted each contractor's rates by their own transaction volumes, and held the finding together as one integrated opportunity rather than splitting it into individually deniable line items.",
+      "A rate comparison only holds when the work and its units are genuinely comparable. Weighting each contractor's rates by its own volumes, and keeping the finding as one integrated opportunity, stopped it being split into individually deniable line items.",
     results: [
-      "A ~$5–6M annual opportunity quantified bottom-up, with every assumption logged.",
-      "Rate-book enforcement identified as the single structural lever — avoiding a contractor reshuffle that would not have fixed the cause.",
-      "An RFP-ready package: a five-pillar contract framework, an upgraded work-description standard and a standardised pricing template.",
+      "A ~$5–6M annual opportunity, addressable through one structural lever: rate-book enforcement.",
+      "A costly contractor reshuffle avoided — it would not have fixed the cause.",
+      "An RFP-ready toolkit: five-pillar contract framework, work-description standard and pricing template.",
     ],
-    note: "This is an identified opportunity, not realised savings; realisation depends on validation and implementation. Client and contractor identities are withheld and figures are rounded. The 75–80% unit-billing reference is a directional maturity range observed across comparable programmes, not a published industry standard.",
+    note: "Sources: twelve months of client-approved contractor spend — ~565,000 transactions across ~$230M, 482 rate-book items and six contractors. Variance is weighted by each contractor's own transaction volume against the volume-weighted average rate and floored at zero, which totals ~$5.0M: the conservative end of the ~$5–6M range. This is an identified opportunity, not realised savings; realisation depends on validation and implementation. Client and contractor identities are withheld and figures are rounded.",
   },
   {
     id: "supply-chain-benchmarking",
     sector: "utilities",
     sectorLabel: "Utilities",
-    headline: "The organisation did not have a level problem. It had a distribution problem.",
-    metric: "Role by role",
-    metricLabel: "supply-chain capacity assessed",
+    headline:
+      "The supply-chain team wasn't oversized. Its load sat on managers, with no execution layer beneath them.",
+    metric: "~70%",
+    metricLabel: "more spend per FTE than the peer median",
     status: "Operating-model diagnostic",
+    scope: "Consulting · US energy utility",
+    engagementRole: "Organisational benchmarking & operating model",
+    duration: "12 weeks",
     description:
-      "Headcount ratios would have called this function efficient. Assessing workload role by role showed a lean structure carrying peer-topping spend per person, with no headroom for the growth it was being asked to absorb.",
+      "Headcount ratios would have called this function efficient. Assessing workload role by role showed a lean structure carrying ~70% more spend per FTE than the peer median, with no planning function and no headroom for the growth it was asked to absorb.",
     tags: ["Operating models", "Benchmarking"],
-    scope: "Consulting · Regulated US electric & gas utility",
-    role: "I led the benchmarking assessment across structure, role allocation and functional capacity — defining the peer-comparison framework, normalising spend and headcount by workload, clustering roles by capability rather than title, and translating the findings into structural implications.",
+    role: "Led the assessment across structure, roles and capacity: defined the peer framework, normalised spend and headcount by workload, clustered roles by capability rather than title, and translated the findings into structural implications.",
     challenge:
-      "Leadership needed to know whether the supply-chain organisation was structured to support current spend and planned growth. Raw headcount comparisons risked obscuring real differences in role scope and functional coverage between peers.",
+      "Leadership needed to know whether the supply-chain organisation could support current spend and planned growth. Raw headcount comparisons would obscure real differences in role scope and functional coverage between peers, and the goal was a fact base for workforce decisions rather than a headcount verdict in either direction.",
     approach: [
       {
         title: "Compare capabilities, not job titles",
@@ -376,7 +387,7 @@ export const caseStudies = [
       },
       {
         title: "Map the outliers",
-        body: "Plot load-adjusted spend per FTE against workload to find which functions sit off the peer line, and in which direction.",
+        body: "Plot load-adjusted spend per FTE against the peer distribution to find which functions sit off the line, and in which direction.",
       },
       {
         title: "Rule out the alternatives first",
@@ -384,29 +395,32 @@ export const caseStudies = [
       },
     ],
     judgment:
-      "High spend per person can mean a lean organisation or an overloaded one, and the two call for opposite responses. Reading the number alongside scope, service expectations and how execution work was distributed is what turned a benchmark into a recommendation rather than a headline.",
+      "High spend per person can mean a lean organisation or an overloaded one, and the two call for opposite responses. Reading the number alongside scope and how execution work was distributed turned a benchmark into a recommendation rather than a headline.",
     results: [
-      "A load-adjusted fact base usable directly in workforce and operating-model decisions.",
-      "Two structural gaps identified: thin execution capacity beneath manager roles, and no standalone planning capability.",
-      "A phased reallocation plan de-risked through a single-region pilot with tracked KPIs before any wider change.",
+      "A structured fact base on supply-chain sizing relative to peers, usable directly in workforce planning.",
+      "Two structural gaps identified: lean enablement and no standalone planning function.",
+      "A prioritised reinforcement roadmap, de-risked through a single-region pilot with tracked KPIs.",
     ],
-    note: "The deliverable was a diagnostic and a recommended operating model. Headcount changes, pilot results and downstream savings are not presented as outcomes of this work. Peer identities and counts are withheld; distributions are indexed and directional.",
+    note: "Sources: client function and role-level spend and FTE data, normalised by workload (assets served, spend under management) and clustered by delivered capability rather than job title, benchmarked against comparable regulated utilities. The deliverable was a diagnostic and a recommended operating model; headcount changes, pilot results and downstream savings are not presented as outcomes of this work. Peer identities and counts are withheld, and distributions are indexed.",
   },
   {
     id: "bt-contract-renewal",
     sector: "telecom",
     sectorLabel: "Telecom",
-    headline: "The negotiable gap was never in the labour rates.",
+    headline:
+      "The negotiable gap was never in the labour rates — it sat in overhead and margin.",
     metric: "~£2M",
-    metricLabel: "total-cost optimisation secured",
+    metricLabel: "a year — about 18% of annual contract value",
     status: "Contracted optimisation",
-    description:
-      "Should-cost modelling and total-cost negotiation across a BT Group field-services renewal, with the incumbent retained and service continuity protected.",
-    tags: ["Should-cost modelling", "Negotiation"],
     scope: "In-house category ownership · BT Group",
-    role: "I led the renewal end to end: building the should-cost model from first principles, constructing a total-cost view that priced mobilisation, travel, service-level credits and rework, setting the negotiation strategy and walk-away position, and leading the supplier negotiation to close.",
+    engagementRole: "Category & sourcing manager — renewal and negotiation",
+    duration: "6 months",
+    description:
+      "A field-services renewal was set to roll forward historical rates. Rebuilding the supplier's economics from the cost drivers up moved the negotiation onto what the service should cost, and secured ~£2M a year with the incumbent retained.",
+    tags: ["Should-cost modelling", "Negotiation"],
+    role: "Led the renewal end to end: built the should-cost model from first principles, priced the total cost of mobilisation, travel, service credits and rework, set the negotiation strategy and walk-away position, and led the supplier negotiation to close.",
     challenge:
-      "A multi-year regional service-delivery contract was approaching renewal with no refreshed cost baseline behind it. Rates had been accepted historically, and savings could not come at the cost of continuity — pressing a regional incumbent too hard put field-service delivery at risk.",
+      "A multi-year regional service-delivery contract was nearing renewal with no refreshed cost baseline behind it. Rates had been accepted for years without visibility of the supplier's cost build-up, and pressing a regional incumbent too hard would put field-service delivery at risk.",
     approach: [
       {
         title: "Rebuild the baseline",
@@ -422,29 +436,32 @@ export const caseStudies = [
       },
     ],
     judgment:
-      "The negotiation that mattered was about complete service economics, not the headline day rate. A lower rate would have meant little if mobilisation, rework or disruption pushed total cost back up — so the ask was sequenced to protect continuity while still taking the margin gap.",
+      "The negotiation that mattered was total service economics, not the headline day rate. A lower rate means little if mobilisation or rework push cost back up, so the ask was sequenced to take the margin gap while protecting continuity.",
     results: [
-      "Approximately £2M of total-cost optimisation locked into the renewed contract across four levers, only one of which was the rate itself.",
-      "The gap located in overhead and margin above a defensible build-up, not in labour rates.",
-      "A reusable should-cost baseline left with the team to anchor the next renewal cycle.",
+      "~£2M a year locked into the renewed contract, with the incumbent retained and delivery uninterrupted.",
+      "Total-cost visibility across rates, travel, mobilisation, service levels and rework.",
+      "A defensible should-cost baseline left with the team to anchor the next renewal cycle.",
     ],
-    note: "BT Group is named as engagement context; the supplier is withheld. The £100M figure elsewhere describes annual category responsibility at BT Group, not this contract. Cost build-ups and the bridge are directional method illustrations, not the contract's actual baseline.",
+    note: "Sources: a should-cost model built from first principles — labour and productivity, materials, overhead recovery and fair margin — indexed to the quoted renewal = 100, with the total-cost build covering rates, mobilisation, travel, service credits and rework. BT Group is named as engagement context; the supplier is withheld. The £100M figure elsewhere describes annual category responsibility at BT Group, not this contract.",
   },
   {
     id: "accenture-capex-sourcing",
     sector: "energy",
     sectorLabel: "Energy & oil & gas",
-    headline: "A capital programme tendered package by package leaks leverage at every award.",
+    headline:
+      "Matching each CapEx category to its own supply market turned scattered tenders into ~$4M of savings.",
     metric: "~$4M",
     metricLabel: "CapEx savings delivered",
     status: "Sourcing outcome",
+    scope: "Consulting · Accenture · upstream E&P operator",
+    engagementRole: "CapEx category & sourcing lead",
+    duration: "12 months",
     description:
-      "Managing the programme as three categories — each matched to its own supply market rather than to one tendering formula — converted scattered tenders into roughly $4M of CapEx savings.",
+      "A large upstream capital programme was bought package by package, leaking leverage at every award. Managing it as three categories, each with its own sourcing posture, delivered ~$4M of CapEx savings and a governance model embedded in the client's own team.",
     tags: ["Strategic sourcing", "Category management"],
-    scope: "Consulting · Accenture, upstream E&P operator",
-    role: "Within Accenture's engagement team I led CapEx sourcing and category management across the major spend categories — building category strategies, aggregating demand across projects, running sourcing end to end from qualification through award, and embedding category governance in the client's own team.",
+    role: "Within Accenture's team, led CapEx sourcing and category management: built strategies for EPC, surface facilities and drilling & completions, aggregated demand across projects, ran sourcing from qualification to award, and embedded category governance in the client's team.",
     challenge:
-      "A large upstream capital programme was being sourced project by project, each package tendered in isolation. There was no category strategy and no aggregated demand view, which left limited leverage against a concentrated contractor base.",
+      "A large upstream capital programme was sourced project by project, each package tendered in isolation. With no category strategy and no aggregated demand view, leverage against a concentrated contractor base was limited — and any consolidation had to keep technical, quality and schedule requirements intact.",
     approach: [
       {
         title: "Manage spend as categories",
@@ -456,33 +473,36 @@ export const caseStudies = [
       },
       {
         title: "Build tension through stage-gates",
-        body: "Narrow a wide qualified field through formal gates — roughly one in twenty qualified suppliers reaches award.",
+        body: "Narrow a wide qualified field through formal gates, so competition comes from the discipline of the process rather than the length of the bidder list.",
       },
     ],
     judgment:
-      "Leverage came from the structure of the process as much as from the size of the package. A concentrated market does not reward a longer bidder list — it rewards disciplined stage-gates, which is why each category earned a different contracting approach rather than one tendering formula.",
+      "Leverage came from the structure of the process as much as the size of the package. A concentrated market does not reward a longer bidder list; it rewards disciplined stage-gates — so each category earned its own contracting approach.",
     results: [
-      "Approximately $4M in CapEx savings delivered across the managed sourcing portfolio.",
-      "Category strategies established across EPC, surface facilities and drilling and completions, replacing project-by-project buying.",
+      "~$4M in CapEx savings across the managed sourcing portfolio.",
+      "Category strategies for EPC, surface facilities and drilling & completions, replacing project-by-project buying.",
       "Category playbooks and supplier-management routines embedded with the in-house team.",
     ],
-    note: "Accenture is named as engagement context; the E&P client and all contractors are withheld. Category splits and the sourcing funnel are directional; no split of the ~$4M saving across categories is implied.",
+    note: "Sources: the managed capital programme segmented into sourcing categories and sized by share of programme value. No split of the ~$4M saving across categories is implied. Accenture is named as engagement context; the E&P client and all contractors are withheld, and category splits are directional.",
   },
   {
     id: "category-intelligence",
     sector: "energy",
     sectorLabel: "Energy & utilities",
-    headline: "E-STATCOM is a category you secure early, not one you tender late.",
-    metric: "Commit early",
-    metricLabel: "the category posture the intelligence pointed to",
+    headline:
+      "Half of E-STATCOM cost sits in supply-constrained inputs — so secure it early, don't tender it late.",
+    metric: "~50%",
+    metricLabel: "of installed cost in supply-constrained inputs",
     status: "Decision-support deliverables",
+    scope: "Consulting · large US investor-owned utility",
+    engagementRole: "Category intelligence & executive briefing",
+    duration: "8 weeks",
     description:
-      "Market structure, supplier landscape, cost drivers and lead times for E-STATCOM — grid power electronics with integrated energy storage — connected to the sourcing posture they imply.",
+      "Fragmented market, supplier and spend information was rebuilt into one decision-ready view of the category. Decomposing cost and lead time into their real drivers showed why it rewards partnership and early commitment over aggressive competitive tendering.",
     tags: ["Category intelligence", "Supply markets"],
-    scope: "Consulting · Large US investor-owned utility",
-    role: "I built the category-intelligence report end to end on a single analytical framework — market structure, spend profile, supplier landscape and concentration, cost model, commodity exposure, lead-time analysis, contracting approach, risk and supplier KPIs — and iterated the executive summary until every statement was fact-based and decision-relevant.",
+    role: "Built the category-intelligence report end to end on one framework — market structure, spend, supplier concentration, cost model, commodity exposure, lead time, contracting approach and KPIs — and iterated the executive summary until every statement was fact-based.",
     challenge:
-      "The utility was building a category-intelligence capability, and E-STATCOM was a priority category. The information decision-makers needed was fragmented: supplier data, market intelligence, commodity trends and spend analytics all lived separately, with no structured view to support sourcing and capital planning.",
+      "The utility was building a category-intelligence capability, and E-STATCOM — grid power electronics with integrated storage — was a priority. Supplier data, market intelligence, commodity trends and spend analytics all lived separately, with no structured view to support sourcing, capital planning and grid-stability investment.",
     approach: [
       {
         title: "Use one decision framework",
@@ -490,7 +510,7 @@ export const caseStudies = [
       },
       {
         title: "Decompose drivers, not aggregates",
-        body: "Break cost into its commodity and manufacturing inputs, and separate lead time into its critical-path components, rather than quoting a blended inflation figure or an average.",
+        body: "Break cost into its commodity and manufacturing inputs, and separate lead time into its critical-path components, rather than quoting a blended figure or an average.",
       },
       {
         title: "Write for the commercial decision",
@@ -498,13 +518,13 @@ export const caseStudies = [
       },
     ],
     judgment:
-      "The shift that mattered was from describing a market to saying what procurement should do about it. Decomposition is what made that possible: an average lead time is not actionable, but a critical path running through power semiconductors and the coupling transformer inside the package points to a specific action — reserve production slots, do not simply order early.",
+      "The shift that mattered was from describing a market to saying what procurement should do about it. An average lead time is not actionable, but a critical path running through power semiconductors and the coupling transformer points to a specific action: reserve production slots, do not simply order early.",
     results: [
-      "One decision-ready intelligence base holding market structure, supplier landscape, cost drivers, lead times, contracting and risk in a single comparable frame.",
-      "Roughly half of installed cost traced to two supply-constrained inputs — power semiconductors and copper-intensive magnetics — giving procurement evidence to challenge a supplier quote.",
-      "A differentiated category posture: partner and commit early, with production slots reserved ahead of need rather than competed at the point of requirement.",
+      "One intelligence base: market structure, supplier landscape, cost drivers and lead-time exposure in one comparable frame.",
+      "A differentiated posture: partner and commit early, with production slots secured ahead of need.",
+      "An executive-ready briefing that aligned procurement and engineering ahead of the sourcing decisions.",
     ],
-    note: "This is decision-support intelligence, not a current market forecast, and it claims no subsequent sourcing savings or implementation outcomes. The client's own supplier panel, concentration and spend are withheld; where the supply market is described from public sources, the source is cited on the exhibit.",
+    note: "Sources: cost shares from published cost-structure and commodity sources (accessed September 2026) — semiconductor allocation into 2027, and copper above $14,000/t through 2026. This is decision-support intelligence, not a current market forecast, and it claims no subsequent sourcing savings or implementation outcomes. The client's own supplier panel, concentration and spend are withheld.",
   },
 ];
 export const experience = [

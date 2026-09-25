@@ -86,6 +86,7 @@ for name in ('resume.pdf',):
     assert (ROOT / name).read_bytes().startswith(b'%PDF-'), f'Invalid PDF: {name}'
 for name in (
     'archivo-var.woff2',
+    'source-serif-4-var.woff2',
     'source-sans-3-var.woff2',
     'plex-mono-400.woff2',
     'plex-mono-500.woff2',

@@ -1,14 +1,73 @@
 @import "tailwindcss";
 .hero .hero-tagline {
-  font-family: var(--font-display);
-  font-size: 30px;
-  line-height: 1.3;
+  font-family: var(--font-serif);
+  font-size: 32px;
+  line-height: 1.24;
   font-weight: 500;
+  letter-spacing: -0.006em;
   margin-bottom: 24px;
   color: var(--color-ink);
 }
 .hero-tagline span {
   color: var(--color-accent-text);
+}
+/* Hero line reveal (src/scripts/hero.ts).
+
+   These two elements start hidden so the masked line rise has somewhere to
+   rise from. The `hero-fallback` animation is the guarantee that comes with
+   that: if the hero module is slow, throws, or never loads, the headline fades
+   itself up 550ms after paint regardless. When the module does arrive in time
+   it sets opacity directly, which supersedes the animation.
+
+   Scoped to html.motion, so a visitor with reduced motion never has the hero
+   hidden from them for even a frame. */
+html.motion .js-hero-line {
+  opacity: 0;
+  animation: hero-fallback 0.45s ease-out 0.55s forwards;
+}
+/* Must assert opacity, not merely cancel the fallback animation. The reveal
+   restores the original markup when it finishes and drops its inline opacity;
+   without this rule the element falls back to the `opacity: 0` above and the
+   headline disappears the moment it has finished arriving. */
+html.motion.hero-shown .js-hero-line {
+  opacity: 1;
+  animation: none;
+}
+@keyframes hero-fallback {
+  to {
+    opacity: 1;
+  }
+}
+/* The per-word mask the line rise slides out of.
+
+   The padding/negative-margin pair is the important part: an overflow-hidden
+   box sized to the glyphs clips descenders, so "Kholiya" loses the tail of its
+   y for the whole animation and then pops back. The padding gives the mask a
+   full line box to clip against, and the matching negative margin keeps the
+   element's layout size unchanged so nothing around it shifts. */
+.hero-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.12em 0.02em 0.22em;
+  margin: -0.12em -0.02em -0.22em;
+}
+.hero-w-i {
+  display: inline-block;
+  will-change: transform;
+}
+/* The hero already colours spans: `.hero h1 span` and `.hero-tagline span`
+   both paint the accent copper, and they were written for the one <span> each
+   of those elements contains. The reveal wraps every word in a span too, so
+   without this the whole headline turns copper for the duration of the
+   animation and snaps back to ink when the markup is restored.
+
+   Inheriting is the correct answer rather than hard-coding ink: a word inside
+   the tagline's accent span should still come out copper. The two-class
+   selector is what outranks `.hero h1 span` (0,1,2). */
+.js-hero-line .hero-w,
+.js-hero-line .hero-w-i {
+  color: inherit;
 }
 .hero-grid > * {
   min-width: 0;
@@ -59,6 +118,19 @@
   font-weight: 500;
   font-display: swap;
 }
+/* Source Serif 4 carries the argument: the hero tagline, section headings and
+   case-study headlines. It is the same superfamily as Source Sans 3, so the two
+   share proportions and the pairing reads as one voice rather than two fonts.
+   Subset to latin + the punctuation the headlines actually use, optical size
+   pinned to 32 (display) and the weight axis clamped to 400-700, which is the
+   only range used — 30KB rather than the 122KB Google serves. */
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/fonts/source-serif-4-var.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
 @theme {
   --color-paper: #f6f8fa;
   --color-surface: #fff;
@@ -72,6 +144,7 @@
   --color-accent-tint: #f6e9da;
   --color-on-ink: #f4f7fa;
   --font-display: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
   --font-sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
@@ -131,6 +204,14 @@ html {
   scroll-padding-top: 96px;
   -webkit-text-size-adjust: 100%;
 }
+/* Lenis runs its own interpolated scroll. Leaving the native smooth behaviour
+   on as well means two animations fighting over one scroll position, which
+   shows up as the page stuttering or overshooting an anchor. Scoped to
+   motion-ready so the native behaviour survives every path where Lenis is not
+   actually driving. */
+html.motion.motion-ready {
+  scroll-behavior: auto;
+}
 body {
   margin: 0;
   background: var(--color-surface);
@@ -148,6 +229,11 @@ p,
 figure {
   margin: 0;
 }
+/* h1/h2 carry the argument, so they are set in the serif. h3/h4 are structural
+   labels (card titles, exhibit titles) and stay in Archivo — mixing the serif
+   down to that scale is what makes a page read as decorated rather than edited.
+   The serif needs far less negative tracking than the grotesk did; -0.022em on
+   Source Serif closes the counters instead of tightening the line. */
 h1,
 h2,
 h3,
@@ -158,10 +244,16 @@ h4 {
   font-weight: 600;
   text-wrap: balance;
 }
+h1,
+h2 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.008em;
+  line-height: 1.14;
+}
 h1 {
   font-size: 60px;
   font-weight: 700;
-  letter-spacing: -0.022em;
+  letter-spacing: -0.012em;
 }
 /* Figures line up in columns and read as measurements, not prose. */
 .tabular,
@@ -689,10 +781,13 @@ img {
   padding: 5px 8px;
   margin: 17px 0 27px;
 }
+/* The card headline is the case's argument in one sentence, so it takes the
+   serif even though it sits at h3 scale. */
 .case-card h3 {
-  font-size: 22px;
-  line-height: 1.35;
-  letter-spacing: 0;
+  font-family: var(--font-serif);
+  font-size: 23px;
+  line-height: 1.3;
+  letter-spacing: -0.004em;
   margin-bottom: 14px;
 }
 .case-description {
@@ -857,12 +952,76 @@ img {
 .partnership .button {
   flex-shrink: 0;
 }
+/* ── Career timeline rail ───────────────────────────────────────────────
+   A hairline down the left of the career list, with a node per role. The
+   accent fill and the node dots are scrubbed to scroll by initTimeline() in
+   src/scripts/motion.ts.
+
+   Everything here is authored in its FINISHED state: the fill is at full
+   height and every dot is solid. That is what a no-JS visitor, a reduced-
+   motion visitor and a printed page all get, and it is a legitimate design
+   rather than a degraded one. The motion module sets the start states in JS
+   immediately before it animates them, so a bundle that never arrives leaves
+   a complete rail rather than an empty gutter. Same contract the exhibits
+   hold to — see the note at the foot of src/styles/exhibits.css. */
+.career-timeline {
+  /* One place to change the geometry. The node is centred on the rail by
+     deriving its offset from these three, so they stay in agreement. */
+  --rail-gutter: 34px;
+  --rail-w: 2px;
+  --node-size: 9px;
+  --node-top: 36px;
+
+  position: relative;
+  padding-left: var(--rail-gutter);
+}
+.career-rail {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: var(--rail-w);
+  border-radius: var(--rail-w);
+  background: var(--color-hairline);
+  /* Paints under the nodes, which mask it with the section background. */
+  overflow: hidden;
+}
+.career-rail-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-accent);
+  transform-origin: top center;
+}
+.career-node {
+  position: absolute;
+  /* Pull back out of the list's left padding, then centre the node on the
+     rail: half the difference between the rail width and the node width. */
+  left: calc(
+    (var(--rail-gutter) - (var(--rail-w) - var(--node-size)) / 2) * -1
+  );
+  top: var(--node-top);
+  width: var(--node-size);
+  height: var(--node-size);
+  border-radius: 50%;
+  /* Matches .section-tint, so the node reads as a bead sitting on the rail
+     rather than a dot floating over a line that runs behind it. */
+  background: var(--color-paper);
+  box-shadow: 0 0 0 1px var(--color-hairline);
+}
+.career-node-dot {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform-origin: center center;
+}
 .career-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 .career-list > li {
+  position: relative;
   display: grid;
   grid-template-columns: 185px 1fr 225px;
   gap: 32px;
@@ -949,9 +1108,13 @@ img {
 .resume-card:hover {
   border-color: var(--color-accent);
 }
-.resume-card h4 {
+.resume-card h4,
+.resume-card h3 {
   font-size: 23px;
   margin: 13px 0 9px;
+  font-family: var(--font-display);
+  letter-spacing: 0;
+  line-height: 1.18;
 }
 .resume-card p:not(.eyebrow) {
   font-size: 17px;
@@ -1303,12 +1466,42 @@ img {
   font-size: 21px;
   margin-bottom: 30px;
 }
+/* Four facts, mirroring the one-pager's strip. Duration is the narrowest
+   because its value is two words; the metric gets the most room because it is
+   the only cell set at display size. */
 .case-page-facts {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 30px;
+  grid-template-columns: 1.1fr 1.3fr 1.2fr 0.6fr;
+  gap: 28px;
   padding-top: 25px;
   border-top: var(--border);
+}
+@media (max-width: 900px) {
+  .case-page-facts {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 26px;
+  }
+  /* With two per row the right-hand cell of each row ends the row, so its
+     divider would hang in space. */
+  .case-page-facts > div:nth-child(2n) {
+    border-right: 0;
+    padding-right: 0;
+  }
+}
+@media (max-width: 520px) {
+  .case-page-facts {
+    grid-template-columns: 1fr;
+  }
+  .case-page-facts > div {
+    border-right: 0;
+    padding-right: 0;
+    border-bottom: var(--border);
+    padding-bottom: 16px;
+  }
+  .case-page-facts > div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 .case-page-facts > div {
   border-right: var(--border);
@@ -2004,6 +2197,12 @@ img {
   .partnership h3 {
     font-size: 24px;
   }
+  .career-timeline {
+    /* A 34px gutter is a tenth of a 375px screen. The rail still reads at 22,
+       and --node-top follows the reduced 27px row padding below. */
+    --rail-gutter: 22px;
+    --node-top: 33px;
+  }
   .career-list > li {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -2037,7 +2236,8 @@ img {
     padding: 24px;
     gap: 15px;
   }
-  .resume-card h4 {
+  .resume-card h4,
+  .resume-card h3 {
     font-size: 22px;
   }
   .about-grid {
@@ -2306,7 +2506,14 @@ img {
      real path, so the reveal state has to be neutralised here. */
   .js .reveal,
   .js .chart-animate rect.bar,
-  .js .chart-animate.bars-horizontal rect.bar {
+  .js .chart-animate.bars-horizontal rect.bar,
+  /* Same reasoning for the career rail, but it fails differently and worse.
+     The rail is scrubbed to scroll, so printing from anywhere above the
+     Experience section prints a full list of roles beside an empty gutter and
+     a column of hollow nodes. These override GSAP's inline transforms: an
+     important author declaration outranks a style attribute. */
+  .js .career-rail-fill,
+  .js .career-node-dot {
     opacity: 1 !important;
     transform: none !important;
     /* The transition has to go too. Left running, the browser snapshots the

@@ -7,15 +7,18 @@ import Arrow from "./Arrow.astro";
   <div class="container">
     <div class="hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">{copy.hero.eyebrow}</p>
-        <h1 id="hero-headline">{copy.hero.intro}</h1>
-        <p class="hero-tagline">
+        <p class="eyebrow js-hero-fade">{copy.hero.eyebrow}</p>
+        {/* js-hero-line: masked line reveal on load. Deliberately NOT applied
+            to .hero-intro below — that paragraph is this page's LCP element,
+            so it paints immediately and is never hidden. */}
+        <h1 id="hero-headline" class="js-hero-line">{copy.hero.intro}</h1>
+        <p class="hero-tagline js-hero-line">
           {copy.hero.first}
           <br />
           <span>{copy.hero.second}</span>
         </p>
         <p class="hero-intro">{siteConfig.positioning}</p>
-        <div class="button-row">
+        <div class="button-row js-hero-fade">
           <a class="button" href="#case-studies">
             {copy.hero.primary}
             <Arrow />
@@ -25,7 +28,7 @@ import Arrow from "./Arrow.astro";
             <Arrow />
           </a>
         </div>
-        <p class="hero-sectors">{copy.hero.footnote}</p>
+        <p class="hero-sectors js-hero-fade">{copy.hero.footnote}</p>
       </div>
       <aside class="proof-panel" aria-label="Explore experience by audience">
         <div class="proof-top">
@@ -94,6 +97,10 @@ import Arrow from "./Arrow.astro";
   </div>
 </section>
 <script>
+  /* Loaded here rather than in BaseLayout so only the page that has a hero
+     pays for GSAP core + SplitText. */
+  import "../scripts/hero";
+
   const buttons =
     document.querySelectorAll<HTMLButtonElement>("[data-audience]");
   const panels = document.querySelectorAll<HTMLElement>("[data-proof-panel]");

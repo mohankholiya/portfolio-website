@@ -22,6 +22,9 @@ const c = copy.detail;
       </p>
       <h1>{cs.headline}</h1>
       <p class="case-lead">{cs.description}</p>
+      {/* The same four facts the one-pager leads with. A recruiter scanning
+          wants the shape of the engagement — who it was for, what the role
+          actually was, and how long it ran — before the analysis. */}
       <div class="case-page-facts">
         <div>
           <span>{c.proof}</span>
@@ -33,8 +36,12 @@ const c = copy.detail;
           <p>{cs.scope}</p>
         </div>
         <div>
-          <span>{c.status}</span>
-          <p>{cs.status}</p>
+          <span>{c.engagementRole}</span>
+          <p>{cs.engagementRole}</p>
+        </div>
+        <div>
+          <span>{c.duration}</span>
+          <p>{cs.duration}</p>
         </div>
       </div>
     </div>
@@ -95,7 +102,9 @@ const c = copy.detail;
       >
         <div>
           <span class="eyebrow">{c.onePagerNote}</span>
-          <h4>{c.onePagerTitle}</h4>
+          {/* h3, not h4: the previous heading on this page is the h2 on the
+              results section, and skipping a level fails heading-order. */}
+          <h3>{c.onePagerTitle}</h3>
           <p>{c.onePagerBody}</p>
           <span class="resume-cta">{c.onePagerLabel}</span>
         </div>

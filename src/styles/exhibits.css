@@ -718,3 +718,25 @@ h4 {
     color: #000;
   }
 }
+
+/* ── Exhibit motion ─────────────────────────────────────────────────────
+   The start states for the scroll-in animation are NOT set here; they are set
+   from src/scripts/motion.ts with gsap.set() just before the timeline is built.
+
+   That is deliberate, and it took a bug to learn. GSAP computes SVG transform
+   origins itself and writes a matrix with the origin offset baked in. If the
+   stylesheet also sets `transform-box: fill-box` plus a `transform-origin`, the
+   offset is applied twice and every bar in a stacked chart lands somewhere it
+   was not authored — segments overlap, reorder, and leave gaps.
+
+   Setting the start state in JS also removes the only way this could strand a
+   chart invisible: if the bundle never loads, nothing was ever hidden. The
+   exhibits sit well below the fold on every page that has them, so there is no
+   practical window in which an unstyled chart could be seen resetting itself.
+
+   Counting figures change width every frame. Without tabular figures a centred
+   label jitters horizontally as it counts, which reads as a rendering fault. */
+.onepager-chart text[data-count] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}

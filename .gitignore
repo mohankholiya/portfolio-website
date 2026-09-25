@@ -17,3 +17,7 @@ graphify-out/
 
 # Local reference copy of a previously deployed build, not source.
 mohan kholiya draft build/
+
+# Local screenshot/verification scratch, not part of the build
+.shots/
+scripts/__pycache__/

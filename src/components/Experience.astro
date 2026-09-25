@@ -17,9 +17,20 @@ import { experience, copy } from "../content/site";
       </div>
       <p>{copy.experience.description}</p>
     </div>
-    <ol class="career-list reveal-group">
+    {/* The rail is a sibling of the list rather than a child, because an <ol>
+        may only contain <li> and a decorative <div> inside it is invalid. The
+        wrapper is the positioning context for both the rail and the per-role
+        nodes, which are absolutely positioned out of each <li>. */}
+    <div class="career-timeline">
+      <div class="career-rail" aria-hidden="true">
+        <div class="career-rail-fill"></div>
+      </div>
+      <ol class="career-list reveal-group">
       {experience.map((job) => (
         <li class="reveal">
+          <span class="career-node" aria-hidden="true">
+            <span class="career-node-dot"></span>
+          </span>
           <div class="career-period">
             <span>{job.period}</span>
             <span
@@ -43,7 +54,8 @@ import { experience, copy } from "../content/site";
           </ul>
         </li>
       ))}
-    </ol>
+      </ol>
+    </div>
     <div id="resumes" class="resume-section reveal">
       <h3>{copy.experience.downloadsTitle}</h3>
       <p>{copy.experience.downloadsBody}</p>

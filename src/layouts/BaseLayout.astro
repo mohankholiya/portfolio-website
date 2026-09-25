@@ -43,9 +43,17 @@ const ogImage = new URL("/og-image.png", siteConfig.url).href;
     <meta name="twitter:image" content={ogImage} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {is404 && <meta name="robots" content="noindex" />}
-    {/* Only the two faces that paint above the fold are preloaded. Plex Mono
-        carries small labels, where a swap is not worth a third blocking
-        request on a 4G connection. */}
+    {/* Only the faces that paint above the fold are preloaded. The serif sets
+        the hero tagline and every h1/h2, so it is the LCP face and goes first.
+        Plex Mono carries small labels, where a swap is not worth another
+        blocking request on a 4G connection. */}
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link
       rel="preload"
       href="/fonts/archivo-var.woff2"
@@ -91,9 +99,25 @@ const ogImage = new URL("/og-image.png", siteConfig.url).href;
   </head>
   <body>
     {/* Set before paint so the reveal styles never flash content in and out,
-        and so a no-JS visitor gets the fully visible page. */}
+        and so a no-JS visitor gets the fully visible page.
+
+        `motion` records that this visitor may have motion — JS is on and they
+        have not asked for reduced motion. It gates the loader in
+        src/scripts/motion-entry.ts, which decides *when* to fetch GSAP.
+
+        There is deliberately no watchdog. No stylesheet rule hides anything on
+        the strength of these classes: the motion module sets its own start
+        states in JS immediately before animating them. A page where the bundle
+        never arrives, arrives late, or throws is simply a page without
+        animation — never a page with an invisible chart on it. */}
     <script is:inline>
-      document.documentElement.classList.add("js");
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          root.classList.add("motion");
+        }
+      })();
     </script>
     <a class="skip-link" href="#main-content">
       Skip to main content
@@ -138,6 +162,12 @@ const ogImage = new URL("/og-image.png", siteConfig.url).href;
       }
 
       activate();
+    </script>
+    {/* Loader only (<1KB). It dynamic-imports the real motion bundle once the
+        page is idle or the visitor moves to scroll, which keeps ~51KB of GSAP
+        and Lenis off the critical path. */}
+    <script>
+      import "../scripts/motion-entry";
     </script>
   </body>
 </html>
